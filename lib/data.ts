@@ -3,6 +3,7 @@ export const electronicaBrands = [
   {
     slug: "fuji",
     name: "Fuji",
+    logo: "/images/brands/fuji.png",
     description: "Innovador líder en maquinaria SMT y producción electrónica",
     website: "https://www.fuji.co.jp",
   },
@@ -47,12 +48,14 @@ export const electronicaBrands = [
   {
     slug: "ecd",
     name: "ECD",
+    logo: "/images/brands/ecd.png",
     description: "Sistemas de perfilado térmico para hornos de reflujo",
     website: "https://www.ecd.com",
   },
   {
     slug: "evs",
     name: "EVS",
+    logo: "/images/brands/evs.png",
     description: "Equipos de soldadura y estaciones de trabajo",
     website: "https://www.evs-international.com",
   },
@@ -81,6 +84,7 @@ export const aireRefrigeracionBrands = [
   {
     slug: "galileo-tp",
     name: "Galileo TP",
+    logo: "/images/brands/galileo-tp.png",
     description: "Compresores y sistemas de refrigeración industrial",
     website: "https://www.galileoar.com",
   },
@@ -108,12 +112,14 @@ export const aireRefrigeracionBrands = [
   {
     slug: "gasflux",
     name: "Gasflux",
+    logo: "/images/brands/gasflux.png",
     description: "Soldadura con gas y equipos de brazing",
     website: "#",
   },
   {
     slug: "blm",
     name: "BLM",
+    logo: "/images/brands/blm.png",
     description: "Herramientas y equipamiento para HVAC",
     website: "#",
   },
