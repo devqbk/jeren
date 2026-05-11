@@ -44,23 +44,23 @@ function BrandsGrid({ title, description, brands, categoryHref, variant = "defau
             <Link
               key={brand.slug}
               href={`${categoryHref}/${brand.slug}`}
-              className="group flex flex-col items-center rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md"
+              className="group flex flex-col items-center rounded-lg border border-border bg-white p-4 transition-all hover:border-primary/30 hover:shadow-md"
             >
               {/* Brand logo */}
-              <div className="flex h-16 w-full items-center justify-center rounded bg-muted/50 p-2">
+              <div className="flex h-14 w-full items-center justify-center p-2">
                 {brand.logo ? (
                   <Image
                     src={brand.logo}
                     alt={`Logo ${brand.name}`}
                     width={120}
                     height={48}
-                    className="h-auto max-h-12 w-auto object-contain"
+                    className="h-auto max-h-10 w-auto object-contain"
                   />
                 ) : (
-                  <span className="text-xs font-medium text-muted-foreground">{brand.name}</span>
+                  <span className="text-sm font-semibold text-foreground">{brand.name}</span>
                 )}
               </div>
-              <span className="mt-4 text-center text-sm font-medium text-foreground group-hover:text-primary">
+              <span className="mt-2 text-center text-xs font-medium text-muted-foreground group-hover:text-primary">
                 {brand.name}
               </span>
             </Link>

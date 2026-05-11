@@ -3,8 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ChevronDown, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { navigation, electronicaBrands, aireRefrigeracionBrands } from "@/lib/data"
 
@@ -98,14 +97,8 @@ export function Header() {
           ))}
         </div>
 
-        {/* CTA + Mobile Menu Button */}
+        {/* Mobile Menu Button */}
         <div className="flex items-center gap-3">
-          <Link href="#" className="hidden lg:block">
-            <Button variant="outline" size="sm" className="text-xs">
-              <ExternalLink className="mr-1.5 h-3 w-3" />
-              Acceso clientes
-            </Button>
-          </Link>
           <button
             type="button"
             className="lg:hidden p-2 text-foreground"
@@ -136,12 +129,6 @@ export function Header() {
                 )}
               </div>
             ))}
-            <Link href="#" className="mt-4 block">
-              <Button variant="outline" size="sm" className="w-full">
-                <ExternalLink className="mr-1.5 h-3 w-3" />
-                Acceso clientes
-              </Button>
-            </Link>
           </div>
         </div>
       )}
