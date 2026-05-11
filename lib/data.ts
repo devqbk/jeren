@@ -10,6 +10,7 @@ export const electronicaBrands = [
   {
     slug: "koh-young",
     name: "Koh Young",
+    logo: "/images/brands/koh-young.jpg",
     description: "Sistemas de inspección 3D y medición de alta precisión",
     website: "https://www.kohyoung.com",
   },
