@@ -27,6 +27,7 @@ export const electronicaBrands = [
   {
     slug: "yj-link",
     name: "YJ Link",
+    logo: "/images/brands/yj-link.png",
     description: "Sistemas de transporte y automatización SMT",
     website: "https://www.yjlink.com",
   },
@@ -39,6 +40,7 @@ export const electronicaBrands = [
   {
     slug: "kurtz-ersa",
     name: "Kurtz Ersa",
+    logo: "/images/brands/kurtz-ersa.png",
     description: "Equipos de soldadura selectiva y por ola",
     website: "https://www.ersa.de",
   },
@@ -85,18 +87,21 @@ export const aireRefrigeracionBrands = [
   {
     slug: "inficon",
     name: "Inficon",
+    logo: "/images/brands/inficon.png",
     description: "Detectores de fugas y equipos de medición",
     website: "https://www.inficon.com",
   },
   {
     slug: "jae-hyun-autonics",
     name: "Jae Hyun Autonics",
+    logo: "/images/brands/jae-hyun-autonics.png",
     description: "Componentes de automatización y control",
     website: "#",
   },
   {
     slug: "sumake",
     name: "Sumake",
+    logo: "/images/brands/sumake.png",
     description: "Herramientas neumáticas profesionales",
     website: "https://www.sumake.com.tw",
   },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
@@ -55,9 +56,19 @@ export default function ElectronicaPage() {
                   href={`/electronica/${brand.slug}`}
                   className="group rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg"
                 >
-                  {/* Logo Placeholder */}
-                  <div className="flex h-20 items-center justify-center rounded-md bg-muted">
-                    <span className="text-sm text-muted-foreground">Logo {brand.name}</span>
+                  {/* Brand Logo */}
+                  <div className="flex h-20 items-center justify-center rounded-md bg-muted/50 p-3">
+                    {brand.logo ? (
+                      <Image
+                        src={brand.logo}
+                        alt={`Logo ${brand.name}`}
+                        width={160}
+                        height={64}
+                        className="h-auto max-h-14 w-auto object-contain"
+                      />
+                    ) : (
+                      <span className="text-sm font-medium text-muted-foreground">{brand.name}</span>
+                    )}
                   </div>
 
                   <h3 className="mt-4 text-lg font-semibold text-foreground group-hover:text-primary">

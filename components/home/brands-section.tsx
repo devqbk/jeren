@@ -1,12 +1,21 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { electronicaBrands, aireRefrigeracionBrands } from "@/lib/data"
 
+interface Brand {
+  slug: string
+  name: string
+  logo?: string
+  description: string
+  website: string
+}
+
 interface BrandsSectionProps {
   title: string
   description: string
-  brands: typeof electronicaBrands
+  brands: Brand[]
   categoryHref: string
   variant?: "default" | "muted"
 }
@@ -37,9 +46,19 @@ function BrandsGrid({ title, description, brands, categoryHref, variant = "defau
               href={`${categoryHref}/${brand.slug}`}
               className="group flex flex-col items-center rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md"
             >
-              {/* Placeholder for brand logo */}
-              <div className="flex h-16 w-full items-center justify-center rounded bg-muted">
-                <span className="text-xs font-medium text-muted-foreground">Logo</span>
+              {/* Brand logo */}
+              <div className="flex h-16 w-full items-center justify-center rounded bg-muted/50 p-2">
+                {brand.logo ? (
+                  <Image
+                    src={brand.logo}
+                    alt={`Logo ${brand.name}`}
+                    width={120}
+                    height={48}
+                    className="h-auto max-h-12 w-auto object-contain"
+                  />
+                ) : (
+                  <span className="text-xs font-medium text-muted-foreground">{brand.name}</span>
+                )}
               </div>
               <span className="mt-4 text-center text-sm font-medium text-foreground group-hover:text-primary">
                 {brand.name}
