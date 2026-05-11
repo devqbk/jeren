@@ -24,6 +24,7 @@ export const electronicaBrands = [
   {
     slug: "nordson-asymtek",
     name: "Nordson Asymtek",
+    logo: "/images/brands/nordson-asymtek.png",
     description: "Sistemas de dispensado y conformal coating",
     website: "https://www.nordson.com",
   },
@@ -37,6 +38,7 @@ export const electronicaBrands = [
   {
     slug: "creative-electron",
     name: "Creative Electron",
+    logo: "/images/brands/creative-electron.jpg",
     description: "Sistemas de inspección por rayos X",
     website: "https://www.creativeelectron.com",
   },
