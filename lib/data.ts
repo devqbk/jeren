@@ -17,6 +17,7 @@ export const electronicaBrands = [
   {
     slug: "data-io",
     name: "Data I/O",
+    logo: "/images/brands/data-io.png",
     description: "Soluciones de programación de dispositivos electrónicos",
     website: "https://www.dataio.com",
   },
@@ -63,12 +64,14 @@ export const electronicaBrands = [
   {
     slug: "sono-tek",
     name: "Sono-Tek",
+    logo: "/images/brands/sono-tek.jpg",
     description: "Sistemas de recubrimiento ultrasónico",
     website: "https://www.sono-tek.com",
   },
   {
     slug: "hg-laser",
     name: "HG Laser",
+    logo: "/images/brands/hg-laser.jpg",
     description: "Equipos de marcado y corte láser",
     website: "#",
   },
@@ -127,6 +130,7 @@ export const aireRefrigeracionBrands = [
   {
     slug: "tech-sonic",
     name: "Tech Sonic",
+    logo: "/images/brands/tech-sonic.png",
     description: "Limpieza ultrasónica industrial",
     website: "#",
   },
