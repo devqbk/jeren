@@ -28,7 +28,7 @@ export const marcasNuevas = [
   {
     slug: "cimat",
     name: "CIMAT",
-    logo: "/images/brands/cimat.svg",
+    logo: "/images/brands/cimat-clean.png",
     description: "Diseño y fabricación de máquinas balanceadoras para más de 90 países. Presente en energía, automotriz, aeroespacial y construcción.",
     website: "https://www.cimat-balancing.com",
     industrias: ["petroleo-gas", "mineria"],
