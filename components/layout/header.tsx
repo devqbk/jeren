@@ -63,7 +63,7 @@ export function Header() {
                   <div className="w-[600px] rounded-lg border border-border bg-background p-6 shadow-lg">
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="text-sm font-semibold text-foreground">
-                        {item.name === "Electrónica" ? "Marcas de Electrónica" : "Marcas de Aire y Refrigeración"}
+                        Marcas de {item.name}
                       </h3>
                       <Link href={item.href} className="text-xs font-medium text-primary hover:underline">
                         Ver todas →

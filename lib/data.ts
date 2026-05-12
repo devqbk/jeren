@@ -248,12 +248,50 @@ export const servicios = [
   },
 ]
 
+// Marcas por industria nueva
+export const petroleoGasBrands = [
+  {
+    slug: "cimat",
+    name: "CIMAT",
+    logo: "/images/brands/cimat-clean.png",
+    description: "Máquinas balanceadoras para la industria energética",
+    website: "https://www.cimat-balancing.com",
+  },
+  {
+    slug: "xplorobot",
+    name: "Xplorobot",
+    logo: "/images/brands/xplorobot-dark.png",
+    description: "Detección y reporte de emisiones de metano",
+    website: "https://www.xplorobot.com",
+  },
+]
+
+export const mineriaBrands = [
+  {
+    slug: "cimat",
+    name: "CIMAT",
+    logo: "/images/brands/cimat-clean.png",
+    description: "Máquinas balanceadoras para equipos mineros",
+    website: "https://www.cimat-balancing.com",
+  },
+]
+
 // Navegación principal
 export const navigation = {
   main: [
     { name: "Empresa", href: "/empresa" },
-    { name: "Petróleo y Gas", href: "/petroleo-gas" },
-    { name: "Minería", href: "/mineria" },
+    {
+      name: "Petróleo y Gas",
+      href: "/petroleo-gas",
+      hasDropdown: true,
+      brands: petroleoGasBrands,
+    },
+    {
+      name: "Minería",
+      href: "/mineria",
+      hasDropdown: true,
+      brands: mineriaBrands,
+    },
     { name: "Agro", href: "/agro" },
     {
       name: "Electrónica",
