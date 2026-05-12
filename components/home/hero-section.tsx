@@ -30,7 +30,7 @@ export function HeroSection() {
           </p>
 
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Oil & Gas, Minería<br className="hidden sm:block" /> y Agro
+            Petróleo y Gas, Minería<br className="hidden sm:block" /> y Agro
           </h1>
 
           {/* Subtitle */}
@@ -40,7 +40,7 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href="/oil-gas">
+            <Link href="/petroleo-gas">
               <Button
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 sm:w-auto"

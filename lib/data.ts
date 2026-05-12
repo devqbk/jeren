@@ -1,11 +1,11 @@
 // Industrias nuevas (Fase B)
 export const industriasNuevas = [
   {
-    slug: "oil-gas",
-    name: "Oil & Gas",
+    slug: "petroleo-gas",
+    name: "Petróleo y Gas",
     description: "Equipamiento y soluciones para la industria petrolera y gasífera.",
     icon: "fuel",
-    href: "/oil-gas",
+    href: "/petroleo-gas",
   },
   {
     slug: "mineria",
@@ -28,16 +28,18 @@ export const marcasNuevas = [
   {
     slug: "cimat",
     name: "CIMAT",
-    description: "Sistemas de balanceo dinámico y análisis de vibraciones para la industria.",
+    logo: "/images/brands/cimat.svg",
+    description: "Diseño y fabricación de máquinas balanceadoras para más de 90 países. Presente en energía, automotriz, aeroespacial y construcción.",
     website: "https://www.cimat-balancing.com",
-    industrias: ["oil-gas", "mineria"],
+    industrias: ["petroleo-gas", "mineria"],
   },
   {
     slug: "xplorobot",
     name: "Xplorobot",
-    description: "Robótica e inspección autónoma para entornos industriales complejos.",
-    website: "#",
-    industrias: ["oil-gas", "mineria"],
+    logo: "/images/brands/xplorobot.svg",
+    description: "Detección, mitigación y reporte de emisiones de metano con tecnología láser aprobada por la EPA. Soluciones para operaciones onshore y offshore.",
+    website: "https://www.xplorobot.com",
+    industrias: ["petroleo-gas"],
   },
 ]
 
@@ -250,7 +252,7 @@ export const servicios = [
 export const navigation = {
   main: [
     { name: "Empresa", href: "/empresa" },
-    { name: "Oil & Gas", href: "/oil-gas" },
+    { name: "Petróleo y Gas", href: "/petroleo-gas" },
     { name: "Minería", href: "/mineria" },
     { name: "Agro", href: "/agro" },
     {
