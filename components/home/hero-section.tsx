@@ -5,7 +5,7 @@ import { ArrowRight, Phone } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-primary">
-      {/* Background Video/Image */}
+      {/* Background Video */}
       <video
         autoPlay
         muted
@@ -16,34 +16,40 @@ export function HeroSection() {
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
-      
+
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-primary/80" />
+      <div className="absolute inset-0 bg-primary/90" />
 
       {/* Content */}
       <div className="relative z-10 w-full mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="max-w-3xl">
-          {/* Main Heading - Estilo similar al original */}
+          {/* Eyebrow */}
+          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
+            Más de 40 años de experiencia industrial
+          </p>
+
+          {/* Pre-title */}
+          <p className="mb-2 text-xl font-medium text-primary-foreground/80 sm:text-2xl">
+            Máquinas, insumos y servicios para
+          </p>
+
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Electrónica
+            Petróleo y Gas,<br className="hidden sm:block" /> Minería y Agro
           </h1>
-          <h2 className="mb-6 text-3xl font-bold leading-tight text-primary-foreground/90 sm:text-4xl lg:text-5xl">
-            Aire Acondicionado y Refrigeración
-          </h2>
 
           {/* Subtitle */}
           <p className="mb-10 max-w-xl text-lg text-primary-foreground/80 sm:text-xl">
-            Más de 40 años representando marcas líderes mundiales de maquinaria, insumos y servicios para la industria.
+            Representamos marcas líderes mundiales con soluciones de maquinaria, insumos y soporte técnico para las industrias más exigentes de Argentina.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href="/electronica">
+            <Link href="/petroleo-gas">
               <Button
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 sm:w-auto"
               >
-                Conocé nuestras marcas
+                Conocé nuestras soluciones
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
