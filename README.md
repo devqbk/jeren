@@ -1,35 +1,57 @@
-# jeren
+# Jeren SRL — Sitio institucional
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Sitio web institucional de **Jeren SRL**, empresa argentina con más de 40 años representando marcas industriales líderes a nivel mundial en electrónica, aire acondicionado y refrigeración.
 
-## Built with v0
+## Stack
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+- **Framework:** Next.js (App Router)
+- **Estilos:** Tailwind CSS
+- **Componentes:** shadcn/ui
+- **Lenguaje:** TypeScript
+- **Package manager:** pnpm
+- **Deploy:** Vercel
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_imKwdA7wWX6KRzA9stM11YPqdhHg)
-
-## Getting Started
-
-First, run the development server:
+## Correr el proyecto localmente
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí [http://localhost:3000](http://localhost:3000) en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura principal
 
-## Learn More
+```
+app/                        # Páginas (Next.js App Router)
+components/
+  layout/                   # Header y Footer
+  home/                     # Secciones de la home
+  shared/                   # Componentes reutilizables entre páginas
+  ui/                       # Componentes shadcn/ui (no editar)
+lib/
+  data.ts                   # Fuente de verdad: marcas, sucursales, contacto, navegación
+public/
+  images/                   # Imágenes, logos y banners
+```
 
-To learn more, take a look at the following resources:
+## Rutas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+| Ruta | Descripción |
+|---|---|
+| `/` | Home |
+| `/empresa` | Página institucional |
+| `/electronica` | Listado de marcas de electrónica |
+| `/electronica/[marca]` | Detalle de marca |
+| `/aire-acondicionado` | Listado de marcas de aire y refrigeración |
+| `/aire-acondicionado/[marca]` | Detalle de marca |
+| `/servicios` | Servicios ofrecidos |
+| `/contacto` | Formulario y datos de contacto |
 
-<a href="https://v0.app/chat/api/kiro/clone/devqbk/jeren" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+## Flujo de desarrollo
+
+El proyecto se desarrolla híbridamente entre **v0** (generación visual) y **Claude Code** (lógica, refactors, integraciones), ambos trabajando sobre la misma rama vía GitHub.
+
+Cada merge a `main` genera un deploy automático en Vercel.
+
+Para el contexto completo del proyecto ver [`CLAUDE.md`](./CLAUDE.md).

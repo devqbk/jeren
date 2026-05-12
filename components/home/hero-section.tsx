@@ -4,36 +4,40 @@ import { ArrowRight, Phone } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-primary">
-      {/* Background Image - Circuit Board */}
-      <div className="absolute inset-0 bg-[url('/images/banners/hero-circuit.jpg')] bg-cover bg-center bg-no-repeat" />
+    <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-primary">
+      {/* Background Video/Image - Circuit Board */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+        poster="/images/banners/hero-circuit.jpg"
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
       
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-primary/75" />
+      <div className="absolute inset-0 bg-primary/80" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 text-center lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          {/* Badge */}
-          <div className="mb-6 inline-flex items-center rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5">
-            <span className="text-sm font-medium text-primary-foreground/90">
-              +40 años de experiencia en la industria
-            </span>
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Máquinas, insumos y servicios para la industria{" "}
-            <span className="text-primary-foreground/80">electrónica, aire acondicionado y refrigeración</span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 lg:px-8">
+        <div className="max-w-3xl">
+          {/* Main Heading - Estilo similar al original */}
+          <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+            Electrónica
           </h1>
+          <h2 className="mb-6 text-3xl font-bold leading-tight text-primary-foreground/90 sm:text-4xl lg:text-5xl">
+            Aire Acondicionado y Refrigeración
+          </h2>
 
           {/* Subtitle */}
-          <p className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-primary-foreground/70 sm:text-xl">
-            Representamos las marcas líderes mundiales de maquinaria industrial con soporte técnico especializado 24x7 en todo el país.
+          <p className="mb-10 max-w-xl text-lg text-primary-foreground/80 sm:text-xl">
+            Más de 40 años representando marcas líderes mundiales de maquinaria, insumos y servicios para la industria.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <Link href="/electronica">
               <Button
                 size="lg"
@@ -55,27 +59,10 @@ export function HeroSection() {
             </Link>
           </div>
         </div>
-
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
-          {[
-            { value: "+40", label: "Años de experiencia" },
-            { value: "3", label: "Sucursales" },
-            { value: "19", label: "Marcas representadas" },
-            { value: "24/7", label: "Soporte técnico" },
-          ].map((stat) => (
-            <div key={stat.label} className="flex flex-col">
-              <span className="text-3xl font-bold text-primary-foreground sm:text-4xl">
-                {stat.value}
-              </span>
-              <span className="mt-1 text-sm text-primary-foreground/60">{stat.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   )
 }
