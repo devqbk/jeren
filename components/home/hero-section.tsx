@@ -21,7 +21,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-primary/90" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 lg:px-8">
+      <div className="relative z-10 w-full mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="max-w-3xl">
           {/* Main Heading - Estilo similar al original */}
           {/* Eyebrow */}
@@ -29,8 +29,13 @@ export function HeroSection() {
             Más de 40 años de experiencia industrial
           </p>
 
+          {/* Pre-title */}
+          <p className="mb-2 text-xl font-medium text-primary-foreground/80 sm:text-2xl">
+            Máquinas, insumos y servicios para
+          </p>
+
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Petróleo y Gas, Minería<br className="hidden sm:block" /> y Agro
+            Petróleo y Gas,<br className="hidden sm:block" /> Minería y Agro
           </h1>
 
           {/* Subtitle */}
