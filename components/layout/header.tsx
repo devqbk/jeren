@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { navigation } from "@/lib/data"
+import { navigation, electronicaBrands, aireRefrigeracionBrands } from "@/lib/data"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -57,19 +57,39 @@ export function Header() {
                 )}
               </Link>
 
-              {/* Dropdown: Otras industrias */}
+              {/* Mega Menu */}
               {item.hasDropdown && activeDropdown === item.name && (
                 <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-                  <div className="w-52 rounded-lg border border-border bg-background p-2 shadow-lg">
-                    {item.subItems?.map((sub) => (
+                  <div className="w-[600px] rounded-lg border border-border bg-background p-6 shadow-lg">
+                    <div className="mb-4 flex items-center justify-between">
+                      <h3 className="text-sm font-semibold text-foreground">
+                        {item.name === "Electrónica"
+                          ? "Marcas de Electrónica"
+                          : "Marcas de Aire y Refrigeración"}
+                      </h3>
                       <Link
-                        key={sub.href}
-                        href={sub.href}
-                        className="block rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
+                        href={item.href}
+                        className="text-xs font-medium text-primary hover:underline"
                       >
-                        {sub.name}
+                        Ver todas →
                       </Link>
-                    ))}
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {item.brands?.map((brand) => (
+                        <Link
+                          key={brand.slug}
+                          href={`${item.href}/${brand.slug}`}
+                          className="group flex flex-col rounded-md border border-transparent p-3 transition-all hover:border-border hover:bg-muted"
+                        >
+                          <span className="text-sm font-medium text-foreground group-hover:text-primary">
+                            {brand.name}
+                          </span>
+                          <span className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
+                            {brand.description}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -119,7 +139,7 @@ export function Header() {
 function MobileDropdown({
   item,
 }: {
-  item: { name: string; href: string; subItems?: { name: string; href: string }[] }
+  item: { name: string; href: string; brands?: typeof electronicaBrands }
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -137,15 +157,23 @@ function MobileDropdown({
       </button>
       {isOpen && (
         <div className="pb-3 pl-4">
-          {item.subItems?.map((sub) => (
-            <Link
-              key={sub.href}
-              href={sub.href}
-              className="block rounded-md py-2 text-sm text-foreground/80 hover:text-primary"
-            >
-              {sub.name}
-            </Link>
-          ))}
+          <Link
+            href={item.href}
+            className="mb-2 block text-sm font-medium text-primary"
+          >
+            Ver todas las marcas →
+          </Link>
+          <div className="grid grid-cols-2 gap-2">
+            {item.brands?.map((brand) => (
+              <Link
+                key={brand.slug}
+                href={`${item.href}/${brand.slug}`}
+                className="rounded-md p-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary"
+              >
+                {brand.name}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
