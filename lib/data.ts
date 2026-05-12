@@ -1,3 +1,46 @@
+// Industrias nuevas (Fase B)
+export const industriasNuevas = [
+  {
+    slug: "oil-gas",
+    name: "Oil & Gas",
+    description: "Equipamiento y soluciones para la industria petrolera y gasífera.",
+    icon: "fuel",
+    href: "/oil-gas",
+  },
+  {
+    slug: "mineria",
+    name: "Minería",
+    description: "Tecnología y maquinaria especializada para operaciones mineras.",
+    icon: "mountain",
+    href: "/mineria",
+  },
+  {
+    slug: "agro",
+    name: "Agro",
+    description: "Soluciones tecnológicas para la industria agropecuaria.",
+    icon: "sprout",
+    href: "/agro",
+  },
+]
+
+// Marcas nuevas (Fase B)
+export const marcasNuevas = [
+  {
+    slug: "cimat",
+    name: "CIMAT",
+    description: "Sistemas de balanceo dinámico y análisis de vibraciones para la industria.",
+    website: "https://www.cimat-balancing.com",
+    industrias: ["oil-gas", "mineria"],
+  },
+  {
+    slug: "xplorobot",
+    name: "Xplorobot",
+    description: "Robótica e inspección autónoma para entornos industriales complejos.",
+    website: "#",
+    industrias: ["oil-gas", "mineria"],
+  },
+]
+
 // Marcas de Electrónica
 export const electronicaBrands = [
   {
@@ -207,17 +250,17 @@ export const servicios = [
 export const navigation = {
   main: [
     { name: "Empresa", href: "/empresa" },
+    { name: "Oil & Gas", href: "/oil-gas" },
+    { name: "Minería", href: "/mineria" },
+    { name: "Agro", href: "/agro" },
     {
-      name: "Electrónica",
-      href: "/electronica",
+      name: "Otras industrias",
+      href: "/otras-industrias",
       hasDropdown: true,
-      brands: electronicaBrands,
-    },
-    {
-      name: "Aire y refrigeración",
-      href: "/aire-acondicionado",
-      hasDropdown: true,
-      brands: aireRefrigeracionBrands,
+      subItems: [
+        { name: "Electrónica", href: "/electronica" },
+        { name: "Aire y refrigeración", href: "/aire-acondicionado" },
+      ],
     },
     { name: "Servicios", href: "/servicios" },
     { name: "Contacto", href: "/contacto" },
