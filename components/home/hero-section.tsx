@@ -34,7 +34,7 @@ export function HeroSection() {
           </p>
 
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Petróleo y Gas,<br className="hidden sm:block" /> Minería y Agro
+            Electrónica, Aire y Refrigeración,<br className="hidden sm:block" /> Petróleo y Gas, Minería y Agro
           </h1>
 
           {/* Subtitle */}

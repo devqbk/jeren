@@ -256,13 +256,16 @@ export const navigation = {
     { name: "Minería", href: "/mineria" },
     { name: "Agro", href: "/agro" },
     {
-      name: "Otras industrias",
-      href: "/otras-industrias",
+      name: "Electrónica",
+      href: "/electronica",
       hasDropdown: true,
-      subItems: [
-        { name: "Electrónica", href: "/electronica" },
-        { name: "Aire y refrigeración", href: "/aire-acondicionado" },
-      ],
+      brands: electronicaBrands,
+    },
+    {
+      name: "Aire y refrigeración",
+      href: "/aire-acondicionado",
+      hasDropdown: true,
+      brands: aireRefrigeracionBrands,
     },
     { name: "Servicios", href: "/servicios" },
     { name: "Contacto", href: "/contacto" },
