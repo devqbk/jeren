@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { SucursalesSection } from "@/components/shared/sucursales-section"
@@ -8,7 +7,7 @@ import { Building2, Clock, ShieldCheck, Users } from "lucide-react"
 export const metadata: Metadata = {
   title: "Empresa",
   description:
-    "Jeren SRL: más de 40 años representando marcas líderes mundiales en Petróleo y Gas, Minería, Agro, Electrónica y Aire y Refrigeración en Argentina.",
+    "Conocé a Jeren SRL y Tecnomaq SRL, empresas con más de 40 años de experiencia en la industria electrónica y de refrigeración.",
 }
 
 export default function EmpresaPage() {
@@ -31,7 +30,7 @@ export default function EmpresaPage() {
               Empresa
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-primary-foreground/70">
-              Cuatro décadas conectando la industria argentina con tecnología de primer nivel mundial.
+              Más de 40 años liderando la automatización industrial en Argentina.
             </p>
           </div>
         </section>
@@ -40,15 +39,13 @@ export default function EmpresaPage() {
         <section className="py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              {/* Imagen institucional */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                <Image
-                  src="/images/empresa-institucional.jpg"
-                  alt="Jeren SRL — imagen institucional"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+              {/* Image Placeholder */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted lg:aspect-square">
+                <div className="flex h-full items-center justify-center">
+                  <span className="text-sm text-muted-foreground">
+                    Imagen institucional
+                  </span>
+                </div>
               </div>
 
               {/* Content */}
@@ -61,16 +58,13 @@ export default function EmpresaPage() {
                 </h3>
                 <div className="mt-6 space-y-4 text-muted-foreground">
                   <p>
-                    Con más de 40 años en el mercado argentino, Jeren SRL y Tecnomaq SRL representan marcas líderes mundiales de maquinaria, insumos y servicios para la industria. Nuestra trayectoria nos posiciona como un socio estratégico de confianza para los sectores más exigentes del país.
+                    Con más de 40 años de experiencia en el mercado electrónico, Jeren S.R.L. y Tecnomaq S.R.L. comercializan, instalan y brindan soporte y mantenimiento de equipos para la industria electrónica, aire acondicionado y automatización en general, además de proveer insumos.
                   </p>
                   <p>
-                    Hoy expandimos nuestro portafolio hacia los sectores de <strong className="text-foreground">Petróleo y Gas, Minería y Agro</strong>, sumando tecnología de vanguardia para la exploración, producción y operación industrial. Acompañamos a nuestros clientes con soluciones que integran equipamiento de primer nivel y soporte técnico especializado.
+                    Contamos con un equipo altamente capacitado con un excelente soporte pre y post venta. Contamos con oficinas en la Ciudad de Buenos Aires y sucursales en Río Grande y Ushuaia. Ofrecemos respuesta inmediata a los pedidos de nuestros clientes.
                   </p>
                   <p>
-                    Seguimos presentes también en <strong className="text-foreground">Electrónica y Aire y Refrigeración</strong>, industrias donde contamos con una base sólida de clientes y un portafolio consolidado de marcas internacionales.
-                  </p>
-                  <p>
-                    Operamos desde nuestras oficinas en Ciudad de Buenos Aires y sucursales en Río Grande y Ushuaia, con cobertura nacional y soporte 24x7.
+                    Representamos las marcas líderes del mercado mundial. El soporte técnico de pre y post venta es la base para generar vínculos a largo plazo con nuestros clientes.
                   </p>
                 </div>
               </div>
