@@ -12,7 +12,7 @@ export function HeroSection() {
         loop
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
-        poster="/images/banners/hero-circuit.jpg"
+        poster="/images/banners/hero-poster.jpg"
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
