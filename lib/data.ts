@@ -36,7 +36,7 @@ export const marcasNuevas = [
   {
     slug: "xplorobot",
     name: "Xplorobot",
-    logo: "/images/brands/xplorobot.svg",
+    logo: "/images/brands/xplorobot-dark.png",
     description: "Detección, mitigación y reporte de emisiones de metano con tecnología láser aprobada por la EPA. Soluciones para operaciones onshore y offshore.",
     website: "https://www.xplorobot.com",
     industrias: ["petroleo-gas"],
