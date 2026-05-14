@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { HeroSection } from "@/components/home/hero-section"
+import { IndustriasSection } from "@/components/home/industrias-section"
+import { MarcasNuevasSection } from "@/components/home/marcas-nuevas-section"
 import {
   ElectronicaBrandsSection,
   AireRefrigeracionBrandsSection,
@@ -14,6 +16,8 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <IndustriasSection />
+        <MarcasNuevasSection />
         <ElectronicaBrandsSection />
         <AireRefrigeracionBrandsSection />
         <ServicesSection />

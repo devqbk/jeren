@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { navigation, electronicaBrands, aireRefrigeracionBrands } from "@/lib/data"
+import { navigation, electronicaBrands } from "@/lib/data"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -57,25 +57,20 @@ export function Header() {
                 )}
               </Link>
 
-              {/* Mega Menu */}
-              {item.hasDropdown && activeDropdown === item.name && (
+              {/* Mega Menu — marcas */}
+              {item.hasDropdown && activeDropdown === item.name && item.brands && (
                 <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-                  <div className="w-[600px] rounded-lg border border-border bg-background p-6 shadow-lg">
+                  <div className="w-[480px] rounded-lg border border-border bg-background p-6 shadow-lg">
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="text-sm font-semibold text-foreground">
-                        {item.name === "Electrónica"
-                          ? "Marcas de Electrónica"
-                          : "Marcas de Aire y Refrigeración"}
+                        Marcas de {item.name}
                       </h3>
-                      <Link
-                        href={item.href}
-                        className="text-xs font-medium text-primary hover:underline"
-                      >
+                      <Link href={item.href} className="text-xs font-medium text-primary hover:underline">
                         Ver todas →
                       </Link>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
-                      {item.brands?.map((brand) => (
+                      {item.brands.map((brand) => (
                         <Link
                           key={brand.slug}
                           href={`${item.href}/${brand.slug}`}
@@ -151,16 +146,11 @@ function MobileDropdown({
         onClick={() => setIsOpen(!isOpen)}
       >
         {item.name}
-        <ChevronDown
-          className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")}
-        />
+        <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
       </button>
       {isOpen && (
         <div className="pb-3 pl-4">
-          <Link
-            href={item.href}
-            className="mb-2 block text-sm font-medium text-primary"
-          >
+          <Link href={item.href} className="mb-2 block text-sm font-medium text-primary">
             Ver todas las marcas →
           </Link>
           <div className="grid grid-cols-2 gap-2">
