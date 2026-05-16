@@ -32,7 +32,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:items-center lg:gap-1">
+        <div className="hidden lg:flex lg:items-center lg:gap-0.5">
           {navigation.main.map((item) => (
             <div
               key={item.name}
@@ -43,7 +43,7 @@ export function Header() {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary",
+                  "flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary whitespace-nowrap",
                   item.hasDropdown && "pr-2"
                 )}
               >
@@ -51,7 +51,7 @@ export function Header() {
                 {item.hasDropdown && (
                   <ChevronDown
                     className={cn(
-                      "h-4 w-4 transition-transform",
+                      "h-4 w-4 transition-transform flex-shrink-0",
                       activeDropdown === item.name && "rotate-180"
                     )}
                   />
@@ -60,8 +60,11 @@ export function Header() {
 
               {/* Mega Menu — marcas */}
               {item.hasDropdown && activeDropdown === item.name && item.brands && (
-                <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-                  <div className="w-[480px] rounded-lg border border-border bg-background p-6 shadow-lg">
+                <div className="absolute left-0 top-full z-50 pt-2">
+                  <div className={cn(
+                    "rounded-lg border border-border bg-background p-6 shadow-xl",
+                    item.brands.length > 6 ? "w-[600px]" : "w-[480px]"
+                  )}>
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="text-sm font-semibold text-foreground">
                         Marcas de {item.name}
@@ -70,17 +73,35 @@ export function Header() {
                         Ver todas →
                       </Link>
                     </div>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className={cn(
+                      "gap-3",
+                      item.brands.length > 6 ? "grid grid-cols-4" : "grid grid-cols-3"
+                    )}>
                       {item.brands.map((brand) => (
                         <Link
                           key={brand.slug}
                           href={`${item.href}/${brand.slug}`}
-                          className="group flex flex-col rounded-md border border-transparent p-3 transition-all hover:border-border hover:bg-muted"
+                          className="group flex flex-col items-center rounded-md border border-transparent p-3 transition-all hover:border-border hover:bg-muted"
                         >
-                          <span className="text-sm font-medium text-foreground group-hover:text-primary">
+                          {brand.logo ? (
+                            <Image
+                              src={brand.logo}
+                              alt={brand.name}
+                              width={100}
+                              height={40}
+                              className="h-10 w-auto object-contain mb-2"
+                            />
+                          ) : (
+                            <div className="h-10 mb-2 flex items-center">
+                              <span className="text-xs font-semibold text-foreground text-center">
+                                {brand.name}
+                              </span>
+                            </div>
+                          )}
+                          <span className="text-xs font-medium text-foreground text-center line-clamp-2">
                             {brand.name}
                           </span>
-                          <span className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
+                          <span className="mt-1 line-clamp-2 text-xs text-muted-foreground text-center">
                             {brand.description}
                           </span>
                         </Link>
