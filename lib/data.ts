@@ -232,6 +232,7 @@ export const sucursales = [
     address: "Av. Juramento 2089 Piso 4°",
     postalCode: "C1428DNG",
     province: "Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Av.+Juramento+2089,+Buenos+Aires,+Argentina",
   },
   {
     name: "Ushuaia",
@@ -239,6 +240,7 @@ export const sucursales = [
     address: "Paseo de la Plaza 2065",
     postalCode: "CP 9410",
     province: "Tierra del Fuego",
+    mapsUrl: "https://maps.google.com/?q=Paseo+de+la+Plaza+2065,+Ushuaia,+Tierra+del+Fuego,+Argentina",
   },
   {
     name: "Río Grande",
@@ -246,6 +248,7 @@ export const sucursales = [
     address: "Padre Forgacs 1407",
     postalCode: "CP 9420",
     province: "Tierra del Fuego",
+    mapsUrl: "https://maps.google.com/?q=Padre+Forgacs+1407,+R%C3%ADo+Grande,+Tierra+del+Fuego,+Argentina",
   },
 ]
 

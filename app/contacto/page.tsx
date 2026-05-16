@@ -123,14 +123,6 @@ export default function ContactoPage() {
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="mt-8 aspect-video overflow-hidden rounded-lg border border-border bg-muted">
-                  <div className="flex h-full items-center justify-center">
-                    <span className="text-sm text-muted-foreground">
-                      Mapa (Google Maps embed)
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

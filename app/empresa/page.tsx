@@ -3,7 +3,6 @@ import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { SucursalesSection } from "@/components/shared/sucursales-section"
-import { Building2, Clock, ShieldCheck, Users } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Empresa",
@@ -17,7 +16,7 @@ export default function EmpresaPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative bg-primary py-20 lg:py-28">
+        <section className="relative bg-primary py-24 lg:py-32">
           <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0"
@@ -27,8 +26,11 @@ export default function EmpresaPage() {
             />
           </div>
           <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-            <h1 className="text-4xl font-bold text-primary-foreground sm:text-5xl">
-              Empresa
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
+              Desde 1984
+            </p>
+            <h1 className="text-4xl font-bold text-primary-foreground sm:text-5xl lg:text-6xl">
+              Somos Jeren
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-primary-foreground/70">
               Cuatro décadas conectando la industria argentina con tecnología de primer nivel mundial.
@@ -73,62 +75,6 @@ export default function EmpresaPage() {
                     Operamos desde nuestras oficinas en Ciudad de Buenos Aires y sucursales en Río Grande y Ushuaia, con cobertura nacional y soporte 24x7.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Values */}
-        <section className="bg-muted/50 py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
-                Nuestros valores
-              </h2>
-              <p className="mt-2 text-2xl font-semibold text-foreground sm:text-3xl">
-                Lo que nos diferencia
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Clock className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Soporte 24x7</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Servicio técnico disponible las 24 horas, los 7 días de la semana.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <ShieldCheck className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Respaldo OEM</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Apoyo directo de los fabricantes originales para soporte inmediato.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Building2 className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Stock local</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Insumos y partes de reposición disponibles en Buenos Aires y Tierra del Fuego.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Users className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Equipo experto</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Personal altamente capacitado y certificado por los fabricantes.
-                </p>
               </div>
             </div>
           </div>
