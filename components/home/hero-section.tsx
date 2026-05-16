@@ -22,30 +22,34 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 w-full mx-auto max-w-7xl px-4 py-20 lg:px-8">
-        <div className="max-w-4xl">
+        <div className="max-w-5xl">
           {/* Eyebrow */}
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
-            Más de 40 años
+            Más de 40 años de experiencia industrial
           </p>
 
-          {/* Main Heading */}
+          {/* Pre-title */}
+          <p className="mb-2 text-xl font-medium text-primary-foreground/80 sm:text-2xl">
+            Máquinas, insumos y servicios para
+          </p>
+
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Maquinaria y soluciones industriales
+            Petróleo y Gas / Minería y Agro /<br className="hidden sm:block" /> Electrónica y Aire y Refrigeración
           </h1>
 
           {/* Subtitle */}
-          <p className="mb-10 max-w-2xl text-lg text-primary-foreground/80 sm:text-xl">
-            Representantes de marcas líderes en electrónica, aire acondicionado, refrigeración y nuevas industrias. Soporte técnico especializado en todo el país.
+          <p className="mb-10 max-w-xl text-lg text-primary-foreground/80 sm:text-xl">
+            Representamos marcas líderes mundiales con soluciones de maquinaria, insumos y soporte técnico para las industrias más exigentes de Argentina.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href="/electronica">
+            <Link href="/petroleo-gas">
               <Button
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 sm:w-auto whitespace-nowrap"
               >
-                Conocé nuestras marcas
+                Conocé nuestras soluciones
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
