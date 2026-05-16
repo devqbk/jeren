@@ -1,8 +1,13 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export function HeroSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-primary">
       {/* Background Video */}
@@ -25,16 +30,16 @@ export function HeroSection() {
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
-            Más de 40 años de experiencia industrial
+            {t.hero.eyebrow}
           </p>
 
           <h1 className="mb-6 text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-            Maquinaria y soluciones industriales
+            {t.hero.title}
           </h1>
 
           {/* Subtitle */}
           <p className="mb-10 max-w-xl text-lg text-primary-foreground/80">
-            Representamos marcas líderes mundiales para Petróleo y Gas, Minería, Agro, Electrónica y Aire y Refrigeración en Argentina.
+            {t.hero.subtitle}
           </p>
 
           {/* CTAs */}
@@ -44,7 +49,7 @@ export function HeroSection() {
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 sm:w-auto whitespace-nowrap"
               >
-                Conocé nuestras soluciones
+                {t.hero.ctaSolutions}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -55,7 +60,7 @@ export function HeroSection() {
                 className="w-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 sm:w-auto whitespace-nowrap"
               >
                 <Phone className="mr-2 h-4 w-4" />
-                Contactanos
+                {t.hero.ctaContact}
               </Button>
             </Link>
           </div>

@@ -1,23 +1,28 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { marcasNuevas } from "@/lib/data"
+import { useLanguage } from "@/contexts/language-context"
 
 export function MarcasNuevasSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="bg-muted/50 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Header */}
         <div className="mb-12">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Portafolio
+            {t.marcas.eyebrow}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-foreground sm:text-3xl">
-            Marcas que representamos
+            {t.marcas.title}
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Tecnología de vanguardia respaldada por fabricantes líderes a nivel mundial.
+            {t.marcas.description}
           </p>
         </div>
 
@@ -52,7 +57,7 @@ export function MarcasNuevasSection() {
               <div className="mt-6 flex items-center gap-3">
                 <Link href={`/petroleo-gas/${marca.slug}`}>
                   <Button size="sm" variant="default">
-                    Ver más
+                    {t.marcas.verMas}
                   </Button>
                 </Link>
                 {marca.website && marca.website !== "#" && (
@@ -62,7 +67,7 @@ export function MarcasNuevasSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
-                    Sitio oficial
+                    {t.marcas.sitioOficial}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 )}

@@ -1,21 +1,26 @@
+"use client"
+
 import { MapPin } from "lucide-react"
 import { sucursales } from "@/lib/data"
+import { useLanguage } from "@/contexts/language-context"
 
 interface SucursalesSectionProps {
   variant?: "default" | "muted"
 }
 
 export function SucursalesSection({ variant = "default" }: SucursalesSectionProps) {
+  const { t } = useLanguage()
+
   return (
     <section className={variant === "muted" ? "bg-muted/50 py-20 lg:py-24" : "py-20 lg:py-24"}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Sucursales
+            {t.sucursales.eyebrow}
           </h2>
           <p className="mt-2 text-2xl font-semibold text-foreground sm:text-3xl">
-            Presencia en todo el país
+            {t.sucursales.title}
           </p>
         </div>
 
@@ -50,7 +55,7 @@ export function SucursalesSection({ variant = "default" }: SucursalesSectionProp
                     )}
                   </p>
                   <p className="mt-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    Ver en Google Maps →
+                    {t.sucursales.verMaps}
                   </p>
                 </div>
               </div>
