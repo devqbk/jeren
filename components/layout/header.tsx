@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { navigation, electronicaBrands } from "@/lib/data"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -93,7 +94,8 @@ export function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
             type="button"
             className="lg:hidden p-2 text-foreground"
