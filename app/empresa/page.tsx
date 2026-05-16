@@ -45,7 +45,7 @@ export default function EmpresaPage() {
               {/* Imagen institucional */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/empresa-institucional.jpg"
+                  src="/images/empresa-institucional.png"
                   alt="Jeren SRL — imagen institucional"
                   fill
                   className="object-cover"
