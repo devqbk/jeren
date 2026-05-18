@@ -11,10 +11,10 @@ export const electronicaContent: BrandContent[] = [
       "Sus plataformas de montaje superficial son reconocidas mundialmente por su velocidad, precisión y flexibilidad, adaptándose tanto a producciones de alta velocidad como a lotes de diversidad alta.",
     ],
     products: [
-      { name: "SMART FAB", description: "Sistema de montaje superficial de alta velocidad para producción masiva." },
-      { name: "NEXT III", description: "Plataforma de montaje modular de última generación con alta flexibilidad." },
-      { name: "AIMEX IIIc", description: "Montadora de alta flexibilidad y precisión para componentes de gran tamaño." },
-      { name: "AIMEX III", description: "Sistema de montaje versátil para producción mixta de alta y baja velocidad." },
+      { name: "SMART FAB", description: "Sistema de montaje superficial de alta velocidad para producción masiva.", imageUrl: "/images/brands/fuji/smart-fab.jpg" },
+      { name: "NEXT III", description: "Plataforma de montaje modular de última generación con alta flexibilidad.", imageUrl: "/images/brands/fuji/nxt-iii.jpg" },
+      { name: "AIMEX IIIc", description: "Montadora de alta flexibilidad y precisión para componentes de gran tamaño.", imageUrl: "/images/brands/fuji/aimex-iii-c.jpg" },
+      { name: "AIMEX III", description: "Sistema de montaje versátil para producción mixta de alta y baja velocidad.", imageUrl: "/images/brands/fuji/aimex-iii.jpg" },
     ],
   },
   {
@@ -24,7 +24,7 @@ export const electronicaContent: BrandContent[] = [
       "Sus sistemas permiten a los fabricantes de PCB detectar defectos en etapas tempranas del proceso, reduciendo el re-trabajo, el scrap y los costos de calidad. Koh Young es el referente en inspección 3D para la industria electrónica a nivel global.",
     ],
     products: [
-      { name: "ZENITH — AOI 3D", description: "Sistema de inspección óptica automatizada en 3D para detección de defectos en placas montadas." },
+      { name: "ZENITH — AOI 3D", description: "Sistema de inspección óptica automatizada en 3D para detección de defectos en placas montadas.", imageUrl: "/images/brands/koh-young/aoi-3d-modelo-zenith.png" },
       { name: "KY 8030-3 — SPI 3D", description: "Sistema de inspección de pasta de soldadura en 3D para control de proceso de serigrafía." },
     ],
   },
@@ -35,7 +35,7 @@ export const electronicaContent: BrandContent[] = [
       "Los sistemas PSV de Data I/O se integran directamente en las líneas SMT, permitiendo programar los dispositivos justo antes del montaje para eliminar el manejo manual y reducir el riesgo de errores.",
     ],
     products: [
-      { name: "PSV 5000", description: "Sistema automatizado de programación de dispositivos integrado en línea SMT." },
+      { name: "PSV 5000", description: "Sistema automatizado de programación de dispositivos integrado en línea SMT.", imageUrl: "/images/brands/data-io/psv-5000.jpg" },
       { name: "PSV 7000", description: "Plataforma de aprovisionamiento seguro de alta velocidad para producción en serie." },
     ],
   },
@@ -46,7 +46,7 @@ export const electronicaContent: BrandContent[] = [
       "Sus soluciones de conformal coating protegen placas electrónicas de humedad, polvo y agentes químicos, siendo esenciales para aplicaciones industriales, automotrices y de defensa donde la confiabilidad es crítica.",
     ],
     products: [
-      { name: "Conformal Coating", description: "Sistemas automáticos de recubrimiento conformal selectivo para protección de PCB en ambientes adversos." },
+      { name: "Conformal Coating", description: "Sistemas automáticos de recubrimiento conformal selectivo para protección de PCB en ambientes adversos.", imageUrl: "/images/brands/nordson-asymtek/conformal-coating.jpg" },
       { name: "Fluid Dispensing", description: "Equipos de dispensado de fluidos de alta precisión para adhesivos, encapsulantes y selladores." },
     ],
   },
@@ -57,7 +57,7 @@ export const electronicaContent: BrandContent[] = [
       "Todos los módulos YJ Link cuentan con protección contra descarga electrostática (ESD) y certificación CE, garantizando la integridad de los componentes electrónicos durante el transporte entre equipos de la línea.",
     ],
     products: [
-      { name: "Link Conveyor", description: "Conveyor de transporte de PCB con protección ESD para interconexión de equipos SMT." },
+      { name: "Link Conveyor", description: "Conveyor de transporte de PCB con protección ESD para interconexión de equipos SMT.", imageUrl: "/images/brands/yj-link/link-conveyor.jpg" },
       { name: "Dual Lane Equipment", description: "Módulos de doble carril para producción paralela de alta cadencia." },
       { name: "Buffer", description: "Sistema de almacenamiento y secuenciado de PCB entre estaciones de proceso." },
       { name: "Shuttle Conveyor", description: "Mecanismo de transferencia lateral de PCB entre líneas de producción." },
@@ -72,7 +72,7 @@ export const electronicaContent: BrandContent[] = [
       "La línea TruView de Creative Electron ofrece sistemas de rayos X para inspección de BGA, solder joints, componentes THT y PCB complejas, con interfaces intuitivas y capacidades de imagen de alta resolución.",
     ],
     products: [
-      { name: "TruView FUSION", description: "Sistema de inspección por rayos X para análisis de BGA, solder joints y componentes de alta densidad." },
+      { name: "TruView FUSION", description: "Sistema de inspección por rayos X para análisis de BGA, solder joints y componentes de alta densidad.", imageUrl: "/images/brands/creative-electron/tru-view-fusion.jpg" },
       { name: "TruView PRIME", description: "Equipo de rayos X de alto rendimiento para inspección de PCB y detección de falsificaciones." },
       { name: "TruView CUBE", description: "Sistema compacto de inspección por rayos X para laboratorios de calidad y prototipos." },
       { name: "PCB X-Ray Inspection", description: "Solución especializada en inspección de placas de circuito impreso con rayos X." },
@@ -85,7 +85,7 @@ export const electronicaContent: BrandContent[] = [
       "Sus sistemas de rework permiten la reparación y modificación de componentes electrónicos en entornos de producción y laboratorio, combinando precisión térmica con facilidad de uso para garantizar resultados reproducibles.",
     ],
     products: [
-      { name: "HR 600XL — Rework", description: "Sistema de rework de alta gama para BGA y componentes de gran tamaño con control térmico preciso." },
+      { name: "HR 600XL — Rework", description: "Sistema de rework de alta gama para BGA y componentes de gran tamaño con control térmico preciso.", imageUrl: "/images/brands/kurtz-ersa/hr600xl.jpg" },
       { name: "HR 550L — Rework", description: "Equipo de rework versátil para producción y laboratorio con visualización óptica integrada." },
       { name: "i-CON VARIO 4", description: "Estación de soldadura y rework modular con control digital de temperatura." },
       { name: "HOTFLOW / POWERFUL ULTRA", description: "Hornos de reflujo de alta performance para soldadura SMT en líneas de producción." },
@@ -100,7 +100,7 @@ export const electronicaContent: BrandContent[] = [
       "Los perfiladores térmicos de ECD se utilizan para validar y optimizar los perfiles de temperatura de los hornos de reflujo, garantizando la calidad de las juntas de soldadura y la integridad de los componentes.",
     ],
     products: [
-      { name: "V-M.O.L.E.®", description: "Perfilador térmico compacto para monitoreo de temperatura en hornos de reflujo y soldadura por ola." },
+      { name: "V-M.O.L.E.®", description: "Perfilador térmico compacto para monitoreo de temperatura en hornos de reflujo y soldadura por ola.", imageUrl: "/images/brands/ecd/v-m-o-l-e.png" },
       { name: "MEGAM.O.L.E.® 20", description: "Solución avanzada de monitoreo térmico con 20 canales para perfilado de alta precisión." },
       { name: "SUPERM.O.L.E.® GOLD 2", description: "Perfilador térmico premium de máxima performance para procesos de soldadura críticos." },
     ],
@@ -112,7 +112,7 @@ export const electronicaContent: BrandContent[] = [
       "El proceso de recuperación de EVS es simple y seguro, eliminando la necesidad de enviar el dross a terceros para su procesamiento y devolviendo estaño listo para ser reutilizado directamente en línea.",
     ],
     products: [
-      { name: "EVS 10K", description: "Máquina de recuperación de soldadura de alta capacidad para líneas de producción de alto volumen." },
+      { name: "EVS 10K", description: "Máquina de recuperación de soldadura de alta capacidad para líneas de producción de alto volumen.", imageUrl: "/images/brands/evs/evs-10k.jpg" },
       { name: "EVS 8K", description: "Equipo de recuperación de estaño desde escoria para producción de volumen medio." },
       { name: "EVS 1500", description: "Recuperadora de soldadura compacta para líneas de menor volumen o laboratorios." },
     ],
@@ -124,7 +124,7 @@ export const electronicaContent: BrandContent[] = [
       "Sus sistemas de flux ultrasónico para soldadura por ola y selectiva eliminan prácticamente el mantenimiento por obstrucciones y reducen el consumo de flux hasta un 80%, mejorando la calidad de las juntas y reduciendo residuos.",
     ],
     products: [
-      { name: "SONOFLUX SERVO", description: "Sistema de aplicación de flux por pulverización ultrasónica para soldadura por ola. Cobertura uniforme y bajo consumo." },
+      { name: "SONOFLUX SERVO", description: "Sistema de aplicación de flux por pulverización ultrasónica para soldadura por ola. Cobertura uniforme y bajo consumo.", imageUrl: "/images/brands/sono-tek/sonoflux-servo.jpg" },
       { name: "SONOFLUX EZ", description: "Equipo de flux ultrasónico compacto para integración sencilla en máquinas de soldadura existentes." },
       { name: "SONOFLUX 2000F", description: "Solución de alto volumen con alta velocidad de transferencia y reducción de flux de hasta 80% respecto a sistemas tradicionales." },
     ],
@@ -136,7 +136,7 @@ export const electronicaContent: BrandContent[] = [
       "Los sistemas de marcado láser de HG Laser son utilizados por fabricantes de electrónica que requieren trazabilidad total de sus productos en líneas de producción automatizadas.",
     ],
     products: [
-      { name: "PCB Laser Markers", description: "Sistemas de marcado láser para placas de circuito impreso: códigos QR, series, trazabilidad y logos. Alta velocidad, sin contacto." },
+      { name: "PCB Laser Markers", description: "Sistemas de marcado láser para placas de circuito impreso: códigos QR, series, trazabilidad y logos. Alta velocidad, sin contacto.", imageUrl: "/images/brands/hg-laser/pcb-laser-markers.jpg" },
     ],
   },
   {

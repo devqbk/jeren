@@ -120,14 +120,14 @@ export const electronicaBrands = [
     name: "HG Laser",
     logo: "/images/brands/hg-laser.jpg",
     description: "Equipos de marcado y corte láser",
-    website: "#",
+    website: "https://hglaserglobal.com",
   },
   {
     slug: "umg-technologies",
     name: "UMG Technologies",
     // TODO: Agregue logo cuando esté disponible
     description: "Soluciones de automatización y manejo de materiales",
-    website: "#",
+    website: "https://umgtinc.com",
   },
 ]
 
