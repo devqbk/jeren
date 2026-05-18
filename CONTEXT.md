@@ -164,6 +164,7 @@ La empresa está en transición hacia Oil & Gas, Minería y Agro. Las páginas `
 - Light mode forzado
 - SEO básico (metadata)
 - Imágenes de productos — Aire y Refrigeración (21 imágenes)
+- Logos de marcas agregados a sección 'Otras marcas' en detalle de marca
 
 ### Pendiente ❌
 - Imágenes de productos — Electrónica (12 marcas)
