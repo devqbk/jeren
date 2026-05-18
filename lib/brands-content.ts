@@ -157,6 +157,7 @@ export const electronicaContent: BrandContent[] = [
 export interface ProductItem {
   name: string
   description: string
+  imageUrl?: string
 }
 
 export interface BrandContent {
@@ -173,16 +174,50 @@ export const aireRefrigeracionContent: BrandContent[] = [
   {
     slug: "galileo-tp",
     longDescription: [
-      "Galileo TP Process Equipment SRL fabrica equipos para líneas de producción de aires acondicionados, heladeras y compresores. Sus sistemas cubren las etapas críticas del proceso de manufactura: evacuación del circuito, carga de refrigerante, prueba de hermeticidad y control eléctrico de calidad, todo integrado dentro de la línea de producción.",
+      "Galileo TP Process Equipment SRL produce equipos para la fabricación de aires acondicionados, heladeras y compresores. Sus sistemas cubren las etapas críticas del proceso de manufactura: evacuación del circuito, carga de refrigerante, prueba de hermeticidad y control eléctrico de calidad, todo integrado dentro de la línea de producción.",
       "Sus clientes son plantas industriales OEM que fabrican en serie equipos de climatización y refrigeración, y que necesitan soluciones confiables y repetibles para garantizar la calidad de cada unidad antes del empaque.",
     ],
     products: [
-      { name: "Bombas de Vacío Rotativas y Vacuómetros", description: "Para evacuación del circuito de refrigerante durante el ensamble en línea de producción." },
-      { name: "Sistemas de Prueba de Performance", description: "Bancos de ensayo para verificación funcional de compresores y unidades terminadas." },
-      { name: "Equipos de Prueba de Seguridad Eléctrica", description: "Control eléctrico integrado en líneas de manufactura de electrodomésticos y equipos de refrigeración." },
-      { name: "Máquinas de Carga de Gas Refrigerante", description: "Sistemas automáticos de carga y pesaje preciso de refrigerante para producción en serie." },
-      { name: "Sistemas de Evacuación para Líneas de Producción", description: "Equipos de vacío integrados en células de ensamble para manufactura masiva de unidades." },
-      { name: "Sistemas de Recuperación de Refrigerante", description: "Recuperación y reutilización controlada de refrigerante en la propia línea de producción." },
+      {
+        name: "Bombas de Vacío Rotativas",
+        description: "Para evacuación del circuito de refrigerante durante el ensamble en línea de producción.",
+        imageUrl: "/images/brands/galileo-tp/rotary-vacuum-pumps.png",
+      },
+      {
+        name: "Sistemas de Prueba de Performance",
+        description: "Bancos de ensayo para verificación funcional de compresores y unidades terminadas.",
+        imageUrl: "/images/brands/galileo-tp/performance-test.png",
+      },
+      {
+        name: "Prueba de Seguridad Eléctrica",
+        description: "Control eléctrico integrado en líneas de manufactura de electrodomésticos y equipos de refrigeración.",
+        imageUrl: "/images/brands/galileo-tp/electrical-safety-test.png",
+      },
+      {
+        name: "Sistemas de Recuperación de Refrigerante",
+        description: "Recuperación y reutilización controlada de refrigerante en la propia línea de producción.",
+        imageUrl: "/images/brands/galileo-tp/refrigerant-recovery.png",
+      },
+      {
+        name: "Bombas de Transferencia de Refrigerante",
+        description: "Transferencia precisa de refrigerante entre sistemas en líneas de producción de alta cadencia.",
+        imageUrl: "/images/brands/galileo-tp/refrigerant-transfer.png",
+      },
+      {
+        name: "Fluidos Refrigerantes",
+        description: "Gases y fluidos refrigerantes para carga y reposición en líneas industriales.",
+        imageUrl: "/images/brands/galileo-tp/refrigerating-fluids.png",
+      },
+      {
+        name: "Sistemas de Evacuación para Línea",
+        description: "Equipos de vacío integrados en células de ensamble para manufactura masiva de unidades.",
+        imageUrl: "/images/brands/galileo-tp/evacuation-system.png",
+      },
+      {
+        name: "Almacenamiento de Gases y Fluidos",
+        description: "Sistemas de almacenamiento y distribución de refrigerantes para plantas de fabricación.",
+        imageUrl: "/images/brands/galileo-tp/gas-fluid-storage.png",
+      },
     ],
   },
   {
@@ -192,10 +227,26 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "A diferencia de los instrumentos de campo, los equipos INFICON para manufactura están diseñados para ciclos repetitivos de alta cadencia, con detección automática de fugas integrada al flujo de producción, garantizando el control de calidad al 100% sin impactar la velocidad de la línea.",
     ],
     products: [
-      { name: "Detectores de Fugas para Línea de Producción", description: "Equipos integrados en línea para verificación automática de hermeticidad en cada unidad fabricada." },
-      { name: "Detectores de Fugas con Helio", description: "Alta sensibilidad para pruebas de estanqueidad con helio en componentes críticos del circuito." },
-      { name: "Detectores Multi-Refrigerante", description: "Detección compatible con distintos tipos de refrigerante según el producto que se esté fabricando en la línea." },
-      { name: "Analizadores de Refrigerante", description: "Verificación de composición del refrigerante cargado, para control de proceso y trazabilidad de producción." },
+      {
+        name: "Detectores de Fugas Portátiles",
+        description: "Equipos de mano para verificación de hermeticidad en distintos puntos de la línea de producción.",
+        imageUrl: "/images/brands/inficon/handheld-leak-detectors.png",
+      },
+      {
+        name: "Detectores Multi-Gas Sniffer",
+        description: "Detección de fugas compatible con distintos tipos de refrigerante según el producto que se esté fabricando.",
+        imageUrl: "/images/brands/inficon/multi-gas-sniffer.png",
+      },
+      {
+        name: "Detectores de Refrigerante",
+        description: "Equipos integrados en línea para verificación automática de hermeticidad en cada unidad fabricada.",
+        imageUrl: "/images/brands/inficon/refrigerant-leak-detectors.png",
+      },
+      {
+        name: "Detectores de Fugas con Helio",
+        description: "Alta sensibilidad para pruebas de estanqueidad con helio en componentes críticos del circuito.",
+        imageUrl: "/images/brands/inficon/helium-leak-detectors.png",
+      },
     ],
   },
   {
@@ -205,9 +256,11 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "Sus equipos están pensados para plantas que realizan miles de operaciones de brazing diarias, donde la consistencia del proceso y la tasa de defectos son variables críticas para la rentabilidad de la manufactura.",
     ],
     products: [
-      { name: "GAS SAVER", description: "Introduce automáticamente fundente líquido en el gas combustible del soplete. Cobertura uniforme en cada junta, sin intervención manual. Reduce defectos y retrabajo en línea." },
-      { name: "Sopletes para Soldadura Automática", description: "Antorchas diseñadas para integración en sistemas automáticos y robotizados de brazing en líneas de alta cadencia." },
-      { name: "Sistemas de Ignición Automática", description: "Encendido automático de sopletes para células de producción sin intervención del operador." },
+      {
+        name: "GAS SAVER — Sistema de Fundente Automático",
+        description: "Introduce automáticamente fundente líquido en el gas combustible del soplete. Cobertura uniforme en cada junta, sin intervención manual. Reduce defectos y retrabajo en línea.",
+        imageUrl: "/images/brands/jae-hyun-autonics/gas-saver.png",
+      },
     ],
   },
   {
@@ -217,12 +270,21 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "A diferencia de herramientas de uso general, los modelos Sumake están diseñados para operación intensiva en líneas de producción masiva, con ergonomía optimizada para reducir la fatiga del operador en tareas de ensamble repetitivo.",
     ],
     products: [
-      { name: "Destornilladores Neumáticos de Línea", description: "Modelos CPP41, CA35 y CP45 para ensamble en línea. Rango de torque de 3 a 50 kgf-cm para distintas etapas del proceso." },
-      { name: "Llaves de Impacto", description: "Para apriete de tornillería estructural en el ensamble de gabinetes, compresores y unidades condensadoras." },
-      { name: "Taladros Neumáticos", description: "Perforación y roscado en líneas de producción de estructuras metálicas de equipos de climatización." },
-      { name: "Remachadoras Neumáticas", description: "Ensamble de paneles y estructuras de gabinetes de unidades de aire acondicionado en línea." },
-      { name: "Pulidoras y Lijadoras", description: "Operaciones de acabado superficial en componentes metálicos dentro de la línea de manufactura." },
-      { name: "Pistolas de Pintura", description: "Aplicación de pintura y recubrimientos en líneas de fabricación de equipos de climatización." },
+      {
+        name: "Destornillador Neumático CPP41",
+        description: "Destornillador de línea de alta durabilidad para ensamble continuo. Torque preciso para distintas etapas del proceso.",
+        imageUrl: "/images/brands/sumake/cpp41.jpg",
+      },
+      {
+        name: "Destornillador Neumático CA35",
+        description: "Modelo compacto y liviano para operaciones de apriete en posiciones de difícil acceso en líneas de montaje.",
+        imageUrl: "/images/brands/sumake/ca35.png",
+      },
+      {
+        name: "Destornillador Neumático CP45",
+        description: "Alta potencia para apriete de tornillería estructural en el ensamble de gabinetes y unidades condensadoras.",
+        imageUrl: "/images/brands/sumake/cp45.png",
+      },
     ],
   },
   {
@@ -232,8 +294,16 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "Compatible con instalaciones manuales y automáticas existentes sin necesidad de boquillas especiales, el sistema Gasflux facilita su adopción en plantas en operación. Cumple la norma AWS/ANSI A5.31 y es utilizado por fabricantes de unidades de climatización y refrigeración en todo el mundo.",
     ],
     products: [
-      { name: "Gasflux® Líquido", description: "Fundente líquido que se auto-introduce en el gas combustible del soplete. Cobertura uniforme en cada junta de brazing, sin aplicación manual. Norma AWS/ANSI A5.31." },
-      { name: "Gasfluxer®", description: "Equipo dispersor con cámara de mezcla y depósito. Instalación sobre sistemas de gas existentes sin boquillas especiales. Compatible con puestos manuales y automáticos." },
+      {
+        name: "Gasflux® Líquido",
+        description: "Fundente líquido que se auto-introduce en el gas combustible del soplete. Cobertura uniforme en cada junta de brazing, sin aplicación manual. Norma AWS/ANSI A5.31.",
+        imageUrl: "/images/brands/gasflux/gasflux-liquid.png",
+      },
+      {
+        name: "Gasfluxer®",
+        description: "Equipo dispersor con cámara de mezcla y depósito. Instalación sobre sistemas de gas existentes sin boquillas especiales. Compatible con puestos manuales y automáticos.",
+        imageUrl: "/images/brands/gasflux/gasfluxer-equipo.png",
+      },
     ],
   },
   {
@@ -243,10 +313,11 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "La precisión y repetibilidad de los equipos BLM permiten a los fabricantes OEM producir componentes tubulares de geometría compleja con alta cadencia y mínimo desperdicio de material, siendo un eslabón crítico en la manufactura en serie de unidades de aire acondicionado y heladeras.",
     ],
     products: [
-      { name: "Dobladoras de Tubos CNC", description: "Doblado automático de tubos de cobre y aluminio para la fabricación de serpentines, colectores y circuitos de refrigerante." },
-      { name: "Conformadoras de Extremos", description: "Abocardado, acanalado, reducción y expansión de extremos de tubo para preparación de uniones en línea de ensamble." },
-      { name: "Maquinaria Láser para Tubos", description: "Corte y mecanizado láser de alta velocidad de tubos y perfiles para producción en serie." },
-      { name: "Equipos de Corte y Terminado", description: "Sierras y sistemas de corte automatizados para preparación de tubería en líneas de manufactura industrial." },
+      {
+        name: "Dobladoras de Tubos CNC",
+        description: "Doblado automático de tubos de cobre y aluminio para la fabricación de serpentines, colectores y circuitos de refrigerante.",
+        imageUrl: "/images/brands/blm/dobladoras-cnc.png",
+      },
     ],
   },
   {
@@ -256,9 +327,21 @@ export const aireRefrigeracionContent: BrandContent[] = [
       "El sellado ultrasónico produce una junta hermética y reproducible en cada ciclo, sin calor ni soldadura, ideal para líneas de alta cadencia donde la velocidad y la confiabilidad del proceso son determinantes para los indicadores de calidad de la planta.",
     ],
     products: [
-      { name: "Sellador Ultrasónico — Estándar", description: "Sellado en línea de tubos de aluminio y cobre en la fabricación de heladeras y unidades de refrigeración. Alta cadencia, ciclo corto." },
-      { name: "Sellador Ultrasónico — Economy", description: "Versión de menor inversión inicial con las mismas prestaciones técnicas para producción en serie." },
-      { name: "Sellador Ultrasónico — Explosion Proof", description: "Certificado para líneas que trabajan con refrigerantes inflamables (A2L, A3). Cumple normas para atmósferas explosivas." },
+      {
+        name: "Sellador Ultrasónico — Estándar",
+        description: "Sellado en línea de tubos de aluminio y cobre en la fabricación de heladeras y unidades de refrigeración. Alta cadencia, ciclo corto.",
+        imageUrl: "/images/brands/tech-sonic/tube-sealer-standard.jpg",
+      },
+      {
+        name: "Sellador Ultrasónico — Modelo 2",
+        description: "Variante de alta productividad para líneas de fabricación con mayor volumen de sellados por turno.",
+        imageUrl: "/images/brands/tech-sonic/tube-sealer-alt.jpg",
+      },
+      {
+        name: "Sellador Ultrasónico — Economy",
+        description: "Versión de menor inversión inicial con las mismas prestaciones técnicas para producción en serie.",
+        imageUrl: "/images/brands/tech-sonic/tube-sealer-economy.jpg",
+      },
     ],
   },
 ]
