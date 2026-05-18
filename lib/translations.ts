@@ -57,7 +57,7 @@ const t = {
       },
       aire: {
         title: "Aire y Refrigeración",
-        description: "Equipamiento especializado para la industria del aire acondicionado y refrigeración.",
+        description: "Maquinaria y equipamiento para fabricantes OEM de aires acondicionados, heladeras y sistemas de refrigeración industrial.",
         verTodas: "Ver todas",
       },
     },
