@@ -8,7 +8,6 @@ import {
   AireRefrigeracionBrandsSection,
 } from "@/components/home/brands-section"
 import { ServicesSection } from "@/components/home/services-section"
-import { ClientesSection } from "@/components/shared/clientes-section"
 import { SucursalesSection } from "@/components/shared/sucursales-section"
 
 export default function HomePage() {
@@ -22,8 +21,7 @@ export default function HomePage() {
         <ElectronicaBrandsSection />
         <AireRefrigeracionBrandsSection />
         <ServicesSection />
-        <ClientesSection />
-        <SucursalesSection variant="default" />
+        <SucursalesSection variant="muted" />
       </main>
       <Footer />
     </>

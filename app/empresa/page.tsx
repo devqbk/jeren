@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { ClientesSection } from "@/components/shared/clientes-section"
 import { SucursalesSection } from "@/components/shared/sucursales-section"
 
 export const metadata: Metadata = {
@@ -81,8 +80,7 @@ export default function EmpresaPage() {
           </div>
         </section>
 
-        <ClientesSection variant="default" />
-        <SucursalesSection variant="muted" />
+        <SucursalesSection />
       </main>
       <Footer />
     </>
