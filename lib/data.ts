@@ -138,7 +138,7 @@ export const aireRefrigeracionBrands = [
     name: "Galileo TP",
     logo: "/images/brands/galileo-tp.png",
     description: "Equipos de vacío, carga de refrigerante y prueba de performance para líneas de producción de aires y heladeras.",
-    website: "https://www.galileoar.com",
+    website: "http://www.galileotp.com",
   },
   {
     slug: "inficon",
@@ -159,7 +159,7 @@ export const aireRefrigeracionBrands = [
     name: "Sumake",
     logo: "/images/brands/sumake.png",
     description: "Herramientas neumáticas industriales para líneas de ensamble de equipos de refrigeración y climatización.",
-    website: "https://www.sumake.com.tw",
+    website: "https://www.sumake.com",
   },
   {
     slug: "gasflux",
@@ -173,14 +173,14 @@ export const aireRefrigeracionBrands = [
     name: "BLM",
     logo: "/images/brands/blm.png",
     description: "Maquinaria CNC para doblado y conformado de tubos de cobre y aluminio en la fabricación de intercambiadores de calor.",
-    website: "#",
+    website: "http://www.blmgroup.com",
   },
   {
     slug: "tech-sonic",
     name: "Tech Sonic",
     logo: "/images/brands/tech-sonic.png",
     description: "Equipos de sellado ultrasónico de tubos para líneas de producción de heladeras y sistemas de refrigeración.",
-    website: "#",
+    website: "https://tech-sonic.us",
   },
 ]
 
