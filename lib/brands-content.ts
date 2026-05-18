@@ -25,7 +25,7 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "ZENITH — AOI 3D", description: "Sistema de inspección óptica automatizada en 3D para detección de defectos en placas montadas.", imageUrl: "/images/brands/koh-young/aoi-3d-modelo-zenith.png" },
-      { name: "KY 8030-3 — SPI 3D", description: "Sistema de inspección de pasta de soldadura en 3D para control de proceso de serigrafía." },
+      { name: "KY 8030-3 — SPI 3D", description: "Sistema de inspección de pasta de soldadura en 3D para control de proceso de serigrafía.", imageUrl: "/images/brands/koh-young/ky-8030-3.png" },
     ],
   },
   {
@@ -36,7 +36,7 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "PSV 5000", description: "Sistema automatizado de programación de dispositivos integrado en línea SMT.", imageUrl: "/images/brands/data-io/psv-5000.jpg" },
-      { name: "PSV 7000", description: "Plataforma de aprovisionamiento seguro de alta velocidad para producción en serie." },
+      { name: "PSV 7000", description: "Plataforma de aprovisionamiento seguro de alta velocidad para producción en serie.", imageUrl: "/images/brands/data-io/psv-7000.jpg" },
     ],
   },
   {
@@ -58,11 +58,11 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "Link Conveyor", description: "Conveyor de transporte de PCB con protección ESD para interconexión de equipos SMT.", imageUrl: "/images/brands/yj-link/link-conveyor.jpg" },
-      { name: "Dual Lane Equipment", description: "Módulos de doble carril para producción paralela de alta cadencia." },
-      { name: "Buffer", description: "Sistema de almacenamiento y secuenciado de PCB entre estaciones de proceso." },
-      { name: "Shuttle Conveyor", description: "Mecanismo de transferencia lateral de PCB entre líneas de producción." },
-      { name: "PCB Cleaner", description: "Equipo de limpieza de placas de circuito impreso integrable en línea." },
-      { name: "Loading / Unloading", description: "Estaciones automáticas de carga y descarga de PCB al inicio y fin de línea." },
+      { name: "Dual Lane Equipment", description: "Módulos de doble carril para producción paralela de alta cadencia.", imageUrl: "/images/brands/yj-link/dual-lane-equipment.png" },
+      { name: "Buffer", description: "Sistema de almacenamiento y secuenciado de PCB entre estaciones de proceso.", imageUrl: "/images/brands/yj-link/buffer.jpg" },
+      { name: "Shuttle Conveyor", description: "Mecanismo de transferencia lateral de PCB entre líneas de producción.", imageUrl: "/images/brands/yj-link/shuttle-conveyor.jpg" },
+      { name: "PCB Cleaner", description: "Equipo de limpieza de placas de circuito impreso integrable en línea.", imageUrl: "/images/brands/yj-link/pcb-cleaner.jpg" },
+      { name: "Loading / Unloading", description: "Estaciones automáticas de carga y descarga de PCB al inicio y fin de línea.", imageUrl: "/images/brands/yj-link/loading-unloading.jpg" },
     ],
   },
   {
@@ -73,9 +73,9 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "TruView FUSION", description: "Sistema de inspección por rayos X para análisis de BGA, solder joints y componentes de alta densidad.", imageUrl: "/images/brands/creative-electron/tru-view-fusion.jpg" },
-      { name: "TruView PRIME", description: "Equipo de rayos X de alto rendimiento para inspección de PCB y detección de falsificaciones." },
-      { name: "TruView CUBE", description: "Sistema compacto de inspección por rayos X para laboratorios de calidad y prototipos." },
-      { name: "PCB X-Ray Inspection", description: "Solución especializada en inspección de placas de circuito impreso con rayos X." },
+      { name: "TruView PRIME", description: "Equipo de rayos X de alto rendimiento para inspección de PCB y detección de falsificaciones.", imageUrl: "/images/brands/creative-electron/truview-prime.jpg" },
+      { name: "TruView CUBE", description: "Sistema compacto de inspección por rayos X para laboratorios de calidad y prototipos.", imageUrl: "/images/brands/creative-electron/truview-cube.jpg" },
+      { name: "PCB X-Ray Inspection", description: "Solución especializada en inspección de placas de circuito impreso con rayos X.", imageUrl: "/images/brands/creative-electron/pcb-xray-inspection.jpg" },
     ],
   },
   {
@@ -86,11 +86,11 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "HR 600XL — Rework", description: "Sistema de rework de alta gama para BGA y componentes de gran tamaño con control térmico preciso.", imageUrl: "/images/brands/kurtz-ersa/hr600xl.jpg" },
-      { name: "HR 550L — Rework", description: "Equipo de rework versátil para producción y laboratorio con visualización óptica integrada." },
-      { name: "i-CON VARIO 4", description: "Estación de soldadura y rework modular con control digital de temperatura." },
-      { name: "HOTFLOW / POWERFUL ULTRA", description: "Hornos de reflujo de alta performance para soldadura SMT en líneas de producción." },
-      { name: "ECOSELECT / SMARTFLOW", description: "Máquinas de soldadura selectiva para ensambles mixtos SMT/THT." },
-      { name: "VERSAFLOW 4 XL", description: "Sistema de soldadura por ola de gran formato para producción de alto volumen THT." },
+      { name: "HR 550L — Rework", description: "Equipo de rework versátil para producción y laboratorio con visualización óptica integrada.", imageUrl: "/images/brands/kurtz-ersa/hr-550l.jpg" },
+      { name: "i-CON VARIO 4", description: "Estación de soldadura y rework modular con control digital de temperatura.", imageUrl: "/images/brands/kurtz-ersa/icon-vario-4.jpg" },
+      { name: "HOTFLOW / POWERFUL ULTRA", description: "Hornos de reflujo de alta performance para soldadura SMT en líneas de producción.", imageUrl: "/images/brands/kurtz-ersa/hotflow-powerful-ultra.jpg" },
+      { name: "ECOSELECT / SMARTFLOW", description: "Máquinas de soldadura selectiva para ensambles mixtos SMT/THT.", imageUrl: "/images/brands/kurtz-ersa/ecoselect-smartflow.jpg" },
+      { name: "VERSAFLOW 4 XL", description: "Sistema de soldadura por ola de gran formato para producción de alto volumen THT.", imageUrl: "/images/brands/kurtz-ersa/versaflow-4-xl.jpg" },
     ],
   },
   {
@@ -101,8 +101,8 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "V-M.O.L.E.®", description: "Perfilador térmico compacto para monitoreo de temperatura en hornos de reflujo y soldadura por ola.", imageUrl: "/images/brands/ecd/v-m-o-l-e.png" },
-      { name: "MEGAM.O.L.E.® 20", description: "Solución avanzada de monitoreo térmico con 20 canales para perfilado de alta precisión." },
-      { name: "SUPERM.O.L.E.® GOLD 2", description: "Perfilador térmico premium de máxima performance para procesos de soldadura críticos." },
+      { name: "MEGAM.O.L.E.® 20", description: "Solución avanzada de monitoreo térmico con 20 canales para perfilado de alta precisión.", imageUrl: "/images/brands/ecd/megamole-20.png" },
+      { name: "SUPERM.O.L.E.® GOLD 2", description: "Perfilador térmico premium de máxima performance para procesos de soldadura críticos.", imageUrl: "/images/brands/ecd/supermole-gold-2.png" },
     ],
   },
   {
@@ -113,8 +113,8 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "EVS 10K", description: "Máquina de recuperación de soldadura de alta capacidad para líneas de producción de alto volumen.", imageUrl: "/images/brands/evs/evs-10k.jpg" },
-      { name: "EVS 8K", description: "Equipo de recuperación de estaño desde escoria para producción de volumen medio." },
-      { name: "EVS 1500", description: "Recuperadora de soldadura compacta para líneas de menor volumen o laboratorios." },
+      { name: "EVS 8K", description: "Equipo de recuperación de estaño desde escoria para producción de volumen medio.", imageUrl: "/images/brands/evs/evs-8k.jpg" },
+      { name: "EVS 1500", description: "Recuperadora de soldadura compacta para líneas de menor volumen o laboratorios.", imageUrl: "/images/brands/evs/evs-1500.jpg" },
     ],
   },
   {
@@ -125,8 +125,8 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "SONOFLUX SERVO", description: "Sistema de aplicación de flux por pulverización ultrasónica para soldadura por ola. Cobertura uniforme y bajo consumo.", imageUrl: "/images/brands/sono-tek/sonoflux-servo.jpg" },
-      { name: "SONOFLUX EZ", description: "Equipo de flux ultrasónico compacto para integración sencilla en máquinas de soldadura existentes." },
-      { name: "SONOFLUX 2000F", description: "Solución de alto volumen con alta velocidad de transferencia y reducción de flux de hasta 80% respecto a sistemas tradicionales." },
+      { name: "SONOFLUX EZ", description: "Equipo de flux ultrasónico compacto para integración sencilla en máquinas de soldadura existentes.", imageUrl: "/images/brands/sono-tek/sonoflux-ez.jpg" },
+      { name: "SONOFLUX 2000F", description: "Solución de alto volumen con alta velocidad de transferencia y reducción de flux de hasta 80% respecto a sistemas tradicionales.", imageUrl: "/images/brands/sono-tek/sonoflux-2000f.jpg" },
     ],
   },
   {
