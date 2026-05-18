@@ -125,7 +125,7 @@ export const electronicaBrands = [
   {
     slug: "umg-technologies",
     name: "UMG Technologies",
-    // TODO: Agregue logo cuando esté disponible
+    logo: "/images/brands/umg-technologies.svg",
     description: "Soluciones de automatización y manejo de materiales",
     website: "https://umgtinc.com",
   },
