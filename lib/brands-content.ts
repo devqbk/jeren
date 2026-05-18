@@ -145,12 +145,7 @@ export const electronicaContent: BrandContent[] = [
       "UMG Technologies es un proveedor de bienes de capital para el mercado electrónico. Fabrica máquinas de inserción y alimentadores de ajuste a presión de terminales e interconexiones, especializándose en maquinaria de ensamble de componentes odd-form: terminales, pines, ojales, cables a granel, marcado láser y sistemas de inserción de conectores mecánicos continuos.",
       "Sus soluciones sirven a la industria de electrónica de consumo, automotriz, EMS, telecomunicaciones y aeroespacial, cubriendo las etapas de inserción que los equipos pick & place convencionales no pueden realizar.",
     ],
-    products: [
-      { name: "Máquinas de Inserción", description: "Equipos automáticos para inserción de componentes odd-form, terminales, pines y ojales en PCB." },
-      { name: "Alimentadores de Terminales", description: "Sistemas de alimentación y ajuste a presión de terminales e interconexiones para ensamble automático." },
-      { name: "Sistemas de Marcado Láser", description: "Integración de marcado láser en líneas de inserción para trazabilidad de componentes." },
-      { name: "Inserción de Conectores", description: "Equipos de inserción mecánica continua de conectores para alta cadencia productiva." },
-    ],
+    products: [],
   },
 ]
 
