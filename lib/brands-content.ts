@@ -47,7 +47,7 @@ export const electronicaContent: BrandContent[] = [
     ],
     products: [
       { name: "Conformal Coating", description: "Sistemas automáticos de recubrimiento conformal selectivo para protección de PCB en ambientes adversos.", imageUrl: "/images/brands/nordson-asymtek/conformal-coating.jpg" },
-      { name: "Fluid Dispensing", description: "Equipos de dispensado de fluidos de alta precisión para adhesivos, encapsulantes y selladores." },
+      { name: "Fluid Dispensing", description: "Equipos de dispensado de fluidos de alta precisión para adhesivos, encapsulantes y selladores.", imageUrl: "/images/brands/nordson-asymtek/fluid-dispensing.png" },
     ],
   },
   {
