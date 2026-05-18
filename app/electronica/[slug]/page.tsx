@@ -164,14 +164,26 @@ export default async function BrandPage({
                 {content.products.map((product) => (
                   <div
                     key={product.name}
-                    className="rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md"
+                    className="overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/30 hover:shadow-md"
                   >
-                    <h4 className="font-semibold text-foreground">
-                      {product.name}
-                    </h4>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {product.description}
-                    </p>
+                    {product.imageUrl && (
+                      <div className="relative h-44 w-full overflow-hidden bg-white">
+                        <Image
+                          src={product.imageUrl}
+                          alt={product.name}
+                          fill
+                          className="object-contain p-4"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <h4 className="font-semibold text-foreground">
+                        {product.name}
+                      </h4>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                        {product.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
