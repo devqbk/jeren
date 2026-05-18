@@ -166,7 +166,7 @@ export const aireRefrigeracionBrands = [
     name: "Gasflux",
     logo: "/images/brands/gasflux.png",
     description: "Fundentes líquidos y equipos para brazing automatizado de cañerías de cobre en manufactura industrial.",
-    website: "#",
+    website: "https://www.gasflux.com",
   },
   {
     slug: "blm",
