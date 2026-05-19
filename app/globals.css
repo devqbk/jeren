@@ -151,6 +151,24 @@
   }
 }
 
+@layer utilities {
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
