@@ -20,7 +20,7 @@ export default function MineriaPage() {
       <main>
         {/* Hero */}
         <section className="relative bg-primary py-20 lg:py-28">
-          <div className="absolute inset-0 bg-[url('/images/banners/mineria.jpg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('/images/banners/mineria.png')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-primary/80" />
           <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
             <h1 className="text-4xl font-bold text-primary-foreground sm:text-5xl">

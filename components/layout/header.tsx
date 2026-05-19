@@ -55,55 +55,19 @@ export function Header() {
                 )}
               </Link>
 
-              {/* Mega Menu */}
-              {item.hasDropdown && activeDropdown === item.name && item.brands && (
-                <div className="absolute right-0 top-full z-50 pt-2">
-                  <div className={cn(
-                    "rounded-lg border border-border bg-background p-6 shadow-xl",
-                    item.brands.length > 6 ? "w-[600px]" : "w-[480px]"
-                  )}>
-                    <div className="mb-4 flex items-center justify-between">
-                      <h3 className="text-sm font-semibold text-foreground">
-                        Marcas de {item.name}
-                      </h3>
-                      <Link href={item.href} className="text-xs font-medium text-primary hover:underline">
-                        Ver todas →
+              {/* Simple Dropdown */}
+              {item.hasDropdown && activeDropdown === item.name && item.subItems && (
+                <div className="absolute left-0 top-full z-50 pt-2">
+                  <div className="rounded-lg border border-border bg-background py-2 shadow-xl w-56">
+                    {item.subItems.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        href={subItem.href}
+                        className="block px-4 py-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                      >
+                        {subItem.name}
                       </Link>
-                    </div>
-                    <div className={cn(
-                      "gap-3",
-                      item.brands.length > 6 ? "grid grid-cols-4" : "grid grid-cols-3"
-                    )}>
-                      {item.brands.map((brand) => (
-                        <Link
-                          key={brand.slug}
-                          href={`${item.href}/${brand.slug}`}
-                          className="group flex flex-col items-center rounded-md border border-transparent p-3 transition-all hover:border-border hover:bg-muted"
-                        >
-                          {brand.logo ? (
-                            <Image
-                              src={brand.logo}
-                              alt={brand.name}
-                              width={100}
-                              height={40}
-                              className="h-10 w-auto object-contain mb-2"
-                            />
-                          ) : (
-                            <div className="h-10 mb-2 flex items-center">
-                              <span className="text-xs font-semibold text-foreground text-center">
-                                {brand.name}
-                              </span>
-                            </div>
-                          )}
-                          <span className="text-xs font-medium text-foreground text-center line-clamp-2">
-                            {brand.name}
-                          </span>
-                          <span className="mt-1 line-clamp-2 text-xs text-muted-foreground text-center">
-                            {brand.description}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -151,7 +115,7 @@ export function Header() {
 function MobileDropdown({
   item,
 }: {
-  item: { name: string; href: string; brands?: typeof electronicaBrands }
+  item: { name: string; href: string; subItems?: { name: string; href: string }[] }
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -165,19 +129,16 @@ function MobileDropdown({
         {item.name}
         <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
       </button>
-      {isOpen && (
+      {isOpen && item.subItems && (
         <div className="pb-3 pl-4">
-          <Link href={item.href} className="mb-2 block text-sm font-medium text-primary">
-            Ver todas las marcas →
-          </Link>
-          <div className="grid grid-cols-2 gap-2">
-            {item.brands?.map((brand) => (
+          <div className="flex flex-col space-y-3 pt-2">
+            {item.subItems.map((subItem) => (
               <Link
-                key={brand.slug}
-                href={`${item.href}/${brand.slug}`}
-                className="rounded-md p-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary"
+                key={subItem.name}
+                href={subItem.href}
+                className="text-sm font-medium text-foreground/80 hover:text-primary"
               >
-                {brand.name}
+                {subItem.name}
               </Link>
             ))}
           </div>

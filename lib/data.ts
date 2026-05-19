@@ -279,32 +279,19 @@ export const servicios = [
 // Navegación principal
 export const navigation = {
   main: [
+    {
+      name: "Industrias",
+      href: "#",
+      hasDropdown: true,
+      subItems: [
+        { name: "Petróleo y Gas", href: "/petroleo-gas" },
+        { name: "Minería", href: "/mineria" },
+        { name: "Agro", href: "/agro" },
+        { name: "Electrónica", href: "/electronica" },
+        { name: "Aire y Refrigeración", href: "/aire-acondicionado" },
+      ],
+    },
     { name: "Empresa", href: "/empresa" },
-    {
-      name: "Petróleo y Gas",
-      href: "/petroleo-gas",
-      hasDropdown: true,
-      brands: petroleoGasBrands,
-    },
-    {
-      name: "Minería",
-      href: "/mineria",
-      hasDropdown: true,
-      brands: mineriaBrands,
-    },
-    { name: "Agro", href: "/agro" },
-    {
-      name: "Electrónica",
-      href: "/electronica",
-      hasDropdown: true,
-      brands: electronicaBrands,
-    },
-    {
-      name: "Aire y refrigeración",
-      href: "/aire-acondicionado",
-      hasDropdown: true,
-      brands: aireRefrigeracionBrands,
-    },
     { name: "Servicios", href: "/servicios" },
     { name: "Contacto", href: "/contacto" },
   ],
