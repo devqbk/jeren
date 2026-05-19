@@ -162,14 +162,8 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/jeren-s-r-l/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="Instagram">
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="Facebook">
-              <Facebook className="h-5 w-5" />
             </a>
           </div>
         </div>

@@ -340,3 +340,35 @@ export const aireRefrigeracionContent: BrandContent[] = [
     ],
   },
 ]
+// --- Nuevas Industrias --------------------------------------------------------
+
+export const marcasNuevasContent: BrandContent[] = [
+  {
+    slug: "cimat",
+    longDescription: [
+      "CIMAT es un fabricante líder mundial en tecnología de equilibrado dinámico. Sus máquinas balanceadoras son utilizadas globalmente en las industrias automotriz, aeroespacial, energética y minera.",
+      "Sus sistemas garantizan la precisión y reducción de vibraciones en componentes rotativos críticos, extendiendo la vida útil de motores, turbinas y maquinaria pesada.",
+    ],
+    products: [
+      {
+        name: "Máquinas Balanceadoras Universales",
+        description: "Equipos de equilibrado de alta precisión para ejes, rotores y componentes industriales de gran tamaño.",
+        imageUrl: "/images/brands/cimat-clean.png",
+      },
+    ],
+  },
+  {
+    slug: "xplorobot",
+    longDescription: [
+      "Xplorobot ofrece soluciones robóticas avanzadas para la detección, cuantificación y reporte de emisiones de metano en la industria del petróleo y gas.",
+      "Sus sistemas autónomos, equipados con tecnología láser (TDLAS) aprobada por la EPA, permiten inspecciones eficientes y seguras en instalaciones onshore y offshore, ayudando a las empresas a cumplir con las normativas ambientales y reducir su huella de carbono.",
+    ],
+    products: [
+      {
+        name: "Inspección de Emisiones",
+        description: "Sistema para la detección de fugas de metano en infraestructura energética.",
+        imageUrl: "/images/brands/xplorobot-dark.png",
+      },
+    ],
+  },
+]
