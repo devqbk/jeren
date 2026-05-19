@@ -1,24 +1,29 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Phone, Mail, MapPin, Linkedin, Instagram, Facebook } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { electronicaBrands, aireRefrigeracionBrands, contactInfo } from "@/lib/data"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* CTA Section */}
       <div className="border-b border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row lg:px-8">
           <h3 className="text-lg font-medium sm:text-xl">
-            ¿Querés saber más sobre nuestros productos o servicios?
+            {t.footer.cta}
           </h3>
           <Link href="/contacto">
             <Button
               variant="outline"
               className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
-              Asesorate
+              {t.footer.ctaBtn}
             </Button>
           </Link>
         </div>
@@ -30,47 +35,32 @@ export function Footer() {
           {/* Navegación */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/70">
-              Navegación
+              {t.footer.nav}
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/empresa"
-                  className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                >
-                  Empresa
+                <Link href="/empresa" className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                  {t.nav.empresa}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/electronica"
-                  className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                >
-                  Electrónica
+                <Link href="/electronica" className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                  {t.nav.electronica}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/aire-acondicionado"
-                  className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                >
-                  Aire y refrigeración
+                <Link href="/aire-acondicionado" className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                  {t.nav.aireRefrigeracion}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/servicios"
-                  className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                >
-                  Servicios
+                <Link href="/servicios" className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                  {t.nav.servicios}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contacto"
-                  className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-                >
-                  Contacto
+                <Link href="/contacto" className="text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                  {t.nav.contacto}
                 </Link>
               </li>
             </ul>
@@ -79,7 +69,7 @@ export function Footer() {
           {/* Marcas Electrónica */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/70">
-              Electrónica
+              {t.nav.electronica}
             </h4>
             <ul className="space-y-1">
               {electronicaBrands.slice(0, 6).map((brand) => (
@@ -93,11 +83,8 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link
-                  href="/electronica"
-                  className="text-sm font-medium text-primary-foreground/90 transition-colors hover:text-primary-foreground"
-                >
-                  Ver todas →
+                <Link href="/electronica" className="text-sm font-medium text-primary-foreground/90 transition-colors hover:text-primary-foreground">
+                  {t.footer.verTodas}
                 </Link>
               </li>
             </ul>
@@ -106,7 +93,7 @@ export function Footer() {
           {/* Marcas Aire y Refrigeración */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/70">
-              Aire y refrigeración
+              {t.nav.aireRefrigeracion}
             </h4>
             <ul className="space-y-1">
               {aireRefrigeracionBrands.map((brand) => (
@@ -125,7 +112,7 @@ export function Footer() {
           {/* Contacto */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/70">
-              Contacto
+              {t.nav.contacto}
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
@@ -164,36 +151,24 @@ export function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row lg:px-8">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/logo.png"
+              src="/images/favicon-jeren.png"
               alt="Jeren SRL"
               width={32}
               height={32}
               className="h-8 w-8 rounded-full bg-primary-foreground p-0.5"
             />
             <p className="text-sm text-primary-foreground/70">
-              © {new Date().getFullYear()} Jeren SRL. Todos los derechos reservados.
+              © {new Date().getFullYear()} Jeren SRL. {t.footer.rights}
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <a
-              href="#"
-              className="text-primary-foreground/60 transition-colors hover:text-primary-foreground"
-              aria-label="LinkedIn"
-            >
+            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
             </a>
-            <a
-              href="#"
-              className="text-primary-foreground/60 transition-colors hover:text-primary-foreground"
-              aria-label="Instagram"
-            >
+            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="Instagram">
               <Instagram className="h-5 w-5" />
             </a>
-            <a
-              href="#"
-              className="text-primary-foreground/60 transition-colors hover:text-primary-foreground"
-              aria-label="Facebook"
-            >
+            <a href="#" className="text-primary-foreground/60 transition-colors hover:text-primary-foreground" aria-label="Facebook">
               <Facebook className="h-5 w-5" />
             </a>
           </div>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <style>
+    .umg {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: 150px;
+      fill: #e62325;
+      letter-spacing: -5px;
+    }
+    .tech {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 120px;
+      fill: #606060;
+      letter-spacing: -2px;
+    }
+  </style>
+  <text x="10" y="130" class="umg">UMG</text>
+  <text x="60" y="240" class="tech">Tech.</text>
+</svg>

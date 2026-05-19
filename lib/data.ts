@@ -120,13 +120,14 @@ export const electronicaBrands = [
     name: "HG Laser",
     logo: "/images/brands/hg-laser.jpg",
     description: "Equipos de marcado y corte láser",
-    website: "#",
+    website: "https://hglaserglobal.com",
   },
   {
     slug: "umg-technologies",
     name: "UMG Technologies",
+    logo: "/images/brands/umg-technologies.svg",
     description: "Soluciones de automatización y manejo de materiales",
-    website: "#",
+    website: "https://umgtinc.com",
   },
 ]
 
@@ -136,50 +137,50 @@ export const aireRefrigeracionBrands = [
     slug: "galileo-tp",
     name: "Galileo TP",
     logo: "/images/brands/galileo-tp.png",
-    description: "Compresores y sistemas de refrigeración industrial",
-    website: "https://www.galileoar.com",
+    description: "Equipos de vacío, carga de refrigerante y prueba de performance para líneas de producción de aires y heladeras.",
+    website: "http://www.galileotp.com",
   },
   {
     slug: "inficon",
     name: "Inficon",
     logo: "/images/brands/inficon.png",
-    description: "Detectores de fugas y equipos de medición",
+    description: "Instrumentos de detección de fugas para control de calidad en la fabricación de sistemas de refrigeración.",
     website: "https://www.inficon.com",
   },
   {
     slug: "jae-hyun-autonics",
     name: "Jae Hyun Autonics",
     logo: "/images/brands/jae-hyun-autonics.png",
-    description: "Componentes de automatización y control",
+    description: "Sistemas GAS SAVER para soldadura fuerte (brazing) automatizada de cañerías en líneas de producción.",
     website: "#",
   },
   {
     slug: "sumake",
     name: "Sumake",
     logo: "/images/brands/sumake.png",
-    description: "Herramientas neumáticas profesionales",
-    website: "https://www.sumake.com.tw",
+    description: "Herramientas neumáticas industriales para líneas de ensamble de equipos de refrigeración y climatización.",
+    website: "https://www.sumake.com",
   },
   {
     slug: "gasflux",
     name: "Gasflux",
     logo: "/images/brands/gasflux.png",
-    description: "Soldadura con gas y equipos de brazing",
-    website: "#",
+    description: "Fundentes líquidos y equipos para brazing automatizado de cañerías de cobre en manufactura industrial.",
+    website: "https://www.gasflux.com",
   },
   {
     slug: "blm",
     name: "BLM",
     logo: "/images/brands/blm.png",
-    description: "Herramientas y equipamiento para HVAC",
-    website: "#",
+    description: "Maquinaria CNC para doblado y conformado de tubos de cobre y aluminio en la fabricación de intercambiadores de calor.",
+    website: "http://www.blmgroup.com",
   },
   {
     slug: "tech-sonic",
     name: "Tech Sonic",
     logo: "/images/brands/tech-sonic.png",
-    description: "Limpieza ultrasónica industrial",
-    website: "#",
+    description: "Equipos de sellado ultrasónico de tubos para líneas de producción de heladeras y sistemas de refrigeración.",
+    website: "https://tech-sonic.us",
   },
 ]
 
@@ -231,6 +232,7 @@ export const sucursales = [
     address: "Av. Juramento 2089 Piso 4°",
     postalCode: "C1428DNG",
     province: "Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Av.+Juramento+2089,+Buenos+Aires,+Argentina",
   },
   {
     name: "Ushuaia",
@@ -238,6 +240,7 @@ export const sucursales = [
     address: "Paseo de la Plaza 2065",
     postalCode: "CP 9410",
     province: "Tierra del Fuego",
+    mapsUrl: "https://maps.google.com/?q=Paseo+de+la+Plaza+2065,+Ushuaia,+Tierra+del+Fuego,+Argentina",
   },
   {
     name: "Río Grande",
@@ -245,6 +248,7 @@ export const sucursales = [
     address: "Padre Forgacs 1407",
     postalCode: "CP 9420",
     province: "Tierra del Fuego",
+    mapsUrl: "https://maps.google.com/?q=Padre+Forgacs+1407,+R%C3%ADo+Grande,+Tierra+del+Fuego,+Argentina",
   },
 ]
 
@@ -275,32 +279,19 @@ export const servicios = [
 // Navegación principal
 export const navigation = {
   main: [
+    {
+      name: "Industrias",
+      href: "#",
+      hasDropdown: true,
+      subItems: [
+        { name: "Petróleo y Gas", href: "/petroleo-gas" },
+        { name: "Minería", href: "/mineria" },
+        { name: "Agro", href: "/agro" },
+        { name: "Electrónica", href: "/electronica" },
+        { name: "Aire y Refrigeración", href: "/aire-acondicionado" },
+      ],
+    },
     { name: "Empresa", href: "/empresa" },
-    {
-      name: "Petróleo y Gas",
-      href: "/petroleo-gas",
-      hasDropdown: true,
-      brands: petroleoGasBrands,
-    },
-    {
-      name: "Minería",
-      href: "/mineria",
-      hasDropdown: true,
-      brands: mineriaBrands,
-    },
-    { name: "Agro", href: "/agro" },
-    {
-      name: "Electrónica",
-      href: "/electronica",
-      hasDropdown: true,
-      brands: electronicaBrands,
-    },
-    {
-      name: "Aire y refrigeración",
-      href: "/aire-acondicionado",
-      hasDropdown: true,
-      brands: aireRefrigeracionBrands,
-    },
     { name: "Servicios", href: "/servicios" },
     { name: "Contacto", href: "/contacto" },
   ],

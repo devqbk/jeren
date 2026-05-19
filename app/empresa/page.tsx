@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { SucursalesSection } from "@/components/shared/sucursales-section"
-import { Building2, Clock, ShieldCheck, Users } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Empresa",
   description:
-    "Conocé a Jeren SRL y Tecnomaq SRL, empresas con más de 40 años de experiencia en la industria electrónica y de refrigeración.",
+    "Jeren SRL: más de 40 años representando marcas líderes mundiales en Petróleo y Gas, Minería, Agro, Electrónica y Aire y Refrigeración en Argentina.",
 }
 
 export default function EmpresaPage() {
@@ -16,7 +16,7 @@ export default function EmpresaPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative bg-primary py-20 lg:py-28">
+        <section className="relative bg-primary py-24 lg:py-32">
           <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0"
@@ -26,11 +26,14 @@ export default function EmpresaPage() {
             />
           </div>
           <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-            <h1 className="text-4xl font-bold text-primary-foreground sm:text-5xl">
-              Empresa
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
+              Desde 1984
+            </p>
+            <h1 className="text-4xl font-bold text-primary-foreground sm:text-5xl lg:text-6xl">
+              Somos Jeren
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-primary-foreground/70">
-              Más de 40 años liderando la automatización industrial en Argentina.
+              Cuatro décadas conectando la industria argentina con tecnología de primer nivel mundial.
             </p>
           </div>
         </section>
@@ -39,13 +42,15 @@ export default function EmpresaPage() {
         <section className="py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              {/* Image Placeholder */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted lg:aspect-square">
-                <div className="flex h-full items-center justify-center">
-                  <span className="text-sm text-muted-foreground">
-                    Imagen institucional
-                  </span>
-                </div>
+              {/* Imagen institucional */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/empresa-institucional.png"
+                  alt="Jeren SRL — imagen institucional"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               {/* Content */}
@@ -58,13 +63,16 @@ export default function EmpresaPage() {
                 </h3>
                 <div className="mt-6 space-y-4 text-muted-foreground">
                   <p>
-                    Con más de 40 años de experiencia en el mercado electrónico, Jeren S.R.L. y Tecnomaq S.R.L. comercializan, instalan y brindan soporte y mantenimiento de equipos para la industria electrónica, aire acondicionado y automatización en general, además de proveer insumos.
+                    Con más de 40 años en el mercado argentino, Jeren SRL y Tecnomaq SRL representan marcas líderes mundiales de maquinaria, insumos y servicios para la industria. Nuestra trayectoria nos posiciona como un socio estratégico de confianza para los sectores más exigentes del país.
                   </p>
                   <p>
-                    Contamos con un equipo altamente capacitado con un excelente soporte pre y post venta. Contamos con oficinas en la Ciudad de Buenos Aires y sucursales en Río Grande y Ushuaia. Ofrecemos respuesta inmediata a los pedidos de nuestros clientes.
+                    Hoy expandimos nuestro portafolio hacia los sectores de <strong className="text-foreground">Petróleo y Gas, Minería y Agro</strong>, sumando tecnología de vanguardia para la exploración, producción y operación industrial. Acompañamos a nuestros clientes con soluciones que integran equipamiento de primer nivel y soporte técnico especializado.
                   </p>
                   <p>
-                    Representamos las marcas líderes del mercado mundial. El soporte técnico de pre y post venta es la base para generar vínculos a largo plazo con nuestros clientes.
+                    Seguimos presentes también en <strong className="text-foreground">Electrónica y Aire y Refrigeración</strong>, industrias donde contamos con una base sólida de clientes y un portafolio consolidado de marcas internacionales.
+                  </p>
+                  <p>
+                    Operamos desde nuestras oficinas en Ciudad de Buenos Aires y sucursales en Río Grande y Ushuaia, con cobertura nacional y soporte 24x7.
                   </p>
                 </div>
               </div>
@@ -72,63 +80,6 @@ export default function EmpresaPage() {
           </div>
         </section>
 
-        {/* Values */}
-        <section className="bg-muted/50 py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
-                Nuestros valores
-              </h2>
-              <p className="mt-2 text-2xl font-semibold text-foreground sm:text-3xl">
-                Lo que nos diferencia
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Clock className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Soporte 24x7</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Servicio técnico disponible las 24 horas, los 7 días de la semana.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <ShieldCheck className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Respaldo OEM</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Apoyo directo de los fabricantes originales para soporte inmediato.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Building2 className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Stock local</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Insumos y partes de reposición disponibles en Buenos Aires y Tierra del Fuego.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <Users className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">Equipo experto</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Personal altamente capacitado y certificado por los fabricantes.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Sucursales */}
         <SucursalesSection />
       </main>
       <Footer />

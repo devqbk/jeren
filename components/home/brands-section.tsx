@@ -1,8 +1,11 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { electronicaBrands, aireRefrigeracionBrands } from "@/lib/data"
+import { useLanguage } from "@/contexts/language-context"
 
 interface Brand {
   slug: string
@@ -15,12 +18,13 @@ interface Brand {
 interface BrandsSectionProps {
   title: string
   description: string
+  verTodas: string
   brands: Brand[]
   categoryHref: string
   variant?: "default" | "muted"
 }
 
-function BrandsGrid({ title, description, brands, categoryHref, variant = "default" }: BrandsSectionProps) {
+function BrandsGrid({ title, description, verTodas, brands, categoryHref, variant = "default" }: BrandsSectionProps) {
   return (
     <section className={variant === "muted" ? "bg-muted/50 py-20 lg:py-24" : "py-20 lg:py-24"}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -32,7 +36,7 @@ function BrandsGrid({ title, description, brands, categoryHref, variant = "defau
           </div>
           <Link href={categoryHref}>
             <Button variant="ghost" className="text-primary">
-              Ver todas
+              {verTodas}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
@@ -72,10 +76,12 @@ function BrandsGrid({ title, description, brands, categoryHref, variant = "defau
 }
 
 export function ElectronicaBrandsSection() {
+  const { t } = useLanguage()
   return (
     <BrandsGrid
-      title="Electrónica"
-      description="Representamos las marcas líderes mundiales en equipamiento para la industria electrónica y manufactura SMT."
+      title={t.brands.electronica.title}
+      description={t.brands.electronica.description}
+      verTodas={t.brands.electronica.verTodas}
       brands={electronicaBrands}
       categoryHref="/electronica"
     />
@@ -83,10 +89,12 @@ export function ElectronicaBrandsSection() {
 }
 
 export function AireRefrigeracionBrandsSection() {
+  const { t } = useLanguage()
   return (
     <BrandsGrid
-      title="Aire y Refrigeración"
-      description="Equipamiento especializado para la industria del aire acondicionado y refrigeración."
+      title={t.brands.aire.title}
+      description={t.brands.aire.description}
+      verTodas={t.brands.aire.verTodas}
       brands={aireRefrigeracionBrands}
       categoryHref="/aire-acondicionado"
       variant="muted"
