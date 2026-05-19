@@ -74,39 +74,11 @@ export function UnifiedBrandsSection() {
     <section className="overflow-hidden bg-muted/30 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Nuestras Marcas Representadas
+          Nuestras marcas representadas
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
           Nos asociamos con los líderes mundiales para traer la mejor tecnología a su línea de producción.
         </p>
-      </div>
-
-      {/* Infinite Logo Marquee */}
-      <div className="relative mt-16 flex overflow-hidden border-y border-border/50 bg-background py-10 group">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
-        
-        <div className="flex w-max min-w-full animate-marquee gap-16 px-8 group-hover:pause-on-hover">
-          {/* Triplicamos el array para asegurar un scroll continuo sin cortes visuales en resoluciones anchas */}
-          {[...uniqueBrands, ...uniqueBrands, ...uniqueBrands].map((brand, i) => (
-            <div
-              key={`${brand.slug}-${i}`}
-              className="flex h-16 w-40 shrink-0 items-center justify-center opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-            >
-              {brand.logo ? (
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={140}
-                  height={60}
-                  className="h-full w-auto object-contain"
-                />
-              ) : (
-                <span className="text-lg font-bold text-muted-foreground">{brand.name}</span>
-              )}
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Filter Tabs & Carousel */}
@@ -196,6 +168,34 @@ export function UnifiedBrandsSection() {
             </p>
           </div>
         )}
+      </div>
+
+      {/* Infinite Logo Marquee */}
+      <div className="relative mt-16 flex overflow-hidden border-y border-border/50 bg-background py-10 group">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
+        
+        <div className="flex w-max min-w-full animate-marquee gap-16 px-8 group-hover:pause-on-hover">
+          {/* Triplicamos el array para asegurar un scroll continuo sin cortes visuales en resoluciones anchas */}
+          {[...uniqueBrands, ...uniqueBrands, ...uniqueBrands].map((brand, i) => (
+            <div
+              key={`${brand.slug}-${i}`}
+              className="flex h-16 w-40 shrink-0 items-center justify-center opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+            >
+              {brand.logo ? (
+                <Image
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={140}
+                  height={60}
+                  className="h-full w-auto object-contain"
+                />
+              ) : (
+                <span className="text-lg font-bold text-muted-foreground">{brand.name}</span>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
