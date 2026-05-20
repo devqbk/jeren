@@ -42,7 +42,7 @@ export default function EmpresaPage() {
                   src="/images/empresa-institucional.png"
                   alt="Jeren SRL — imagen institucional"
                   fill
-                  className="object-cover"
+                  className="object-cover object-left-top"
                   priority
                 />
               </div>
