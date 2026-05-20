@@ -1,34 +1,32 @@
 "use client"
 
-import { useRef } from "react"
+import { useActionState } from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react"
+import { sendContactEmail, type ContactFormState } from "@/app/actions/contact"
+
+const initialState: ContactFormState = {
+  status: "idle",
+  message: "",
+}
 
 export function ContactForm() {
+  const [state, formAction, isPending] = useActionState(sendContactEmail, initialState)
   const formRef = useRef<HTMLFormElement>(null)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const data = new FormData(e.currentTarget)
-
-    const nombre = data.get("nombre") as string
-    const email = data.get("email") as string
-    const empresa = data.get("empresa") as string
-    const asunto = data.get("asunto") as string
-    const mensaje = data.get("mensaje") as string
-
-    const subject = encodeURIComponent(asunto || `Consulta de ${nombre}`)
-    const body = encodeURIComponent(
-      `Nombre: ${nombre}\nEmail: ${email}${empresa ? `\nEmpresa: ${empresa}` : ""}\n\n${mensaje}`
-    )
-
-    window.location.href = `mailto:info@jeren.com?subject=${subject}&body=${body}`
-  }
+  // Resetear el formulario cuando el envío es exitoso
+  useEffect(() => {
+    if (state.status === "success") {
+      formRef.current?.reset()
+    }
+  }, [state.status])
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+    <form ref={formRef} action={formAction} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="nombre">
@@ -40,6 +38,7 @@ export function ContactForm() {
             type="text"
             required
             placeholder="Tu nombre"
+            disabled={isPending}
           />
         </div>
         <div className="space-y-2">
@@ -52,6 +51,7 @@ export function ContactForm() {
             type="email"
             required
             placeholder="tu@email.com"
+            disabled={isPending}
           />
         </div>
       </div>
@@ -63,6 +63,7 @@ export function ContactForm() {
           name="empresa"
           type="text"
           placeholder="Nombre de tu empresa"
+          disabled={isPending}
         />
       </div>
 
@@ -73,6 +74,7 @@ export function ContactForm() {
           name="asunto"
           type="text"
           placeholder="Asunto del mensaje"
+          disabled={isPending}
         />
       </div>
 
@@ -86,11 +88,34 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="¿En qué podemos ayudarte?"
+          disabled={isPending}
         />
       </div>
 
-      <Button type="submit" className="w-full">
-        Enviar mensaje
+      {/* Feedback de estado */}
+      {state.status === "success" && (
+        <div className="flex items-start gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200">
+          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
+          <p className="text-sm font-medium">{state.message}</p>
+        </div>
+      )}
+
+      {state.status === "error" && (
+        <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+          <p className="text-sm font-medium">{state.message}</p>
+        </div>
+      )}
+
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Enviando...
+          </>
+        ) : (
+          "Enviar mensaje"
+        )}
       </Button>
     </form>
   )
