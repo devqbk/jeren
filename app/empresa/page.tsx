@@ -16,10 +16,8 @@ export default function EmpresaPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative bg-primary py-24 lg:py-32">
-          <div className="absolute inset-0 bg-[url('/images/banners/hero-poster.jpg')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-primary/80" />
-          <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <section className="bg-primary py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
               Desde 1984
             </p>
