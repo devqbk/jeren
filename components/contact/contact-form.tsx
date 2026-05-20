@@ -1,63 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useActionState } from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react"
+import { sendContactEmail, type ContactFormState } from "@/app/actions/contact"
+
+const initialState: ContactFormState = {
+  status: "idle",
+  message: "",
+}
 
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [state, formAction, isPending] = useActionState(sendContactEmail, initialState)
+  const formRef = useRef<HTMLFormElement>(null)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simular envío
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
-
-  if (isSubmitted) {
-    return (
-      <div className="rounded-lg border border-border bg-muted/50 p-8 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-          <svg
-            className="h-6 w-6 text-primary"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <h3 className="mt-4 text-lg font-semibold text-foreground">
-          ¡Mensaje enviado!
-        </h3>
-        <p className="mt-2 text-muted-foreground">
-          Gracias por contactarnos. Nos pondremos en contacto a la brevedad.
-        </p>
-        <Button
-          variant="outline"
-          className="mt-6"
-          onClick={() => setIsSubmitted(false)}
-        >
-          Enviar otro mensaje
-        </Button>
-      </div>
-    )
-  }
+  // Resetear el formulario cuando el envío es exitoso
+  useEffect(() => {
+    if (state.status === "success") {
+      formRef.current?.reset()
+    }
+  }, [state.status])
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form ref={formRef} action={formAction} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="nombre">
@@ -69,6 +38,7 @@ export function ContactForm() {
             type="text"
             required
             placeholder="Tu nombre"
+            disabled={isPending}
           />
         </div>
         <div className="space-y-2">
@@ -81,6 +51,7 @@ export function ContactForm() {
             type="email"
             required
             placeholder="tu@email.com"
+            disabled={isPending}
           />
         </div>
       </div>
@@ -92,6 +63,7 @@ export function ContactForm() {
           name="empresa"
           type="text"
           placeholder="Nombre de tu empresa"
+          disabled={isPending}
         />
       </div>
 
@@ -102,6 +74,7 @@ export function ContactForm() {
           name="asunto"
           type="text"
           placeholder="Asunto del mensaje"
+          disabled={isPending}
         />
       </div>
 
@@ -115,11 +88,34 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="¿En qué podemos ayudarte?"
+          disabled={isPending}
         />
       </div>
 
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+      {/* Feedback de estado */}
+      {state.status === "success" && (
+        <div className="flex items-start gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200">
+          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
+          <p className="text-sm font-medium">{state.message}</p>
+        </div>
+      )}
+
+      {state.status === "error" && (
+        <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+          <p className="text-sm font-medium">{state.message}</p>
+        </div>
+      )}
+
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Enviando...
+          </>
+        ) : (
+          "Enviar mensaje"
+        )}
       </Button>
     </form>
   )

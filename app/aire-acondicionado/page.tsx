@@ -9,7 +9,7 @@ import { aireRefrigeracionBrands } from "@/lib/data"
 export const metadata: Metadata = {
   title: "Aire y Refrigeración",
   description:
-    "Equipamiento especializado para la industria del aire acondicionado y refrigeración.",
+    "Maquinaria y equipamiento para fabricantes OEM de aires acondicionados, heladeras y sistemas de refrigeración industrial.",
 }
 
 export default function AireRefrigeracionPage() {
@@ -26,7 +26,7 @@ export default function AireRefrigeracionPage() {
               Aire y Refrigeración
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-primary-foreground/70">
-              Equipamiento especializado para la industria del aire acondicionado y refrigeración.
+              Maquinaria y equipamiento para fabricantes OEM de aires acondicionados, heladeras y sistemas de refrigeración industrial.
             </p>
           </div>
         </section>
@@ -35,7 +35,7 @@ export default function AireRefrigeracionPage() {
         <section className="py-12 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <p className="mx-auto max-w-3xl text-center text-lg text-muted-foreground">
-              Proveemos equipos de alta calidad para instalación, mantenimiento y diagnóstico de sistemas de climatización y refrigeración industrial.
+              Representamos marcas líderes en maquinaria y equipamiento para plantas industriales que fabrican aires acondicionados, heladeras y sistemas de refrigeración a escala. Soluciones para cada etapa del proceso: conformado de tubos, brazing, carga de refrigerante, sellado y control de calidad en línea.
             </p>
           </div>
         </section>

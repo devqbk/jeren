@@ -50,6 +50,22 @@ Kurtz Ersa, ECD, EVS, Sono Tek, HG Laser, UMG Technologies.
 Aire y refrigeración (7):
 Galileo TP, Inficon, Jae Hyun Autonics, Sumake, Gasflux, BLM, Tech Sonic.
 
+## Perfil de cliente y foco B2B
+El cliente de Jeren NO es un técnico de servicio ni un instalador de campo.
+El cliente es una planta industrial OEM que fabrica en serie equipos de
+refrigeración, climatización o electrónica.
+
+Clientes reales (todos fabricantes industriales, mayoría en Tierra del Fuego):
+- Aire y Refrigeración (AA): Mirgor (UNPE, UNA, UNEC), Audivic, Newsan (AA),
+  Midea Carrier, Electro Fueguina (AA), Industrias Sur, BGH, Athuel, KMG,
+  Aires del Sur, Solnik
+- Electrónica (SMT): Newsan (SMT), Electro Fueguina (SMT), BGH (SMT),
+  Radio Victoria, Solnik, Mirgor
+
+Todo el copy del sitio debe hablar de líneas de producción, manufactura en
+serie, control de calidad industrial y procesos OEM — nunca de instalación
+domiciliaria, mantenimiento de campo o usuarios finales.
+
 ## Lenguaje visual
 - Paleta: azul corporativo profundo como primario, blancos/grises neutros,
   acento sutil. Sobrio, industrial, B2B serio.
