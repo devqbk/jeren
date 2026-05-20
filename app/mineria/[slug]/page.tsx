@@ -100,101 +100,107 @@ export default async function BrandPage({
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              <div>
-                <div className="mb-8 flex h-32 max-w-md items-center justify-center rounded-xl border border-border bg-card p-6 shadow-sm">
-                  {brand.logo ? (
-                    <Image
-                      src={brand.logo}
-                      alt={`Logo ${brand.name}`}
-                      width={240}
-                      height={96}
-                      className="h-full w-auto object-contain"
-                    />
-                  ) : (
-                    <span className="text-2xl font-bold text-muted-foreground">{brand.name}</span>
-                  )}
-                </div>
-
-                <div className="prose prose-gray dark:prose-invert max-w-none">
-                  {content?.longDescription ? (
-                    content.longDescription.map((paragraph, index) => (
-                      <p key={index} className="text-lg leading-relaxed text-muted-foreground">
-                        {paragraph}
-                      </p>
-                    ))
-                  ) : (
-                    <p className="text-lg leading-relaxed text-muted-foreground">
-                      {brand.description}
-                    </p>
-                  )}
-                </div>
-
-                {brand.website && brand.website !== "#" && (
-                  <div className="mt-8">
-                    <Button asChild size="lg" className="w-full sm:w-auto">
-                      <a href={brand.website} target="_blank" rel="noopener noreferrer">
-                        Visitar sitio web oficial
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
+              {/* Logo */}
+              <div className="flex items-center justify-center rounded-xl border border-border bg-white p-12">
+                {brand.logo ? (
+                  <Image
+                    src={brand.logo}
+                    alt={`Logo ${brand.name}`}
+                    width={280}
+                    height={120}
+                    className="h-auto max-h-28 w-auto max-w-full object-contain"
+                  />
+                ) : (
+                  <span className="text-2xl font-bold text-foreground">{brand.name}</span>
                 )}
               </div>
 
-              {/* Products/Solutions */}
-              <div>
-                <h2 className="mb-6 text-2xl font-bold text-foreground">
-                  Soluciones Destacadas
-                </h2>
-                {content?.products && content.products.length > 0 ? (
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    {content.products.map((product) => (
-                      <div
-                        key={product.name}
-                        className="group overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/30 hover:shadow-md"
-                      >
-                        {product.imageUrl && (
-                          <div className="aspect-video w-full overflow-hidden bg-muted/50 p-4">
-                            <Image
-                              src={product.imageUrl}
-                              alt={product.name}
-                              width={400}
-                              height={225}
-                              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                            />
-                          </div>
-                        )}
-                        <div className="p-5">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary">
-                            {product.name}
-                          </h3>
-                          <p className="mt-2 text-sm text-muted-foreground">
-                            {product.description}
-                          </p>
-                        </div>
-                      </div>
+              {/* Info */}
+              <div className="flex flex-col justify-center">
+                <h2 className="text-3xl font-bold text-foreground">{brand.name}</h2>
+
+                {content ? (
+                  <div className="mt-4 space-y-4">
+                    {content.longDescription.map((paragraph, i) => (
+                      <p key={i} className="text-muted-foreground leading-relaxed">
+                        {paragraph}
+                      </p>
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-dashed border-border bg-muted/20 p-8 text-center">
-                    <p className="text-muted-foreground">
-                      El catálogo de productos para esta marca estará disponible próximamente.
-                    </p>
-                  </div>
+                  <p className="mt-4 text-lg text-muted-foreground">{brand.description}</p>
+                )}
+
+                {brand.website && brand.website !== "#" && (
+                  <a
+                    href={brand.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-8 inline-flex"
+                  >
+                    <Button>
+                      Sitio oficial de {brand.name}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </a>
                 )}
               </div>
             </div>
           </div>
         </section>
 
+        {/* Products */}
+        {content && content.products.length > 0 && (
+          <section className="bg-muted/50 py-16 lg:py-20">
+            <div className="mx-auto max-w-7xl px-4 lg:px-8">
+              <div className="mb-10">
+                <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+                  Productos y equipos
+                </p>
+                <h3 className="mt-1 text-2xl font-semibold text-foreground">
+                  {brand.name}
+                </h3>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {content.products.map((product) => (
+                  <div
+                    key={product.name}
+                    className="overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/30 hover:shadow-md"
+                  >
+                    {product.imageUrl && (
+                      <div className="relative h-44 w-full overflow-hidden bg-white">
+                        <Image
+                          src={product.imageUrl}
+                          alt={product.name}
+                          fill
+                          className="object-contain p-4"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <h4 className="font-semibold text-foreground">
+                        {product.name}
+                      </h4>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                        {product.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Other Brands */}
         {otherBrands.length > 0 && (
-          <section className="border-t border-border bg-muted/30 py-16">
+          <section className="border-t border-border py-12">
             <div className="mx-auto max-w-7xl px-4 lg:px-8">
-              <h2 className="mb-8 text-2xl font-bold text-foreground">
+              <h3 className="mb-6 text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                 Otras marcas de Minería
-              </h2>
-              <div className="flex flex-wrap gap-4">
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 {otherBrands.map((b) => (
                   <Link
                     key={b.slug}
@@ -207,7 +213,7 @@ export default async function BrandPage({
                         alt={`Logo ${b.name}`}
                         width={40}
                         height={20}
-                        className="h-auto max-h-5 w-auto object-contain"
+                        className="h-5 w-auto object-contain"
                       />
                     )}
                     <span>{b.name}</span>
