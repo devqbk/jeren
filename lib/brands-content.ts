@@ -4,19 +4,7 @@
 // ─── Electrónica ─────────────────────────────────────────────────────────────
 
 export const electronicaContent: BrandContent[] = [
-  {
-    slug: "fuji",
-    longDescription: [
-      "Fuji ha sido un innovador consistente en la industria electrónica desde su fundación. Fue pionero en la introducción de grandes avances tecnológicos en la manufactura SMT y mantiene hoy en día esa visión en el desarrollo y producción de maquinaria de última generación.",
-      "Sus plataformas de montaje superficial son reconocidas mundialmente por su velocidad, precisión y flexibilidad, adaptándose tanto a producciones de alta velocidad como a lotes de diversidad alta.",
-    ],
-    products: [
-      { name: "SMART FAB", description: "Sistema de montaje superficial de alta velocidad para producción masiva.", imageUrl: "/images/brands/fuji/smart-fab.jpg" },
-      { name: "NEXT III", description: "Plataforma de montaje modular de última generación con alta flexibilidad.", imageUrl: "/images/brands/fuji/nxt-iii.jpg" },
-      { name: "AIMEX IIIc", description: "Montadora de alta flexibilidad y precisión para componentes de gran tamaño.", imageUrl: "/images/brands/fuji/aimex-iii-c.jpg" },
-      { name: "AIMEX III", description: "Sistema de montaje versátil para producción mixta de alta y baja velocidad.", imageUrl: "/images/brands/fuji/aimex-iii.jpg" },
-    ],
-  },
+
   {
     slug: "koh-young",
     longDescription: [

@@ -45,13 +45,7 @@ export const marcasNuevas = [
 
 // Marcas de Electrónica
 export const electronicaBrands = [
-  {
-    slug: "fuji",
-    name: "Fuji",
-    logo: "/images/brands/fuji.png",
-    description: "Innovador líder en maquinaria SMT y producción electrónica",
-    website: "https://www.fuji.co.jp",
-  },
+
   {
     slug: "koh-young",
     name: "Koh Young",
