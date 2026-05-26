@@ -239,10 +239,10 @@ export const sucursales = [
   {
     name: "Río Grande",
     company: "Tecnomaq SRL",
-    address: "Padre Forgacs 1407",
+    address: "Padre Forgacs 1411",
     postalCode: "CP 9420",
     province: "Tierra del Fuego",
-    mapsUrl: "https://maps.google.com/?q=Padre+Forgacs+1407,+R%C3%ADo+Grande,+Tierra+del+Fuego,+Argentina",
+    mapsUrl: "https://maps.google.com/?q=Padre+Forgacs+1411,+R%C3%ADo+Grande,+Tierra+del+Fuego,+Argentina",
   },
 ]
 
