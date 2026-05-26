@@ -2,6 +2,7 @@
 
 import { useActionState } from "react"
 import { useEffect, useRef } from "react"
+import { Turnstile } from "@marsidev/react-turnstile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -17,6 +18,7 @@ const initialState: ContactFormState = {
 export function ContactForm() {
   const [state, formAction, isPending] = useActionState(sendContactEmail, initialState)
   const formRef = useRef<HTMLFormElement>(null)
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
 
   // Resetear el formulario cuando el envío es exitoso
   useEffect(() => {
@@ -91,6 +93,14 @@ export function ContactForm() {
           disabled={isPending}
         />
       </div>
+
+      {/* Cloudflare Turnstile widget */}
+      {siteKey && (
+        <Turnstile
+          siteKey={siteKey}
+          options={{ theme: "light", language: "es" }}
+        />
+      )}
 
       {/* Feedback de estado */}
       {state.status === "success" && (

@@ -7,6 +7,26 @@ export type ContactFormState = {
   message: string
 }
 
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY
+  if (!secret) {
+    console.error("TURNSTILE_SECRET_KEY not set")
+    return false
+  }
+
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token }),
+    }
+  )
+
+  const data = await response.json()
+  return data.success === true
+}
+
 export async function sendContactEmail(
   prevState: ContactFormState,
   formData: FormData
@@ -16,12 +36,29 @@ export async function sendContactEmail(
   const empresa = formData.get("empresa") as string
   const asunto = formData.get("asunto") as string
   const mensaje = formData.get("mensaje") as string
+  const turnstileToken = formData.get("cf-turnstile-response") as string
 
   // Validación básica server-side
   if (!nombre || !email || !mensaje) {
     return {
       status: "error",
       message: "Por favor completá todos los campos obligatorios.",
+    }
+  }
+
+  // Validación Turnstile
+  if (!turnstileToken) {
+    return {
+      status: "error",
+      message: "Por favor completá la verificación de seguridad.",
+    }
+  }
+
+  const isHuman = await verifyTurnstile(turnstileToken)
+  if (!isHuman) {
+    return {
+      status: "error",
+      message: "La verificación de seguridad falló. Por favor intentá de nuevo.",
     }
   }
 
