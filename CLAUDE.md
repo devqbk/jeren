@@ -138,3 +138,7 @@ antes de pasar a la siguiente:
 
 No asumir que sabe qué es una terminal, un commit o un repo — explicar en
 una línea qué hace cada comando antes de correrlo, sin sobre-explicar.
+
+### Links de acceso
+- Estado de los deploys (Vercel): https://vercel.com/dev-2609s-projects/v0-jeren/deployments
+- Ramas del repo (GitHub): https://github.com/devqbk/jeren/branches
