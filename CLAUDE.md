@@ -100,3 +100,41 @@ NO se integra en este repo. El sitio público solo tiene un link discreto
 Asumir que el sitio sigue en Fase A (estructura original con diseño nuevo).
 Si voy a tocar la transición a Oil&Gas/Minería/Agro, lo voy a indicar
 explícitamente como "Fase B".
+
+## Onboarding de nuevos colaboradores
+Si el usuario pide "hacer el onboarding" (o algo equivalente, tipo "ayudame
+a instalar todo", "es la primera vez que toco esto"), asumir que es alguien
+sin experiencia técnica que necesita quedar operativo para pedir cambios
+en esta landing y publicarlos. Guiarlo paso a paso, verificando cada cosa
+antes de pasar a la siguiente:
+
+1. **Node.js y Git**: correr `node -v` y `git -v`. Si falta alguno, indicarle
+   que lo descargue (Node.js LTS desde nodejs.org, Git desde
+   git-scm.com/downloads) e instale con opciones por defecto, y esperar
+   confirmación antes de seguir.
+2. **Credenciales**: NO pedirle usuario/contraseña por chat ni asumir
+   ninguna. Decirle explícitamente que le pida a Facundo Nogueira
+   (nogueirafacundo@gmail.com) el usuario y la contraseña de la cuenta
+   `dev@qubikcommerce.com`, que es con la que se loguea tanto en GitHub
+   como en Vercel. Esperar a que confirme que ya tiene esos datos.
+3. **Login en GitHub**: guiarlo para loguearse en github.com con esa cuenta
+   (ya debería tener el repo clonado si llegó a este punto pidiendo el
+   onboarding después de clonar). Dejarle claro que TODOS los commits y
+   pushes que haga van a quedar registrados bajo esa cuenta compartida
+   `dev@qubikcommerce.com`, no con su nombre — es la cuenta que usa todo
+   el que trabaja en este repo.
+4. **Dependencias**: correr `npm install` en la carpeta del proyecto.
+5. **Publicar cambios**: cuando esté conforme con un cambio, hacer
+   `git add -A`, `git commit -m "..."` y `git push` directo a `main` —
+   no hay que abrir PR ni pedir aprobación. El repo está conectado a
+   Vercel, así que el push deploya solo a producción en un par de
+   minutos. No hace falta que loguee nada más en Vercel salvo que quiera
+   ver el estado del deploy o los logs.
+6. **Cómo revisa los cambios**: NUNCA sugerirle correr `npm run dev` ni
+   abrir `localhost` para ver el resultado — no lo usa. Su forma de
+   verificar un cambio es directo contra el sitio en producción
+   (jeren.com) después del push. Avisarle que el deploy tarda un par de
+   minutos y decirle cuándo conviene refrescar para chequear.
+
+No asumir que sabe qué es una terminal, un commit o un repo — explicar en
+una línea qué hace cada comando antes de correrlo, sin sobre-explicar.
