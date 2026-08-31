@@ -57,6 +57,17 @@ export function HeaderNav() {
     return pathname.startsWith(href)
   }
 
+  /**
+   * Las anclas solo existen en la landing. Desde una página técnica hay que
+   * mandarlas a `/cimat`, o el navegador cambia el hash, salta al tope y deja
+   * el menú inservible.
+   */
+  function destino(href: string) {
+    if (!href.startsWith("#")) return href
+    if (enLanding) return href
+    return href === "#top" ? "/cimat" : `/cimat${href}`
+  }
+
   return (
     <nav aria-label="Secciones" className="hidden lg:block">
       <ul className="flex items-center gap-6">
@@ -71,7 +82,7 @@ export function HeaderNav() {
               }
             >
               <Link
-                href={item.href}
+                href={destino(item.href)}
                 aria-current={on ? "page" : undefined}
                 data-nav-target={item.href}
                 className={cn(
