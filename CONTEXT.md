@@ -86,7 +86,7 @@ Galileo TP, Inficon, Jae Hyun Autonics, Sumake, Gasflux, BLM, Tech Sonic
 ### Sucursales (con Google Maps URLs)
 - **C.A.B.A.** — Jeren SRL, Av. Juramento 2089 Piso 4° (C1428DNG)
 - **Ushuaia** — Tecnomaq SRL, Paseo de la Plaza 2065 (CP 9410)
-- **Río Grande** — Tecnomaq SRL, Padre Forgacs 1407 (CP 9420)
+- **Río Grande** — Tecnomaq SRL, Padre Forgacs 1411 (CP 9420)
 
 ### Contacto
 - Tel: (+5411) 4788-0566 | Email: info@jeren.com

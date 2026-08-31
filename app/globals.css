@@ -1,4 +1,12 @@
-@import 'tailwindcss';
+/* Autodeteccion desactivada: hay algun archivo del proyecto que le hace generar
+   un escape unicode invalido y rompe la compilacion. Se listan las carpetas de
+   fuentes a mano. Las rutas son relativas a ESTE archivo, no a la raiz. */
+@import 'tailwindcss' source(none);
+@source '../app';
+@source '../components';
+@source '../contexts';
+@source '../hooks';
+@source '../lib';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
