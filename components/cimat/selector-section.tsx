@@ -25,7 +25,7 @@ export function SelectorSection() {
             data-cf-interes={opcion.interes}
             data-cf-location={`selector-${opcion.interes}`}
             onClick={() => {
-              track("industry_select", { service_interest: opcion.interes })
+              track("need_select", { service_interest: opcion.interes })
               irAlFormulario(`selector-${opcion.interes}`, opcion.interes)
             }}
             className="group flex h-full flex-col rounded-xl border border-[var(--c-line)] bg-[var(--c-paper)] p-6 text-left transition-colors hover:border-[var(--c-ink)] sm:p-8"
