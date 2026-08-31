@@ -99,6 +99,40 @@ la campaña de producto sale a los seis países desde el día uno.
 
 ---
 
+## Estado real de la cuenta al 31/08
+
+Las campañas **ya estaban cargadas y encendidas** cuando se hizo este análisis,
+con cero impresiones y cero gasto porque habían arrancado ese mismo día. Lo que
+sigue es lo que se aplicó por API y lo que quedó pendiente.
+
+**Aplicado:**
+
+- Lista de negativas completada de 64 a 106 términos. Faltaban los dos rubros más
+  caros: `balanceo y alineacion` (9.900 búsquedas; la lista tenía el orden
+  inverso, que en concordancia de frase no es lo mismo) y toda la familia de
+  alimento balanceado.
+- Grupo nuevo **Cigüeñales y cardanes** con 9 palabras, el único segmento con
+  demanda medible en Argentina.
+- Grupo nuevo **Técnico en inglés** con 6 palabras.
+- 5 concordancias exactas que faltaban en el grupo genérico.
+- 8 palabras de marca de competencia, entre ellas `abasteck` y `omar vetrano`,
+  que son las dos de más volumen del plan y no estaban.
+
+**Pendiente, bloqueado por permisos del entorno:**
+
+1. Agregar **Perú (2604) y Colombia (2170)**. Hoy están Argentina, Chile, Uruguay
+   y Paraguay: los dos que se caen sin los dos que crecen.
+2. Bajar presupuestos de ARS 15.000 y 3.000 a **3.000 y 1.000** por día.
+3. Bajar el CPC máximo de ARS 3.500 a **1.200** en producto y **500** en marca.
+4. Cargar los anuncios de los dos grupos nuevos. **Sin anuncio, un grupo no
+   sirve**, así que esas 15 palabras están inertes hasta que se creen.
+
+Los IDs para hacerlo: campaña Comercial `24192820278` (presupuesto
+`15836686923`), campaña Marca `24192820281` (presupuesto `15836686926`), grupos
+`208201279148` (cigüeñales) y `208201279188` (inglés).
+
+---
+
 ## Paso 0 — Negativas a nivel cuenta
 
 **Antes que nada, y sin esto no se enciende nada.** Es lo único de todo el plan
@@ -335,12 +369,20 @@ Soporte técnico desde Argentina, sin depender de la fábrica para cada consulta
 
 ### Grupo B — Rotores industriales
 
+**Regla que ordena todo este grupo:** en castellano, *"balanceadora"* es un
+sustantivo y quien lo escribe quiere **una máquina**; *"balanceo de X"* es una
+acción y quien lo escribe quiere **un servicio**. JEREN vende máquinas y no
+presta servicio de balanceo, así que las formas verbales van a negativas, no a
+palabras clave.
+
+Eso cuesta los términos más grandes del rubro — `balanceo dinamico` con 70
+búsquedas, `balanceo de turbinas` con 20, `balanceo estatico y dinamico` con 20 —
+y achica todavía más el mercado direccionable. Es el precio de no comprar
+consultas que no se pueden atender.
+
 | Palabra | Concordancia | Búsq./mes | Puja alta |
 |---|---|---|---|
-| `balanceo dinamico` | Frase | **70** | ARS 2.228 |
 | `balanceadora de rotores` | Exacta + Frase | 20 | ARS 1.494 |
-| `balanceo de turbinas` | Frase | 20 | ARS 2.206 |
-| `balanceo estatico y dinamico` | Frase | 20 | |
 | `balanceadora industrial` | Exacta + Frase | 10 | |
 | `balanceadoras industriales` | Exacta | 10 | |
 | `balanceadora dinamica industrial` | Exacta | 10 | |
@@ -348,15 +390,11 @@ Soporte técnico desde Argentina, sin depender de la fábrica para cada consulta
 | `maquina balanceadora de rotores` | Frase | 10 | |
 | `maquina de balanceo dinamico` | Frase | 10 | |
 | `balanceadora de turbos` | Exacta | 10 | |
-| `balanceo dinamico de rotores` | Exacta | 10 | ARS 1.520 |
 
-`balanceo dinamico` es el término más grande del núcleo y el que más subestimó el
-plan original. `balanceadora de rotores` viene **+100% en tres meses**.
+`balanceadora de rotores` viene **+100% en tres meses**.
 
-**Cuidado con `balanceo dinamico` en frase:** es el término donde más se van a
-colar consultas de servicio. Revisar el informe de términos de búsqueda semana a
-semana el primer mes y negativizar todo lo que sea "servicio de", "precio de
-balanceo", "donde balanceo".
+`maquina de balanceo dinamico` es el único caso donde se acepta la forma verbal,
+porque va precedida de "maquina" y eso ya declara la intención de compra.
 
 Títulos:
 
