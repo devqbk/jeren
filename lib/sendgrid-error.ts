@@ -48,3 +48,27 @@ export function loguearErrorSendGrid(
     )
   }
 }
+
+
+/**
+ * Código corto para mostrar en pantalla. Sirve para diagnosticar sin entrar a
+ * los logs de Vercel: el usuario dicta el código y con eso alcanza.
+ *
+ * No expone nada sensible: solo el estado HTTP y una palabra del motivo.
+ */
+export function codigoErrorSendGrid(error: unknown): string {
+  const e = error as SendGridError
+  const errores = e.response?.body?.errors ?? []
+  const texto = errores.map((x) => x.message ?? "").join(" ").toLowerCase()
+
+  if (texto.includes("sender identity") || texto.includes("verified sender")) {
+    return "SG-REMITENTE-SIN-VERIFICAR"
+  }
+  if (texto.includes("maximum credits") || texto.includes("credits exceeded")) {
+    return "SG-SIN-CREDITO"
+  }
+  if (e.code === 401) return "SG-401-API-KEY"
+  if (e.code === 403) return "SG-403-PERMISOS"
+  if (e.code === 413) return "SG-413-DEMASIADO-GRANDE"
+  return "SG-" + (e.code ?? "SIN-CODIGO")
+}

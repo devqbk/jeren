@@ -2,7 +2,7 @@
 
 import sgMail from "@sendgrid/mail"
 import { INTERESES } from "@/lib/cimat-content"
-import { loguearErrorSendGrid } from "@/lib/sendgrid-error"
+import { codigoErrorSendGrid, loguearErrorSendGrid } from "@/lib/sendgrid-error"
 
 export type CimatLeadState = {
   /**
@@ -13,6 +13,8 @@ export type CimatLeadState = {
   message: string
   /** Errores por campo, para mostrarlos debajo del input y no borrar lo cargado. */
   errors?: Record<string, string>
+  /** Código corto de diagnóstico. Temporal, para depurar el envío en producción. */
+  codigo?: string
 }
 
 /** Campos ocultos de atribución. Viajan con el lead para saber de dónde vino. */
@@ -105,12 +107,14 @@ export async function sendCimatLead(
       return {
         status: "error",
         message: "Completá la verificación de seguridad y volvé a enviar.",
+        codigo: "CF-SIN-TOKEN",
       }
     }
     if (!(await verifyTurnstile(turnstileToken))) {
       return {
         status: "error",
         message: "La verificación de seguridad falló. Probá de nuevo.",
+        codigo: "CF-RECHAZADO",
       }
     }
   }
@@ -125,6 +129,7 @@ export async function sendCimatLead(
       status: "error",
       message:
         "No pudimos enviar la consulta por un problema de configuración. Escribinos a info@jeren.com o al (+5411) 4788-0566.",
+      codigo: "CONFIG-SENDGRID-FALTAN-VARIABLES",
     }
   }
 
@@ -198,6 +203,7 @@ export async function sendCimatLead(
       status: "error",
       message:
         "Hubo un problema al enviar la consulta. Probá de nuevo o escribinos a info@jeren.com.",
+      codigo: codigoErrorSendGrid(error),
     }
   }
 }

@@ -1,18 +1,20 @@
 "use server"
 
 import sgMail from "@sendgrid/mail"
-import { loguearErrorSendGrid } from "@/lib/sendgrid-error"
+import { codigoErrorSendGrid, loguearErrorSendGrid } from "@/lib/sendgrid-error"
 
 export type ContactFormState = {
   status: "idle" | "success" | "error"
   message: string
+  /** Código corto de diagnóstico. Temporal, para depurar el envío en producción. */
+  codigo?: string
 }
 
-async function verifyTurnstile(token: string): Promise<boolean> {
+async function verifyTurnstile(token: string): Promise<boolean | "sin-secret"> {
   const secret = process.env.TURNSTILE_SECRET_KEY
   if (!secret) {
-    console.error("TURNSTILE_SECRET_KEY not set")
-    return false
+    console.error("[contacto] TURNSTILE_SECRET_KEY no está configurada en el entorno")
+    return "sin-secret"
   }
 
   const response = await fetch(
@@ -52,14 +54,23 @@ export async function sendContactEmail(
     return {
       status: "error",
       message: "Por favor completá la verificación de seguridad.",
+      codigo: "CF-SIN-TOKEN",
     }
   }
 
   const isHuman = await verifyTurnstile(turnstileToken)
+  if (isHuman === "sin-secret") {
+    return {
+      status: "error",
+      message: "Error de configuración del servidor. Intentá más tarde.",
+      codigo: "CF-SIN-SECRET-EN-SERVIDOR",
+    }
+  }
   if (!isHuman) {
     return {
       status: "error",
       message: "La verificación de seguridad falló. Por favor intentá de nuevo.",
+      codigo: "CF-RECHAZADO",
     }
   }
 
@@ -72,6 +83,7 @@ export async function sendContactEmail(
     return {
       status: "error",
       message: "Error de configuración del servidor. Intentá más tarde.",
+      codigo: "CONFIG-SENDGRID-FALTAN-VARIABLES",
     }
   }
 
@@ -141,6 +153,7 @@ export async function sendContactEmail(
     return {
       status: "error",
       message: "Hubo un problema al enviar el mensaje. Por favor intentá de nuevo o contactanos por teléfono.",
+      codigo: codigoErrorSendGrid(error),
     }
   }
 }

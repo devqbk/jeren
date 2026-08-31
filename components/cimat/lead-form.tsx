@@ -260,7 +260,14 @@ export function LeadForm({
             className="mt-0.5 size-4 shrink-0 text-[var(--c-accent)]"
             aria-hidden="true"
           />
-          <span>{state.message}</span>
+          <span>
+            {state.message}
+            {state.codigo ? (
+              <span className="mt-1 block font-mono text-[11px] text-[var(--c-muted)]">
+                código: {state.codigo}
+              </span>
+            ) : null}
+          </span>
         </div>
       ) : null}
 
