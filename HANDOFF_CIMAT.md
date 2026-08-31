@@ -417,3 +417,93 @@ Lo que más mueve la aguja:
 4. Revisión legal de `/privacidad`.
 5. Identificar el archivo que rompe la autodetección de contenido de Tailwind,
    para poder volver atrás el parche de `globals.css`.
+
+
+---
+
+## Marketing y medición — estado al 31/08
+
+### Cuentas y credenciales (los IDs son públicos, viajan en el HTML)
+
+| | |
+|---|---|
+| GA4 | `G-PFDSYDQPN7` · propiedad `552205831` · cuenta `406477128` |
+| GTM | `GTM-T5J4LJMK` · contenedor `262760784` · cuenta `6374286368` |
+| Google Ads | cuenta `452-457-1142` bajo la MCC `322-715-6115` (Admin-TEC) |
+| Conversión Ads | `AW-18420339644` / etiqueta `Vh3YCKO9nescELynwM9E` |
+| Mail | Resend, dominio `jeren.com` verificado |
+
+El acceso por API a GA4 y GTM se hace con el token de `tec-harness/secrets/gtm.env`,
+aprobado por `am@qubikcommerce.com`. Esa cuenta tiene permisos en las propiedades de
+JEREN. El de Ads usa `tec-harness/secrets/google_ads.env`, API **v22** — las
+versiones viejas devuelven 404.
+
+Push a GitHub: con **deploy key SSH** en `devqbk/jeren` (la clave de
+`am@qubikcommerce.com`). El remote local quedó en `git@github.com:devqbk/jeren.git`.
+La cuenta `rarielmartinez-beep` no tiene permiso de escritura por HTTPS.
+
+### Ya configurado
+
+- GA4: conservación 14 meses, `form_submit` como evento clave, cinco dimensiones
+  personalizadas (`cta_location`, `service_interest`, `product_line`, `industry`,
+  `device_type`), interacciones con formularios apagadas para no contar doble.
+- GTM: activador `form_submit`, vinculador de conversiones y etiqueta de Ads.
+  Publicado. **GA4 NO va dentro de GTM**: entra por gtag.js en el layout, y ponerlo
+  en los dos lados duplica las páginas vistas.
+- Ads: acción de conversión creada, categoría lead form, recuento Una, ventana 90
+  días, primaria.
+
+### Hechos comerciales que definen el copy
+
+- **JEREN compra e importa para revender, y su utilidad es el 20%.** Los dos
+  modelos conviven, así que el claim "comprás a JEREN SRL con factura local, no
+  importás nada" es correcto. Es el argumento más fuerte de la campaña.
+- **JEREN NO presta servicio de balanceo de rotores.** Sí: venta, importación,
+  puesta en marcha, capacitación, garantía, repuestos, y calibración / inspección /
+  modernización DE balanceadoras de cualquier marca.
+- Ticket: **USD 30.000 a 120.000**. Valor de conversión a cargar: **USD 300**
+  (50k promedio ponderado × 20% × 3% de cierre estimado).
+- CIMAT no tiene representante en la región: trabaja directo con Ramón Fernández, y
+  la representación se la están dando a JEREN. **Falta el alcance territorial por
+  escrito** antes de encender campañas fuera de Argentina.
+- **CIMAT no lista a JEREN en su web.** Hay fuga de leads de marca hacia el
+  fabricante. Pedirle a fábrica que lo publique es la acción de mayor retorno de
+  todo el plan y cuesta cero.
+
+### Competencia en Argentina, confirmada
+
+| Competidor | Presencia local |
+|---|---|
+| Schenck RoTec | **Sí** — ABASTECK, San Isidro. Venta y servicio |
+| Omar Vetrano | **Sí** — fabricante nacional, Avellaneda |
+| Hofmann industrial | No. Lo más cerca, Brasil |
+| CEMB industrial | Sin representante confirmado |
+
+Consecuencia: **"soporte local" no diferencia contra Schenck**, que también lo
+tiene. Contra Schenck van otros cuatro ángulos: fábrica monoproducto desde 1987,
+calibración multimarca, soporte remoto de fábrica por el router Wi-Fi, y cobertura
+patagónica. Contra Hofmann y CEMB el argumento de soporte local sí es válido —
+reverificar cada 6 meses.
+
+### Cola de la campaña
+
+Los dos informes completos (dominio industrial y plan de Ads con su addendum)
+están en la transcripción de la sesión del 31/08. Resumen de lo que falta:
+
+1. Cargar las 3 campañas de Argentina: Comercial (USD 22/día), Técnico (6) y Marca
+   y competencia (9). **No crear la de LATAM** hasta tener el territorio firmado.
+2. Lista de negativas a nivel cuenta antes que nada. "Balanceo" en Argentina es
+   masivamente gomería, y "balanceado" es alimento animal.
+3. Nunca concordancia amplia al inicio, nunca Performance Max, y destildar Red de
+   Display y socios de búsqueda, que vienen tildados.
+4. Conversiones mejoradas para clientes potenciales en GTM — email y teléfono
+   hasheados en el `form_submit`. **Es la única tarea de código pendiente**, y con
+   un ciclo de 90 días es lo que evita perder la mitad de la atribución.
+
+### Expectativa de volumen
+
+El mercado argentino de balanceadoras industriales son decenas de búsquedas
+mensuales, no miles. Se espera gastar **USD 300 a 600 el primer mes, no los 1.110
+presupuestados**, y eso no es un error de configuración: es el tamaño del mercado.
+La métrica correcta es cuota de impresiones, no volumen de leads. Conviene alinear
+esa expectativa antes de lanzar.
