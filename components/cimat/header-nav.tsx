@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils"
 export function HeaderNav() {
   const pathname = usePathname()
   const enLanding = pathname === "/cimat"
-  const [seccion, setSeccion] = useState<string>("")
+  const [seccion, setSeccion] = useState<string>(headerNav[0].href)
 
   useEffect(() => {
     if (!enLanding) return
@@ -31,16 +31,21 @@ export function HeaderNav() {
 
     if (nodos.length === 0) return
 
+    // Al cargar, la sección visible es el hero: la primera opción tiene que
+    // aparecer marcada sin esperar a que el visitante scrollee.
+    const visibles = new Set<string>()
+
     const obs = new IntersectionObserver(
       (entries) => {
-        // La sección activa es la que está más arriba dentro del viewport.
-        const visibles = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-        if (visibles.length > 0) setSeccion("#" + visibles[0].target.id)
+        for (const e of entries) {
+          if (e.isIntersecting) visibles.add(e.target.id)
+          else visibles.delete(e.target.id)
+        }
+        // Gana la que esté más arriba en el orden de la página.
+        const enPantalla = anclas.filter((id) => visibles.has(id))
+        if (enPantalla.length > 0) setSeccion("#" + enPantalla[0])
       },
-      // La franja de decisión es el tercio superior, debajo del header.
-      { rootMargin: "-80px 0px -66% 0px", threshold: 0 }
+      { rootMargin: "-80px 0px -55% 0px", threshold: 0 }
     )
 
     nodos.forEach((n) => obs.observe(n))
@@ -55,10 +60,16 @@ export function HeaderNav() {
   return (
     <nav aria-label="Secciones" className="hidden lg:block">
       <ul className="flex items-center gap-6">
-        {headerNav.map((item) => {
+        {headerNav.map((item, i) => {
           const on = activo(item.href)
+          const primeraExterna = item.externa && !headerNav[i - 1]?.externa
           return (
-            <li key={item.href}>
+            <li
+              key={item.href}
+              className={
+                primeraExterna ? "ml-1 border-l border-[var(--c-line)] pl-7" : undefined
+              }
+            >
               <Link
                 href={item.href}
                 aria-current={on ? "page" : undefined}

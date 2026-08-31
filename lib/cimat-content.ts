@@ -162,13 +162,20 @@ export const stickyBar = {
   whatsappAria: "Escribirnos por WhatsApp sobre balanceadoras CIMAT",
 }
 
-/** Navegación breve del header. Sin menú al resto de jeren.com. */
+/**
+ * Navegación breve del header. Sin menú al resto de jeren.com.
+ *
+ * El orden sigue el de la página, así el scroll siempre baja: Inicio →
+ * Soluciones → Soporte → Preguntas. Las dos últimas salen de la landing y van
+ * al final, separadas, para que no corten esa secuencia.
+ */
 export const headerNav = [
+  { label: "Inicio", href: "#top" },
   { label: "Soluciones", href: "#lineas" },
   { label: "Soporte", href: "#soporte" },
-  { label: "Aplicaciones", href: "/cimat/aplicaciones" },
-  { label: "Recursos", href: "/cimat/especificaciones" },
   { label: "Preguntas", href: "#faq" },
+  { label: "Aplicaciones", href: "/cimat/aplicaciones", externa: true },
+  { label: "Recursos", href: "/cimat/especificaciones", externa: true },
 ]
 
 // ── 1. Hero ──────────────────────────────────────────────────────────────────

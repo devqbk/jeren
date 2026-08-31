@@ -13,7 +13,7 @@ import { WhatsappLink } from "./secundarios"
  */
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[var(--c-surface)]">
+    <section id="top" className="relative scroll-mt-24 overflow-hidden bg-[var(--c-surface)]">
       <div className={container}>
         <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-stretch lg:gap-16 lg:py-20">
           {/* Titular. En mobile va primero y el formulario queda inmediatamente

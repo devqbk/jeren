@@ -42,6 +42,17 @@ export function LeadForm({
   // El server manda: si respondió con errores, esos pisan a los del cliente.
   const err = { ...erroresLocales, ...(state.errors ?? {}) }
 
+  /**
+   * El <select> es controlado y arranca vacío. Si alguien lo abre y elige antes
+   * de que React termine de hidratar —cosa habitual, porque el hero es pesado—
+   * el primer render controlado le pisaba la selección con el string vacío y
+   * parecía que el desplegable no andaba. Acá se adopta lo que ya esté puesto.
+   */
+  useEffect(() => {
+    const yaElegido = interesRef.current?.value
+    if (yaElegido) setInteres(yaElegido)
+  }, [])
+
   // Un CTA de cualquier parte de la página preselecciona la necesidad acá.
   useEffect(() => {
     function onInteres(e: Event) {
@@ -84,7 +95,7 @@ export function LeadForm({
     const campo = e.target
     if (!(campo instanceof HTMLInputElement || campo instanceof HTMLSelectElement)) return
     const nombre = campo.name
-    if (!["interes", "nombre", "empresa", "email"].includes(nombre)) return
+    if (!["nombre", "empresa", "email"].includes(nombre)) return
 
     const valor = campo.value.trim()
     let error = ""
@@ -127,7 +138,15 @@ export function LeadForm({
           id={`${uid}-interes`}
           name="interes"
           value={interes}
-          onChange={(e) => setInteres(e.target.value)}
+          onChange={(e) => {
+            setInteres(e.target.value)
+            setErroresLocales((prev) => {
+              if (!prev.interes) return prev
+              const siguiente = { ...prev }
+              delete siguiente.interes
+              return siguiente
+            })
+          }}
           disabled={isPending}
           aria-invalid={Boolean(err.interes)}
           aria-describedby={err.interes ? `${uid}-interes-err` : undefined}
