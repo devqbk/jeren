@@ -1,15 +1,16 @@
 /**
- * Envío de mail transaccional por Resend.
+ * Envío de mail transaccional. Soporta Resend y SendGrid.
  *
- * Se usa la API REST con `fetch` en vez del SDK a propósito: es un solo POST y
- * así no se suma una dependencia. El lockfile desactualizado ya dejó tres meses
- * de deploys fallando, y cada paquete nuevo es otra oportunidad de que pase.
+ * Cuál se usa lo decide `MAIL_PROVIDER`. Si no está, se elige solo según qué
+ * API key esté cargada, con Resend primero. Así se cambia de proveedor sin
+ * tocar código: se carga la variable en Vercel y se redeploya.
  *
- * Reemplaza a SendGrid, que se quedó sin crédito: el plan gratuito son 100
- * mails por día y la cuenta estaba compartida con otro proyecto.
+ * Los dos van por su API REST con `fetch`, sin SDK. Es un solo POST en ambos
+ * casos, y el lockfile desactualizado ya dejó tres meses de deploys fallando en
+ * silencio: cada dependencia nueva es otra oportunidad de repetirlo.
  */
 
-const ENDPOINT = "https://api.resend.com/emails"
+export type Proveedor = "resend" | "sendgrid"
 
 export type ResultadoMail = { ok: true } | { ok: false; codigo: string }
 
@@ -24,79 +25,155 @@ type Opciones = {
   origen: string
 }
 
+/** Qué proveedor usar. Explícito si está, si no el que tenga credenciales. */
+export function proveedorActivo(): Proveedor | null {
+  const elegido = process.env.MAIL_PROVIDER?.trim().toLowerCase()
+  if (elegido === "resend" || elegido === "sendgrid") return elegido
+  if (process.env.RESEND_API_KEY) return "resend"
+  if (process.env.SENDGRID_API_KEY) return "sendgrid"
+  return null
+}
+
 /**
  * Dirección desde la que sale el mail.
  *
- * Resend solo deja mandar desde un dominio verificado. Mientras `jeren.com` no
- * lo esté, hay que dejar `MAIL_FROM` sin definir y usar el dominio de pruebas
- * de Resend — que únicamente entrega a la casilla dueña de la cuenta.
+ * Los dos proveedores exigen un dominio verificado en su panel. Mientras
+ * `jeren.com` no lo esté en Resend, dejar `MAIL_FROM` vacío usa el dominio de
+ * pruebas, que solo entrega a la casilla dueña de la cuenta.
  */
-function remitente(nombre: string): string {
-  const direccion = process.env.MAIL_FROM ?? "onboarding@resend.dev"
-  return `${nombre} <${direccion}>`
+function direccionRemitente(proveedor: Proveedor): string | null {
+  const explicita = process.env.MAIL_FROM?.trim()
+  if (explicita) return explicita
+  // `CONTACT_FROM_EMAIL` es como se llamaba cuando solo existía SendGrid.
+  const heredada = process.env.CONTACT_FROM_EMAIL?.trim()
+  if (heredada) return heredada
+  return proveedor === "resend" ? "onboarding@resend.dev" : null
+}
+
+function destinatarios(): string[] {
+  return (process.env.CONTACT_TO_EMAILS ?? "")
+    .split(",")
+    .map((x) => x.trim())
+    .filter(Boolean)
 }
 
 export async function enviarMail(opciones: Opciones): Promise<ResultadoMail> {
-  const apiKey = process.env.RESEND_API_KEY
-  const destinatarios = process.env.CONTACT_TO_EMAILS
+  const proveedor = proveedorActivo()
+  const para = destinatarios()
+  const desde = proveedor ? direccionRemitente(proveedor) : null
 
-  if (!apiKey || !destinatarios) {
-    console.error(
-      `[${opciones.origen}] Faltan variables de entorno`,
-      { RESEND_API_KEY: Boolean(apiKey), CONTACT_TO_EMAILS: Boolean(destinatarios) }
-    )
+  if (!proveedor || para.length === 0 || !desde) {
+    console.error(`[${opciones.origen}] Falta configuración de mail`, {
+      proveedor,
+      destinatarios: para.length,
+      remitente: Boolean(desde),
+    })
     return { ok: false, codigo: "CONFIG-MAIL-FALTAN-VARIABLES" }
   }
 
-  const cuerpo = {
-    from: remitente(opciones.nombre),
-    to: destinatarios.split(",").map((x) => x.trim()).filter(Boolean),
-    subject: opciones.asunto,
-    html: opciones.html,
-    ...(opciones.responderA ? { reply_to: opciones.responderA } : {}),
-  }
-
-  let respuesta: Response
   try {
-    respuesta = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cuerpo),
-    })
+    return proveedor === "resend"
+      ? await porResend(opciones, desde, para)
+      : await porSendgrid(opciones, desde, para)
   } catch (error) {
-    console.error(`[${opciones.origen}] No se pudo alcanzar Resend`, error)
+    console.error(`[${opciones.origen}] No se pudo alcanzar ${proveedor}`, error)
     return { ok: false, codigo: "MAIL-SIN-RED" }
   }
+}
+
+// ── Resend ───────────────────────────────────────────────────────────────────
+
+async function porResend(
+  opciones: Opciones,
+  desde: string,
+  para: string[]
+): Promise<ResultadoMail> {
+  const respuesta = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: `${opciones.nombre} <${desde}>`,
+      to: para,
+      subject: opciones.asunto,
+      html: opciones.html,
+      ...(opciones.responderA ? { reply_to: opciones.responderA } : {}),
+    }),
+  })
 
   if (respuesta.ok) return { ok: true }
 
   const detalle = await respuesta.text()
-  console.error(`[${opciones.origen}] Resend rechazó el envío`, {
-    status: respuesta.status,
-    from: cuerpo.from,
-    to: cuerpo.to,
-    detalle: detalle.slice(0, 500),
-  })
+  registrarRechazo(opciones.origen, "resend", respuesta.status, desde, para, detalle)
 
-  return { ok: false, codigo: codigoResend(respuesta.status, detalle) }
+  const texto = detalle.toLowerCase()
+  if (respuesta.status === 401 || respuesta.status === 403) return fallo("RS-401-API-KEY")
+  if (respuesta.status === 429) return fallo("RS-429-LIMITE")
+  if (texto.includes("only send testing emails")) return fallo("RS-SOLO-A-TU-CASILLA")
+  if (texto.includes("not verified")) return fallo("RS-DOMINIO-SIN-VERIFICAR")
+  if (respuesta.status === 422) return fallo("RS-422-DATOS-INVALIDOS")
+  return fallo(`RS-${respuesta.status}`)
 }
 
-/** Código corto para mostrar en pantalla. No expone nada sensible. */
-function codigoResend(status: number, detalle: string): string {
-  const texto = detalle.toLowerCase()
+// ── SendGrid ─────────────────────────────────────────────────────────────────
 
-  if (status === 401 || status === 403) return "RS-401-API-KEY"
-  if (status === 429) return "RS-429-LIMITE"
-  if (texto.includes("domain is not verified") || texto.includes("not verified")) {
-    return "RS-DOMINIO-SIN-VERIFICAR"
+async function porSendgrid(
+  opciones: Opciones,
+  desde: string,
+  para: string[]
+): Promise<ResultadoMail> {
+  const respuesta = await fetch("https://api.sendgrid.com/v3/mail/send", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      personalizations: [{ to: para.map((email) => ({ email })) }],
+      from: { email: desde, name: opciones.nombre },
+      subject: opciones.asunto,
+      content: [{ type: "text/html", value: opciones.html }],
+      ...(opciones.responderA ? { reply_to: { email: opciones.responderA } } : {}),
+    }),
+  })
+
+  if (respuesta.ok) return { ok: true }
+
+  const detalle = await respuesta.text()
+  registrarRechazo(opciones.origen, "sendgrid", respuesta.status, desde, para, detalle)
+
+  const texto = detalle.toLowerCase()
+  if (texto.includes("maximum credits") || texto.includes("credits exceeded")) {
+    return fallo("SG-SIN-CREDITO")
   }
-  // El dominio de pruebas de Resend solo entrega a la casilla dueña de la cuenta.
-  if (texto.includes("you can only send testing emails to your own email")) {
-    return "RS-SOLO-A-TU-CASILLA"
+  if (texto.includes("sender identity") || texto.includes("verified sender")) {
+    return fallo("SG-REMITENTE-SIN-VERIFICAR")
   }
-  if (status === 422) return "RS-422-DATOS-INVALIDOS"
-  return `RS-${status}`
+  if (respuesta.status === 401) return fallo("SG-401-API-KEY")
+  if (respuesta.status === 403) return fallo("SG-403-PERMISOS")
+  return fallo(`SG-${respuesta.status}`)
+}
+
+// ── Comunes ──────────────────────────────────────────────────────────────────
+
+function fallo(codigo: string): ResultadoMail {
+  return { ok: false, codigo }
+}
+
+function registrarRechazo(
+  origen: string,
+  proveedor: Proveedor,
+  status: number,
+  desde: string,
+  para: string[],
+  detalle: string
+) {
+  console.error(`[${origen}] ${proveedor} rechazó el envío`, {
+    status,
+    from: desde,
+    to: para,
+    detalle: detalle.slice(0, 500),
+  })
 }
