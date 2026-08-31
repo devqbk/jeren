@@ -1,7 +1,6 @@
 "use server"
 
-import sgMail from "@sendgrid/mail"
-import { codigoErrorSendGrid, loguearErrorSendGrid } from "@/lib/sendgrid-error"
+import { enviarMail } from "@/lib/mailer"
 
 export type ContactFormState = {
   status: "idle" | "success" | "error"
@@ -74,23 +73,6 @@ export async function sendContactEmail(
     }
   }
 
-  const apiKey = process.env.SENDGRID_API_KEY
-  const fromEmail = process.env.CONTACT_FROM_EMAIL
-  const toEmails = process.env.CONTACT_TO_EMAILS
-
-  if (!apiKey || !fromEmail || !toEmails) {
-    console.error("SendGrid env vars missing")
-    return {
-      status: "error",
-      message: "Error de configuración del servidor. Intentá más tarde.",
-      codigo: "CONFIG-SENDGRID-FALTAN-VARIABLES",
-    }
-  }
-
-  sgMail.setApiKey(apiKey)
-
-  const toList = toEmails.split(",").map((e) => e.trim())
-
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background-color: #0A2540; padding: 24px; border-radius: 8px 8px 0 0;">
@@ -129,31 +111,26 @@ export async function sendContactEmail(
     </div>
   `
 
-  try {
-    await sgMail.send({
-      to: toList,
-      from: {
-        email: fromEmail,
-        name: "Jeren SRL",
-      },
-      replyTo: {
-        email: email,
-        name: nombre,
-      },
-      subject: asunto || `Consulta de ${nombre} — jeren.com`,
-      html: htmlContent,
-    })
+  const resultado = await enviarMail({
+    origen: "contacto",
+    nombre: "Jeren SRL",
+    asunto: asunto || `Consulta de ${nombre} — jeren.com`,
+    responderA: email,
+    html: htmlContent,
+  })
 
+  if (resultado.ok) {
     return {
       status: "success",
       message: "¡Mensaje enviado! Nos pondremos en contacto a la brevedad.",
     }
-  } catch (error: unknown) {
-    loguearErrorSendGrid("contacto", error, { from: fromEmail, to: toEmails })
-    return {
-      status: "error",
-      message: "Hubo un problema al enviar el mensaje. Por favor intentá de nuevo o contactanos por teléfono.",
-      codigo: codigoErrorSendGrid(error),
-    }
   }
+
+  return {
+    status: "error",
+    message:
+      "Hubo un problema al enviar el mensaje. Por favor intentá de nuevo o contactanos por teléfono.",
+    codigo: resultado.codigo,
+  }
+
 }

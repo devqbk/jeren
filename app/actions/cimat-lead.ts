@@ -1,8 +1,7 @@
 "use server"
 
-import sgMail from "@sendgrid/mail"
 import { INTERESES } from "@/lib/cimat-content"
-import { codigoErrorSendGrid, loguearErrorSendGrid } from "@/lib/sendgrid-error"
+import { enviarMail } from "@/lib/mailer"
 
 export type CimatLeadState = {
   /**
@@ -119,20 +118,6 @@ export async function sendCimatLead(
     }
   }
 
-  const apiKey = process.env.SENDGRID_API_KEY
-  const fromEmail = process.env.CONTACT_FROM_EMAIL
-  const toEmails = process.env.CONTACT_TO_EMAILS
-
-  if (!apiKey || !fromEmail || !toEmails) {
-    console.error("SendGrid env vars missing")
-    return {
-      status: "error",
-      message:
-        "No pudimos enviar la consulta por un problema de configuración. Escribinos a info@jeren.com o al (+5411) 4788-0566.",
-      codigo: "CONFIG-SENDGRID-FALTAN-VARIABLES",
-    }
-  }
-
   const interesLabel =
     INTERESES.find((i) => i.value === interes)?.label ?? interes
 
@@ -185,25 +170,21 @@ export async function sendCimatLead(
     </div>
   `
 
-  sgMail.setApiKey(apiKey)
+  const resultado = await enviarMail({
+    origen: "cimat-lead",
+    nombre: "Landing CIMAT — JEREN",
+    asunto: `[CIMAT] ${interesLabel} — ${empresa}`,
+    responderA: email,
+    html,
+  })
 
-  try {
-    await sgMail.send({
-      to: toEmails.split(",").map((e) => e.trim()),
-      from: { email: fromEmail, name: "Landing CIMAT — JEREN" },
-      replyTo: { email, name: nombre },
-      subject: `[CIMAT] ${interesLabel} — ${empresa}`,
-      html,
-    })
-    return { status: "success", message: "" }
-  } catch (error: unknown) {
-    loguearErrorSendGrid("cimat-lead", error, { from: fromEmail, to: toEmails })
+  if (resultado.ok) return { status: "success", message: "" }
 
-    return {
-      status: "error",
-      message:
-        "Hubo un problema al enviar la consulta. Probá de nuevo o escribinos a info@jeren.com.",
-      codigo: codigoErrorSendGrid(error),
-    }
+  return {
+    status: "error",
+    message:
+      "Hubo un problema al enviar la consulta. Probá de nuevo o escribinos a info@jeren.com.",
+    codigo: resultado.codigo,
   }
+
 }
