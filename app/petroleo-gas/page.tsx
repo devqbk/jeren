@@ -4,7 +4,7 @@ import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { marcasNuevas } from "@/lib/data"
+import { marcasNuevas, urlDeMarca } from "@/lib/data"
 
 export const metadata: Metadata = {
   title: "Petróleo y Gas",
@@ -49,7 +49,7 @@ export default function PetroleoGasPage() {
                 {brands.map((brand) => (
                   <Link
                     key={brand.slug}
-                    href={`/petroleo-gas/${brand.slug}`}
+                    href={urlDeMarca("/petroleo-gas", brand)}
                     className="group rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg"
                   >
                     {/* Brand Logo */}

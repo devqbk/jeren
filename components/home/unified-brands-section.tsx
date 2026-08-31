@@ -17,6 +17,7 @@ import {
   marcasNuevas,
   electronicaBrands,
   aireRefrigeracionBrands,
+  urlDeMarca,
 } from "@/lib/data"
 
 // Extendemos el tipo de marca para incluir su basePath
@@ -27,6 +28,7 @@ type BrandWithBasePath = {
   description: string
   website?: string
   industrias?: string[]
+  landing?: string
   basePath: string
 }
 
@@ -139,7 +141,7 @@ export function UnifiedBrandsSection() {
                       </div>
                       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                         <Button asChild variant="outline" className="w-full sm:w-auto">
-                          <Link href={`${brand.basePath}/${brand.slug}`}>
+                          <Link href={urlDeMarca(brand.basePath, brand)}>
                             Ver más <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>

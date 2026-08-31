@@ -14,11 +14,15 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { marcasNuevas } from "@/lib/data"
+import { marcasNuevas, urlDeMarca } from "@/lib/data"
 import { marcasNuevasContent } from "@/lib/brands-content"
 
 export async function generateStaticParams() {
-  const mineriaBrands = marcasNuevas.filter((b) => b.industrias?.includes("mineria"))
+  // Las marcas con landing propia se sirven desde ahí; su ficha por industria
+  // redirige (ver next.config.mjs) y no hace falta prerenderizarla.
+  const mineriaBrands = marcasNuevas.filter(
+    (b) => b.industrias?.includes("mineria") && !b.landing
+  )
   return mineriaBrands.map((brand) => ({
     slug: brand.slug,
   }))
@@ -204,7 +208,7 @@ export default async function BrandPage({
                 {otherBrands.map((b) => (
                   <Link
                     key={b.slug}
-                    href={`/mineria/${b.slug}`}
+                    href={urlDeMarca("/mineria", b)}
                     className="flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:text-primary"
                   >
                     {b.logo && (

@@ -32,6 +32,7 @@ export const marcasNuevas = [
     description: "Diseño y fabricación de máquinas balanceadoras para más de 90 países. Presente en energía, automotriz, aeroespacial y construcción.",
     website: "https://www.cimat-balancing.com",
     industrias: ["petroleo-gas", "mineria"],
+    landing: "/cimat",
   },
   {
     slug: "xplorobot",
@@ -178,6 +179,18 @@ export const aireRefrigeracionBrands = [
   },
 ]
 
+/**
+ * URL de la ficha de una marca dentro de una industria.
+ *
+ * CIMAT tiene landing propia en `/cimat`, con formulario y campañas de Google
+ * Ads apuntándole. Su ficha genérica dentro de la industria competía con esa
+ * landing por la misma búsqueda y mandaba a una página sin formulario, así que
+ * toda la navegación del sitio va directo a la landing.
+ */
+export function urlDeMarca(basePath: string, marca: { slug: string; landing?: string }) {
+  return marca.landing ?? `${basePath}/${marca.slug}`
+}
+
 // Marcas por industria nueva
 export const petroleoGasBrands = [
   {
@@ -186,6 +199,7 @@ export const petroleoGasBrands = [
     logo: "/images/brands/cimat-clean.png",
     description: "Máquinas balanceadoras para la industria energética",
     website: "https://www.cimat-balancing.com",
+    landing: "/cimat",
   },
   {
     slug: "xplorobot",
@@ -203,6 +217,7 @@ export const mineriaBrands = [
     logo: "/images/brands/cimat-clean.png",
     description: "Máquinas balanceadoras para equipos mineros",
     website: "https://www.cimat-balancing.com",
+    landing: "/cimat",
   },
 ]
 

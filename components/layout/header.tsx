@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { navigation, electronicaBrands } from "@/lib/data"
+import { navigation, urlDeMarca } from "@/lib/data"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -77,7 +77,7 @@ export function Header() {
                       {item.brands.map((brand) => (
                         <Link
                           key={brand.slug}
-                          href={`${item.href}/${brand.slug}`}
+                          href={urlDeMarca(item.href, brand)}
                           className="group flex flex-col items-center rounded-md border border-transparent p-3 transition-all hover:border-border hover:bg-muted"
                         >
                           {brand.logo ? (
@@ -151,7 +151,7 @@ export function Header() {
 function MobileDropdown({
   item,
 }: {
-  item: { name: string; href: string; brands?: typeof electronicaBrands }
+  item: { name: string; href: string; brands?: { slug: string; name: string; logo?: string; landing?: string }[] }
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -174,7 +174,7 @@ function MobileDropdown({
             {item.brands?.map((brand) => (
               <Link
                 key={brand.slug}
-                href={`${item.href}/${brand.slug}`}
+                href={urlDeMarca(item.href, brand)}
                 className="rounded-md p-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary"
               >
                 {brand.name}
