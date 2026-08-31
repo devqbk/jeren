@@ -165,7 +165,6 @@ atribución (`page_url`, `cta_location`, `service_interest`, UTMs, `gclid`,
   aclaración de que son referencias publicadas por el fabricante y no clientes de
   JEREN.
 - `ROTORTEST` o `ROTOTEST` — el TODO ya está anotado en `lib/cimat-content.ts`.
-- Número de WhatsApp comercial para la línea CIMAT. Hoy se usa el teléfono de CABA.
 
 Los dos primeros son los que el PDF marca explícitamente como riesgosos.
 
@@ -282,6 +281,9 @@ autorización de logos, ROTORTEST vs ROTOTEST, WhatsApp comercial):
 - **Imagen de la línea turbo.** La actual no es un core balancer; el manifiesto ya
   anotaba que el brochure no trae uno. Hace falta que CIMAT o JEREN pasen la foto.
 - **Videos.** Se pidieron links y no llegaron.
+
+**Resuelto el 31/08:** el WhatsApp comercial de la línea CIMAT es
+**+54 9 11 4157-1427** (antes se usaba el teléfono de CABA como provisorio).
 
 ### Sigue sin probarse
 

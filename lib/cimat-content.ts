@@ -112,12 +112,8 @@ export interface FaqItem {
 
 // ── Constantes de contacto y destinos ────────────────────────────────────────
 
-/**
- * TODO (JEREN): confirmar el número de WhatsApp comercial para la línea CIMAT.
- * Por ahora se usa el teléfono publicado de la sede CABA en formato internacional.
- * Si esa línea no tiene WhatsApp, reemplazar el destino por el mailto de contacto.
- */
-export const WHATSAPP_NUMERO = "541147880566"
+/** WhatsApp comercial de la línea CIMAT: +54 9 11 4157-1427. */
+export const WHATSAPP_NUMERO = "5491141571427"
 export const WHATSAPP_MENSAJE = "Hola, consulto por balanceadoras CIMAT"
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
   WHATSAPP_MENSAJE,
