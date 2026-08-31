@@ -8,7 +8,7 @@ import { sendCimatLead, type CimatLeadState } from "@/app/actions/cimat-lead"
 import { CTA_LABEL, INTERESES, formulario } from "@/lib/cimat-content"
 import { cn } from "@/lib/utils"
 import { INTERES_EVENT, track } from "./track"
-import { hashearDatos } from "./user-data"
+import { datosUsuario } from "./user-data"
 
 const initialState: CimatLeadState = { status: "idle", message: "" }
 
@@ -79,20 +79,13 @@ export function LeadForm({
       const email = campos?.email?.value ?? ""
       const telefono = campos?.telefono?.value ?? ""
 
-      hashearDatos(email, telefono)
-        .then((user_data) => {
-          track("form_submit", {
-            cta_location: origen,
-            service_interest: interes,
-            ...(Object.keys(user_data).length > 0 ? { user_data } : {}),
-          })
-        })
-        .catch(() => {
-          // Si el hash falla, la conversión se reporta igual: peor atribución,
-          // pero nunca un lead sin medir.
-          track("form_submit", { cta_location: origen, service_interest: interes })
-        })
-        .finally(() => router.push("/cimat/gracias"))
+      const user_data = datosUsuario(email, telefono)
+      track("form_submit", {
+        cta_location: origen,
+        service_interest: interes,
+        ...(Object.keys(user_data).length > 0 ? { user_data } : {}),
+      })
+      router.push("/cimat/gracias")
     }
     if (state.status === "silent") {
       // Honeypot: misma pantalla, sin evento de conversión.
