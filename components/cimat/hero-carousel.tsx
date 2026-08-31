@@ -17,10 +17,24 @@ const INTERVALO = 5000
 export function HeroCarousel() {
   const [activo, setActivo] = useState(0)
   const [auto, setAuto] = useState(true)
+  const [visible, setVisible] = useState(true)
+  const marco = useRef<HTMLElement | null>(null)
   const timer = useRef<number | null>(null)
 
+  // Rotar un carrusel que nadie está mirando solo gasta ciclos.
   useEffect(() => {
-    if (!auto) return
+    const nodo = marco.current
+    if (!nodo) return
+    const obs = new IntersectionObserver(
+      ([entrada]) => setVisible(entrada.isIntersecting),
+      { threshold: 0.2 }
+    )
+    obs.observe(nodo)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!auto || !visible) return
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)")
     if (reduce.matches) return
 
@@ -31,10 +45,10 @@ export function HeroCarousel() {
     return () => {
       if (timer.current) window.clearInterval(timer.current)
     }
-  }, [auto])
+  }, [auto, visible])
 
   return (
-    <figure className="mt-6">
+    <figure ref={marco} className="mt-6">
       <div className="relative overflow-hidden rounded-xl border border-[var(--c-line)] bg-white">
         {heroGaleria.map((img, i) => (
           <Image

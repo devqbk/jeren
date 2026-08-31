@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/gtm"
 import { Providers } from "@/components/providers"
 import "./globals.css"
 
@@ -55,7 +56,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-AR" className="bg-background" suppressHydrationWarning>
+      <head>
+        <GoogleTagManager />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <GoogleTagManagerNoScript />
         <Providers>
           {children}
           {process.env.NODE_ENV === "production" && <Analytics />}

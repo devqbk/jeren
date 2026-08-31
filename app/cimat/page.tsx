@@ -40,12 +40,16 @@ export const metadata: Metadata = {
 }
 
 const organizationSchema = {
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness"],
   "@id": `${seo.canonical}#jeren`,
   name: "JEREN SRL",
   url: "https://www.jeren.com",
   email: EMAIL,
   telephone: TELEFONO,
+  areaServed: [
+    { "@type": "Country", name: "Argentina" },
+    { "@type": "Place", name: "América Latina" },
+  ],
   description:
     "JEREN SRL representa en Argentina a CIMAT, fabricante de balanceadoras industriales de Bydgoszcz, Polonia.",
   address: [
@@ -103,6 +107,41 @@ const productSchema = {
   ],
 }
 
+/**
+ * Los servicios que JEREN presta alrededor de la máquina. Es lo que diferencia
+ * a la landing de la página del fabricante, así que conviene declararlo.
+ */
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${seo.canonical}#servicio`,
+  name: "Representación, importación y soporte de balanceadoras CIMAT",
+  serviceType: "Venta, puesta en marcha, calibración y modernización de balanceadoras industriales",
+  provider: { "@id": `${seo.canonical}#jeren` },
+  areaServed: [
+    { "@type": "Country", name: "Argentina" },
+    { "@type": "Place", name: "América Latina" },
+  ],
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: `${seo.canonical}#solicitar`,
+    servicePhone: TELEFONO,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios sobre balanceadoras",
+    itemListElement: [
+      "Ingeniería de aplicación",
+      "Importación y nacionalización",
+      "Puesta en marcha y capacitación",
+      "Garantía, diagnóstico remoto y soporte",
+      "Repuestos, inspección, calibración y modernización",
+    ].map((nombre) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: nombre },
+    })),
+  },
+}
+
 const faqSchema = {
   "@type": "FAQPage",
   "@id": `${seo.canonical}#faq`,
@@ -115,7 +154,7 @@ const faqSchema = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [organizationSchema, productSchema, faqSchema],
+  "@graph": [organizationSchema, productSchema, serviceSchema, faqSchema],
 }
 
 export default function CimatPage() {

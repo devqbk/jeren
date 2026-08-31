@@ -27,6 +27,8 @@ const ATRIBUCION = [
   "utm_content",
   "utm_term",
   "gclid",
+  "gbraid",
+  "wbraid",
   "device_type",
   "referrer",
 ] as const

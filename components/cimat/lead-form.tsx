@@ -38,7 +38,9 @@ export function LeadForm({
   const [origen, setOrigen] = useState(ctaLocation)
   const [empezado, setEmpezado] = useState(false)
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
-  const err = state.errors ?? {}
+  const [erroresLocales, setErroresLocales] = useState<Record<string, string>>({})
+  // El server manda: si respondió con errores, esos pisan a los del cliente.
+  const err = { ...erroresLocales, ...(state.errors ?? {}) }
 
   // Un CTA de cualquier parte de la página preselecciona la necesidad acá.
   useEffect(() => {
@@ -73,10 +75,44 @@ export function LeadForm({
     track("form_start", { cta_location: origen })
   }
 
+  /**
+   * Validación al salir del campo. El server valida igual —es el que manda—,
+   * pero en mobile enterarse de un campo vacío después del round-trip es la
+   * forma más barata de perder un lead.
+   */
+  function validarCampo(e: React.FocusEvent<HTMLFormElement>) {
+    const campo = e.target
+    if (!(campo instanceof HTMLInputElement || campo instanceof HTMLSelectElement)) return
+    const nombre = campo.name
+    if (!["interes", "nombre", "empresa", "email"].includes(nombre)) return
+
+    const valor = campo.value.trim()
+    let error = ""
+    if (!valor) {
+      error = {
+        interes: "Elija qué información necesita.",
+        nombre: "Escriba su nombre y apellido.",
+        empresa: "Escriba el nombre de su empresa.",
+        email: "Escriba su email corporativo.",
+      }[nombre] as string
+    } else if (nombre === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor)) {
+      error = "Ese email no parece válido."
+    }
+
+    setErroresLocales((prev) => {
+      if (prev[nombre] === error) return prev
+      const siguiente = { ...prev }
+      if (error) siguiente[nombre] = error
+      else delete siguiente[nombre]
+      return siguiente
+    })
+  }
+
   return (
     <form
       action={formAction}
       onInput={onFirstInput}
+      onBlur={validarCampo}
       noValidate
       className={cn("space-y-4 sm:space-y-5", className)}
     >
@@ -299,6 +335,9 @@ function AttributionFields({ interes, origen }: { interes: string; origen: strin
       utm_content: qs("utm_content"),
       utm_term: qs("utm_term"),
       gclid: qs("gclid"),
+      // En tráfico iOS Google manda gbraid/wbraid en lugar de gclid.
+      gbraid: qs("gbraid"),
+      wbraid: qs("wbraid"),
       device_type: window.innerWidth < 768 ? "mobile" : "desktop",
       referrer: document.referrer,
     })

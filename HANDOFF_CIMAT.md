@@ -324,12 +324,18 @@ privacidad. Pero el problema real no es el Quality Score.
   Google). **Necesita revisión legal** — falta el plazo de conservación y el
   domicilio ante la Agencia de Acceso a la Información Pública.
 
-### Bloqueante que sigue abierto
+### Medición: la plomería quedó lista, falta el ID
 
-**No hay medición de conversiones instalada.** Ni GTM, ni gtag, ni la etiqueta de
-Ads. `components/cimat/track.ts` empuja eventos a un `dataLayer` que nadie lee.
-Sin esto Smart Bidding no puede activarse y no hay atribución por keyword: la
-campaña opera a ciegas. Hace falta el ID del contenedor de GTM.
+`components/analytics/gtm.tsx` monta GTM **solo si está `NEXT_PUBLIC_GTM_ID`**.
+Sin la variable el sitio funciona igual y no se carga nada. Para encenderlo alcanza
+con cargar el ID en Vercel (Project Settings → Environment Variables) y redeployar:
+**no hay que tocar código**.
+
+El `dataLayer` se inicializa en `beforeInteractive`, antes del contenedor, para que
+no se pierdan los eventos que `track.ts` empuja apenas hidrata la página.
+
+Lo único que había instalado antes era `@vercel/analytics`, que da tráfico agregado
+pero **no reporta conversiones a Google Ads**.
 
 Dos detalles para cuando se instale:
 
@@ -362,3 +368,32 @@ Lo que más mueve la aguja:
 - Conversión con recuento **Uno** (no "Cada"), ventana de 90 días por el ciclo
   largo, y valor monetario asignado.
 - Etiquetado automático activado: es lo que llena el `gclid` que la landing ya lee.
+
+
+---
+
+## Lo que se armó después de la auditoría de Ads
+
+- **`components/analytics/gtm.tsx`** — GTM con el `dataLayer` inicializado antes
+  del contenedor, más el `<noscript>`. Gateado por `NEXT_PUBLIC_GTM_ID`.
+- **`.env.example`** — las seis variables que el sitio necesita, con la advertencia
+  sobre las dos de Turnstile: van las dos o ninguna.
+- **`gbraid` y `wbraid`** agregados a la atribución del lead. Son los
+  identificadores que Google manda en tráfico iOS, donde no viene `gclid`.
+- **Validación en el cliente al salir del campo** (`onBlur`). El server sigue
+  siendo el que manda y sus errores pisan a los del cliente, pero en mobile
+  enterarse de un campo vacío recién después del round-trip es la forma más barata
+  de perder un lead.
+- **Schemas `Service` y `LocalBusiness`** en `/cimat`, con `areaServed` Argentina
+  + América Latina y el catálogo de los cinco servicios de JEREN.
+- **El carrusel deja de rotar cuando sale de pantalla** (IntersectionObserver).
+
+### Cola que queda
+
+1. Pasada de accesibilidad WCAG 2.2 AA sobre las cinco rutas.
+2. Medir en PageSpeed Insights contra producción, antes y después de sacar
+   `images.unoptimized`, para confirmar el LCP.
+3. Comprimir `public/catalogos/cimat-balanceadoras.pdf`: pesa 5,27 MB.
+4. Revisión legal de `/privacidad`.
+5. Identificar el archivo que rompe la autodetección de contenido de Tailwind,
+   para poder volver atrás el parche de `globals.css`.
