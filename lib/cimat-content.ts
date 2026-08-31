@@ -143,7 +143,7 @@ export const INTERESES = [
   { value: "nueva-balanceadora", label: "Necesito una nueva balanceadora" },
   { value: "inspeccion-calibracion", label: "Necesito calibrar o inspeccionar una máquina existente" },
   { value: "modernizacion", label: "Necesito modernizar una balanceadora" },
-  { value: "balanceo-de-campo", label: "Necesito balancear un rotor sin desmontarlo" },
+  { value: "balanceo-de-campo", label: "Necesito equipamiento para balancear en sitio" },
   { value: "automatizacion", label: "Necesito automatizar el balanceo dentro de una línea" },
   { value: "consulta-tecnica", label: "Necesito información técnica o ayuda para especificar" },
 ] as const
@@ -313,8 +313,8 @@ export const selector = {
     },
     {
       interes: "balanceo-de-campo",
-      title: "Balancear sin desmontar el rotor",
-      body: "Medición y corrección en sitio con la portátil SmaRT, con evaluación según DIN ISO 10816-3.",
+      title: "Equipar a mi gente para balancear en sitio",
+      body: "La portátil SmaRT mide y corrige con el rotor montado, con evaluación según DIN ISO 10816-3.",
       href: "#lineas",
     },
     {
@@ -338,7 +338,7 @@ export const quienEs = {
   eyebrow: "Quién fabrica la máquina",
   title: "Una fábrica dedicada exclusivamente al balanceo",
   paragraphs: [
-    "CIMAT Sp. z o.o. fabrica balanceadoras industriales en Bydgoszcz, Polonia, desde 1987. Diseña y produce la máquina completa —mecánica, neumática, electrónica de medición y software— y presta los servicios que la rodean: certificación de balanceadoras, mantenimiento, modernización, balanceo por contrato y formación técnica.",
+    "CIMAT Sp. z o.o. fabrica balanceadoras industriales en Bydgoszcz, Polonia, desde 1987. Diseña y produce la máquina completa —mecánica, neumática, electrónica de medición y software— y presta los servicios que la rodean: certificación de balanceadoras, mantenimiento, modernización y formación técnica.",
     "La marca integra Ascential Technologies, grupo dedicado a automatizar procesos de diagnóstico, inspección y ensayo. Hoy hay máquinas CIMAT operando en 59 países.",
   ],
   logos: [
