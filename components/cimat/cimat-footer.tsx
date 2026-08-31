@@ -9,22 +9,28 @@ export function CimatFooter() {
       <div className={container}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-16">
           <div>
+            {/* Mismo criterio que el header: JEREN al sitio de la empresa,
+                CIMAT al inicio de la landing. */}
             <div className="flex items-center gap-4">
-              <Image
-                src="/images/logo.png"
-                alt="Logo de JEREN SRL"
-                width={88}
-                height={88}
-                className="h-10 w-10 object-contain"
-              />
+              <Link href="/" className="rounded-sm" aria-label="JEREN SRL — ir al sitio de la empresa">
+                <Image
+                  src="/images/logo.png"
+                  alt="Logo de JEREN SRL"
+                  width={88}
+                  height={88}
+                  className="h-10 w-10 object-contain"
+                />
+              </Link>
               <span className="h-8 w-px bg-[var(--c-line)]" aria-hidden="true" />
-              <Image
-                src="/images/brands/cimat-clean.png"
-                alt="Logo de CIMAT"
-                width={576}
-                height={177}
-                className="h-7 w-auto object-contain"
-              />
+              <Link href="/cimat" className="rounded-sm" aria-label="CIMAT — volver al inicio de la landing">
+                <Image
+                  src="/images/brands/cimat-clean.png"
+                  alt="Logo de CIMAT"
+                  width={576}
+                  height={177}
+                  className="h-7 w-auto object-contain"
+                />
+              </Link>
             </div>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-[var(--c-ink-2)]">
               {footer.descripcion}

@@ -5,9 +5,12 @@ import { HeaderNav } from "./header-nav"
 import { container } from "./ui"
 
 /**
- * Header propio de la landing (standalone): sin navegación al resto de jeren.com.
- * Firma de representación + navegación breve + el CTA único, que acá va outline
- * porque el formulario del hero ya está en pantalla.
+ * Header propio de la landing: firma de representación + navegación breve + el
+ * CTA único, que acá va outline porque el formulario del hero ya está en
+ * pantalla.
+ *
+ * Cada logo va a donde el visitante espera: el de JEREN al sitio de la empresa,
+ * el de CIMAT al inicio de esta landing.
  */
 export function CimatHeader() {
   return (
@@ -16,9 +19,9 @@ export function CimatHeader() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[72px]">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <Link
-              href="/cimat"
+              href="/"
               className="flex shrink-0 items-center gap-2 rounded-sm"
-              aria-label="JEREN SRL — volver al inicio de la página"
+              aria-label="JEREN SRL — ir al sitio de la empresa"
             >
               <Image
                 src="/images/logo.png"
@@ -38,13 +41,19 @@ export function CimatHeader() {
             />
 
             <div className="flex min-w-0 items-center gap-2">
-              <Image
-                src="/images/brands/cimat-clean.png"
-                alt="Logo de CIMAT"
-                width={576}
-                height={177}
-                className="h-6 w-auto object-contain sm:h-7"
-              />
+              <Link
+                href="/cimat"
+                className="shrink-0 rounded-sm"
+                aria-label="CIMAT — volver al inicio de la landing"
+              >
+                <Image
+                  src="/images/brands/cimat-clean.png"
+                  alt="Logo de CIMAT"
+                  width={576}
+                  height={177}
+                  className="h-6 w-auto object-contain sm:h-7"
+                />
+              </Link>
               <span className="hidden text-[11px] leading-tight text-[var(--c-muted)] lg:block">
                 Representante oficial
                 <br />
