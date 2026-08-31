@@ -191,7 +191,35 @@ export async function sendCimatLead(
     })
     return { status: "success", message: "" }
   } catch (error: unknown) {
-    console.error("SendGrid error:", error)
+    // SendGrid mete el motivo real en response.body.errors. Sin desarmarlo, el
+    // log queda en "[object Object]" y no se puede diagnosticar nada.
+    const detalle = error as {
+      code?: number
+      message?: string
+      response?: { body?: { errors?: { message?: string; field?: string; help?: string }[] } }
+    }
+    const errores = detalle.response?.body?.errors ?? []
+    console.error("[cimat-lead] SendGrid rechazó el envío", {
+      code: detalle.code,
+      message: detalle.message,
+      from: fromEmail,
+      to: toEmails,
+      errores: errores.map((e) => ({ campo: e.field, mensaje: e.message, ayuda: e.help })),
+    })
+
+    // 403 con "Sender Identity" es, de lejos, la causa más común: el remitente
+    // no está verificado en SendGrid. Se le dice al usuario que use otro canal.
+    const remitenteSinVerificar = errores.some((e) =>
+      (e.message ?? "").toLowerCase().includes("sender identity")
+    )
+    if (remitenteSinVerificar) {
+      console.error(
+        "[cimat-lead] El remitente %s no está verificado en SendGrid. " +
+        "Verificar el dominio o la casilla en Settings → Sender Authentication.",
+        fromEmail
+      )
+    }
+
     return {
       status: "error",
       message:
