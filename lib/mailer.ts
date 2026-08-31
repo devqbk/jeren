@@ -10,6 +10,13 @@
  * silencio: cada dependencia nueva es otra oportunidad de repetirlo.
  */
 
+/**
+ * Las dos APIs están detrás de Cloudflare, que rechaza los pedidos sin
+ * User-Agent con un 403 y el código 1010. El `fetch` de Node no manda ninguno,
+ * así que hay que ponerlo a mano o todos los envíos fallan.
+ */
+const USER_AGENT = "jeren-web/1.0 (+https://www.jeren.com)"
+
 export type Proveedor = "resend" | "sendgrid"
 
 export type ResultadoMail = { ok: true } | { ok: false; codigo: string }
@@ -93,6 +100,7 @@ async function porResend(
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
+      "User-Agent": USER_AGENT,
     },
     body: JSON.stringify({
       from: `${opciones.nombre} <${desde}>`,
@@ -109,7 +117,9 @@ async function porResend(
   registrarRechazo(opciones.origen, "resend", respuesta.status, desde, para, detalle)
 
   const texto = detalle.toLowerCase()
-  if (respuesta.status === 401 || respuesta.status === 403) return fallo("RS-401-API-KEY")
+  if (texto.includes("error code: 1010")) return fallo("RS-BLOQUEO-CLOUDFLARE")
+  if (respuesta.status === 401) return fallo("RS-401-API-KEY")
+  if (respuesta.status === 403) return fallo("RS-403-PERMISOS")
   if (respuesta.status === 429) return fallo("RS-429-LIMITE")
   if (texto.includes("only send testing emails")) return fallo("RS-SOLO-A-TU-CASILLA")
   if (texto.includes("not verified")) return fallo("RS-DOMINIO-SIN-VERIFICAR")
@@ -129,6 +139,7 @@ async function porSendgrid(
     headers: {
       Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
       "Content-Type": "application/json",
+      "User-Agent": USER_AGENT,
     },
     body: JSON.stringify({
       personalizations: [{ to: para.map((email) => ({ email })) }],
@@ -145,6 +156,7 @@ async function porSendgrid(
   registrarRechazo(opciones.origen, "sendgrid", respuesta.status, desde, para, detalle)
 
   const texto = detalle.toLowerCase()
+  if (texto.includes("error code: 1010")) return fallo("SG-BLOQUEO-CLOUDFLARE")
   if (texto.includes("maximum credits") || texto.includes("credits exceeded")) {
     return fallo("SG-SIN-CREDITO")
   }
