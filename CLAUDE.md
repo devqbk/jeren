@@ -8,7 +8,7 @@ instala y brinda soporte de maquinaria, insumos y servicios.
 Foco actual: industria electrónica + aire acondicionado y refrigeración.
 Sucursales: CABA (Av. Juramento 2089 Piso 4°, oficina 405, C1428DNG),
 Ushuaia (Tecnomaq SRL, Paseo de la Plaza 2065, CP 9410, Tierra del Fuego),
-Río Grande (Tecnomaq SRL, Padre Forgacs 1407, CP 9420, Tierra del Fuego).
+Río Grande (Tecnomaq SRL, Padre Forgacs 1411, CP 9420, Tierra del Fuego).
 
 Contacto: info@jeren.com | (+5411) 4788-0566 | [www.jeren.com](https://www.jeren.com)
 
