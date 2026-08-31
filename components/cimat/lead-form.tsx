@@ -8,6 +8,7 @@ import { sendCimatLead, type CimatLeadState } from "@/app/actions/cimat-lead"
 import { CTA_LABEL, INTERESES, formulario } from "@/lib/cimat-content"
 import { cn } from "@/lib/utils"
 import { INTERES_EVENT, track } from "./track"
+import { hashearDatos } from "./user-data"
 
 const initialState: CimatLeadState = { status: "idle", message: "" }
 
@@ -33,6 +34,7 @@ export function LeadForm({
   const [state, formAction, isPending] = useActionState(sendCimatLead, initialState)
   const router = useRouter()
   const uid = useId()
+  const formRef = useRef<HTMLFormElement>(null)
   const interesRef = useRef<HTMLSelectElement>(null)
   const [interes, setInteres] = useState("")
   const [origen, setOrigen] = useState(ctaLocation)
@@ -68,8 +70,29 @@ export function LeadForm({
 
   useEffect(() => {
     if (state.status === "success") {
-      track("form_submit", { cta_location: origen, service_interest: interes })
-      router.push("/cimat/gracias")
+      // Los datos hasheados viajan en el MISMO push que form_submit: la
+      // etiqueta de conversión de Ads se dispara con ese evento y necesita
+      // tenerlos disponibles en ese instante, no después.
+      const campos = formRef.current?.elements as
+        | (HTMLFormControlsCollection & Record<string, HTMLInputElement | undefined>)
+        | undefined
+      const email = campos?.email?.value ?? ""
+      const telefono = campos?.telefono?.value ?? ""
+
+      hashearDatos(email, telefono)
+        .then((user_data) => {
+          track("form_submit", {
+            cta_location: origen,
+            service_interest: interes,
+            ...(Object.keys(user_data).length > 0 ? { user_data } : {}),
+          })
+        })
+        .catch(() => {
+          // Si el hash falla, la conversión se reporta igual: peor atribución,
+          // pero nunca un lead sin medir.
+          track("form_submit", { cta_location: origen, service_interest: interes })
+        })
+        .finally(() => router.push("/cimat/gracias"))
     }
     if (state.status === "silent") {
       // Honeypot: misma pantalla, sin evento de conversión.
@@ -121,6 +144,7 @@ export function LeadForm({
 
   return (
     <form
+      ref={formRef}
       action={formAction}
       onInput={onFirstInput}
       onBlur={validarCampo}

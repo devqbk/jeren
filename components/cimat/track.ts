@@ -4,7 +4,8 @@
  * Capa fina de analítica. Empuja al dataLayer si existe (GTM) y no rompe nada
  * si todavía no está instalado — que es el estado actual del sitio.
  */
-type Payload = Record<string, string | number | boolean | undefined>
+type Valor = string | number | boolean | undefined
+type Payload = Record<string, Valor | Record<string, Valor>>
 
 declare global {
   interface Window {
