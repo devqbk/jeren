@@ -470,14 +470,25 @@ La cuenta `rarielmartinez-beep` no tiene permiso de escritura por HTTPS.
   fabricante. Pedirle a fábrica que lo publique es la acción de mayor retorno de
   todo el plan y cuesta cero.
 
-### Competencia en Argentina, confirmada
+### Competencia, confirmada por relevamiento
 
-| Competidor | Presencia local |
-|---|---|
-| Schenck RoTec | **Sí** — ABASTECK, San Isidro. Venta y servicio |
-| Omar Vetrano | **Sí** — fabricante nacional, Avellaneda |
-| Hofmann industrial | No. Lo más cerca, Brasil |
-| CEMB industrial | Sin representante confirmado |
+**Distinción que hay que tener presente:** quien vende máquinas compite con
+JEREN; quien presta servicio de balanceo es cliente potencial, no competidor.
+Solo la primera lista sirve para pujar en Ads.
+
+| Vendedor de máquinas | País | Presencia |
+|---|---|---|
+| Schenck RoTec | Argentina | **Sí** — ABASTECK, San Isidro. Venta y servicio |
+| Schenck RoTec | Chile | **Sí** — Bannister y Cía. Ltda., Pedro de Valdivia 1215 of. 803, Santiago. Sitio oficial `schenck-rotec.com/es-cl` |
+| Omar Vetrano | Argentina | **Sí** — fabricante nacional, Avellaneda. Fabrica balanceadoras **y** presta servicio |
+| Airproject SpA | Chile | **Sí** — vende máquinas de 160 kg a 120 t, no declara marca |
+| Erbessd Instruments | Regional | Marca mexicano-estadounidense, vende en LATAM, pelea por precio |
+| Hofmann industrial | Argentina | No. Lo más cerca, Brasil |
+| CEMB industrial | Argentina | Sin representante confirmado |
+
+En Perú y Colombia **no se encontró vendedor de máquinas con representación
+formal**, que es la misma situación que tenía CIMAT en Argentina antes de JEREN.
+Si se confirma, son mercados más abiertos que Chile.
 
 Consecuencia: **"soporte local" no diferencia contra Schenck**, que también lo
 tiene. Contra Schenck van otros cuatro ángulos: fábrica monoproducto desde 1987,
@@ -487,26 +498,53 @@ reverificar cada 6 meses.
 
 ### Cola de la campaña
 
-Los dos informes completos (dominio industrial y plan de Ads con su addendum)
-están en la transcripción de la sesión del 31/08. Resumen de lo que falta:
+**El plan de Ads está en `docs/ads/PLAN_ADS_CIMAT.md` (versión 2, 31/08).** Ese
+documento reemplaza al plan original y su addendum, que se armaron antes de tener
+datos del Keyword Planner y quedaron obsoletos en cuatro de sus cinco campañas.
 
-1. Cargar las 3 campañas de Argentina: Comercial (USD 22/día), Técnico (6) y Marca
-   y competencia (9). **No crear la de LATAM** hasta tener el territorio firmado.
-2. Lista de negativas a nivel cuenta antes que nada. "Balanceo" en Argentina es
-   masivamente gomería, y "balanceado" es alimento animal.
-3. Nunca concordancia amplia al inicio, nunca Performance Max, y destildar Red de
-   Display y socios de búsqueda, que vienen tildados.
-4. Conversiones mejoradas para clientes potenciales en GTM — email y teléfono
-   hasheados en el `form_submit`. **Es la única tarea de código pendiente**, y con
-   un ciclo de 90 días es lo que evita perder la mitad de la atribución.
+Resumen de lo que cambió al medir el mercado real:
+
+1. **De 5 campañas a 2.** Se caen calibración, modernización, síntomas y balanceo
+   de campo: los términos dieron "sin datos" en el Planner, o sea que la demanda
+   no existe. Quedan Marca de competencia (Argentina + Chile) y Producto (seis
+   países).
+2. **Presupuesto de USD 1.110 a 87 mensuales.** ARS 4.000 diarios en total. No es
+   prudencia, es el tamaño del mercado: 14.300 de las 15.030 búsquedas mensuales
+   de Argentina son ruido de gomería y alimento balanceado.
+3. **Territorio confirmado**, así que la campaña LATAM sale desde el día uno.
+4. **La prioridad geográfica se dio vuelta: Perú, Colombia, Chile, Argentina.**
+   Las empresas de servicio peruanas y colombianas crecen entre 75% y 120%
+   interanual; las argentinas y chilenas caen entre 25% y 67%.
+5. Las negativas a nivel cuenta siguen siendo el paso 0 y sin eso no se enciende
+   nada. La lista completa está en el plan.
+6. Conversiones mejoradas para clientes potenciales: sigue siendo la única tarea
+   de código pendiente, pero **se posterga**. Con este volumen no aporta nada
+   hasta que haya conversiones que atribuir.
+
+### El hallazgo que cambia la estrategia comercial
+
+Las búsquedas de marca de las empresas que **prestan servicio** de balanceo
+superan por diez a uno a todos los términos de producto juntos. SMISAC (Perú)
+sola tiene 320 búsquedas mensuales y crece al 86%; todo el núcleo de producto
+argentino suma 250.
+
+Esas empresas **no son competidores de JEREN: son exactamente quien compra la
+balanceadora.** Se identificaron unas veinticinco con nombre y sitio web en
+Argentina, Chile, Perú y Colombia. La lista priorizada está en el plan.
+
+Consecuencia: **Ads no va a llenar el pipeline.** Sumando los seis países, lo
+pujable con intención real de compra no llega a cien búsquedas mensuales. La
+campaña sirve para no perder lo poco que pasa por el buscador; las operaciones
+salen del trabajo sobre esa lista de prospectos, empezando por Perú.
 
 ### Expectativa de volumen
 
-El mercado argentino de balanceadoras industriales son decenas de búsquedas
-mensuales, no miles. Se espera gastar **USD 300 a 600 el primer mes, no los 1.110
-presupuestados**, y eso no es un error de configuración: es el tamaño del mercado.
-La métrica correcta es cuota de impresiones, no volumen de leads. Conviene alinear
-esa expectativa antes de lanzar.
+El mercado de balanceadoras industriales son decenas de búsquedas mensuales, no
+miles. La previsión del propio Planner, con ARS 70 diarios, estimaba 18 clics y
+una conversión al mes. **La métrica correcta del primer trimestre es cuota de
+impresiones, no volumen de leads.** Conviene alinear esa expectativa antes de
+lanzar: si aparecemos en el 90% de las búsquedas relevantes de seis países, la
+campaña está perfecta aunque traiga tres consultas.
 
 
 ---
