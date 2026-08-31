@@ -507,3 +507,59 @@ mensuales, no miles. Se espera gastar **USD 300 a 600 el primer mes, no los 1.11
 presupuestados**, y eso no es un error de configuración: es el tamaño del mercado.
 La métrica correcta es cuota de impresiones, no volumen de leads. Conviene alinear
 esa expectativa antes de lanzar.
+
+
+---
+
+## Conversiones mejoradas — cómo quedó, y los identificadores de la API de GTM
+
+Anotado porque descubrirlos costó varias vueltas: **la API de GTM acepta la
+escritura y descarta en silencio los parámetros cuyo nombre no reconoce.** No
+devuelve error. Una etiqueta puede quedar creada, parecer bien configurada y no
+hacer nada.
+
+### El código
+
+`components/cimat/user-data.ts` normaliza email y teléfono y los deja en el
+`dataLayer` dentro de `user_data`, en el **mismo push** que `form_submit`.
+
+**Los valores van SIN hashear.** La variable `awec` de GTM normaliza y hashea
+ella misma en el navegador; mandarle un SHA-256 ya calculado lo haría hashear dos
+veces y el valor no coincidiría con nada, otra vez sin ningún error visible.
+
+### La configuración en GTM, con los tipos reales
+
+```
+Variable  type=v      "Correo electronico"   -> dataLayer user_data.email (v2)
+Variable  type=v      "Numero de Telefono"   -> dataLayer user_data.phone_number (v2)
+Variable  type=awec   "UPD - Lead CIMAT"     -> mode MANUAL, email + phone_number
+Tag       type=googtag "Etiqueta de Google AW-18420339644"
+            tagId = AW-18420339644
+            configSettingsTable = [{ parameter: "user_data",
+                                     parameterValue: "{{UPD - Lead CIMAT}}" }]
+Tag       type=awct   "Ads - Conversión CIMAT"  (sin cambios)
+```
+
+Dos cosas que no son obvias:
+
+- El tipo de la variable de datos proporcionados por el usuario es **`awec`**, en
+  minúsculas. `awEc`, `uapd`, `upd`, `userProvidedData`, `gtud`, `ehc` y `eud`
+  fallan con `Unknown entity type`.
+- Los datos del usuario **NO se configuran en la etiqueta de conversión** sino en
+  la **etiqueta de Google** (`googtag`), como parámetro de configuración. Por eso
+  en el tag `awct` no aparece la opción: depende de una etiqueta de Google que el
+  contenedor tiene que tener.
+
+El ID de esa etiqueta de Google es el de **Ads** (`AW-18420339644`). **Nunca poner
+ahí el `G-PFDSYDQPN7`**: GA4 entra por gtag.js en el layout y se contarían las
+páginas vistas dos veces.
+
+### Pendiente
+
+- Borrar el workspace `prueba-ec-descartable` del contenedor. Quedó vacío de una
+  prueba; el token tiene permiso de edición pero no de borrado.
+- En Google Ads, una sola vez: Objetivos → Conversiones → Configuración →
+  Conversiones mejoradas, aceptar los términos de datos de clientes y activarlo.
+  **Sin esto Google recibe los datos y no los usa.**
+- Verificar con el modo Vista previa de GTM: al enviar el formulario, el evento
+  `form_submit` tiene que traer `user_data` con email y teléfono.
