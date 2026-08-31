@@ -16,9 +16,9 @@ export function CimatHeader() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[72px]">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <Link
-              href="https://www.jeren.com"
+              href="/cimat"
               className="flex shrink-0 items-center gap-2 rounded-sm"
-              aria-label="JEREN SRL — ir al sitio institucional"
+              aria-label="JEREN SRL — volver al inicio de la página"
             >
               <Image
                 src="/images/logo.png"

@@ -179,7 +179,7 @@ export const hero = {
   subtitle:
     "Balanceo estático y dinámico de rotores, con una máquina configurada para la aplicación. JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para operaciones de toda la región.",
   resumenTecnico:
-    "Balanceo estático y dinámico · 5 kg a 20 toneladas · ISO 21940 · Verificación ISO 2953",
+    "Balanceo estático y dinámico (equilibrado dinámico) · 5 kg a 20 toneladas · ISO 21940 · Verificación ISO 2953",
   microcopy:
     "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas.",
   image: {
@@ -441,7 +441,7 @@ export const lineas: ProductLine[] = [
 
 export const balanceoCampo = {
   eyebrow: "Balanceo de campo",
-  title: "Balanceo del rotor en su lugar, sin desmontarlo de la máquina",
+  title: "Balanceo in situ: el rotor se equilibra donde está, sin desmontarlo",
   body: "La balanceadora portátil SmaRT mide y corrige el desbalance con el rotor montado en su propia máquina: horas de parada en lugar de días. Evalúa la severidad de vibración según DIN ISO 10816-3 y documenta los resultados. Es el equipo que llega al ventilador de mina, a la boca de pozo y al secadero.",
   interes: "balanceo-de-campo" as InteresValue,
 }
@@ -618,7 +618,7 @@ export const grados = {
     { grade: "G40", application: "Ruedas y llantas de automotor", sector: "Automotriz" },
   ] as GradeRow[],
   normaParagraph:
-    "En 2016 la serie ISO 1940 fue renumerada como ISO 21940; ISO 21940-11 reemplaza a ISO 1940-1 manteniendo los mismos principios y valores de grado, por lo que las especificaciones antiguas siguen siendo válidas. La verificación de la balanceadora en sí se rige por ISO 2953, que define rotores de prueba y ensayos de desempeño.",
+    "El grado se escribe indistintamente G2,5 o G2.5 según la convención decimal. En 2016 la serie ISO 1940 fue renumerada como ISO 21940; ISO 21940-11 reemplaza a ISO 1940-1 manteniendo los mismos principios y valores de grado, por lo que las especificaciones antiguas siguen siendo válidas. La verificación de la balanceadora en sí se rige por ISO 2953, que define rotores de prueba y ensayos de desempeño.",
   normas: [
     {
       code: "ISO 21940-11",

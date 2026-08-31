@@ -75,9 +75,12 @@ export function CimatFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-[var(--c-line)] pt-6 text-xs text-[var(--c-muted)] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[var(--c-line)] pt-10 text-xs text-[var(--c-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} JEREN SRL — Representante de CIMAT en Argentina.
+            © {new Date().getFullYear()} JEREN SRL — Representante de CIMAT en Argentina.{" "}
+            <Link href="/privacidad" className="underline underline-offset-4 hover:text-[var(--c-ink)]">
+              Política de privacidad
+            </Link>
           </p>
           <p>{footer.normas}</p>
         </div>

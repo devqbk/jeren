@@ -43,8 +43,7 @@ export function HeroCarousel() {
             alt={img.alt}
             width={img.width}
             height={img.height}
-            priority={i === 0}
-            loading={i === 0 ? undefined : "lazy"}
+            loading="lazy"
             sizes="(max-width: 1023px) 100vw, 620px"
             aria-hidden={i !== activo}
             data-cf-img={i}

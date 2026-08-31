@@ -290,3 +290,75 @@ autorización de logos, ROTORTEST vs ROTOTEST, WhatsApp comercial):
 El envío real del formulario. Usa las mismas variables de entorno que `/contacto`
 (`SENDGRID_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAILS`, `TURNSTILE_SECRET_KEY`,
 `NEXT_PUBLIC_TURNSTILE_SITE_KEY`) pero **nunca se mandó un mail de prueba**.
+
+
+---
+
+## Auditoría de Google Ads — 31/08
+
+Veredicto de Landing Page Experience: **Promedio**. El contenido original y la
+transparencia de contacto la sacan del "por debajo"; lo que la deja clavada es la
+performance de imágenes, tres keywords ausentes del copy y la falta de política de
+privacidad. Pero el problema real no es el Quality Score.
+
+### Aplicado
+
+- **`images: { unoptimized: true }` eliminado** de `next.config.mjs`. Estaba
+  anulando srcset, AVIF y resize: el hero bajaba ~490 KB de imágenes y el
+  `priority` preloadeaba 196 KB de una foto que en mobile queda bajo el fold.
+  Estimado: −360 KB y −1,5 s de LCP en 4G. **Afecta a todo el sitio.**
+- `priority` sacado del carrusel, todas las slides en `lazy`.
+- Alto reservado para el widget de Turnstile: era la única fuente clara de CLS,
+  empujaba el botón de envío ~70 px al hidratar.
+- **El honeypot ya no cuenta como conversión.** Devolvía `success`, así que cada
+  bot iba a disparar `form_submit` y envenenar el Smart Bidding. Ahora devuelve
+  `silent`: misma pantalla, sin evento.
+- Keywords que estaban en `seo.keywords` y no en el copy visible, ahora bajadas:
+  `equilibrado dinámico`, `balanceo in situ` y la grafía `G2.5` con punto.
+- El logo del header ya no saca al visitante a `jeren.com`: en una landing paga
+  era una fuga en el elemento más clickeado.
+- **`app/robots.ts` y `app/sitemap.ts`** nuevos, con las once rutas públicas.
+- **`app/privacidad/page.tsx`** nueva, linkeada desde el footer de CIMAT.
+  Redactada a partir de lo que el código realmente hace: los seis campos del
+  formulario y los cuatro terceros que intervienen (SendGrid, Turnstile, Vercel,
+  Google). **Necesita revisión legal** — falta el plazo de conservación y el
+  domicilio ante la Agencia de Acceso a la Información Pública.
+
+### Bloqueante que sigue abierto
+
+**No hay medición de conversiones instalada.** Ni GTM, ni gtag, ni la etiqueta de
+Ads. `components/cimat/track.ts` empuja eventos a un `dataLayer` que nadie lee.
+Sin esto Smart Bidding no puede activarse y no hay atribución por keyword: la
+campaña opera a ciegas. Hace falta el ID del contenedor de GTM.
+
+Dos detalles para cuando se instale:
+
+1. La conversión se dispara con el evento `form_submit` del dataLayer, **no** con
+   un pageview de `/cimat/gracias`: el envío hace `router.push`, que es navegación
+   client-side y no dispara un page load.
+2. La landing ya captura `gclid` y lo manda en el mail, así que Offline Conversion
+   Import es viable. Faltan `gbraid` y `wbraid`, que son los de tráfico iOS.
+
+### Verificar en producción antes de encender presupuesto
+
+`app/actions/cimat-lead.ts` exige token de Turnstile si está `TURNSTILE_SECRET_KEY`
+en el server, pero el widget solo se renderiza si está `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+en el cliente. Si en producción está una y no la otra, **cada envío se rechaza sin
+que el usuario pueda hacer nada**, y con `typescript: { ignoreBuildErrors: true }`
+eso se deploya sin que nadie se entere.
+
+### Configuración fuera del código
+
+El informe completo dejó el checklist de GTM, Google Ads, GA4 y Search Console.
+Lo que más mueve la aguja:
+
+- Grupos de anuncios con destinos separados por intención: compra → `/cimat`;
+  grados y normas → `/cimat/normas-y-grados`; specs → `/cimat/especificaciones`;
+  industria → `/cimat/aplicaciones`. Mandar todo a `/cimat` hunde el LPE de las
+  keywords informativas.
+- **Negativas desde el día uno**: `balanceo de ruedas`, `alineación y balanceo`,
+  `gomería`, `balanceo de neumáticos`, `curso`, `precio`, `usada`. En Argentina
+  "balanceo" es masivamente automotriz minorista y se come el presupuesto.
+- Conversión con recuento **Uno** (no "Cada"), ventana de 90 días por el ciclo
+  largo, y valor monetario asignado.
+- Etiquetado automático activado: es lo que llena el `gclid` que la landing ya lee.

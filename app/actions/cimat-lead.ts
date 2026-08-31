@@ -4,7 +4,11 @@ import sgMail from "@sendgrid/mail"
 import { INTERESES } from "@/lib/cimat-content"
 
 export type CimatLeadState = {
-  status: "idle" | "success" | "error"
+  /**
+   * `silent` es el bot que cayó en el honeypot: para él la pantalla se comporta
+   * como un éxito, pero no dispara la conversión ni ensucia el modelo de puja.
+   */
+  status: "idle" | "success" | "silent" | "error"
   message: string
   /** Errores por campo, para mostrarlos debajo del input y no borrar lo cargado. */
   errors?: Record<string, string>
@@ -88,8 +92,8 @@ export async function sendCimatLead(
   }
 
   if (trampa) {
-    // No le decimos al bot que lo detectamos.
-    return { status: "success", message: "" }
+    // No le decimos al bot que lo detectamos, pero no lo contamos como lead.
+    return { status: "silent", message: "" }
   }
 
   const turnstileToken = get("cf-turnstile-response")

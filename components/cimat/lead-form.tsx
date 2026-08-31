@@ -58,6 +58,10 @@ export function LeadForm({
       track("form_submit", { cta_location: origen, service_interest: interes })
       router.push("/cimat/gracias")
     }
+    if (state.status === "silent") {
+      // Honeypot: misma pantalla, sin evento de conversión.
+      router.push("/cimat/gracias")
+    }
     if (state.status === "error") {
       track("form_error", { cta_location: origen })
     }
@@ -184,8 +188,12 @@ export function LeadForm({
         <input id={`${uid}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
+      {/* Alto reservado desde el SSR: el widget monta después de hidratar y
+          sin esto empuja el botón de envío unos 70 px. */}
       {siteKey ? (
-        <Turnstile siteKey={siteKey} options={{ theme: "light", language: "es" }} />
+        <div className="min-h-[70px]">
+          <Turnstile siteKey={siteKey} options={{ theme: "light", language: "es" }} />
+        </div>
       ) : null}
 
       {state.status === "error" && state.message ? (
