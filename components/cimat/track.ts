@@ -8,14 +8,21 @@ type Payload = Record<string, string | number | boolean | undefined>
 
 declare global {
   interface Window {
-    dataLayer?: Payload[]
+    dataLayer?: unknown[]
+    gtag?: (command: string, ...args: unknown[]) => void
   }
 }
 
 export function track(event: string, payload: Payload = {}) {
   if (typeof window === "undefined") return
+
+  // Para GTM: lee los eventos como pushes al dataLayer.
   window.dataLayer = window.dataLayer ?? []
   window.dataLayer.push({ event, ...payload })
+
+  // Para gtag.js: usa el dataLayer como cola de comandos, así que el push de
+  // arriba lo ignora. Necesita la llamada directa. Los dos pueden convivir.
+  window.gtag?.("event", event, payload)
 }
 
 /** Evento que dispara cada CTA principal, con el contexto que pide la medición. */

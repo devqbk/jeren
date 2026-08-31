@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { GoogleAnalytics } from "@/components/analytics/ga4"
 import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/gtm"
 import { Providers } from "@/components/providers"
 import "./globals.css"
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Providers>
           {children}
           {process.env.NODE_ENV === "production" && <Analytics />}
+          <GoogleAnalytics />
         </Providers>
       </body>
     </html>
