@@ -1,6 +1,7 @@
 "use server"
 
 import sgMail from "@sendgrid/mail"
+import { loguearErrorSendGrid } from "@/lib/sendgrid-error"
 
 export type ContactFormState = {
   status: "idle" | "success" | "error"
@@ -136,7 +137,7 @@ export async function sendContactEmail(
       message: "¡Mensaje enviado! Nos pondremos en contacto a la brevedad.",
     }
   } catch (error: unknown) {
-    console.error("SendGrid error:", error)
+    loguearErrorSendGrid("contacto", error, { from: fromEmail, to: toEmails })
     return {
       status: "error",
       message: "Hubo un problema al enviar el mensaje. Por favor intentá de nuevo o contactanos por teléfono.",
