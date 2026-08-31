@@ -324,7 +324,27 @@ privacidad. Pero el problema real no es el Quality Score.
   Google). **Necesita revisión legal** — falta el plazo de conservación y el
   domicilio ante la Agencia de Acceso a la Información Pública.
 
-### Medición: la plomería quedó lista, falta el ID
+### Medición: instalada
+
+- **GA4** `G-PFDSYDQPN7` por gtag.js — `components/analytics/ga4.tsx`
+- **GTM** `GTM-T5J4LJMK` — `components/analytics/gtm.tsx`
+
+Los dos IDs van como valor por defecto en el código: son públicos, viajan en el
+HTML de cualquier visita, así que no hay nada que proteger y la medición no queda
+colgada de que alguien cargue una variable en Vercel. Se pisan con
+`NEXT_PUBLIC_GA4_ID` y `NEXT_PUBLIC_GTM_ID`.
+
+**Cuidado con contar doble:** GA4 ya está por gtag.js. NO agregar dentro del
+contenedor de GTM una etiqueta de Google con el mismo `G-…`, porque las páginas
+vistas se cuentan dos veces. GTM está para la etiqueta de conversión de Ads.
+
+**Por qué `track()` hace las dos cosas:** gtag usa el `dataLayer` como cola de
+comandos, no como bus de eventos, así que ignora los `dataLayer.push({event})`.
+Con gtag solo no habría llegado ni un evento a GA4 — y el pageview sí funciona,
+con lo cual el problema no se nota. Ahora `track()` empuja al dataLayer (GTM) y
+además llama a `gtag("event", ...)`.
+
+### Historial del bloqueante
 
 `components/analytics/gtm.tsx` monta GTM **solo si está `NEXT_PUBLIC_GTM_ID`**.
 Sin la variable el sitio funciona igual y no se carga nada. Para encenderlo alcanza
