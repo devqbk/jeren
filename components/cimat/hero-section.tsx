@@ -1,9 +1,7 @@
-import { MessageCircle } from "lucide-react"
-import { cta, hero, trustBar } from "@/lib/cimat-content"
+import { hero, trustBar } from "@/lib/cimat-content"
 import { HeroCarousel } from "./hero-carousel"
 import { LeadForm } from "./lead-form"
 import { Eyebrow, container } from "./ui"
-import { WhatsappLink } from "./secundarios"
 
 /**
  * Hero de conversión: el formulario está en el primer viewport en desktop.
@@ -39,19 +37,6 @@ export function HeroSection() {
               <div className="mt-6">
                 <LeadForm ctaLocation="hero-form" />
               </div>
-
-              {/* Canal alternativo al pie de la tarjeta: cierra el bloque y deja
-                  el borde inferior a la misma altura que el carrusel. */}
-              <p className="mt-6 border-t border-[var(--c-line)] pt-6 text-[13px] text-[var(--c-muted)]">
-                ¿Prefiere escribirnos?{" "}
-                <WhatsappLink
-                  location="hero"
-                  className="font-semibold text-[var(--c-ink)] underline underline-offset-4"
-                >
-                  <MessageCircle className="mr-1 inline size-4 align-[-3px]" aria-hidden="true" />
-                  {cta.whatsapp.label}
-                </WhatsappLink>
-              </p>
             </div>
           </div>
 
