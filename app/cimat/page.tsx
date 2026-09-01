@@ -12,6 +12,7 @@ import { QuienEsSection } from "@/components/cimat/quien-es-section"
 import { SelectorSection } from "@/components/cimat/selector-section"
 import { SoporteSection } from "@/components/cimat/soporte-section"
 import { StickyCta } from "@/components/cimat/sticky-cta"
+import { WhatsappFlotante } from "@/components/cimat/whatsapp-flotante"
 import { CimatTokens } from "@/components/cimat/ui"
 import { EMAIL, TELEFONO, faqs, hero, seo } from "@/lib/cimat-content"
 
@@ -184,6 +185,7 @@ export default function CimatPage() {
 
       <CimatFooter />
       <StickyCta />
+      <WhatsappFlotante />
     </div>
   )
 }
