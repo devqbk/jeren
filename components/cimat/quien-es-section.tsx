@@ -37,7 +37,7 @@ export function QuienEsSection() {
 
       <div className="mt-10 border-t border-white/15 pt-10 lg:mt-12 lg:pt-12">
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
-          Referencias publicadas por el fabricante
+          Referencias
         </p>
         {/* Sin autorización no se pueden usar los logos: van como wordmarks
             tipográficos, que es lo que más se les parece en peso visual. */}
@@ -51,9 +51,6 @@ export function QuienEsSection() {
             </li>
           ))}
         </ul>
-        <p className="mt-6 max-w-[70ch] text-xs leading-relaxed text-white/45">
-          {quienEs.logosNota}
-        </p>
       </div>
 
       <dl className="mt-10 grid gap-8 border-t border-white/15 pt-10 sm:grid-cols-3 lg:mt-12 lg:pt-12">

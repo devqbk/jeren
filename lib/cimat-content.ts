@@ -351,8 +351,6 @@ export const quienEs = {
     "BorgWarner",
     "Valeo",
   ],
-  logosNota:
-    "Clientes y referencias publicados por el fabricante en su brochure oficial. No representan necesariamente clientes directos de JEREN SRL.",
   /** Verificaciones de norma: es la prueba disponible mientras no haya caso local. */
   verificaciones: [
     { code: "ISO 21940-11", desc: "Tolerancias de rotores rígidos: la norma con la que se emite el certificado de grado G." },
