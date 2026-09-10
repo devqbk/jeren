@@ -11,6 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  verification: { google: "mHFzwrRY4BY-QNNs-zsaxctRO_vAQDVbMA44v1QfQ44" },
   title: {
     default: "Jeren SRL | Líderes en Automatización Industrial",
     template: "%s | Jeren SRL",
