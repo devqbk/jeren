@@ -15,8 +15,16 @@ export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "G-PFDSYDQPN7"
  * que hace `components/cimat/track.ts`— gtag lo ignora por completo. Por eso
  * `track()` llama además a `gtag("event", ...)` cuando gtag está presente.
  *
- * Si más adelante se instala GTM, los dos conviven sin tocar nada: GTM lee los
- * pushes al dataLayer y gtag recibe sus llamadas directas.
+ * GTM ya está instalado (`gtm.tsx`) y los dos conviven: GTM lee los pushes al
+ * dataLayer y gtag recibe sus llamadas directas.
+ *
+ * PENDIENTE (fase 3 de Ads CIMAT, 10/09/2026): GA4 tendría que vivir adentro
+ * de GTM y este gtag directo desaparecer de `/cimat`, para tener un tercero
+ * menos en la landing paga. Hoy el contenedor NO tiene etiqueta de GA4 (ver la
+ * advertencia en `gtm.tsx`), así que sacar esto dejaría a GA4 sin eventos.
+ * Orden correcto: 1) agregar en GTM la etiqueta de Google con este `G-…` y
+ * disparar los eventos de `components/cimat/track.ts` desde ahí; 2) recién
+ * entonces borrar este componente y la llamada a `window.gtag` en `track()`.
  */
 export function GoogleAnalytics() {
   if (!GA4_ID) return null

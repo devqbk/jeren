@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { CheckCircle2 } from "lucide-react"
+import { CheckCircle2, MessageCircle } from "lucide-react"
 import { CimatFooter } from "@/components/cimat/cimat-footer"
 import { CimatHeader } from "@/components/cimat/cimat-header"
 import { GraciasTracker } from "@/components/cimat/gracias-tracker"
+import { WhatsappLink } from "@/components/cimat/secundarios"
 import { CimatTokens, Section } from "@/components/cimat/ui"
-import { EMAIL, TELEFONO, formulario } from "@/lib/cimat-content"
+import { EMAIL, TELEFONO, cta, formulario } from "@/lib/cimat-content"
 
 /**
  * Página de conversión. Va en noindex: existe para medir, no para posicionar.
@@ -34,6 +35,21 @@ export default function GraciasPage() {
             </h1>
             <p className="mt-6 text-base leading-[1.6] text-[var(--c-ink-2)] sm:text-[1.0625rem]">
               {formulario.confirmacion}
+            </p>
+            <p className="mt-3 text-base font-semibold leading-[1.6] text-[var(--c-ink)] sm:text-[1.0625rem]">
+              {formulario.respuesta}
+            </p>
+
+            {/* Es el momento de mayor intención: si quiere adelantar la
+                conversación, WhatsApp está a un toque. */}
+            <p className="mt-8">
+              <WhatsappLink
+                location="gracias"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[var(--c-line)] bg-white px-6 text-[0.95rem] font-semibold text-[var(--c-ink)] transition-colors hover:border-[var(--c-ink)]"
+              >
+                <MessageCircle className="size-5" aria-hidden="true" />
+                Escribirnos por {cta.whatsapp.label}
+              </WhatsappLink>
             </p>
 
             <div className="mt-10 rounded-xl border border-[var(--c-line)] bg-white p-6 text-left sm:p-8">

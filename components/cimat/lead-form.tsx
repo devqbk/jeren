@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { AlertCircle, Loader2 } from "lucide-react"
 import { sendCimatLead, type CimatLeadState } from "@/app/actions/cimat-lead"
-import { CTA_LABEL, INTERESES, formulario } from "@/lib/cimat-content"
+import { CTA_LABEL, INTERESES, PAISES, formulario } from "@/lib/cimat-content"
 import { cn } from "@/lib/utils"
+import { marcarLeadEnviado } from "./gracias-tracker"
 import { INTERES_EVENT, track } from "./track"
 import { datosUsuario } from "./user-data"
 
@@ -23,6 +24,21 @@ function qs(key: string): string {
   return new URLSearchParams(window.location.search).get(key) ?? ""
 }
 
+/**
+ * Interés que trae la URL. `?interes=` manda si es una opción válida; si no,
+ * `?linea=` (el id de la línea de producto que usa la URL final del anuncio)
+ * se traduce a la necesidad más cercana.
+ */
+function interesDesdeUrl(): string {
+  const directo = qs("interes")
+  if (INTERESES.some((i) => i.value === directo)) return directo
+  const linea = qs("linea").toLowerCase()
+  if (!linea) return ""
+  if (linea === "automatizacion") return "automatizacion"
+  if (linea === "campo" || linea === "sitio" || linea === "portatil") return "balanceo-de-campo"
+  return "nueva-balanceadora"
+}
+
 export function LeadForm({
   ctaLocation = "form-landing",
   className,
@@ -37,8 +53,12 @@ export function LeadForm({
   const formRef = useRef<HTMLFormElement>(null)
   const interesRef = useRef<HTMLSelectElement>(null)
   const [interes, setInteres] = useState("")
+  const [pais, setPais] = useState("")
   const [origen, setOrigen] = useState(ctaLocation)
   const [empezado, setEmpezado] = useState(false)
+  // Guarda contra el doble disparo: el efecto de envío depende de `origen` e
+  // `interes`, y un clic en un CTA entre el éxito y la navegación lo re-corría.
+  const enviadoRef = useRef(false)
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
   const [erroresLocales, setErroresLocales] = useState<Record<string, string>>({})
   // El server manda: si respondió con errores, esos pisan a los del cliente.
@@ -52,7 +72,13 @@ export function LeadForm({
    */
   useEffect(() => {
     const yaElegido = interesRef.current?.value
-    if (yaElegido) setInteres(yaElegido)
+    if (yaElegido) {
+      setInteres(yaElegido)
+      return
+    }
+    // La URL final del anuncio puede traer el interés (`?interes=` o `?linea=`).
+    const desdeUrl = interesDesdeUrl()
+    if (desdeUrl) setInteres(desdeUrl)
   }, [])
 
   // Un CTA de cualquier parte de la página preselecciona la necesidad acá.
@@ -70,6 +96,8 @@ export function LeadForm({
 
   useEffect(() => {
     if (state.status === "success") {
+      if (enviadoRef.current) return
+      enviadoRef.current = true
       // Los datos hasheados viajan en el MISMO push que form_submit: la
       // etiqueta de conversión de Ads se dispara con ese evento y necesita
       // tenerlos disponibles en ese instante, no después.
@@ -78,23 +106,29 @@ export function LeadForm({
         | undefined
       const email = campos?.email?.value ?? ""
       const telefono = campos?.telefono?.value ?? ""
+      const paisElegido = campos?.pais?.value ?? pais
 
-      const user_data = datosUsuario(email, telefono)
+      const user_data = datosUsuario(email, telefono, paisElegido)
       track("form_submit", {
         cta_location: origen,
         service_interest: interes,
+        country: paisElegido,
         ...(Object.keys(user_data).length > 0 ? { user_data } : {}),
       })
+      // La página de gracias dispara `lead_conversion` solo si encuentra esto.
+      marcarLeadEnviado()
       router.push("/cimat/gracias")
     }
     if (state.status === "silent") {
-      // Honeypot: misma pantalla, sin evento de conversión.
+      // Honeypot: misma pantalla, sin evento de conversión ni flag.
+      if (enviadoRef.current) return
+      enviadoRef.current = true
       router.push("/cimat/gracias")
     }
     if (state.status === "error") {
-      track("form_error", { cta_location: origen })
+      track("form_error", { cta_location: origen, error_code: state.codigo ?? "SIN-CODIGO" })
     }
-  }, [state, router, origen, interes])
+  }, [state, router, origen, interes, pais])
 
   function onFirstInput() {
     if (empezado) return
@@ -111,7 +145,7 @@ export function LeadForm({
     const campo = e.target
     if (!(campo instanceof HTMLInputElement || campo instanceof HTMLSelectElement)) return
     const nombre = campo.name
-    if (!["nombre", "empresa", "email"].includes(nombre)) return
+    if (!["nombre", "empresa", "email", "pais"].includes(nombre)) return
 
     const valor = campo.value.trim()
     let error = ""
@@ -120,7 +154,8 @@ export function LeadForm({
         interes: "Elija qué información necesita.",
         nombre: "Escriba su nombre y apellido.",
         empresa: "Escriba el nombre de su empresa.",
-        email: "Escriba su email corporativo.",
+        email: "Escriba su email.",
+        pais: "Seleccione su país.",
       }[nombre] as string
     } else if (nombre === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor)) {
       error = "Ese email no parece válido."
@@ -209,29 +244,72 @@ export function LeadForm({
         uid={`${uid}-email`}
         name="email"
         type="email"
-        label="Email corporativo"
+        label="Email"
         required
         error={err.email}
         disabled={isPending}
         autoComplete="email"
       />
 
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor={`${uid}-pais`} className={labelCls}>
+            País <span className="text-[var(--c-accent)]">*</span>
+          </label>
+          <select
+            id={`${uid}-pais`}
+            name="pais"
+            value={pais}
+            onChange={(e) => {
+              setPais(e.target.value)
+              setErroresLocales((prev) => {
+                if (!prev.pais) return prev
+                const siguiente = { ...prev }
+                delete siguiente.pais
+                return siguiente
+              })
+            }}
+            disabled={isPending}
+            autoComplete="country"
+            aria-invalid={Boolean(err.pais)}
+            aria-describedby={err.pais ? `${uid}-pais-err` : undefined}
+            className={cn(field, "mt-2 bg-white", err.pais && "border-[var(--c-accent)]")}
+          >
+            <option value="">Seleccione un país</option>
+            {PAISES.map((p) => (
+              <option key={p.value} value={p.value}>
+                {p.label}
+              </option>
+            ))}
+          </select>
+          {err.pais ? (
+            <p id={`${uid}-pais-err`} className={errCls}>
+              <AlertCircle className="size-3.5 shrink-0" aria-hidden="true" />
+              {err.pais}
+            </p>
+          ) : null}
+        </div>
+        {/* Visible y opcional: para el comprador industrial de la región es el
+            dato que JEREN más necesita para responder. */}
+        <Campo
+          uid={`${uid}-telefono`}
+          name="telefono"
+          type="tel"
+          label="Teléfono o WhatsApp"
+          hint="opcional"
+          disabled={isPending}
+          autoComplete="tel"
+        />
+      </div>
+
       {/* Lo opcional se pliega: el formulario tiene que entrar en pantalla sin
-          scroll, y estos dos campos son los que menos gente completa. */}
+          scroll, y este es el campo que menos gente completa. */}
       <details className="group rounded-md border border-[var(--c-line)] bg-[var(--c-surface-2)]">
         <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-3 px-3.5 py-2.5 text-sm font-semibold text-[var(--c-ink)] [&::-webkit-details-marker]:hidden [&::marker]:content-['']">
-          Agregar teléfono y datos del rotor
+          Agregar datos del rotor
           <span className="text-[13px] font-normal text-[var(--c-muted)]">opcional</span>
         </summary>
         <div className="space-y-4 border-t border-[var(--c-line)] p-4">
-          <Campo
-            uid={`${uid}-telefono`}
-            name="telefono"
-            type="tel"
-            label="Teléfono o WhatsApp"
-            disabled={isPending}
-            autoComplete="tel"
-          />
           <div>
             <label htmlFor={`${uid}-aplicacion`} className={labelCls}>
               Aplicación o rotor
@@ -307,6 +385,10 @@ export function LeadForm({
         {isPending ? "Enviando la consulta." : ""}
       </p>
 
+      <p className="mt-2 text-[13px] leading-relaxed text-[var(--c-muted)]">
+        <span className="font-semibold text-[var(--c-ink-2)]">{formulario.asesoramiento}</span>{" "}
+        {formulario.respuesta}
+      </p>
       <p className="mt-2 text-[13px] leading-relaxed text-[var(--c-muted)]">{formulario.privacidad}</p>
     </form>
   )

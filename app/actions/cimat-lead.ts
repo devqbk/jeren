@@ -1,6 +1,6 @@
 "use server"
 
-import { INTERESES } from "@/lib/cimat-content"
+import { INTERESES, PAISES } from "@/lib/cimat-content"
 import { enviarMail } from "@/lib/mailer"
 
 export type CimatLeadState = {
@@ -73,25 +73,30 @@ export async function sendCimatLead(
   const nombre = get("nombre")
   const empresa = get("empresa")
   const email = get("email")
+  const pais = get("pais")
   const telefono = get("telefono")
   const aplicacion = get("aplicacion")
   // Honeypot: los bots completan lo que no ven.
   const trampa = get("website")
 
   const errors: Record<string, string> = {}
-  if (!interes) errors.interes = "Elegí qué información necesitás."
+  if (!interes) errors.interes = "Elija qué información necesita."
   else if (!INTERESES.some((i) => i.value === interes))
-    errors.interes = "Elegí una opción de la lista."
-  if (!nombre) errors.nombre = "Escribí tu nombre y apellido."
-  if (!empresa) errors.empresa = "Escribí el nombre de tu empresa."
-  if (!email) errors.email = "Escribí tu email corporativo."
+    errors.interes = "Elija una opción de la lista."
+  if (!nombre) errors.nombre = "Escriba su nombre y apellido."
+  if (!empresa) errors.empresa = "Escriba el nombre de su empresa."
+  if (!email) errors.email = "Escriba su email."
   else if (!EMAIL_RE.test(email)) errors.email = "Ese email no parece válido."
+  if (!pais) errors.pais = "Seleccione su país."
+  else if (!PAISES.some((p) => p.value === pais))
+    errors.pais = "Elija un país de la lista."
 
   if (Object.keys(errors).length > 0) {
     return {
       status: "error",
-      message: "Revisá los campos marcados.",
+      message: "Revise los campos marcados.",
       errors,
+      codigo: "VALIDACION",
     }
   }
 
@@ -105,14 +110,14 @@ export async function sendCimatLead(
     if (!turnstileToken) {
       return {
         status: "error",
-        message: "Completá la verificación de seguridad y volvé a enviar.",
+        message: "Complete la verificación de seguridad y vuelva a enviar.",
         codigo: "CF-SIN-TOKEN",
       }
     }
     if (!(await verifyTurnstile(turnstileToken))) {
       return {
         status: "error",
-        message: "La verificación de seguridad falló. Probá de nuevo.",
+        message: "La verificación de seguridad falló. Pruebe de nuevo.",
         codigo: "CF-RECHAZADO",
       }
     }
@@ -120,12 +125,14 @@ export async function sendCimatLead(
 
   const interesLabel =
     INTERESES.find((i) => i.value === interes)?.label ?? interes
+  const paisLabel = PAISES.find((p) => p.value === pais)?.label ?? pais
 
   const filas: [string, string][] = [
     ["Necesidad", interesLabel],
     ["Nombre", nombre],
     ["Empresa", empresa],
     ["Email", email],
+    ["País", paisLabel],
     ["Teléfono / WhatsApp", telefono || "—"],
     ["Aplicación o rotor", aplicacion || "—"],
   ]
@@ -173,7 +180,7 @@ export async function sendCimatLead(
   const resultado = await enviarMail({
     origen: "cimat-lead",
     nombre: "Landing CIMAT — JEREN",
-    asunto: `[CIMAT] ${interesLabel} — ${empresa}`,
+    asunto: `[CIMAT] ${interesLabel} — ${empresa} (${paisLabel})`,
     responderA: email,
     html,
   })
@@ -183,7 +190,7 @@ export async function sendCimatLead(
   return {
     status: "error",
     message:
-      "Hubo un problema al enviar la consulta. Probá de nuevo o escribinos a info@jeren.com.",
+      "Hubo un problema al enviar la consulta. Pruebe de nuevo o escríbanos a info@jeren.com.",
     codigo: resultado.codigo,
   }
 

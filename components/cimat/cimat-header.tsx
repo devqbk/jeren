@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Phone } from "lucide-react"
 import { Cta } from "./cta"
 import { HeaderNav } from "./header-nav"
+import { TelefonoLink } from "./secundarios"
 import { container } from "./ui"
 
 /**
@@ -9,8 +11,13 @@ import { container } from "./ui"
  * CTA único, que acá va outline porque el formulario del hero ya está en
  * pantalla.
  *
- * Cada logo va a donde el visitante espera: el de JEREN al sitio de la empresa,
- * el de CIMAT al inicio de esta landing.
+ * Los dos logos vuelven al inicio de esta landing. El de JEREN NO va al sitio
+ * de la empresa: es tráfico pago y el logo es el elemento más visible; mandarlo
+ * a jeren.com es una fuga. Ya se corrigió una vez y un commit posterior lo
+ * deshizo — no volver a apuntarlo a "/".
+ *
+ * En mobile el CTA no entra, así que va el teléfono: con dos tercios del
+ * tráfico en celular es la conversión más barata de la página.
  */
 export function CimatHeader() {
   return (
@@ -19,9 +26,9 @@ export function CimatHeader() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[72px]">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <Link
-              href="/"
+              href="/cimat"
               className="flex shrink-0 items-center gap-2 rounded-sm"
-              aria-label="JEREN SRL — ir al sitio de la empresa"
+              aria-label="JEREN SRL — volver al inicio de la landing"
             >
               <Image
                 src="/images/logo.png"
@@ -64,6 +71,13 @@ export function CimatHeader() {
 
           <div className="flex items-center gap-6">
             <HeaderNav />
+            <TelefonoLink
+              location="header"
+              className="flex min-h-11 shrink-0 items-center gap-1.5 rounded-md border border-[var(--c-line)] px-3 text-[13px] font-semibold text-[var(--c-ink)] sm:hidden"
+            >
+              <Phone className="size-4" aria-hidden="true" />
+              Llamar
+            </TelefonoLink>
             <Cta
               location="header"
               variant="outline"

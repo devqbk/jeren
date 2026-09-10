@@ -150,6 +150,23 @@ export const INTERESES = [
 
 export type InteresValue = (typeof INTERESES)[number]["value"]
 
+/**
+ * Opciones del campo "País" del formulario. El código es el ISO 3166-1 alfa-2;
+ * `components/cimat/user-data.ts` lo usa para normalizar el teléfono al
+ * prefijo internacional que corresponde.
+ */
+export const PAISES = [
+  { value: "AR", label: "Argentina" },
+  { value: "CL", label: "Chile" },
+  { value: "UY", label: "Uruguay" },
+  { value: "PY", label: "Paraguay" },
+  { value: "CO", label: "Colombia" },
+  { value: "PE", label: "Perú" },
+  { value: "OT", label: "Otro" },
+] as const
+
+export type PaisValue = (typeof PAISES)[number]["value"]
+
 export const cta: Record<string, CtaLink> = {
   whatsapp: { label: "WhatsApp", href: WHATSAPP_URL, external: true },
   catalogoPdf: { label: "Descargar el catálogo técnico (PDF)", href: CATALOGO_PDF_URL },
@@ -184,11 +201,11 @@ export const hero = {
   eyebrow: "Representante oficial de CIMAT en Argentina",
   h1: "Balanceadoras industriales CIMAT con soporte local desde Argentina",
   subtitle:
-    "Balanceo estático y dinámico de rotores, con una máquina configurada para la aplicación. JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para operaciones de toda la región.",
+    "Una balanceadora de rotores con balanceo estático y dinámico: una máquina de balanceo dinámico configurada para su aplicación, no un modelo elegido de una lista. Si busca una balanceadora dinámica (equilibradora) horizontal, vertical o para turbos, JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para operaciones de toda la región.",
   resumenTecnico:
     "Balanceo estático y dinámico (equilibrado dinámico) · 5 kg a 20 toneladas · ISO 21940 · Verificación ISO 2953",
   microcopy:
-    "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas.",
+    "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas, con asesoramiento sin cargo.",
   image: {
     src: "/images/cimat/hero-balanceadora-horizontal-rodillo.webp",
     alt: "Balanceadora horizontal CIMAT de gran porte con un rodillo cilíndrico montado entre los soportes de la bancada",
@@ -366,7 +383,7 @@ export const lineas: ProductLine[] = [
     id: "horizontales",
     eyebrow: "Línea horizontal",
     title: "Rotores con muñones",
-    claim: "Armaduras, bombas, ventiladores, husillos, turbinas y rodillos de papelera.",
+    claim: "Para cardanes, cigüeñales, inducidos (armaduras) y ejes, y también bombas, ventiladores, husillos, turbinas y rodillos de papelera.",
     body: "",
     rango: "5 kg – 20.000 kg · ø190 – 2.200 mm",
     beneficios: [
@@ -800,7 +817,12 @@ export const soporte = {
     {
       icon: "customs",
       title: "Importación y nacionalización",
-      body: "El cliente no importa nada: la compra es a JEREN SRL en Argentina, con factura local. Gestionamos importación, nacionalización, aranceles y logística hasta la planta.",
+      body: "En Argentina, el cliente no importa nada: la compra es a JEREN SRL, con factura local. Gestionamos importación, nacionalización, aranceles y logística hasta la planta.",
+    },
+    {
+      icon: "customs",
+      title: "Fuera de Argentina",
+      body: "Para operaciones en el resto de la región, la máquina se exporta desde fábrica o desde Argentina y usted nacionaliza con su agente de aduana. La puesta en marcha y la capacitación se hacen en su planta por técnicos de JEREN, y el soporte de software y medición es remoto, por el router Wi-Fi integrado en la unidad de medición.",
     },
     {
       icon: "training",
@@ -895,7 +917,7 @@ export const faqs: FaqItem[] = [
   {
     question: "¿JEREN gestiona la importación y la puesta en marcha?",
     answer:
-      "Sí. La compra es a JEREN SRL en Argentina, con factura local, y nosotros gestionamos importación, nacionalización, aranceles y logística hasta la planta. La instalación, la calibración inicial y la capacitación del personal también quedan a cargo nuestro.",
+      "En Argentina, sí: la compra es a JEREN SRL, con factura local, y nosotros gestionamos importación, nacionalización, aranceles y logística hasta la planta. Fuera de Argentina, la máquina se exporta desde fábrica o desde Argentina y usted nacionaliza con su agente de aduana. En ambos casos, la instalación, la calibración inicial y la capacitación del personal en su planta quedan a cargo de técnicos de JEREN.",
   },
   {
     question: "¿Quién repara la máquina en el país y con qué certificación?",
@@ -958,8 +980,10 @@ export const formulario = {
     "Si dispone de ellos, puede incluir tipo de rotor, peso, diámetro, velocidad de servicio o grado requerido.",
   privacidad:
     "Utilizamos sus datos únicamente para responder esta consulta. No los compartimos con terceros.",
+  asesoramiento: "Asesoramiento sin cargo y sin compromiso.",
   confirmacion:
-    "Gracias. Recibimos tu consulta. Un especialista de JEREN se pondrá en contacto para revisar tu necesidad.",
+    "Gracias. Recibimos su consulta. Un especialista de JEREN se pondrá en contacto para revisar su necesidad.",
+  respuesta: "Respondemos el día hábil siguiente por email o WhatsApp.",
 }
 
 // ── 13. Footer ───────────────────────────────────────────────────────────────
