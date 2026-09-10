@@ -225,3 +225,26 @@ Errores propios durante la aplicación: (1) las descripciones de RSA iban como s
 La fase 5 y las preguntas de la sección 6 son de Ariel.
 
 Contrato de medición de la fase 1: revisar el **24/09/2026**.
+
+---
+
+## Search Console, 10/09 (después de las fases)
+
+Se verificó `https://www.jeren.com/` como propiedad de `am@qubikcommerce.com` (etiqueta META en `app/layout.tsx`, commit `ca4e66e`). Token en `tec-harness/secrets/gsc.env`, script `tec-harness/src/oauth_gsc.py`; APIs de Search Console y Site Verification habilitadas en el proyecto GCP `793098567134`.
+
+**Hallazgo: Google no conocía `/cimat`.** Inspección de URL al 10/09:
+
+| URL | Estado |
+|---|---|
+| /cimat | Google no reconoce esta URL |
+| /cimat/especificaciones | Google no reconoce esta URL |
+| /cimat/aplicaciones | Google no reconoce esta URL |
+| /cimat/normas-y-grados | Indexada, rastreada el 02/09 |
+| las 3 subpáginas nuevas | Google no reconoce esta URL (tienen horas) |
+
+El sitemap `https://www.jeren.com/sitemap.xml` figuraba enviado y leído por última vez en **julio de 2020**: Google no lo volvía a leer. Se reenvió el 10/09 (aceptado). Las únicas consultas orgánicas de CIMAT en 28 días fueron tres búsquedas de normas ISO sobre `/cimat/normas-y-grados`.
+
+Esto explica la mitad orgánica de lo que vieron Fabián, Arturo y Nico: la landing no aparecía para ninguna búsqueda porque nunca estuvo en el índice, no solo porque le faltara contenido.
+
+**Pendiente, solo por interfaz:** "Solicitar indexación" en Search Console para `/cimat` y las tres subpáginas. Revisar el estado de indexación el 17/09 con `gsc_cimat.py`.
+
