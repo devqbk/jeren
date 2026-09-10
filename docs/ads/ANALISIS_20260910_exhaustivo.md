@@ -203,4 +203,17 @@ Los tres expertos coinciden con el hallazgo central del plan original: las empre
 
 ## Estado al cierre del 10/09
 
-Nada de esto se aplicó. Las fases 1 y 2 son cambios en Ads, reversibles y con datos que los justifican. Las fases 3 y 4 son código. La fase 5 y las preguntas de la sección 6 son de Ariel.
+**Fase 1 aplicada el 10/09 por API**, autorizada por Ariel:
+- `analizador de vibraciones y balanceo` pausada.
+- 98 negativas nuevas en la lista compartida (de 106 a 204): 90 en frase, 8 en exacta.
+- Negativa `manual` quitada.
+- Sitelink "Solicitar información" recreado con URL `/cimat?interes=nueva-balanceadora` (distinta de la final); el viejo desvinculado. El sitelink `/whatsapp` ya estaba desvinculado a nivel campaña antes de hoy.
+- Callout "Repuestos en Argentina" reemplazado por "Kit de repuestos críticos"; callout "Más de 40 años" desvinculado.
+- Titular "Más de 40 Años en Industria" sacado de los 3 RSA que lo tenían (Máquina balanceadora, Cigüeñales y cardanes, Marca y competencia). Sin reemplazo: los titulares nuevos van en la fase 2.
+- El valor de conversión ya estaba cargado; no se tocó.
+
+Error propio durante la aplicación: el filtro para sacar el titular buscaba "40" y también borró "Precisión Según ISO 21940" en dos RSA. Se restauró en el momento. Guarda: filtrar por texto completo, nunca por substring numérico.
+
+Fases 2 a 5 pendientes. La fase 2 es Ads (anuncios, concordancias, mover Marca). Las fases 3 y 4 son código. La fase 5 y las preguntas de la sección 6 son de Ariel.
+
+Contrato de medición de la fase 1: revisar el **24/09/2026**.
