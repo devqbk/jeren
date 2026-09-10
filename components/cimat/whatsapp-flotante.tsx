@@ -1,7 +1,8 @@
 "use client"
 
-import { WHATSAPP_URL, stickyBar } from "@/lib/cimat-content"
+import { stickyBar } from "@/lib/cimat-content"
 import { track } from "./track"
+import { useWhatsappHref } from "./whatsapp"
 
 /**
  * Botón flotante de WhatsApp, siempre visible abajo a la derecha.
@@ -15,9 +16,10 @@ import { track } from "./track"
  * respondiendo. El texto lo dice.
  */
 export function WhatsappFlotante() {
+  const href = useWhatsappHref()
   return (
     <a
-      href={WHATSAPP_URL}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={stickyBar.whatsappAria}

@@ -1,10 +1,11 @@
 "use client"
 
 import { MessageCircle } from "lucide-react"
-import { CTA_LABEL, FORM_ANCHOR, cta, stickyBar } from "@/lib/cimat-content"
+import { CTA_LABEL, FORM_ANCHOR, stickyBar } from "@/lib/cimat-content"
 import { container } from "./ui"
 import { trackCta, track } from "./track"
 import { useScrolledPast } from "./scroll"
+import { useWhatsappHref } from "./whatsapp"
 
 /**
  * Barra persistente de conversión — solo en mobile.
@@ -15,6 +16,7 @@ import { useScrolledPast } from "./scroll"
  */
 export function StickyCta() {
   const visible = useScrolledPast()
+  const whatsappHref = useWhatsappHref()
 
   return (
     <div
@@ -37,7 +39,7 @@ export function StickyCta() {
           {CTA_LABEL}
         </a>
         <a
-          href={cta.whatsapp.href}
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={visible ? undefined : -1}

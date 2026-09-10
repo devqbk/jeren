@@ -1,8 +1,9 @@
 "use client"
 
 import type * as React from "react"
-import { CATALOGO_PDF_URL, EMAIL, TELEFONO_HREF, WHATSAPP_URL } from "@/lib/cimat-content"
+import { CATALOGO_PDF_URL, EMAIL, TELEFONO_HREF } from "@/lib/cimat-content"
 import { track } from "./track"
+import { useWhatsappHref } from "./whatsapp"
 
 /**
  * Canales secundarios. Nunca compiten visualmente con el CTA principal, pero
@@ -18,9 +19,10 @@ export function WhatsappLink({
   className?: string
   children: React.ReactNode
 }) {
+  const href = useWhatsappHref()
   return (
     <a
-      href={WHATSAPP_URL}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click", { cta_location: location })}
