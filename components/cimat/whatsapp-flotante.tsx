@@ -1,15 +1,19 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { stickyBar } from "@/lib/cimat-content"
+import { useScrolledPast } from "./scroll"
 import { track } from "./track"
 import { useWhatsappHref } from "./whatsapp"
 
 /**
- * Botón flotante de WhatsApp, siempre visible abajo a la derecha.
+ * Botón flotante de WhatsApp, abajo a la derecha.
  *
- * En mobile sube por encima de la barra persistente (`StickyCta`), que ocupa el
- * borde inferior completo: sin ese offset se pisan. En desktop esa barra no
- * existe y el botón baja a su posición natural.
+ * Un solo acceso a WhatsApp visible por vez: en mobile, apenas aparece la
+ * barra persistente (`StickyCta`, que ya trae su botón de WhatsApp) el
+ * flotante se retira. Y en cualquier tamaño se retira mientras la sección del
+ * CTA final está en pantalla, que tiene su propio enlace de WhatsApp y cuyo
+ * botón de envío quedaba tapado por este pill.
  *
  * Lleva el texto además del ícono: el isotipo solo se reconoce, pero el
  * comprador industrial no siempre asume que del otro lado hay alguien
@@ -17,6 +21,22 @@ import { useWhatsappHref } from "./whatsapp"
  */
 export function WhatsappFlotante() {
   const href = useWhatsappHref()
+  const barraVisible = useScrolledPast()
+  const [formularioEnVista, setFormularioEnVista] = useState(false)
+
+  useEffect(() => {
+    const nodo = document.getElementById("contacto")
+    if (!nodo) return
+    const obs = new IntersectionObserver(
+      ([entrada]) => setFormularioEnVista(entrada.isIntersecting),
+      { threshold: 0.05 }
+    )
+    obs.observe(nodo)
+    return () => obs.disconnect()
+  }, [])
+
+  const visibilidad = formularioEnVista ? "hidden" : barraVisible ? "hidden lg:flex" : "flex"
+
   return (
     <a
       href={href}
@@ -24,7 +44,7 @@ export function WhatsappFlotante() {
       rel="noopener noreferrer"
       aria-label={stickyBar.whatsappAria}
       onClick={() => track("whatsapp_click", { cta_location: "flotante" })}
-      className="fixed bottom-24 right-4 z-50 flex min-h-12 items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-5 text-sm font-semibold text-white shadow-lg shadow-black/20 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 lg:bottom-6"
+      className={`${visibilidad} fixed bottom-24 right-4 z-50 min-h-12 items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-5 text-sm font-semibold text-white shadow-lg shadow-black/20 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 lg:bottom-6`}
     >
       <IconoWhatsapp />
       WhatsApp

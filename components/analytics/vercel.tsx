@@ -1,7 +1,13 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation"
-import { Analytics } from "@vercel/analytics/next"
+
+// Carga diferida: si el módulo se importa estático, su código viaja igual a
+// `/cimat` aunque el componente devuelva null.
+const Analytics = dynamic(() => import("@vercel/analytics/next").then((m) => m.Analytics), {
+  ssr: false,
+})
 
 /**
  * Vercel Analytics, salvo en la landing paga. En `/cimat` cada tercero cuenta

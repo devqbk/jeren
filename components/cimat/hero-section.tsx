@@ -1,26 +1,63 @@
+import { Check, Phone } from "lucide-react"
 import { hero, trustBar } from "@/lib/cimat-content"
+import { Cta } from "./cta"
 import { HeroCarousel } from "./hero-carousel"
 import { LeadForm } from "./lead-form"
+import { TelefonoLink } from "./secundarios"
 import { Eyebrow, container } from "./ui"
 
 /**
- * Hero de conversión: el formulario está en el primer viewport en desktop.
- * La lógica del copy es categoría → beneficio → respaldo técnico → soporte
- * local → siguiente paso. Las especificaciones vienen después del beneficio,
- * no antes.
+ * Hero de conversión.
+ *
+ * Desktop: titular y argumento a la izquierda, formulario a la derecha en el
+ * primer viewport. Mobile: el orden del DOM es el orden de lectura — H1 →
+ * subtítulo → tres argumentos → botón al formulario y teléfono → imagen →
+ * formulario. Antes el formulario iba segundo y pedía datos antes de
+ * argumentar. En desktop la grilla ubica cada bloque a mano, así que el orden
+ * del DOM no cambia el layout.
  */
 export function HeroSection() {
   return (
     <section id="top" className="relative scroll-mt-24 overflow-hidden bg-[var(--c-surface)]">
       <div className={container}>
         <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-stretch lg:gap-16 lg:py-20">
-          {/* Titular. En mobile va primero y el formulario queda inmediatamente
-              debajo; el resto del hero baja para no empujarlo fuera de pantalla. */}
           <div className="lg:col-start-1 lg:row-start-1">
             <Eyebrow>{hero.eyebrow}</Eyebrow>
             <h1 className="mt-4 text-pretty text-[1.75rem] font-bold leading-[1.1] tracking-tight sm:text-[2.4rem] lg:text-[2.9rem]">
               {hero.h1}
             </h1>
+          </div>
+
+          <div className="lg:col-start-1 lg:row-start-2">
+            <p className="max-w-[58ch] text-base leading-[1.6] text-[var(--c-ink-2)] sm:text-[1.0625rem]">
+              {hero.subtitle}
+            </p>
+
+            <ul className="mt-6 space-y-2.5">
+              {hero.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex gap-2.5 text-[15px] leading-snug text-[var(--c-ink)] sm:text-base"
+                >
+                  <Check className="mt-0.5 size-4 shrink-0 text-[var(--c-accent)]" aria-hidden="true" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Solo en mobile: en desktop el formulario ya está al lado. */}
+            <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] gap-3 lg:hidden">
+              <Cta location="hero-mobile" label={hero.ctaMobile} className="w-full" />
+              <TelefonoLink
+                location="hero-mobile"
+                className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border border-[var(--c-line)] bg-white px-4 text-sm font-semibold text-[var(--c-ink)]"
+              >
+                <Phone className="size-4" aria-hidden="true" />
+                Llamar
+              </TelefonoLink>
+            </div>
+
+            <HeroCarousel />
           </div>
 
           <div
@@ -38,18 +75,6 @@ export function HeroSection() {
                 <LeadForm ctaLocation="hero-form" />
               </div>
             </div>
-          </div>
-
-          <div className="lg:col-start-1 lg:row-start-2">
-            <p className="max-w-[58ch] text-base leading-[1.6] text-[var(--c-ink-2)] sm:text-[1.0625rem]">
-              {hero.subtitle}
-            </p>
-
-            <p className="mt-6 inline-flex flex-wrap items-center gap-x-2 rounded-md border border-[var(--c-line)] bg-white px-4 py-2.5 text-sm font-semibold text-[var(--c-ink)]">
-              {hero.resumenTecnico}
-            </p>
-
-            <HeroCarousel />
           </div>
         </div>
       </div>

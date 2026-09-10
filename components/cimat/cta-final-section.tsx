@@ -1,12 +1,17 @@
 import { MessageCircle } from "lucide-react"
 import { cta, ctaFinal } from "@/lib/cimat-content"
+import { Cta } from "./cta"
 import { LeadForm } from "./lead-form"
 import { WhatsappLink } from "./secundarios"
+import { SoloDesktop } from "./solo-desktop"
 import { Eyebrow, Section } from "./ui"
 
 /**
  * Conversión final: el mismo formulario del hero, no un CTA distinto. Es la
  * segunda oportunidad para quien bajó leyendo toda la página.
+ *
+ * En mobile no se monta un segundo formulario (ni un segundo Turnstile): el
+ * botón lleva al del hero con `irAlFormulario`. En desktop quedan los dos.
  */
 export function CtaFinalSection() {
   return (
@@ -21,6 +26,10 @@ export function CtaFinalSection() {
             {ctaFinal.body}
           </p>
 
+          <div className="mt-8 lg:hidden">
+            <Cta location="cta-final" className="w-full" />
+          </div>
+
           <p className="mt-8 text-sm text-white/55">
             ¿Prefiere escribirnos?{" "}
             <WhatsappLink
@@ -33,9 +42,9 @@ export function CtaFinalSection() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white p-6 sm:p-8">
+        <SoloDesktop className="hidden rounded-xl bg-white p-6 sm:p-8 lg:block">
           <LeadForm ctaLocation="cta-final-form" />
-        </div>
+        </SoloDesktop>
       </div>
     </Section>
   )

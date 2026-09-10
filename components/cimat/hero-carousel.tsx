@@ -1,80 +1,43 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { heroGaleria } from "@/lib/cimat-content"
 
-const INTERVALO = 5000
-
 /**
- * Galería del hero. La línea no es una sola máquina, así que el hero rota entre
- * los tipos con sus bolitas de control.
+ * Galería del hero, de rotación manual.
  *
- * Solo la primera imagen tiene `priority`: es el LCP. El resto entra con lazy.
- * Si el visitante prefiere menos movimiento, o toca una bolita, la rotación se
- * detiene y queda manual.
+ * Solo la imagen activa está en el DOM: antes las cinco se descargaban al
+ * entrar el carrusel al viewport. La primera es el LCP en desktop y va con
+ * `priority` (eager + fetchpriority high + preload); las demás cargan recién
+ * cuando el visitante las pide. Sin autoplay: nadie lee cinco epígrafes que
+ * cambian solos, y en mobile era pintado permanente en el hilo principal.
  */
 export function HeroCarousel() {
   const [activo, setActivo] = useState(0)
-  const [auto, setAuto] = useState(true)
-  const [visible, setVisible] = useState(true)
-  const marco = useRef<HTMLElement | null>(null)
-  const timer = useRef<number | null>(null)
-
-  // Rotar un carrusel que nadie está mirando solo gasta ciclos.
-  useEffect(() => {
-    const nodo = marco.current
-    if (!nodo) return
-    const obs = new IntersectionObserver(
-      ([entrada]) => setVisible(entrada.isIntersecting),
-      { threshold: 0.2 }
-    )
-    obs.observe(nodo)
-    return () => obs.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!auto || !visible) return
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)")
-    if (reduce.matches) return
-
-    timer.current = window.setInterval(() => {
-      setActivo((i) => (i + 1) % heroGaleria.length)
-    }, INTERVALO)
-
-    return () => {
-      if (timer.current) window.clearInterval(timer.current)
-    }
-  }, [auto, visible])
+  const img = heroGaleria[activo]
 
   return (
-    <figure ref={marco} className="mt-6">
+    <figure className="mt-6">
       <div className="relative overflow-hidden rounded-xl border border-[var(--c-line)] bg-white">
-        {heroGaleria.map((img, i) => (
-          <Image
-            key={img.src}
-            src={img.src}
-            alt={img.alt}
-            width={img.width}
-            height={img.height}
-            loading="lazy"
-            sizes="(max-width: 1023px) 100vw, 620px"
-            aria-hidden={i !== activo}
-            data-cf-img={i}
-            className={`h-56 w-full object-cover object-center transition-opacity duration-500 sm:h-72 lg:h-80 ${
-              i === activo ? "opacity-100" : "absolute inset-0 opacity-0"
-            }`}
-          />
-        ))}
+        <Image
+          key={img.src}
+          src={img.src}
+          alt={img.alt}
+          width={img.width}
+          height={img.height}
+          priority={activo === 0}
+          loading={activo === 0 ? "eager" : "lazy"}
+          fetchPriority={activo === 0 ? "high" : "auto"}
+          sizes="(max-width: 1023px) 100vw, 620px"
+          data-cf-img={activo}
+          className="h-56 w-full object-cover object-center sm:h-72 lg:h-80"
+        />
       </div>
 
       <div className="mt-3 flex items-center justify-between gap-4">
         <figcaption className="min-h-[2.5em] text-[13px] leading-snug text-[var(--c-muted)]">
-          {heroGaleria.map((img, i) => (
-            <span key={img.src} data-cf-cap={i} hidden={i !== activo}>
-              {img.caption}
-            </span>
-          ))}
+          {img.caption}
         </figcaption>
 
         <div
@@ -82,18 +45,15 @@ export function HeroCarousel() {
           aria-label="Modelos de balanceadora"
           className="flex shrink-0 items-center gap-1"
         >
-          {heroGaleria.map((img, i) => (
+          {heroGaleria.map((item, i) => (
             <button
-              key={img.src}
+              key={item.src}
               type="button"
               role="tab"
               aria-selected={i === activo}
-              aria-label={`Ver ${img.caption ?? img.alt}`}
+              aria-label={`Ver ${item.caption ?? item.alt}`}
               data-cf-slide={i}
-              onClick={() => {
-                setAuto(false)
-                setActivo(i)
-              }}
+              onClick={() => setActivo(i)}
               className="flex size-8 items-center justify-center rounded-full"
             >
               <span

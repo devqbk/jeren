@@ -3,7 +3,6 @@ import { Inter } from "next/font/google"
 import { GoogleAnalytics } from "@/components/analytics/ga4"
 import { VercelAnalytics } from "@/components/analytics/vercel"
 import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/gtm"
-import { Providers } from "@/components/providers"
 import "./globals.css"
 
 const inter = Inter({
@@ -62,11 +61,10 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <GoogleTagManagerNoScript />
-        <Providers>
-          {children}
-          <VercelAnalytics />
-          <GoogleAnalytics />
-        </Providers>
+        {/* El ThemeProvider vive en app/(site)/layout.tsx: /cimat no lo carga. */}
+        {children}
+        <VercelAnalytics />
+        <GoogleAnalytics />
       </body>
     </html>
   )
