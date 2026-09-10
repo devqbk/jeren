@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { rotores } from "@/lib/cimat-content"
 
 const BASE = "https://www.jeren.com"
 
@@ -14,6 +15,12 @@ const RUTAS: { path: string; priority: number; changeFrequency: MetadataRoute.Si
   { path: "/cimat/especificaciones", priority: 0.7, changeFrequency: "monthly" },
   { path: "/cimat/normas-y-grados", priority: 0.7, changeFrequency: "yearly" },
   { path: "/cimat/aplicaciones", priority: 0.7, changeFrequency: "monthly" },
+  // Subpáginas por rotor: URL final de cada grupo de anuncios.
+  ...rotores.map((r) => ({
+    path: `/cimat/${r.slug}`,
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  })),
   { path: "/privacidad", priority: 0.3, changeFrequency: "yearly" },
 ]
 

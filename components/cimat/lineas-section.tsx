@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Check, Download, MapPin } from "lucide-react"
-import { balanceoCampo, cta, lineas } from "@/lib/cimat-content"
+import { balanceoCampo, cta, lineas, rotorNav } from "@/lib/cimat-content"
 import { Cta } from "./cta"
 import { CatalogoLink } from "./secundarios"
 import { Eyebrow, Lead, Section, SectionTitle } from "./ui"
@@ -81,6 +81,30 @@ export function LineasSection() {
           </article>
         ))}
       </div>
+
+      {/* Un enlace por rotor, con la palabra literal que la persona buscó. Son
+          las URL finales de los grupos de anuncios. */}
+      <nav
+        aria-label="Balanceadoras por tipo de rotor"
+        className="mt-10 rounded-xl border border-[var(--c-line)] bg-[var(--c-paper)] p-6 sm:p-8 lg:mt-12"
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--c-muted)]">
+          Por tipo de rotor
+        </p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          {rotorNav.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--c-ink)] underline-offset-4 hover:underline"
+              >
+                {item.label}
+                <ArrowRight className="size-3.5 shrink-0" aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* Balanceo de campo: el brochure oficial no tiene foto del SmaRT.
           Va como bloque de texto a propósito — no se usa la imagen de otra máquina. */}

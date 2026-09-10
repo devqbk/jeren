@@ -204,6 +204,14 @@ export const hero = {
     "Una balanceadora de rotores con balanceo estático y dinámico: una máquina de balanceo dinámico configurada para su aplicación, no un modelo elegido de una lista. Si busca una balanceadora dinámica (equilibradora) horizontal, vertical o para turbos, JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para operaciones de toda la región.",
   resumenTecnico:
     "Balanceo estático y dinámico (equilibrado dinámico) · 5 kg a 20 toneladas · ISO 21940 · Verificación ISO 2953",
+  /** Tres argumentos antes del pedido de datos. Mismos datos que el resumen técnico. */
+  bullets: [
+    "Rotores de 5 kg a 20 toneladas, con balanceo estático y dinámico (equilibrado dinámico).",
+    "Grados según ISO 21940-11 y verificación de la máquina según ISO 2953.",
+    "Puesta en marcha y capacitación del personal en su planta, con soporte desde Argentina.",
+  ],
+  /** CTA del hero en mobile: ancla al formulario, que en mobile queda más abajo. */
+  ctaMobile: "Solicitar propuesta",
   microcopy:
     "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas, con asesoramiento sin cargo.",
   image: {
@@ -1015,6 +1023,213 @@ export const footer = {
   ],
   normas: "ISO 21940 · ISO 2953 · Directiva de Máquinas 2006/42/CE",
 }
+
+// ── 14. Subpáginas por rotor ─────────────────────────────────────────────────
+//
+// Una URL por grupo de anuncios, con la keyword literal en el H1. Todo número
+// sale de `specRows` (por el nombre de la línea) o de `grados.rows` (por el
+// código G): acá no se escribe ninguna capacidad nueva.
+
+export interface RotorPage {
+  /** Segmento de la URL bajo /cimat/. */
+  slug: string
+  /** Nombre corto del rotor, para el CTA "Pedir propuesta para [rotor]" y las migas. */
+  rotor: string
+  eyebrow: string
+  h1: string
+  /** Sinónimos y forma en que se lo nombra en otros mercados. Va debajo del H1. */
+  subtitle: string
+  /** Dos párrafos de introducción, en usted. */
+  intro: [string, string]
+  /** Tres argumentos concretos, con los números de las líneas. */
+  bullets: string[]
+  /** Nombres de `specRows.line` que se muestran en esta página, en orden. */
+  specLines: string[]
+  /** Qué línea resuelve cada cosa; va encima de la tabla. */
+  lineasTexto: string
+  imagenes: LandingImage[]
+  /** Códigos de `grados.rows` que aplican, en orden. */
+  gradosCodigos: string[]
+  gradoNota: string
+  faqs: FaqItem[]
+  interes: InteresValue
+  /** Valor de `product_line` que viaja con el lead (mismo campo que `?linea=`). */
+  linea: string
+  seo: { title: string; description: string }
+}
+
+export const rotores: RotorPage[] = [
+  {
+    slug: "balanceadora-de-cardanes-y-ciguenales",
+    rotor: "cardanes y cigüeñales",
+    eyebrow: "Para talleres de cardanes y rectificadoras de motores",
+    h1: "Balanceadora de cardanes, cigüeñales e inducidos CIMAT",
+    subtitle:
+      "Balanceadora de ejes y árboles de transmisión (equilibradora de cardanes), balanceadora de cigüeñales y balanceadora de inducidos (armaduras de motores eléctricos), con soporte desde Argentina.",
+    intro: [
+      "Si su taller balancea cardanes de camión, semirremolque o equipo pesado, cigüeñales de motores diésel o inducidos de motores eléctricos, la máquina se elige por el rotor y no por el número de modelo. CIMAT fabrica una línea específica para cada uno: la serie CMT-DS para árboles cardánicos de 1 a 4 tramos, la CMT-700 H2K para cigüeñales con estación de taladrado en máquina, y la línea horizontal universal para inducidos, armaduras y ejes con muñones.",
+      "JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha y la capacitación del personal sobre los rotores propios del taller. Indíquenos qué cardán, cigüeñal o inducido necesita balancear y le respondemos con la configuración que lo resuelve, con asesoramiento sin cargo.",
+    ],
+    bullets: [
+      "Cardanes de hasta 4.600 mm de largo y 250 kg, con corrección en 4 planos simultáneos (serie CMT-DS).",
+      "Cigüeñales de 7 a 700 kg sobre muñones de bancada, con distribución automática entre contrapesos (CMT-700 H2K).",
+      "Inducidos, armaduras y ejes con muñones desde 5 kg en la línea horizontal, en versión compacta sin fundación (H2BS) o sobre bancada.",
+    ],
+    specLines: ["Cardanes y árboles de transmisión", "Cigüeñales"],
+    lineasTexto:
+      "Las dos líneas específicas de esta página. Los inducidos (armaduras de motores eléctricos) y los ejes con muñones van en la línea horizontal universal, de 5 a 20.000 kg, o en la compacta H2BS de 15 a 130 kg: sus rangos completos están en la tabla técnica.",
+    imagenes: [
+      {
+        src: "/images/cimat/aplicacion-arbol-cardan.webp",
+        alt: "Árbol de cardán completo con sus crucetas montado en una balanceadora horizontal CIMAT de bancada",
+        width: 1400,
+        height: 788,
+        caption:
+          "Árbol de cardán completo con sus crucetas, balanceado como conjunto en bancada horizontal.",
+      },
+    ],
+    gradosCodigos: ["G16", "G6,3"],
+    gradoNota:
+      "G16 es el grado de referencia para ejes cardánicos según ISO 21940-11; G6,3 el de volantes y motores estándar. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    faqs: [
+      {
+        question: "¿Qué largo de cardán admite la balanceadora?",
+        answer:
+          "La serie CMT-DS admite árboles cardánicos de hasta 4.600 mm de largo, con tubo de hasta ø170 mm y hasta 250 kg, de 1 a 4 tramos, y balancea hasta 5.000 rpm con 4 planos de corrección simultáneos. El software convierte la masa de corrección en longitud de fleje a soldar, que es como se corrige en el taller de cardanes. Los pedestales están reforzados para la carga axial del estriado.",
+      },
+      {
+        question: "¿Balancea el cigüeñal con el volante?",
+        answer:
+          "La CMT-700 H2K balancea cigüeñales de 7 a 700 kg apoyados sobre sus muñones de bancada, con distribución automática de la corrección entre contrapesos y estación de taladrado móvil en la misma máquina. El volante es un rotor con su propio grado de referencia (G6,3 según ISO 21940-11). Si necesita balancear el conjunto cigüeñal-volante, indíquelo en la consulta: la configuración y el utillaje se definen en la ingeniería de aplicación, con los rotores reales del taller.",
+      },
+    ],
+    interes: "nueva-balanceadora",
+    linea: "cardanes",
+    seo: {
+      title: "Balanceadora de cardanes, cigüeñales e inducidos CIMAT | JEREN",
+      description:
+        "Balanceadora de cardanes hasta 4.600 mm (serie CMT-DS), de cigüeñales de 7 a 700 kg (CMT-700 H2K) y de inducidos y ejes. Para talleres de cardanes y rectificadoras. Importación, puesta en marcha y soporte desde Argentina.",
+    },
+  },
+  {
+    slug: "balanceadora-de-ventiladores-e-impulsores",
+    rotor: "ventiladores e impulsores",
+    eyebrow: "Para fabricantes y reparadores de ventiladores, bombas y motores",
+    h1: "Balanceadora de ventiladores e impulsores CIMAT",
+    subtitle:
+      "Balanceadora de rodetes, impulsores de bomba y ventiladores industriales, y balanceadora de rotores eléctricos (armaduras o inducidos, según cómo se los llame en su taller), con soporte desde Argentina.",
+    intro: [
+      "Un rodete de ventilador o un impulsor de bomba no tiene muñones: se balancea de pie, sobre una balanceadora vertical, con corrección en la misma estación por taladrado o fresado. Un rotor eléctrico —armadura o inducido— sí tiene muñones y se balancea en horizontal. CIMAT fabrica las dos líneas: la vertical CMT-V2 para discos, impulsores y rodetes, y la compacta horizontal H2BS, que se instala sin fundación ni obra civil y cubre rotores de 15 a 130 kg.",
+      "JEREN define con usted la máquina y el utillaje a partir del rotor real —masa, diámetro, velocidad de servicio y grado exigido—, gestiona la importación y hace la puesta en marcha y la capacitación en su planta. Indíquenos qué ventilador, impulsor o rotor eléctrico necesita balancear y le respondemos con asesoramiento sin cargo.",
+    ],
+    bullets: [
+      "Verticales de 15 a 500 kg y hasta ø1.100 mm, con adaptador de sujeción neumático y corrección en estación.",
+      "Horizontal compacta H2BS de 15 a 130 kg y hasta ø700 mm, sin fundación, monofásica o trifásica.",
+      "Grado G6,3 de ventiladores e impulsores certificable según ISO 21940-11, con máquina verificada según ISO 2953.",
+    ],
+    specLines: ["Verticales para discos e impulsores", "Compactas sin fundación"],
+    lineasTexto:
+      "La vertical para lo que no tiene muñones —rodetes, impulsores, discos— y la horizontal compacta para rotores eléctricos, armaduras e inducidos. Para ventiladores de mayor porte, la línea horizontal universal llega a 20.000 kg y ø2.200 mm.",
+    imagenes: [
+      {
+        src: "/images/cimat/aplicacion-ventilador-industrial.webp",
+        alt: "Rodete de ventilador industrial montado sobre el plato de una balanceadora vertical CIMAT",
+        width: 1400,
+        height: 403,
+        caption:
+          "Rodete de ventilador industrial sobre plato vertical: corrección por agregado o remoción de masa.",
+      },
+      {
+        src: "/images/cimat/aplicacion-rotor-motor-electrico.webp",
+        alt: "Rotor de motor eléctrico montado dentro de una balanceadora CIMAT encapsulada, con el HMI en columna al costado",
+        width: 1400,
+        height: 823,
+        caption:
+          "Rotor de motor eléctrico en balanceadora encapsulada, con medición y corrección en dos planos.",
+      },
+    ],
+    gradosCodigos: ["G6,3", "G2,5"],
+    gradoNota:
+      "G6,3 es el grado de referencia de ventiladores comunes, impulsores de bomba y motores estándar; G2,5 el de ventiladores industriales y motores eléctricos de más de 950 rpm. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    faqs: [
+      {
+        question: "¿Qué tamaño de rodete o impulsor admite?",
+        answer:
+          "La línea vertical CMT-V2 tiene modelos de 15, 30, 50, 100, 200 y 500 kg, con mesas de ø650, ø850 y ø1.100 mm según el modelo, adaptador de sujeción neumático (6 bar) o manual, y corrección en la misma estación por taladrado o fresado con aspiración de virutas. Para rodetes de mayor porte, la línea horizontal universal cubre de 5 a 20.000 kg y hasta ø2.200 mm.",
+      },
+      {
+        question: "¿Sirve para rotores eléctricos, armaduras o inducidos?",
+        answer:
+          "Sí. Los rotores eléctricos —armaduras o inducidos— tienen muñones y se balancean en horizontal: la compacta H2BS cubre de 15 a 130 kg, muñones de 5 a 140 mm según modelo y diámetros de 200 a 700 mm, con precisión ISO 2953 de 0,1 a 0,2 µm, y se instala sin fundación. Para armaduras de mayor peso, la horizontal universal llega a 20.000 kg.",
+      },
+    ],
+    interes: "nueva-balanceadora",
+    linea: "ventiladores",
+    seo: {
+      title: "Balanceadora de ventiladores e impulsores CIMAT | JEREN",
+      description:
+        "Balanceadora de ventiladores, rodetes e impulsores (vertical, de 15 a 500 kg) y de rotores eléctricos, armaduras e inducidos (horizontal compacta sin fundación). Grado G6,3 según ISO 21940-11. Soporte desde Argentina.",
+    },
+  },
+  {
+    slug: "balanceadora-de-turbos",
+    rotor: "turbos",
+    eyebrow: "Para el taller de remanufactura de turbocompresores",
+    h1: "Balanceadora de turbos CIMAT",
+    subtitle:
+      "También llamada equilibradora de turbos o balanceadora de turbinas: balancea el conjunto central (CHRA) del turbocompresor a la velocidad real de trabajo, hasta 300.000 rpm.",
+    intro: [
+      "El turbo vuelve del cliente silbando aunque se haya armado con piezas dentro de tolerancia: a más de cien mil revoluciones por minuto, un desbalance residual que en otro rotor sería despreciable se traduce en ruido, consumo de aceite y devolución en garantía. Por eso la balanceadora de turbos CIMAT balancea el conjunto central a la velocidad real de trabajo, con la curva de vibración contra velocidad y la posición angular del desbalance en pantalla.",
+      "Hay dos máquinas según el flujo del taller: la serie CMT-VSR, core balancer de alta velocidad hasta 300.000 rpm, y la CMT-TR para el balanceo del núcleo a baja velocidad, de 4.000 a 40.000 rpm. JEREN importa la máquina, la pone en marcha y capacita al personal sobre los turbos reales del taller, con asesoramiento sin cargo desde la primera consulta.",
+    ],
+    bullets: [
+      "Conjunto central (CHRA) hasta ø240 mm balanceado hasta 300.000 rpm, con residual mínimo de 0,05 g·mm (serie CMT-VSR).",
+      "Núcleo de hasta 16 kg a 4.000 – 40.000 rpm en 2 planos, con unidades en mg y g·mm (CMT-TR).",
+      "Grado G2,5 de turbocompresores según ISO 21940-11, con máquina verificada según ISO 2953.",
+    ],
+    specLines: ["Turbo — core balancer de alta velocidad", "Turbo — núcleo de baja velocidad"],
+    lineasTexto:
+      "Las dos máquinas de la línea turbo, con los rangos que publica el fabricante. Los bancos de flujo Turbo Test para el control funcional y la calibración de geometría variable se cotizan aparte.",
+    imagenes: [
+      {
+        src: "/images/cimat/linea-turbo-core-balancer.webp",
+        alt: "Máquina CIMAT de doble estación para turbocompresores, con los diagramas polares de desequilibrio en pantalla",
+        width: 938,
+        height: 902,
+        caption:
+          "Core balancer de doble estación, con los diagramas polares de desbalance en pantalla.",
+      },
+    ],
+    gradosCodigos: ["G2,5"],
+    gradoNota:
+      "G2,5 es el grado de referencia de turbocompresores y turbinas según ISO 21940-11. En el conjunto central el fabricante publica el residual alcanzable en g·mm, que es lo que el taller certifica.",
+    faqs: [
+      {
+        question: "¿Balancea el CHRA a velocidad real?",
+        answer:
+          "Sí. La serie CMT-VSR balancea el conjunto central del turbocompresor a la velocidad real de trabajo, hasta 300.000 rpm, accionado por aire comprimido a 8 bar. La máquina muestra la curva de vibración contra velocidad con la posición angular del desbalance y calcula el punto de corrección automáticamente. El residual mínimo es de 0,05 g·mm y la relación de reducción (URR) es de al menos 95% en la versión Big Basic; admite núcleos de hasta ø240 mm y ruedas de compresor de hasta ø179 mm en la versión Big.",
+      },
+      {
+        question: "¿Qué diferencia hay entre la CMT-VSR y la CMT-TR?",
+        answer:
+          "La CMT-VSR es el core balancer de alta velocidad: balancea el conjunto central armado, a la velocidad real, hasta 300.000 rpm, en 7 configuraciones. La CMT-TR balancea el núcleo a baja velocidad, de 4.000 a 40.000 rpm, en 2 planos, con núcleos de hasta 16 kg y precisión de 0,02 a 0,3 g·mm en camión ligero y de 0,15 a 0,9 g·mm en camión pesado. Cuál conviene depende del volumen y del tipo de turbo que entra al taller: lo definimos en la ingeniería de aplicación.",
+      },
+    ],
+    interes: "nueva-balanceadora",
+    linea: "turbo",
+    seo: {
+      title: "Balanceadora de turbos CIMAT (equilibradora de turbos) | JEREN",
+      description:
+        "Balanceadora de turbos CIMAT: conjunto central (CHRA) balanceado a velocidad real hasta 300.000 rpm, residual mínimo 0,05 g·mm. Serie CMT-VSR y CMT-TR. Importación, puesta en marcha y soporte desde Argentina.",
+    },
+  },
+]
+
+/** Enlaces de la navegación secundaria de la landing, uno por rotor, con la palabra literal. */
+export const rotorNav = rotores.map((r) => ({
+  label: r.h1.replace(" CIMAT", ""),
+  href: `/cimat/${r.slug}`,
+}))
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
 

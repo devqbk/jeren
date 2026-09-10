@@ -1,15 +1,31 @@
 "use client"
 
 import { useActionState, useEffect, useId, useRef, useState } from "react"
+import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
-import { Turnstile } from "@marsidev/react-turnstile"
 import { AlertCircle, Loader2 } from "lucide-react"
 import { sendCimatLead, type CimatLeadState } from "@/app/actions/cimat-lead"
-import { CTA_LABEL, INTERESES, PAISES, formulario } from "@/lib/cimat-content"
+import {
+  CTA_LABEL,
+  INTERESES,
+  PAISES,
+  formulario,
+  type InteresValue,
+} from "@/lib/cimat-content"
 import { cn } from "@/lib/utils"
 import { marcarLeadEnviado } from "./gracias-tracker"
 import { INTERES_EVENT, track } from "./track"
 import { datosUsuario } from "./user-data"
+
+/**
+ * Turnstile diferido: ni el componente ni el script de Cloudflare se cargan
+ * hasta que la persona toca el formulario. Antes montaba al hidratar —dos
+ * veces, uno por formulario— y era el tercero más pesado de la página.
+ */
+const Turnstile = dynamic(
+  () => import("@marsidev/react-turnstile").then((m) => m.Turnstile),
+  { ssr: false }
+)
 
 const initialState: CimatLeadState = { status: "idle", message: "" }
 
@@ -41,10 +57,19 @@ function interesDesdeUrl(): string {
 
 export function LeadForm({
   ctaLocation = "form-landing",
+  interesInicial,
+  lineaInicial,
+  ctaLabel = CTA_LABEL,
   className,
 }: {
   /** Dónde vive este formulario. Viaja con el lead. */
   ctaLocation?: string
+  /** Interés preseleccionado (subpáginas por rotor). `?interes=` en la URL lo pisa. */
+  interesInicial?: InteresValue
+  /** `product_line` del lead si la URL no trae `?linea=`. */
+  lineaInicial?: string
+  /** Texto del botón de envío. En las subpáginas: "Pedir propuesta para [rotor]". */
+  ctaLabel?: string
   className?: string
 }) {
   const [state, formAction, isPending] = useActionState(sendCimatLead, initialState)
@@ -52,10 +77,11 @@ export function LeadForm({
   const uid = useId()
   const formRef = useRef<HTMLFormElement>(null)
   const interesRef = useRef<HTMLSelectElement>(null)
-  const [interes, setInteres] = useState("")
+  const [interes, setInteres] = useState<string>(interesInicial ?? "")
   const [pais, setPais] = useState("")
   const [origen, setOrigen] = useState(ctaLocation)
   const [empezado, setEmpezado] = useState(false)
+  const [turnstileListo, setTurnstileListo] = useState(false)
   // Guarda contra el doble disparo: el efecto de envío depende de `origen` e
   // `interes`, y un clic en un CTA entre el éxito y la navegación lo re-corría.
   const enviadoRef = useRef(false)
@@ -131,9 +157,15 @@ export function LeadForm({
   }, [state, router, origen, interes, pais])
 
   function onFirstInput() {
+    setTurnstileListo(true)
     if (empezado) return
     setEmpezado(true)
     track("form_start", { cta_location: origen })
+  }
+
+  /** Primer foco en cualquier campo: hora de traer el widget de Turnstile. */
+  function onFocus() {
+    if (!turnstileListo) setTurnstileListo(true)
   }
 
   /**
@@ -175,11 +207,12 @@ export function LeadForm({
       ref={formRef}
       action={formAction}
       onInput={onFirstInput}
+      onFocus={onFocus}
       onBlur={validarCampo}
       noValidate
       className={cn("space-y-4 sm:space-y-5", className)}
     >
-      <AttributionFields interes={interes} origen={origen} />
+      <AttributionFields interes={interes} origen={origen} linea={lineaInicial ?? ""} />
 
       <div>
         <label htmlFor={`${uid}-interes`} className={labelCls}>
@@ -338,11 +371,13 @@ export function LeadForm({
         <input id={`${uid}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {/* Alto reservado desde el SSR: el widget monta después de hidratar y
-          sin esto empuja el botón de envío unos 70 px. */}
+      {/* Alto reservado desde el SSR: el widget monta recién al primer foco o
+          input y sin esto empujaría el botón de envío unos 70 px. */}
       {siteKey ? (
         <div className="min-h-[70px]">
-          <Turnstile siteKey={siteKey} options={{ theme: "light", language: "es" }} />
+          {turnstileListo ? (
+            <Turnstile siteKey={siteKey} options={{ theme: "light", language: "es" }} />
+          ) : null}
         </div>
       ) : null}
 
@@ -377,7 +412,7 @@ export function LeadForm({
             Enviando
           </>
         ) : (
-          CTA_LABEL
+          ctaLabel
         )}
       </button>
 
@@ -446,13 +481,21 @@ function Campo({
 }
 
 /** Campos ocultos de contexto y campaña. Se resuelven recién en el cliente. */
-function AttributionFields({ interes, origen }: { interes: string; origen: string }) {
+function AttributionFields({
+  interes,
+  origen,
+  linea,
+}: {
+  interes: string
+  origen: string
+  linea: string
+}) {
   const [datos, setDatos] = useState<Record<string, string>>({})
 
   useEffect(() => {
     setDatos({
       page_url: window.location.href,
-      product_line: qs("linea"),
+      product_line: qs("linea") || linea,
       industry: qs("industria"),
       utm_source: qs("utm_source"),
       utm_medium: qs("utm_medium"),
@@ -466,7 +509,7 @@ function AttributionFields({ interes, origen }: { interes: string; origen: strin
       device_type: window.innerWidth < 768 ? "mobile" : "desktop",
       referrer: document.referrer,
     })
-  }, [])
+  }, [linea])
 
   return (
     <>

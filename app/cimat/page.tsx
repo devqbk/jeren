@@ -14,7 +14,8 @@ import { SoporteSection } from "@/components/cimat/soporte-section"
 import { StickyCta } from "@/components/cimat/sticky-cta"
 import { WhatsappFlotante } from "@/components/cimat/whatsapp-flotante"
 import { CimatTokens } from "@/components/cimat/ui"
-import { EMAIL, TELEFONO, faqs, hero, seo } from "@/lib/cimat-content"
+import { organizationSchema, manufacturerSchema, brandSchema } from "@/components/cimat/schema"
+import { TELEFONO, faqs, hero, seo } from "@/lib/cimat-content"
 
 export const metadata: Metadata = {
   title: { absolute: seo.title },
@@ -40,63 +41,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const organizationSchema = {
-  "@type": ["Organization", "LocalBusiness"],
-  "@id": `${seo.canonical}#jeren`,
-  name: "JEREN SRL",
-  url: "https://www.jeren.com",
-  email: EMAIL,
-  telephone: TELEFONO,
-  areaServed: [
-    { "@type": "Country", name: "Argentina" },
-    { "@type": "Place", name: "América Latina" },
-  ],
-  description:
-    "JEREN SRL representa en Argentina a CIMAT, fabricante de balanceadoras industriales de Bydgoszcz, Polonia.",
-  address: [
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Av. Juramento 2089, Piso 4° oficina 405",
-      postalCode: "C1428DNG",
-      addressLocality: "Ciudad Autónoma de Buenos Aires",
-      addressCountry: "AR",
-    },
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Paseo de la Plaza 2065",
-      postalCode: "9410",
-      addressLocality: "Ushuaia",
-      addressRegion: "Tierra del Fuego",
-      addressCountry: "AR",
-    },
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Padre Forgacs 1411",
-      postalCode: "9420",
-      addressLocality: "Río Grande",
-      addressRegion: "Tierra del Fuego",
-      addressCountry: "AR",
-    },
-  ],
-}
-
 const productSchema = {
   "@type": "Product",
   "@id": `${seo.canonical}#producto`,
   name: "Balanceadoras industriales CIMAT",
   description:
     "Balanceadoras industriales CIMAT para balanceo dinámico de rotores de 5 kg a 20 toneladas, con grados de calidad según ISO 21940-11 y verificación de máquina según ISO 2953.",
-  brand: { "@type": "Brand", name: "CIMAT" },
-  manufacturer: {
-    "@type": "Organization",
-    name: "CIMAT Sp. z o.o.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Bogdana Raczkowskiego 4",
-      addressLocality: "Bydgoszcz",
-      addressCountry: "PL",
-    },
-  },
+  brand: brandSchema,
+  manufacturer: manufacturerSchema,
   category: "Balanceadoras industriales",
   url: seo.canonical,
   image: `https://www.jeren.com${hero.image.src}`,
