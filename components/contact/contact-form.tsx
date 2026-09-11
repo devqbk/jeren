@@ -12,10 +12,12 @@ import { sendContactEmail, type ContactFormState } from "@/app/actions/contact"
 import { track } from "@/components/cimat/track"
 
 /**
- * Mismos nombres de evento que el formulario de CIMAT (`form_start`,
- * `form_submit`, `form_error`) para que GA4 y la etiqueta de Ads los lean sin
- * configuración nueva; `form_id` los separa en los informes. Sin esto, un lead
- * que entra por /contacto llega al mail y no aparece en ninguna métrica.
+ * Eventos propios (`contact_start`, `contact_submit`, `contact_error`), NO los
+ * de CIMAT: el activador de GTM que dispara la conversión de Ads escucha
+ * `form_submit`, y un lead del formulario general no es una conversión de la
+ * campaña CIMAT. Con nombres distintos GA4 los mide y Ads no los cuenta, sin
+ * tocar el contenedor. Sin esto, un lead que entra por /contacto llega al mail
+ * y no aparece en ninguna métrica.
  */
 const FORM_ID = "contacto_general"
 
@@ -40,7 +42,7 @@ export function ContactForm() {
       const campos = formRef.current?.elements as
         | (HTMLFormControlsCollection & Record<string, HTMLInputElement | undefined>)
         | undefined
-      track("form_submit", {
+      track("contact_submit", {
         form_id: FORM_ID,
         cta_location: "contacto",
         subject: campos?.asunto?.value?.slice(0, 100) ?? "",
@@ -51,7 +53,7 @@ export function ContactForm() {
       enviadoRef.current = false
     }
     if (state.status === "error") {
-      track("form_error", {
+      track("contact_error", {
         form_id: FORM_ID,
         cta_location: "contacto",
         error_code: state.codigo ?? "SIN-CODIGO",
@@ -62,7 +64,7 @@ export function ContactForm() {
   function onFirstInput() {
     if (empezado) return
     setEmpezado(true)
-    track("form_start", { form_id: FORM_ID, cta_location: "contacto" })
+    track("contact_start", { form_id: FORM_ID, cta_location: "contacto" })
   }
 
   return (

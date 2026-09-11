@@ -279,13 +279,13 @@ medición de temperatura en horno túnel, MOLE). Vino del formulario general de 
 no del de CIMAT: los campos son nombre/email/empresa/asunto/mensaje, sin interés ni país.
 Ese formulario no tenía ningún evento: GA4 y Ads en 0 con un lead real en la casilla.
 
-Cambio: `components/contact/contact-form.tsx` ahora dispara `form_start`, `form_submit` y
-`form_error` con `form_id: "contacto_general"`, `cta_location: "contacto"` y `subject`
-(primeros 100 caracteres del asunto). Mismos nombres de evento que CIMAT: GA4 los recibe sin
-configuración nueva y `form_id` los separa en los informes. La acción de Ads "CIMAT —
-Solicitud de información" se dispara por `form_submit` desde GTM; si se quiere que **no**
-cuente los leads generales como conversión de la campaña CIMAT, la etiqueta en GTM tiene que
-filtrar `form_id != contacto_general` (pendiente, se hace en la interfaz de GTM).
+Cambio: `components/contact/contact-form.tsx` ahora dispara `contact_start`, `contact_submit` y
+`contact_error` con `form_id: "contacto_general"`, `cta_location: "contacto"` y `subject`
+(primeros 100 caracteres del asunto). Nombres distintos de los de CIMAT a propósito: el
+activador "Evento - form_submit" de GTM (`GTM-T5J4LJMK`, trigger 4) dispara "Ads - Conversión
+CIMAT", y un lead del formulario general no es conversión de esa campaña. Así GA4 los mide y
+Ads no los cuenta, sin cambios en el contenedor. El monitor tiene que leer `contact_submit`
+además de `form_submit` para contar leads totales del sitio.
 
 Aprendizaje: un lead que no viene de la landing tampoco viene de la campaña; medir todos los
 formularios del sitio es lo que permite decir qué parte de los leads de JEREN es de Ads.
