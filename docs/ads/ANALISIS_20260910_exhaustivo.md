@@ -161,14 +161,16 @@ La tabla término por término está en `expertos/experto_search.md` sección 3 
 
 | # | Respuesta | Qué se hizo |
 |---|---|---|
-| 1 | **No** vendemos el portátil | Grupo "Balanceo en sitio" pausado en Ads (era el 29% del gasto). En el sitio se saca SmaRT como oferta. |
+| 1 | **JEREN SÍ vende la portátil SmaRT** (corregido el 11/09 por Ariel). Lo que no venden es el servicio de balanceo, que la landing ya decía. | Sin cambios: el grupo "Balanceo en sitio" queda activo y SmaRT sigue en la landing. Ver el error registrado abajo. |
 | 2 | **Sí**, JEREN es Representante Oficial CIMAT | Se mantiene en sitio y anuncios; titular "Representante Oficial CIMAT" en Máquina, Competencia y Marca propia. Pendiente pedirle a CIMAT que liste a JEREN en su web. |
 | 3 | **No** hay stock de repuestos todavía | Callout "Kit de repuestos críticos" se queda. |
 | 4 | Rango de capacidad: a definir | Sin números en titulares hasta que se defina. |
 | 5 | Logos **autorizados** | Nada que cambiar. |
 | 6 | Plazo, garantía y pago: en cada cotización | Sin cambios en la landing más allá de decirlo así. |
 | 7 | **Sí** a "Cotización en 48 h" | Titular en todos los RSA, callout nuevo, microcopy del formulario y página de gracias. |
-| 8 | **No** hacemos retrofit todavía | `usada` sigue negada; keywords `modernizar balanceadora` y `retrofit balanceadora` pausadas; FAQ de modernización reescrita sin prometer. |
+| 8 | **No** hacemos retrofit todavía | `usada` sigue negada; keywords `modernizar balanceadora` y `retrofit balanceadora` pausadas; FAQ de modernización reescrita sin prometer; intereses `modernizacion` fuera del formulario. |
+
+**Error propio del 11/09, con su guarda.** La pregunta 1 preguntaba si JEREN ofrece la portátil SmaRT; la respuesta fue "NO vendemos" y se interpretó como que no la venden. En realidad negaba el **servicio** de balanceo. Con esa lectura se pausó el grupo "Balanceo en sitio" en Ads y se sacó SmaRT de la landing (commit `97571f9`), y hubo que revertirlo en el día (commit `e738605`, grupo reactivado). **Guarda:** una respuesta de una palabra a una pregunta compuesta no se aplica sin repetir qué se está negando, sobre todo si el cambio saca un producto del sitio o pausa gasto.
 
 ## 7. Lo que NO hay que tocar todavía
 
