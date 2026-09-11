@@ -142,6 +142,7 @@ export const FORM_ANCHOR = "#solicitar"
 export const INTERESES = [
   { value: "nueva-balanceadora", label: "Necesito una nueva balanceadora" },
   { value: "inspeccion-calibracion", label: "Necesito calibrar o inspeccionar una máquina existente" },
+  { value: "balanceo-de-campo", label: "Necesito equipamiento para balancear en sitio" },
   { value: "automatizacion", label: "Necesito automatizar el balanceo dentro de una línea" },
   { value: "consulta-tecnica", label: "Necesito información técnica o ayuda para especificar" },
 ] as const
@@ -329,6 +330,12 @@ export const selector = {
       href: "#soporte",
     },
     {
+      interes: "balanceo-de-campo",
+      title: "Equipar a mi gente para balancear en sitio",
+      body: "La portátil SmaRT mide y corrige con el rotor montado, con evaluación según DIN ISO 10816-3.",
+      href: "#lineas",
+    },
+    {
       interes: "automatizacion",
       title: "Automatizar el balanceo en línea",
       body: "Celdas con corrección NC, trazabilidad por código de barras e integración con el ERP.",
@@ -454,6 +461,13 @@ export const lineas: ProductLine[] = [
     cta: { label: "", href: "" },
   },
 ]
+
+export const balanceoCampo = {
+  eyebrow: "Balanceo de campo",
+  title: "Balanceo in situ: el rotor se equilibra donde está, sin desmontarlo",
+  body: "La balanceadora portátil SmaRT mide y corrige el desbalance con el rotor montado en su propia máquina: horas de parada en lugar de días. Evalúa la severidad de vibración según DIN ISO 10816-3 y documenta los resultados. Es el equipo que llega al ventilador de mina, a la boca de pozo y al secadero.",
+  interes: "balanceo-de-campo" as InteresValue,
+}
 
 // ── 5. Especificaciones técnicas ─────────────────────────────────────────────
 
@@ -646,6 +660,10 @@ export const grados = {
       desc: "Requisitos de seguridad de los resguardos y guardas de las máquinas de balanceo.",
     },
     {
+      code: "DIN ISO 10816-3",
+      desc: "Severidad de vibración medida en partes no rotativas: la referencia del balanceo de campo.",
+    },
+    {
       code: "Directiva 2006/42/CE",
       desc: "Directiva Europea de Máquinas: seguridad y ergonomía declaradas por las verticales CIMAT.",
     },
@@ -660,14 +678,15 @@ export const industrias: IndustryCard[] = [
     name: "Oil & Gas",
     rotors:
       "Rotores de turbocompresor, bombas centrífugas de proceso e inyección, turboexpansores, armaduras de motores de accionamiento",
-    lines: "Horizontales universales · Rotores de turbinas · Armaduras eléctricas",
+    lines: "Horizontales universales · Rotores de turbinas · Armaduras eléctricas · Balanceo de campo",
   },
   {
     id: "mineria",
     name: "Minería",
     rotors:
       "Rotores de molinos y chancadoras, bombas de pulpa, ventiladores de ventilación de mina, rodillos de cintas, cardanes de equipo pesado",
-    lines: "Horizontales universales · Verticales para ventiladores · Cardanes CMT-DS",
+    lines:
+      "Horizontales universales · Verticales para ventiladores · Cardanes CMT-DS · Balanceo de campo",
   },
   {
     id: "automotriz",
@@ -910,6 +929,11 @@ export const faqs: FaqItem[] = [
     question: "¿Se puede calibrar o modernizar una máquina existente?",
     answer:
       "La fábrica ofrece la inspección y calibración de balanceadoras según ISO 21940-21:2012, con certificado, y la modernización de la electrónica de medición con ROTORTEST sobre máquinas antiguas. JEREN todavía no comercializa ese servicio en Argentina: por ahora, cada consulta se deriva a CIMAT caso por caso, sin un plazo comprometido. Si tiene una máquina que necesita calibrar o modernizar, indíquelo en el formulario y le decimos qué respuesta hay para su caso.",
+  },
+  {
+    question: "¿Se puede balancear sin desmontar el rotor?",
+    answer:
+      "Sí. La balanceadora portátil SmaRT mide y corrige el desbalance con el rotor montado en su propia máquina y evalúa la severidad de vibración según DIN ISO 10816-3, con documentación de resultados. Es la opción para ventiladores de mina, rotores en boca de pozo o secaderos, donde el equipo no se puede mover.",
   },
   {
     question: "¿Cómo solicito información técnica o una propuesta?",
@@ -1212,6 +1236,8 @@ export const seo = {
     "balanceo dinámico de rotores",
     "máquina de balanceo dinámico",
     "balanceadora CIMAT",
+    "balanceadora portátil SmaRT",
+    "balanceo in situ",
     "ISO 21940",
     "ISO 1940-1",
     "grado de calidad de balanceo G2.5",
