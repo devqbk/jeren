@@ -289,3 +289,10 @@ además de `form_submit` para contar leads totales del sitio.
 
 Aprendizaje: un lead que no viene de la landing tampoco viene de la campaña; medir todos los
 formularios del sitio es lo que permite decir qué parte de los leads de JEREN es de Ads.
+
+**GTM, 11/09 (por API, `tec-harness/src/gtm_api.py`):** en `GTM-T5J4LJMK` se creó la variable
+`DL - form_id` (id 18) y el activador "Evento - form_submit" (id 4) quedó con la condición
+`form_id` ≠ `contacto_general`. Versión 5 publicada y verificada en `gtm.js` en vivo. Es una
+guarda doble: el formulario general ya no emite `form_submit`, pero si algún día vuelve a
+usar ese nombre, la conversión de Ads igual no se dispara. El token de TeCorresponde tiene
+permiso de publicación sobre este contenedor (la nota del 24/08 decía que no).
