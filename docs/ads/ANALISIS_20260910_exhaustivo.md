@@ -157,6 +157,19 @@ La tabla término por término está en `expertos/experto_search.md` sección 3 
 
 ---
 
+### Respuestas de Ariel (11/09/2026)
+
+| # | Respuesta | Qué se hizo |
+|---|---|---|
+| 1 | **No** vendemos el portátil | Grupo "Balanceo en sitio" pausado en Ads (era el 29% del gasto). En el sitio se saca SmaRT como oferta. |
+| 2 | **Sí**, JEREN es Representante Oficial CIMAT | Se mantiene en sitio y anuncios; titular "Representante Oficial CIMAT" en Máquina, Competencia y Marca propia. Pendiente pedirle a CIMAT que liste a JEREN en su web. |
+| 3 | **No** hay stock de repuestos todavía | Callout "Kit de repuestos críticos" se queda. |
+| 4 | Rango de capacidad: a definir | Sin números en titulares hasta que se defina. |
+| 5 | Logos **autorizados** | Nada que cambiar. |
+| 6 | Plazo, garantía y pago: en cada cotización | Sin cambios en la landing más allá de decirlo así. |
+| 7 | **Sí** a "Cotización en 48 h" | Titular en todos los RSA, callout nuevo, microcopy del formulario y página de gracias. |
+| 8 | **No** hacemos retrofit todavía | `usada` sigue negada; keywords `modernizar balanceadora` y `retrofit balanceadora` pausadas; FAQ de modernización reescrita sin prometer. |
+
 ## 7. Lo que NO hay que tocar todavía
 
 - **Pujas por palabra, ajustes por dispositivo, país, horario y día de semana.** Entre 1 y 17 clics por celda: cualquier diferencia es ruido. Umbral: 100 clics por celda para CTR, 15 conversiones para conversión.
