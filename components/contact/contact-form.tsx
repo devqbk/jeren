@@ -1,7 +1,7 @@
 "use client"
 
 import { useActionState } from "react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,6 +9,15 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react"
 import { sendContactEmail, type ContactFormState } from "@/app/actions/contact"
+import { track } from "@/components/cimat/track"
+
+/**
+ * Mismos nombres de evento que el formulario de CIMAT (`form_start`,
+ * `form_submit`, `form_error`) para que GA4 y la etiqueta de Ads los lean sin
+ * configuración nueva; `form_id` los separa en los informes. Sin esto, un lead
+ * que entra por /contacto llega al mail y no aparece en ninguna métrica.
+ */
+const FORM_ID = "contacto_general"
 
 const initialState: ContactFormState = {
   status: "idle",
@@ -19,16 +28,45 @@ export function ContactForm() {
   const [state, formAction, isPending] = useActionState(sendContactEmail, initialState)
   const formRef = useRef<HTMLFormElement>(null)
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
+  const [empezado, setEmpezado] = useState(false)
+  const enviadoRef = useRef(false)
 
   // Resetear el formulario cuando el envío es exitoso
   useEffect(() => {
     if (state.status === "success") {
+      if (enviadoRef.current) return
+      enviadoRef.current = true
+      // El asunto es lo único que dice de qué producto viene el lead.
+      const campos = formRef.current?.elements as
+        | (HTMLFormControlsCollection & Record<string, HTMLInputElement | undefined>)
+        | undefined
+      track("form_submit", {
+        form_id: FORM_ID,
+        cta_location: "contacto",
+        subject: campos?.asunto?.value?.slice(0, 100) ?? "",
+        page: window.location.pathname,
+      })
       formRef.current?.reset()
+      setEmpezado(false)
+      enviadoRef.current = false
     }
-  }, [state.status])
+    if (state.status === "error") {
+      track("form_error", {
+        form_id: FORM_ID,
+        cta_location: "contacto",
+        error_code: state.codigo ?? "SIN-CODIGO",
+      })
+    }
+  }, [state])
+
+  function onFirstInput() {
+    if (empezado) return
+    setEmpezado(true)
+    track("form_start", { form_id: FORM_ID, cta_location: "contacto" })
+  }
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-6">
+    <form ref={formRef} action={formAction} onInput={onFirstInput} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="nombre">

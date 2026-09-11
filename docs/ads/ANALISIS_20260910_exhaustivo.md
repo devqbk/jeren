@@ -269,3 +269,23 @@ Esto explica la mitad orgánica de lo que vieron Fabián, Arturo y Nico: la land
 
 **Sitio viejo (10/09):** Search Console mostraba 83 URLs del WordPress anterior con 404/403 y tráfico real (PDF de Senju: 19.256 impresiones y 234 clics en 16 meses). Se agregaron redirecciones 301 en `next.config.mjs` (commit `77eaa8a`) a la marca o categoría equivalente; verificadas en producción. Los cuatro PDF con tráfico se le pidieron a Fabián por mail; cuando lleguen, se suben en su URL original y se quita la redirección de cada uno. Validación con `python tec-harness/src/gsc_jeren_cobertura.py` el 01/10: las URLs viejas con impresiones deberían bajar de 83 y ya no dar 404.
 
+
+**Aprendizaje del monitor, 11/09 15:08.** (1) La atribucion de fuente en GA4 no es definitiva el mismo dia: los 2 `whatsapp_click` del 10/09 figuraban a las 08:05 con fuente `(not set)` / `(data not available)` y a las 15:08 eran `google / cpc` (13 h AR mobile y 15 h AR desktop). Guarda: ningun evento del dia en curso se clasifica como prueba por la fuente; se relee al dia siguiente. (2) `BUSINESS_NAME` y `BUSINESS_LOGO` no estan "sin cargar": existen desde el 01/09 08:47 y llevan estado primario `PENDING` en las dos campañas (`campaign_asset.primary_status`); la API no dice por que. (3) `balanceadora de camiones` (gomeria) matcheo a `maquina equilibradora` en frase el 11/09: "equilibradora" es vocabulario de ruedas en Chile y España; la keyword se vigila hasta el 24/09 y `camion`/`camiones` no se niegan sueltos porque "balanceadora de cardan para camiones" es comprador.
+
+### 11/09 — lead por el formulario general, invisible para la medición
+
+El 11/09 a las 13:40 entró un mail "Nuevo mensaje desde jeren.com" (Panificadora San José,
+medición de temperatura en horno túnel, MOLE). Vino del formulario general de `/contacto`,
+no del de CIMAT: los campos son nombre/email/empresa/asunto/mensaje, sin interés ni país.
+Ese formulario no tenía ningún evento: GA4 y Ads en 0 con un lead real en la casilla.
+
+Cambio: `components/contact/contact-form.tsx` ahora dispara `form_start`, `form_submit` y
+`form_error` con `form_id: "contacto_general"`, `cta_location: "contacto"` y `subject`
+(primeros 100 caracteres del asunto). Mismos nombres de evento que CIMAT: GA4 los recibe sin
+configuración nueva y `form_id` los separa en los informes. La acción de Ads "CIMAT —
+Solicitud de información" se dispara por `form_submit` desde GTM; si se quiere que **no**
+cuente los leads generales como conversión de la campaña CIMAT, la etiqueta en GTM tiene que
+filtrar `form_id != contacto_general` (pendiente, se hace en la interfaz de GTM).
+
+Aprendizaje: un lead que no viene de la landing tampoco viene de la campaña; medir todos los
+formularios del sitio es lo que permite decir qué parte de los leads de JEREN es de Ads.
