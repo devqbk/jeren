@@ -70,7 +70,7 @@ export function jsonLdRotor(r: RotorPageContent) {
     "@type": "Service",
     "@id": `${canonical}#servicio`,
     name: `Propuesta, importación y puesta en marcha de ${r.h1.replace(" CIMAT", "").toLowerCase()}`,
-    serviceType: "Venta, puesta en marcha, calibración y modernización de balanceadoras industriales",
+    serviceType: "Venta, importación, puesta en marcha y soporte de balanceadoras industriales",
     provider: { "@id": JEREN_ID },
     areaServed: [
       { "@type": "Country", name: "Argentina" },

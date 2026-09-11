@@ -142,8 +142,6 @@ export const FORM_ANCHOR = "#solicitar"
 export const INTERESES = [
   { value: "nueva-balanceadora", label: "Necesito una nueva balanceadora" },
   { value: "inspeccion-calibracion", label: "Necesito calibrar o inspeccionar una máquina existente" },
-  { value: "modernizacion", label: "Necesito modernizar una balanceadora" },
-  { value: "balanceo-de-campo", label: "Necesito equipamiento para balancear en sitio" },
   { value: "automatizacion", label: "Necesito automatizar el balanceo dentro de una línea" },
   { value: "consulta-tecnica", label: "Necesito información técnica o ayuda para especificar" },
 ] as const
@@ -293,7 +291,7 @@ export const problemas = {
     {
       icon: "calibration",
       title: "La balanceadora instalada no tiene soporte",
-      body: "Una máquina descalibrada emite certificados que no valen. CIMAT inspecciona, calibra y moderniza balanceadoras existentes según ISO 21940-21:2012, con certificado.",
+      body: "Una máquina descalibrada emite certificados que no valen. La fábrica inspecciona y calibra balanceadoras según ISO 21940-21:2012, con certificado; en Argentina, JEREN deriva hoy esa consulta a fábrica caso por caso.",
     },
     {
       icon: "turbo",
@@ -327,20 +325,8 @@ export const selector = {
     {
       interes: "inspeccion-calibracion",
       title: "Calibrar o inspeccionar la que tengo",
-      body: "Cualquier marca, según ISO 21940-21:2012, con certificado y rotores patrón.",
+      body: "La fábrica calibra según ISO 21940-21:2012, con certificado. Hoy derivamos la consulta a CIMAT caso por caso.",
       href: "#soporte",
-    },
-    {
-      interes: "modernizacion",
-      title: "Modernizar una máquina existente",
-      body: "Electrónica de medición ROTORTEST, rodamientos, carros, accionamientos y acelerómetros.",
-      href: "#soporte",
-    },
-    {
-      interes: "balanceo-de-campo",
-      title: "Equipar a mi gente para balancear en sitio",
-      body: "La portátil SmaRT mide y corrige con el rotor montado, con evaluación según DIN ISO 10816-3.",
-      href: "#lineas",
     },
     {
       interes: "automatizacion",
@@ -468,13 +454,6 @@ export const lineas: ProductLine[] = [
     cta: { label: "", href: "" },
   },
 ]
-
-export const balanceoCampo = {
-  eyebrow: "Balanceo de campo",
-  title: "Balanceo in situ: el rotor se equilibra donde está, sin desmontarlo",
-  body: "La balanceadora portátil SmaRT mide y corrige el desbalance con el rotor montado en su propia máquina: horas de parada en lugar de días. Evalúa la severidad de vibración según DIN ISO 10816-3 y documenta los resultados. Es el equipo que llega al ventilador de mina, a la boca de pozo y al secadero.",
-  interes: "balanceo-de-campo" as InteresValue,
-}
 
 // ── 5. Especificaciones técnicas ─────────────────────────────────────────────
 
@@ -667,10 +646,6 @@ export const grados = {
       desc: "Requisitos de seguridad de los resguardos y guardas de las máquinas de balanceo.",
     },
     {
-      code: "DIN ISO 10816-3",
-      desc: "Severidad de vibración medida en partes no rotativas: la referencia del balanceo de campo.",
-    },
-    {
       code: "Directiva 2006/42/CE",
       desc: "Directiva Europea de Máquinas: seguridad y ergonomía declaradas por las verticales CIMAT.",
     },
@@ -685,15 +660,14 @@ export const industrias: IndustryCard[] = [
     name: "Oil & Gas",
     rotors:
       "Rotores de turbocompresor, bombas centrífugas de proceso e inyección, turboexpansores, armaduras de motores de accionamiento",
-    lines: "Horizontales universales · Rotores de turbinas · Armaduras eléctricas · Balanceo de campo",
+    lines: "Horizontales universales · Rotores de turbinas · Armaduras eléctricas",
   },
   {
     id: "mineria",
     name: "Minería",
     rotors:
       "Rotores de molinos y chancadoras, bombas de pulpa, ventiladores de ventilación de mina, rodillos de cintas, cardanes de equipo pesado",
-    lines:
-      "Horizontales universales · Verticales para ventiladores · Cardanes CMT-DS · Balanceo de campo",
+    lines: "Horizontales universales · Verticales para ventiladores · Cardanes CMT-DS",
   },
   {
     id: "automotriz",
@@ -844,8 +818,8 @@ export const soporte = {
     },
     {
       icon: "calibration",
-      title: "Repuestos, calibración y modernización",
-      body: "El kit de repuestos críticos se define antes de la entrega, según el perfil de uso. Y sobre una máquina existente de otra marca: inspección y calibración según ISO 21940-21:2012 con certificado, o modernización de la electrónica de medición con 12 meses de garantía.",
+      title: "Repuestos y condiciones",
+      body: "El kit de repuestos críticos se define antes de la entrega, según el perfil de uso; el resto se pide por canal directo con la planta. Plazo de entrega, garantía y condiciones de pago se detallan en cada cotización. La calibración o modernización de una máquina existente de otra marca es un servicio de fábrica: hoy JEREN deriva esa consulta a CIMAT caso por caso.",
       interes: "inspeccion-calibracion",
     },
   ] as SupportBlock[],
@@ -935,12 +909,7 @@ export const faqs: FaqItem[] = [
   {
     question: "¿Se puede calibrar o modernizar una máquina existente?",
     answer:
-      "Sí, y suele ser un buen punto de partida. CIMAT inspecciona y calibra balanceadoras según ISO 21940-21:2012, con certificado, y vende y certifica rotores patrón. Sobre máquinas antiguas se moderniza la electrónica de medición con ROTORTEST, más rodamientos, carros, accionamientos y acelerómetros, en sitio o en fábrica, con 12 meses de garantía y certificado.",
-  },
-  {
-    question: "¿Se puede balancear sin desmontar el rotor?",
-    answer:
-      "Sí. La balanceadora portátil SmaRT mide y corrige el desbalance con el rotor montado en su propia máquina y evalúa la severidad de vibración según DIN ISO 10816-3, con documentación de resultados. Es la opción para ventiladores de mina, rotores en boca de pozo o secaderos, donde el equipo no se puede mover.",
+      "La fábrica ofrece la inspección y calibración de balanceadoras según ISO 21940-21:2012, con certificado, y la modernización de la electrónica de medición con ROTORTEST sobre máquinas antiguas. JEREN todavía no comercializa ese servicio en Argentina: por ahora, cada consulta se deriva a CIMAT caso por caso, sin un plazo comprometido. Si tiene una máquina que necesita calibrar o modernizar, indíquelo en el formulario y le decimos qué respuesta hay para su caso.",
   },
   {
     question: "¿Cómo solicito información técnica o una propuesta?",
@@ -969,7 +938,7 @@ export const proceso = {
     {
       n: "3",
       title: "Recibe información concreta",
-      body: "Línea recomendada, configuración, próximos pasos y, cuando corresponde, una propuesta.",
+      body: "Línea recomendada, configuración y próximos pasos. Cuando corresponde, la cotización dentro de las 48 horas hábiles.",
     },
   ],
 }
@@ -988,10 +957,11 @@ export const formulario = {
     "Si dispone de ellos, puede incluir tipo de rotor, peso, diámetro, velocidad de servicio o grado requerido.",
   privacidad:
     "Utilizamos sus datos únicamente para responder esta consulta. No los compartimos con terceros.",
-  asesoramiento: "Asesoramiento sin cargo y sin compromiso.",
+  asesoramiento: "Asesoramiento sin cargo y cotización en 48 horas hábiles.",
   confirmacion:
     "Gracias. Recibimos su consulta. Un especialista de JEREN se pondrá en contacto para revisar su necesidad.",
   respuesta: "Respondemos el día hábil siguiente por email o WhatsApp.",
+  cotizacion: "Le enviamos la cotización dentro de las 48 horas hábiles.",
 }
 
 // ── 13. Footer ───────────────────────────────────────────────────────────────
@@ -1236,13 +1206,12 @@ export const rotorNav = rotores.map((r) => ({
 export const seo = {
   title: "Balanceadoras industriales CIMAT en Argentina | JEREN",
   description:
-    "Balanceadoras CIMAT con soporte local desde Argentina para toda la región: ingeniería de aplicación, importación, puesta en marcha, capacitación, repuestos y calibración de balanceadoras de cualquier marca. Representante oficial JEREN SRL.",
+    "Balanceadoras CIMAT con soporte local desde Argentina para toda la región: ingeniería de aplicación, importación, puesta en marcha, capacitación y repuestos. Representante oficial de CIMAT: JEREN SRL.",
   keywords: [
     "balanceadora industrial",
     "balanceo dinámico de rotores",
     "máquina de balanceo dinámico",
     "balanceadora CIMAT",
-    "balanceo in situ",
     "ISO 21940",
     "ISO 1940-1",
     "grado de calidad de balanceo G2.5",

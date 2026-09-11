@@ -37,7 +37,7 @@ export default function GraciasPage() {
               {formulario.confirmacion}
             </p>
             <p className="mt-3 text-base font-semibold leading-[1.6] text-[var(--c-ink)] sm:text-[1.0625rem]">
-              {formulario.respuesta}
+              {formulario.respuesta} {formulario.cotizacion}
             </p>
 
             {/* Es el momento de mayor intención: si quiere adelantar la

@@ -68,7 +68,7 @@ const serviceSchema = {
   "@type": "Service",
   "@id": `${seo.canonical}#servicio`,
   name: "Representación, importación y soporte de balanceadoras CIMAT",
-  serviceType: "Venta, puesta en marcha, calibración y modernización de balanceadoras industriales",
+  serviceType: "Venta, importación, puesta en marcha y soporte de balanceadoras industriales",
   provider: { "@id": `${seo.canonical}#jeren` },
   areaServed: [
     { "@type": "Country", name: "Argentina" },
@@ -87,7 +87,7 @@ const serviceSchema = {
       "Importación y nacionalización",
       "Puesta en marcha y capacitación",
       "Garantía, diagnóstico remoto y soporte",
-      "Repuestos, inspección, calibración y modernización",
+      "Repuestos y soporte técnico",
     ].map((nombre) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: nombre },

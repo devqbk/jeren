@@ -51,7 +51,6 @@ function interesDesdeUrl(): string {
   const linea = qs("linea").toLowerCase()
   if (!linea) return ""
   if (linea === "automatizacion") return "automatizacion"
-  if (linea === "campo" || linea === "sitio" || linea === "portatil") return "balanceo-de-campo"
   return "nueva-balanceadora"
 }
 

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, Download, MapPin } from "lucide-react"
-import { balanceoCampo, cta, lineas, rotorNav } from "@/lib/cimat-content"
+import { ArrowRight, Check, Download } from "lucide-react"
+import { cta, lineas, rotorNav } from "@/lib/cimat-content"
 import { Cta } from "./cta"
 import { CatalogoLink } from "./secundarios"
 import { Eyebrow, Lead, Section, SectionTitle } from "./ui"
@@ -105,28 +105,6 @@ export function LineasSection() {
           ))}
         </ul>
       </nav>
-
-      {/* Balanceo de campo: el brochure oficial no tiene foto del SmaRT.
-          Va como bloque de texto a propósito — no se usa la imagen de otra máquina. */}
-      <div className="mt-10 rounded-xl border border-[var(--c-line)] bg-[var(--c-surface-2)] p-8 sm:p-10 lg:mt-12">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
-          <div>
-            <Eyebrow>{balanceoCampo.eyebrow}</Eyebrow>
-            <h3 className="mt-4 flex items-start gap-2 text-xl font-bold leading-tight tracking-tight sm:text-2xl">
-              <MapPin className="mt-0.5 size-5 shrink-0 text-[var(--c-accent)]" aria-hidden="true" />
-              {balanceoCampo.title}
-            </h3>
-            <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-[var(--c-ink-2)]">
-              {balanceoCampo.body}
-            </p>
-          </div>
-          <Cta
-            location="balanceo-de-campo"
-            interes={balanceoCampo.interes}
-            className="w-full lg:w-auto"
-          />
-        </div>
-      </div>
 
       {/* Recursos técnicos: acción secundaria y medible, sin peso de CTA principal. */}
       <div className="mt-10 flex flex-col gap-x-8 gap-y-4 border-t border-[var(--c-line)] pt-10 sm:flex-row sm:flex-wrap sm:items-center lg:mt-12 lg:pt-12">
