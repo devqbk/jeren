@@ -59,7 +59,7 @@ const nextConfig = {
 
       // Productos sueltos: los de refrigeración (Galileo TP, GAS SAVER) van a
       // aire acondicionado; el resto era electrónica.
-      { source: "/product/gas-saver/:path*", destination: "/aire-acondicionado/gasflux", permanent: true },
+      { source: "/product/gas-saver/:path*", destination: "/aire-acondicionado/jae-hyun-autonics", permanent: true },
       { source: "/product/leak-detection-systems/:path*", destination: "/aire-acondicionado/galileo-tp", permanent: true },
       { source: "/product/refrigerating-fluids-and-gas-charging-machines/:path*", destination: "/aire-acondicionado/galileo-tp", permanent: true },
       { source: "/product/rotary-vacuum-pumps-and-vacuometers/:path*", destination: "/aire-acondicionado/galileo-tp", permanent: true },
