@@ -80,12 +80,13 @@ const nextConfig = {
       { source: "/product/dual-lane-equipment/:path*", destination: "/electronica/yj-link", permanent: true },
       { source: "/product/:path*", destination: "/electronica", permanent: true },
 
-      // Archivos del WordPress viejo. Los PDF no están en el sitio nuevo: hasta
-      // que JEREN los entregue, el visitante cae en la marca que corresponde.
+      // Archivos del WordPress viejo. Senju todavía no llegó: hasta que JEREN
+      // lo entregue, el visitante cae en la marca que corresponde. Los otros
+      // tres ya están subidos en /public/catalogos y redirigen directo al PDF.
       { source: "/wp-content/uploads/:y/:m/Senju-ECO-Solder.pdf", destination: "/electronica", permanent: true },
-      { source: "/wp-content/uploads/:y/:m/GAS-SAVER-Catalog.pdf", destination: "/aire-acondicionado/gasflux", permanent: true },
-      { source: "/wp-content/uploads/:y/:m/AIR-CATA-STSC18-all-s.pdf", destination: "/aire-acondicionado", permanent: true },
-      { source: "/wp-content/uploads/:y/:m/Spanish-D-TEK-Select-OM.pdf", destination: "/aire-acondicionado/inficon", permanent: true },
+      { source: "/wp-content/uploads/:y/:m/GAS-SAVER-Catalog.pdf", destination: "/catalogos/jae-hyun-autonics-gas-saver.pdf", permanent: true },
+      { source: "/wp-content/uploads/:y/:m/AIR-CATA-STSC18-all-s.pdf", destination: "/catalogos/sumake-air-screwdriver.pdf", permanent: true },
+      { source: "/wp-content/uploads/:y/:m/Spanish-D-TEK-Select-OM.pdf", destination: "/catalogos/inficon-d-tek-3.pdf", permanent: true },
       { source: "/wp-content/:path*", destination: "/", permanent: true },
       { source: "/immobilier/:path*", destination: "/", permanent: true },
     ]
