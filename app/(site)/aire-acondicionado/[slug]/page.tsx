@@ -32,8 +32,8 @@ export async function generateMetadata({
   const brand = aireRefrigeracionBrands.find((b) => b.slug === slug)
   if (!brand) return { title: "Marca no encontrada" }
   return {
-    title: brand.name,
-    description: brand.description,
+    title: brand.seoTitle ?? brand.name,
+    description: brand.seoDescription ?? brand.description,
   }
 }
 

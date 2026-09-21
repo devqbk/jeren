@@ -134,6 +134,8 @@ export const aireRefrigeracionBrands = [
     logo: "/images/brands/galileo-tp.png",
     description: "Equipos de vacío, carga de refrigerante y prueba de performance para líneas de producción de aires y heladeras.",
     website: "http://www.galileotp.com",
+    seoTitle: "Galileo TP Argentina | Representante Oficial — Jeren SRL",
+    seoDescription: "Jeren SRL es representante oficial de Galileo TP en Argentina: bombas de vacío, carga de refrigerante y sistemas de prueba de performance para líneas de producción de aires acondicionados y heladeras, con soporte técnico local.",
   },
   {
     slug: "inficon",
