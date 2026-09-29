@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState, useEffect, useId, useRef, useState } from "react"
+import { startTransition, useActionState, useEffect, useId, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { AlertCircle, Loader2 } from "lucide-react"
@@ -9,6 +9,9 @@ import {
   CTA_LABEL,
   INTERESES,
   PAISES,
+  TELEFONO,
+  TELEFONO_HREF,
+  WHATSAPP_URL,
   formulario,
   type InteresValue,
 } from "@/lib/cimat-content"
@@ -33,6 +36,34 @@ const field =
   "min-h-11 w-full rounded-md border border-[var(--c-line)] bg-white px-3.5 py-2.5 text-[15px] text-[var(--c-ink)] placeholder:text-[var(--c-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--c-accent)] disabled:opacity-60"
 const labelCls = "block text-sm font-semibold text-[var(--c-ink)]"
 const errCls = "mt-1.5 flex items-center gap-1.5 text-[13px] text-[var(--c-accent)]"
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+/** Obligatorios, en el orden en que aparecen: el primero con error recibe el foco. */
+const OBLIGATORIOS = ["interes", "nombre", "empresa", "email", "pais"] as const
+
+const MENSAJE_VACIO: Record<(typeof OBLIGATORIOS)[number], string> = {
+  interes: "Elija qué información necesita.",
+  nombre: "Escriba su nombre y apellido.",
+  empresa: "Escriba el nombre de su empresa.",
+  email: "Escriba su email.",
+  pais: "Seleccione su país.",
+}
+
+/** Mismo criterio que el server: vacío o email mal formado. */
+function errorDeCampo(nombre: string, valor: string): string {
+  const v = valor.trim()
+  if (!v) return MENSAJE_VACIO[nombre as keyof typeof MENSAJE_VACIO] ?? ""
+  if (nombre === "email" && !EMAIL_RE.test(v)) return "Ese email no parece válido."
+  return ""
+}
+
+/**
+ * Códigos del server con los que el token de Turnstile ya quedó consumido (o
+ * nunca sirvió): hay que pedir uno nuevo antes de reintentar, o el segundo
+ * envío falla igual con `timeout-or-duplicate`.
+ */
+const TOKEN_GASTADO = (codigo?: string) => Boolean(codigo) && codigo !== "VALIDACION"
 
 /** Lee un parámetro de la query actual sin romper en SSR. */
 function qs(key: string): string {
@@ -82,9 +113,21 @@ export function LeadForm({
   const [origen, setOrigen] = useState(ctaLocation)
   const [empezado, setEmpezado] = useState(false)
   const [turnstileListo, setTurnstileListo] = useState(false)
+  /** Cambiarla vuelve a montar el widget: es la forma de pedir un token nuevo. */
+  const [turnstileVersion, setTurnstileVersion] = useState(0)
+  const [turnstileFallo, setTurnstileFallo] = useState(false)
+  /**
+   * Envío en espera del token. Turnstile se trae recién al primer foco y
+   * resolver el desafío tarda unos segundos en un celular: quien completa
+   * rápido llegaba al server sin token y rebotaba con CF-SIN-TOKEN. Ahora el
+   * envío espera al token y sale solo cuando llega.
+   */
+  const [esperandoToken, setEsperandoToken] = useState(false)
+  const esperandoRef = useRef(false)
   // Guarda contra el doble disparo: el efecto de envío depende de `origen` e
   // `interes`, y un clic en un CTA entre el éxito y la navegación lo re-corría.
   const enviadoRef = useRef(false)
+  const procesadoRef = useRef<CimatLeadState | null>(initialState)
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
   const [erroresLocales, setErroresLocales] = useState<Record<string, string>>({})
   // El server manda: si respondió con errores, esos pisan a los del cliente.
@@ -121,6 +164,12 @@ export function LeadForm({
   }, [ctaLocation])
 
   useEffect(() => {
+    // Cada respuesta del server se procesa una sola vez. El efecto depende de
+    // `interes` y `pais`, y antes volvía a disparar `form_error` cada vez que
+    // la persona corregía un desplegable después de un error: un solo error
+    // real quedaba contado dos o tres veces (medido en el build local, 28/09).
+    if (procesadoRef.current === state) return
+    procesadoRef.current = state
     if (state.status === "success") {
       if (enviadoRef.current) return
       enviadoRef.current = true
@@ -153,8 +202,75 @@ export function LeadForm({
     }
     if (state.status === "error") {
       track("form_error", { cta_location: origen, error_code: state.codigo ?? "SIN-CODIGO" })
+      if (siteKey && TOKEN_GASTADO(state.codigo)) setTurnstileVersion((v) => v + 1)
     }
-  }, [state, router, origen, interes, pais])
+  }, [state, router, origen, interes, pais, siteKey])
+
+  /**
+   * Envío a mano en lugar de dejar que el `<form action>` lo haga solo.
+   *
+   * Con `action`, React 19 resetea los campos no controlados apenas termina la
+   * acción, aunque el server haya devuelto un error: quien se equivocaba en un
+   * campo perdía nombre, empresa, email y teléfono y tenía que escribir todo
+   * de nuevo. Llamando a la acción dentro de `startTransition` no hay reset.
+   * El `action` queda en el `<form>` solo para el envío sin JavaScript.
+   */
+  function enviar(form: HTMLFormElement) {
+    esperandoRef.current = false
+    setEsperandoToken(false)
+    const datos = new FormData(form)
+    startTransition(() => formAction(datos))
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const datos = new FormData(form)
+
+    const errores: Record<string, string> = {}
+    for (const nombre of OBLIGATORIOS) {
+      const error = errorDeCampo(nombre, String(datos.get(nombre) ?? ""))
+      if (error) errores[nombre] = error
+    }
+    if (Object.keys(errores).length > 0) {
+      setErroresLocales(errores)
+      const primero = OBLIGATORIOS.find((n) => errores[n])
+      ;(form.elements.namedItem(primero ?? "") as HTMLElement | null)?.focus()
+      track("form_error", {
+        cta_location: origen,
+        error_code: "VALIDACION-CLIENTE",
+        campos: Object.keys(errores).join(","),
+      })
+      return
+    }
+    setErroresLocales({})
+
+    if (siteKey && !String(datos.get("cf-turnstile-response") ?? "")) {
+      setTurnstileListo(true)
+      esperandoRef.current = true
+      setEsperandoToken(true)
+      return
+    }
+    enviar(form)
+  }
+
+  function onTurnstileOk() {
+    setTurnstileFallo(false)
+    // El token recién llega al input oculto en el mismo tick: se envía en el siguiente.
+    if (esperandoRef.current && formRef.current) {
+      const form = formRef.current
+      window.setTimeout(() => enviar(form), 0)
+    }
+  }
+
+  function onTurnstileFallo() {
+    setTurnstileFallo(true)
+    if (esperandoRef.current) {
+      esperandoRef.current = false
+      setEsperandoToken(false)
+      track("form_error", { cta_location: origen, error_code: "CF-WIDGET" })
+    }
+  }
 
   function onFirstInput() {
     setTurnstileListo(true)
@@ -179,19 +295,7 @@ export function LeadForm({
     const nombre = campo.name
     if (!["nombre", "empresa", "email", "pais"].includes(nombre)) return
 
-    const valor = campo.value.trim()
-    let error = ""
-    if (!valor) {
-      error = {
-        interes: "Elija qué información necesita.",
-        nombre: "Escriba su nombre y apellido.",
-        empresa: "Escriba el nombre de su empresa.",
-        email: "Escriba su email.",
-        pais: "Seleccione su país.",
-      }[nombre] as string
-    } else if (nombre === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor)) {
-      error = "Ese email no parece válido."
-    }
+    const error = errorDeCampo(nombre, campo.value)
 
     setErroresLocales((prev) => {
       if (prev[nombre] === error) return prev
@@ -206,6 +310,7 @@ export function LeadForm({
     <form
       ref={formRef}
       action={formAction}
+      onSubmit={onSubmit}
       onInput={onFirstInput}
       onFocus={onFocus}
       onBlur={validarCampo}
@@ -376,9 +481,42 @@ export function LeadForm({
       {siteKey ? (
         <div className="min-h-[70px]">
           {turnstileListo ? (
-            <Turnstile siteKey={siteKey} options={{ theme: "light", language: "es" }} />
+            <Turnstile
+              key={turnstileVersion}
+              siteKey={siteKey}
+              options={{ theme: "light", language: "es" }}
+              onSuccess={onTurnstileOk}
+              onError={onTurnstileFallo}
+              onUnsupported={onTurnstileFallo}
+            />
           ) : null}
         </div>
+      ) : null}
+
+      {esperandoToken ? (
+        <p role="status" className="flex items-center gap-2 text-[13px] text-[var(--c-ink-2)]">
+          <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+          Verificando que no es un envío automático. La consulta sale sola en unos segundos.
+        </p>
+      ) : null}
+
+      {turnstileFallo ? (
+        <p role="alert" className="text-[13px] leading-relaxed text-[var(--c-ink-2)]">
+          No pudimos completar la verificación de seguridad en este navegador. Puede{" "}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[var(--c-ink)] underline underline-offset-4"
+          >
+            escribirnos por WhatsApp
+          </a>{" "}
+          o llamar al{" "}
+          <a href={TELEFONO_HREF} className="font-semibold text-[var(--c-ink)] underline underline-offset-4">
+            {TELEFONO}
+          </a>
+          .
+        </p>
       ) : null}
 
       {state.status === "error" && state.message ? (

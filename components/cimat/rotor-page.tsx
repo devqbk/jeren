@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react"
 import {
+  CTA_LABEL,
   TELEFONO,
   cta,
   grados,
@@ -29,15 +30,24 @@ import { WhatsappFlotante } from "./whatsapp-flotante"
  * línea) y `grados.rows` (grado G): acá no se escribe ninguna capacidad.
  */
 export function ctaRotor(r: RotorPageContent) {
-  return `Pedir propuesta para ${r.rotor}`
+  // CTA único en todo el ecosistema (diagnóstico del cliente, punto 1): antes
+  // decía "Pedir propuesta para [rotor]", que es otra de las variantes que el
+  // PDF pide unificar. El contexto viaja igual en el interés y la línea.
+  void r
+  return CTA_LABEL
 }
 
 export function canonicalRotor(r: RotorPageContent) {
   return `${ORIGIN}/cimat/${r.slug}`
 }
 
+/** El H1 sin la marca ni la aclaración después de los dos puntos: "Balanceadora industrial". */
+function nombreCorto(r: RotorPageContent) {
+  return r.h1.replace(" CIMAT", "").split(":")[0].trim()
+}
+
 function crumbsRotor(r: RotorPageContent): Crumb[] {
-  return [{ label: "CIMAT", href: "/cimat" }, { label: r.h1.replace(" CIMAT", "") }]
+  return [{ label: "CIMAT", href: "/cimat" }, { label: nombreCorto(r) }]
 }
 
 /** JSON-LD coherente con el de /cimat: misma organización, mismo fabricante, producto enlazado. */
@@ -221,8 +231,28 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
           </div>
         </Section>
 
+        {/* Cómo se trabaja el rotor en la máquina: el contenido propio de la página. */}
+        {r.explicacion ? (
+          <Section id="como-funciona" tone="surface">
+            <Eyebrow>Cómo funciona</Eyebrow>
+            <SectionTitle className="max-w-3xl">{r.explicacion.titulo}</SectionTitle>
+            <Lead>{r.explicacion.intro}</Lead>
+            <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-10">
+              {r.explicacion.pasos.map((paso, i) => (
+                <li key={paso.titulo} className="border-t-2 border-[var(--c-accent)] pt-5">
+                  <span className="text-sm font-semibold text-[var(--c-muted)]">{i + 1}</span>
+                  <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-[var(--c-ink)]">
+                    {paso.titulo}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-[var(--c-ink-2)]">{paso.texto}</p>
+                </li>
+              ))}
+            </ol>
+          </Section>
+        ) : null}
+
         {/* Especificaciones de las líneas que corresponden, tal como las publica el fabricante. */}
-        <Section id="especificaciones" tone="surface">
+        <Section id="especificaciones" tone="paper">
           <Eyebrow>Líneas y rangos</Eyebrow>
           <SectionTitle className="max-w-3xl">Qué máquina balancea cada rotor</SectionTitle>
           <Lead>{r.lineasTexto}</Lead>
@@ -272,7 +302,7 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
         </Section>
 
         {/* Grado G de referencia, desde la misma tabla de /cimat/normas-y-grados. */}
-        <Section id="grado" tone="paper">
+        <Section id="grado" tone="surface">
           <Eyebrow>{grados.eyebrow}</Eyebrow>
           <SectionTitle className="max-w-3xl">Qué grado de balanceo exige este rotor</SectionTitle>
           <Lead>{r.gradoNota}</Lead>
@@ -306,19 +336,19 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
           </p>
         </Section>
 
-        <FaqSection items={r.faqs} title={`Lo que se pregunta sobre la ${r.h1.replace(" CIMAT", "").toLowerCase()}`} />
+        <FaqSection items={r.faqs} title={`Lo que se pregunta sobre la ${nombreCorto(r).toLowerCase()}`} />
 
         {/* Un solo formulario por página, con el interés y la línea ya cargados. */}
         <Section id="contacto" tone="dark" pad="feature">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-16">
             <div>
-              <Eyebrow dark>Solicitud de propuesta</Eyebrow>
+              <Eyebrow dark>Solicitud de información</Eyebrow>
               <h2 className="mt-4 text-pretty text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl lg:text-[2.5rem]">
-                {etiquetaCta}
+                Indíquenos qué necesita balancear
               </h2>
               <p className="mt-6 max-w-[58ch] text-base leading-[1.6] text-white/75 sm:text-[1.0625rem]">
-                Indíquenos qué {r.rotor} necesita balancear y, si los tiene a mano, el peso, las
-                dimensiones y el grado exigido. Un especialista de JEREN revisa la aplicación y
+                Si los tiene a mano, sume el tipo de rotor, el peso, las dimensiones y el grado
+                exigido; si no, escríbanos igual. Un especialista de JEREN revisa la aplicación y
                 responde con la configuración recomendada y los próximos pasos.
               </p>
 

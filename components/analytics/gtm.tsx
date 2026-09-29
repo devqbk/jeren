@@ -29,12 +29,21 @@ export function GoogleTagManager() {
       <Script id="gtm-datalayer" strategy="beforeInteractive">
         {`window.dataLayer = window.dataLayer || [];`}
       </Script>
-      <Script id="gtm-loader" strategy="afterInteractive">
-        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      {/* El contenedor carga después del `load` (`lazyOnload`): trae gtm.js y,
+          detrás, el gtag de Ads (~300 KiB entre los dos) que en mobile se
+          disputaban el hilo principal con la hidratación. Los eventos que la
+          página empuje antes quedan en el dataLayer y GTM los procesa al
+          llegar; la conversión (`form_submit`) ocurre mucho después.
+          Espera a que termine gtag.js de GA4 (`ga4:cargado`, ver `ga4.tsx`)
+          para no bajar una segunda copia; a los 5 s carga igual. */}
+      <Script id="gtm-loader" strategy="lazyOnload">
+        {`(function(){function cargar(){if(window.__gtmCargado)return;window.__gtmCargado=true;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${id}');`}
+})(window,document,'script','dataLayer','${id}');}
+if(window.__ga4Pendiente&&!window.__ga4Cargado){window.addEventListener('ga4:cargado',cargar,{once:true});setTimeout(cargar,5000);}else{cargar();}})();`}
       </Script>
     </>
   )

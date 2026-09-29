@@ -200,7 +200,7 @@ export const hero = {
   eyebrow: "Representante oficial de CIMAT en Argentina",
   h1: "Balanceadoras industriales CIMAT con soporte local desde Argentina",
   subtitle:
-    "Una balanceadora de rotores con balanceo estático y dinámico: una máquina de balanceo dinámico configurada para su aplicación, no un modelo elegido de una lista. Si busca una balanceadora dinámica (equilibradora) horizontal, vertical o para turbos, JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para operaciones de toda la región.",
+    "Reduzca vibraciones, paradas y retrabajos con una balanceadora industrial configurada para su rotor. Cada máquina de balanceo dinámico y estático —la balanceadora dinámica o equilibradora, la balanceadora de rotores horizontal o vertical, la de turbos— se elige por la aplicación, no de una lista. JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha, la capacitación y el soporte, desde Argentina y para toda la región.",
   resumenTecnico:
     "Balanceo estático y dinámico (equilibrado dinámico) · 5 kg a 20 toneladas · ISO 21940 · Verificación ISO 2953",
   /** Tres argumentos antes del pedido de datos. Mismos datos que el resumen técnico. */
@@ -210,7 +210,7 @@ export const hero = {
     "Puesta en marcha y capacitación del personal en su planta, con soporte desde Argentina.",
   ],
   /** CTA del hero en mobile: ancla al formulario, que en mobile queda más abajo. */
-  ctaMobile: "Solicitar propuesta",
+  ctaMobile: CTA_LABEL,
   microcopy:
     "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas, con asesoramiento sin cargo.",
   image: {
@@ -272,7 +272,7 @@ export const trustBar = [
 
 export const problemas = {
   eyebrow: "Reconocimiento de problema",
-  title: "¿Alguna de estas situaciones está afectando tu operación?",
+  title: "¿Alguna de estas situaciones está afectando su operación?",
   cards: [
     {
       icon: "vibration",
@@ -1045,6 +1045,12 @@ export interface RotorPage {
   /** Códigos de `grados.rows` que aplican, en orden. */
   gradosCodigos: string[]
   gradoNota: string
+  /**
+   * Cómo se trabaja ese rotor en la máquina, paso a paso. Es el contenido que
+   * distingue a la página de una ficha de catálogo: todo sale de `specRows` y
+   * de `lineas`, sin datos nuevos.
+   */
+  explicacion?: { titulo: string; intro: string; pasos: { titulo: string; texto: string }[] }
   faqs: FaqItem[]
   interes: InteresValue
   /** Valor de `product_line` que viaja con el lead (mismo campo que `?linea=`). */
@@ -1053,6 +1059,101 @@ export interface RotorPage {
 }
 
 export const rotores: RotorPage[] = [
+  {
+    slug: "balanceadora-industrial",
+    rotor: "balanceadora industrial",
+    eyebrow: "Para plantas industriales y talleres de balanceo",
+    h1: "Balanceadora industrial CIMAT: máquina de balanceo dinámico",
+    subtitle:
+      "Equipo de balanceo dinámico y estático para planta y taller —también llamado balanceadora dinámica, equilibradora dinámica o máquina balanceadora de rotores—, en versión horizontal, vertical, compacta sin fundación o automática, con soporte desde Argentina.",
+    intro: [
+      "Una balanceadora industrial mide el desbalance de un rotor mientras gira y le indica al operador cuánta masa agregar o quitar, y en qué ángulo, en cada plano de corrección. La máquina de balanceo dinámico corrige en dos planos a la vez: además de la fuerza que desplaza el centro de masa (desbalance estático), compensa el par que hace cabecear al rotor (desbalance dinámico), que es el que aparece en rotores largos como ejes, inducidos, cardanes y rodillos.",
+      "CIMAT fabrica balanceadoras en Bydgoszcz, Polonia, desde 1987 y se dedica solo al balanceo. La elección entre horizontal, vertical, compacta o automática sale del rotor —masa, geometría, tipo de apoyo, velocidad de servicio y grado exigido— y no de un número de modelo. JEREN se ocupa de esa ingeniería de aplicación, de la importación, la puesta en marcha y la capacitación, con asesoramiento sin cargo.",
+    ],
+    bullets: [
+      "Balanceadora horizontal para rotores con muñones —ejes, inducidos, rodillos, bombas y turbinas—, sobre bancada o en versión compacta que se instala sin fundación ni obra civil.",
+      "Balanceadora vertical para lo que no tiene muñones —discos, impulsores y rodetes—, con corrección en la misma estación por taladrado o fresado.",
+      "Celdas automáticas para producción en serie de discos y tambores de freno, volantes bimasa, embragues y alternadores, con corrección NC y trazabilidad por código de barras.",
+      "Grados según ISO 21940-11 (la antigua ISO 1940-1) y verificación de la máquina según ISO 2953.",
+    ],
+    specLines: [
+      "Horizontales universales sobre bancada",
+      "Compactas sin fundación",
+      "Verticales para discos e impulsores",
+    ],
+    lineasTexto:
+      "Las tres líneas de uso general, con los rangos que publica el fabricante. Para cardanes, cigüeñales y turbos hay máquinas específicas, cada una con su página; las celdas automáticas para discos de freno, volantes y embragues se configuran por proyecto.",
+    imagenes: [
+      {
+        src: "/images/cimat/linea-horizontal-universal-bancada.webp",
+        alt: "Balanceadora industrial horizontal CIMAT sobre bancada larga, con un tambor de gran diámetro montado entre soportes",
+        width: 1167,
+        height: 785,
+        caption: "Balanceadora horizontal universal: el rotor gira apoyado sobre sus muñones.",
+      },
+      {
+        src: "/images/cimat/linea-vertical-impulsores-discos.webp",
+        alt: "Balanceadora vertical CIMAT con un rotor tipo disco montado sobre la mesa y la pantalla de medición encendida",
+        width: 1400,
+        height: 1652,
+        caption: "Balanceadora vertical: discos, impulsores y rodetes, con corrección en estación.",
+      },
+    ],
+    gradosCodigos: ["G6,3", "G2,5"],
+    gradoNota:
+      "G6,3 es el grado de referencia de impulsores de bomba, volantes, rodillos y motores estándar; G2,5 el de turbinas, turbocompresores, ventiladores industriales y motores eléctricos de más de 950 rpm, según ISO 21940-11. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    explicacion: {
+      titulo: "Cómo se hace el balanceo dinámico en una balanceadora CIMAT",
+      intro:
+        "El ciclo es el mismo en todas las líneas; lo que cambia es cómo se apoya el rotor y cómo se corrige.",
+      pasos: [
+        {
+          titulo: "Montaje",
+          texto:
+            "El rotor se apoya sobre sus muñones en la horizontal, o se sujeta en el adaptador neumático o manual de la vertical. El utillaje define la repetibilidad del resultado, por eso se presupuesta junto con la máquina.",
+        },
+        {
+          titulo: "Medición",
+          texto:
+            "La máquina hace girar el rotor a la velocidad de balanceo y la unidad de medición, con el software ROTORTEST, calcula el desbalance en uno o dos planos: cuánta masa y en qué ángulo.",
+        },
+        {
+          titulo: "Corrección",
+          texto:
+            "El operador agrega o quita masa donde indica la pantalla. En las verticales y en las celdas automáticas la corrección se hace en la misma estación, por taladrado o fresado.",
+        },
+        {
+          titulo: "Control y reporte",
+          texto:
+            "Una corrida de control confirma que el desbalance residual quedó dentro del grado exigido según ISO 21940-11, y la máquina emite el reporte del resultado.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: "¿Qué diferencia hay entre balanceo estático y dinámico?",
+        answer:
+          "El desbalance estático es el que desplaza el centro de masa del eje de giro: alcanza con corregirlo en un solo plano, y es el caso de los discos angostos. El dinámico aparece cuando la masa está repartida a lo largo del rotor y genera un par que lo hace cabecear: se corrige en dos planos. Las balanceadoras CIMAT trabajan en uno o dos planos según el rotor, así que resuelven los dos casos.",
+      },
+      {
+        question: "¿Balanceadora horizontal o vertical: cuál necesito?",
+        answer:
+          "Depende de cómo se apoya el rotor. Si tiene muñones o eje propio —inducidos, ejes, rodillos, rotores de bomba— va en una horizontal. Si no los tiene —discos, impulsores, rodetes— se balancea de pie en una vertical, sobre un adaptador. Si no está seguro, indíquenos el rotor en el formulario y lo definimos juntos.",
+      },
+      {
+        question: "¿JEREN presta el servicio de balanceo?",
+        answer:
+          "No. JEREN vende, importa, pone en marcha y da soporte a las balanceadoras CIMAT, y capacita a su personal para que el balanceo se haga en su propia planta o taller. No balancea rotores de terceros.",
+      },
+    ],
+    interes: "nueva-balanceadora",
+    linea: "industrial",
+    seo: {
+      title: "Balanceadora industrial CIMAT | Máquina de balanceo dinámico | JEREN",
+      description:
+        "Balanceadora industrial CIMAT para balanceo dinámico y estático de rotores: horizontal, vertical, compacta sin fundación o automática, verificada según ISO 2953. Ingeniería de aplicación, importación, puesta en marcha y soporte desde Argentina.",
+    },
+  },
   {
     slug: "balanceadora-de-cardanes-y-ciguenales",
     rotor: "cardanes y cigüeñales",
@@ -1085,6 +1186,33 @@ export const rotores: RotorPage[] = [
     gradosCodigos: ["G16", "G6,3"],
     gradoNota:
       "G16 es el grado de referencia para ejes cardánicos según ISO 21940-11; G6,3 el de volantes y motores estándar. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    explicacion: {
+      titulo: "Cómo se balancea un cardán y un cigüeñal en estas máquinas",
+      intro:
+        "Cada línea está pensada para la forma en que ese rotor se corrige en el taller, no adaptada de una máquina universal.",
+      pasos: [
+        {
+          titulo: "Cardán completo, de 1 a 4 tramos",
+          texto:
+            "El árbol se monta armado sobre pedestales reforzados para la carga axial del estriado, y la CMT-DS lo hace girar hasta 5.000 rpm midiendo en 4 planos simultáneos.",
+        },
+        {
+          titulo: "Corrección con fleje",
+          texto:
+            "El software convierte la masa de corrección en longitud de fleje a soldar, que es como se corrige un cardán en el taller: el operador no tiene que hacer la cuenta.",
+        },
+        {
+          titulo: "Cigüeñal sobre sus muñones de bancada",
+          texto:
+            "En la CMT-700 H2K la corrección se distribuye automáticamente entre los contrapesos y se taladra con la estación móvil de la misma máquina.",
+        },
+        {
+          titulo: "Reporte",
+          texto:
+            "El resultado queda documentado en reportes PDF, CSV o XLS, para entregarlo con el trabajo o cargarlo en el sistema de calidad.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "¿Qué largo de cardán admite la balanceadora?",
@@ -1145,6 +1273,33 @@ export const rotores: RotorPage[] = [
     gradosCodigos: ["G6,3", "G2,5"],
     gradoNota:
       "G6,3 es el grado de referencia de ventiladores comunes, impulsores de bomba y motores estándar; G2,5 el de ventiladores industriales y motores eléctricos de más de 950 rpm. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    explicacion: {
+      titulo: "Cómo se balancea un rodete de ventilador en la balanceadora vertical",
+      intro:
+        "La pieza no se desmonta entre la medición y la corrección: es lo que acorta el ciclo cuando entran muchos rodetes iguales.",
+      pasos: [
+        {
+          titulo: "Sujeción",
+          texto:
+            "El rodete o el impulsor se monta sobre el adaptador de la mesa, con sujeción neumática (6 bar) o manual. Un adaptador por familia de piezas reduce el armado entre una y la siguiente.",
+        },
+        {
+          titulo: "Medición",
+          texto:
+            "La máquina hace girar la pieza con un motor AC con inversor y la unidad ROTORTEST calcula la masa y el ángulo de corrección en uno o dos planos.",
+        },
+        {
+          titulo: "Corrección en estación",
+          texto:
+            "La corrección se hace en la misma estación, por taladrado o fresado, con aspiración de virutas y sin sacar la pieza de la máquina.",
+        },
+        {
+          titulo: "Ejes y rotores eléctricos, en horizontal",
+          texto:
+            "Armaduras, inducidos y ejes tienen muñones: la balanceadora de ejes y de rotores eléctricos es la compacta H2BS, que se instala sin fundación y funciona con alimentación monofásica o trifásica.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "¿Qué tamaño de rodete o impulsor admite?",
@@ -1197,6 +1352,33 @@ export const rotores: RotorPage[] = [
     gradosCodigos: ["G2,5"],
     gradoNota:
       "G2,5 es el grado de referencia de turbocompresores y turbinas según ISO 21940-11. En el conjunto central el fabricante publica el residual alcanzable en g·mm, que es lo que el taller certifica.",
+    explicacion: {
+      titulo: "Qué hace cada máquina en el taller de turbos",
+      intro:
+        "El núcleo y el conjunto central se balancean en máquinas distintas; el control funcional va aparte.",
+      pasos: [
+        {
+          titulo: "Núcleo a baja velocidad",
+          texto:
+            "La CMT-TR balancea el núcleo de hasta 16 kg entre 4.000 y 40.000 rpm, en 2 planos, accionada con aire comprimido a 8 bar y con lectura en mg o g·mm.",
+        },
+        {
+          titulo: "Conjunto central a velocidad real",
+          texto:
+            "El CHRA armado se fija en la placa adaptadora con dos abrazaderas y la CMT-VSR lo acelera con aire a 8 bar hasta la velocidad de trabajo, hasta 300.000 rpm.",
+        },
+        {
+          titulo: "Lectura del desbalance",
+          texto:
+            "La pantalla muestra la curva de vibración contra velocidad con la posición angular del desbalance, y la máquina calcula el punto de corrección.",
+        },
+        {
+          titulo: "Control funcional",
+          texto:
+            "Los bancos de flujo Turbo Test controlan el funcionamiento del turbo y calibran la geometría variable. Se cotizan aparte.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "¿Balancea el CHRA a velocidad real?",
@@ -1230,7 +1412,7 @@ export const rotorNav = rotores.map((r) => ({
 export const seo = {
   title: "Balanceadoras industriales CIMAT en Argentina | JEREN",
   description:
-    "Balanceadoras CIMAT con soporte local desde Argentina para toda la región: ingeniería de aplicación, importación, puesta en marcha, capacitación y repuestos. Representante oficial de CIMAT: JEREN SRL.",
+    "Balanceadora industrial CIMAT para balanceo dinámico y estático de rotores, con ingeniería de aplicación, importación, puesta en marcha, capacitación y soporte desde Argentina para toda la región. JEREN SRL, representante oficial de CIMAT.",
   keywords: [
     "balanceadora industrial",
     "balanceo dinámico de rotores",

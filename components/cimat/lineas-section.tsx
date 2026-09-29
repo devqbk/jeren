@@ -19,7 +19,7 @@ export function LineasSection() {
         Cada línea se elige por el rotor a balancear, no por el número de modelo
       </SectionTitle>
       <Lead>
-        Estas cuatro líneas cubren la mayoría de las aplicaciones de Oil &amp; Gas, minería, agro,
+        Cada equipo de balanceo dinámico CIMAT se elige por el rotor. Estas cuatro líneas cubren la mayoría de las aplicaciones de Oil &amp; Gas, minería, agro,
         energía y automotriz. El catálogo completo tiene siete categorías: el resto lo vemos en la
         ingeniería de aplicación.
       </Lead>
@@ -91,7 +91,7 @@ export function LineasSection() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--c-muted)]">
           Por tipo de rotor
         </p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {rotorNav.map((item) => (
             <li key={item.href}>
               <Link
