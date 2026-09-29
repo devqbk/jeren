@@ -44,9 +44,14 @@ export function GoogleAnalytics() {
 
           La cola de comandos (`ga4-config`) sigue corriendo temprano:
           `window.gtag` existe desde la hidratación y lo que se dispare antes
-          queda en el dataLayer hasta que gtag.js lo procese. */}
+          queda en el dataLayer hasta que gtag.js lo procese.
+
+          En localhost GA4 queda apagado (`ga-disable-<id>`, el opt-out oficial
+          de gtag): las pruebas locales del 28/09 metieron 25 sesiones y 8
+          `form_error` falsos en la propiedad (11% del periodo). */}
       <Script id="ga4-config" strategy="afterInteractive">
         {`window.dataLayer = window.dataLayer || [];
+if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) { window['ga-disable-${GA4_ID}'] = true; }
 window.__ga4Pendiente = true;
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

@@ -35,9 +35,10 @@ export function GoogleTagManager() {
           página empuje antes quedan en el dataLayer y GTM los procesa al
           llegar; la conversión (`form_submit`) ocurre mucho después.
           Espera a que termine gtag.js de GA4 (`ga4:cargado`, ver `ga4.tsx`)
-          para no bajar una segunda copia; a los 5 s carga igual. */}
+          para no bajar una segunda copia; a los 5 s carga igual.
+          En localhost no carga: una prueba local no dispara conversiones de Ads. */}
       <Script id="gtm-loader" strategy="lazyOnload">
-        {`(function(){function cargar(){if(window.__gtmCargado)return;window.__gtmCargado=true;
+        {`(function(){if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname))return;function cargar(){if(window.__gtmCargado)return;window.__gtmCargado=true;
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
