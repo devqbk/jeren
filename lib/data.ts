@@ -134,7 +134,7 @@ export const aireRefrigeracionBrands = [
     logo: "/images/brands/galileo-tp.png",
     description: "Equipos de vacío, carga de refrigerante y prueba de performance para líneas de producción de aires y heladeras.",
     website: "http://www.galileotp.com",
-    seoTitle: "Galileo TP Argentina | Representante Oficial — Jeren SRL",
+    seoTitle: "Galileo TP Argentina | Representante Oficial",
     seoDescription: "Jeren SRL es representante oficial de Galileo TP en Argentina: bombas de vacío, carga de refrigerante y sistemas de prueba de performance para líneas de producción de aires acondicionados y heladeras, con soporte técnico local.",
   },
   {
@@ -191,6 +191,28 @@ export const aireRefrigeracionBrands = [
  */
 export function urlDeMarca(basePath: string, marca: { slug: string; landing?: string }) {
   return marca.landing ?? `${basePath}/${marca.slug}`
+}
+
+/**
+ * Title y description de la ficha de una marca.
+ *
+ * Quien busca una marca por su nombre ya la conoce y quiere saber quién la
+ * vende en Argentina. Con el title "Marca | Jeren SRL" jeren.com aparecía en
+ * esas búsquedas y casi nadie hacía clic (Sumake: 3.342 impresiones, 4 clics en
+ * 16 meses). El " | Jeren SRL" lo agrega la plantilla de `app/layout.tsx`.
+ */
+export function metadataDeMarca(marca: {
+  name: string
+  description: string
+  seoTitle?: string
+  seoDescription?: string
+}) {
+  return {
+    title: marca.seoTitle ?? `${marca.name} Argentina | Representante Oficial`,
+    description:
+      marca.seoDescription ??
+      `Jeren SRL es representante oficial de ${marca.name} en Argentina. ${marca.description.replace(/\.?$/, ".")} Soporte técnico local.`,
+  }
 }
 
 // Marcas por industria nueva

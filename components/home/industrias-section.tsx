@@ -16,7 +16,7 @@ export function IndustriasSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="py-16 lg:py-20">
+    <section id="industrias" className="scroll-mt-20 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Header */}
         <div className="mb-10">

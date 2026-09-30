@@ -14,7 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { electronicaBrands } from "@/lib/data"
+import { electronicaBrands, metadataDeMarca } from "@/lib/data"
 import { electronicaContent } from "@/lib/brands-content"
 
 export async function generateStaticParams() {
@@ -31,10 +31,7 @@ export async function generateMetadata({
   const { slug } = await params
   const brand = electronicaBrands.find((b) => b.slug === slug)
   if (!brand) return { title: "Marca no encontrada" }
-  return {
-    title: brand.name,
-    description: brand.description,
-  }
+  return metadataDeMarca(brand)
 }
 
 export default async function BrandPage({

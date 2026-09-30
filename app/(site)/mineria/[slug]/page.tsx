@@ -14,7 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { marcasNuevas, urlDeMarca } from "@/lib/data"
+import { marcasNuevas, urlDeMarca, metadataDeMarca } from "@/lib/data"
 import { marcasNuevasContent } from "@/lib/brands-content"
 
 export async function generateStaticParams() {
@@ -36,10 +36,7 @@ export async function generateMetadata({
   const { slug } = await params
   const brand = marcasNuevas.find((b) => b.slug === slug && b.industrias?.includes("mineria"))
   if (!brand) return { title: "Marca no encontrada" }
-  return {
-    title: brand.name,
-    description: brand.description,
-  }
+  return metadataDeMarca(brand)
 }
 
 export default async function BrandPage({

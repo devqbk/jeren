@@ -44,7 +44,7 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href="/petroleo-gas">
+            <Link href="#industrias">
               <Button
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 sm:w-auto whitespace-nowrap"

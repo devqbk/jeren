@@ -14,7 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { aireRefrigeracionBrands } from "@/lib/data"
+import { aireRefrigeracionBrands, metadataDeMarca } from "@/lib/data"
 import { aireRefrigeracionContent } from "@/lib/brands-content"
 
 export async function generateStaticParams() {
@@ -31,10 +31,7 @@ export async function generateMetadata({
   const { slug } = await params
   const brand = aireRefrigeracionBrands.find((b) => b.slug === slug)
   if (!brand) return { title: "Marca no encontrada" }
-  return {
-    title: brand.seoTitle ?? brand.name,
-    description: brand.seoDescription ?? brand.description,
-  }
+  return metadataDeMarca(brand)
 }
 
 export default async function BrandPage({
