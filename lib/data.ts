@@ -31,7 +31,7 @@ export const marcasNuevas = [
     logo: "/images/brands/cimat-clean.png",
     description: "Diseño y fabricación de máquinas balanceadoras para más de 90 países. Presente en energía, automotriz, aeroespacial y construcción.",
     website: "https://www.cimat-balancing.com",
-    industrias: ["petroleo-gas", "mineria"],
+    industrias: ["petroleo-gas", "mineria", "agro"],
     landing: "/cimat",
   },
   {
@@ -245,6 +245,22 @@ export const mineriaBrands = [
   },
 ]
 
+/**
+ * En Agro, CIMAT entra por los cardanes de tractores, cosechadoras y tomas de
+ * fuerza: quien compra la balanceadora es el taller de cardanes que los repara.
+ * Por eso la ficha apunta a la subpágina de cardanes y no a la landing general.
+ */
+export const agroBrands = [
+  {
+    slug: "cimat",
+    name: "CIMAT",
+    logo: "/images/brands/cimat-clean.png",
+    description: "Balanceadoras de cardanes para talleres que reparan transmisiones de tractores, cosechadoras y maquinaria agrícola",
+    website: "https://www.cimat-balancing.com",
+    landing: "/cimat/balanceadora-de-cardanes-y-ciguenales",
+  },
+]
+
 // Datos de contacto
 export const contactInfo = {
   phone: "(+5411) 4788-0566",
@@ -325,7 +341,12 @@ export const navigation = {
       hasDropdown: true,
       brands: mineriaBrands,
     },
-    { name: "Agro", href: "/agro" },
+    {
+      name: "Agro",
+      href: "/agro",
+      hasDropdown: true,
+      brands: agroBrands,
+    },
     {
       name: "Electrónica",
       href: "/electronica",

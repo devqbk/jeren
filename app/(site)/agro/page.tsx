@@ -4,7 +4,7 @@ import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { marcasNuevas } from "@/lib/data"
+import { agroBrands, urlDeMarca } from "@/lib/data"
 
 export const metadata: Metadata = {
   title: "Agro",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default function AgroPage() {
-  const brands = marcasNuevas.filter((brand) => brand.industrias && brand.industrias.includes("agro"))
+  const brands = agroBrands
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function AgroPage() {
                 {brands.map((brand) => (
                   <Link
                     key={brand.slug}
-                    href={`/agro/${brand.slug}`}
+                    href={urlDeMarca("/agro", brand)}
                     className="group rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg"
                   >
                     {/* Brand Logo */}

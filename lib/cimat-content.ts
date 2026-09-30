@@ -1162,7 +1162,7 @@ export const rotores: RotorPage[] = [
     subtitle:
       "Balanceadora de ejes y árboles de transmisión (equilibradora de cardanes), balanceadora de cigüeñales y balanceadora de inducidos (armaduras de motores eléctricos), con soporte desde Argentina.",
     intro: [
-      "Si su taller balancea cardanes de camión, semirremolque o equipo pesado, cigüeñales de motores diésel o inducidos de motores eléctricos, la máquina se elige por el rotor y no por el número de modelo. CIMAT fabrica una línea específica para cada uno: la serie CMT-DS para árboles cardánicos de 1 a 4 tramos, la CMT-700 H2K para cigüeñales con estación de taladrado en máquina, y la línea horizontal universal para inducidos, armaduras y ejes con muñones.",
+      "Si su taller balancea cardanes de camión, semirremolque, tractores y cosechadoras o equipo pesado, cigüeñales de motores diésel o inducidos de motores eléctricos, la máquina se elige por el rotor y no por el número de modelo. CIMAT fabrica una línea específica para cada uno: la serie CMT-DS para árboles cardánicos de 1 a 4 tramos, la CMT-700 H2K para cigüeñales con estación de taladrado en máquina, y la línea horizontal universal para inducidos, armaduras y ejes con muñones.",
       "JEREN se ocupa de la ingeniería de aplicación, la importación, la puesta en marcha y la capacitación del personal sobre los rotores propios del taller. Indíquenos qué cardán, cigüeñal o inducido necesita balancear y le respondemos con la configuración que lo resuelve, con asesoramiento sin cargo.",
     ],
     bullets: [
