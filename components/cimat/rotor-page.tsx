@@ -342,7 +342,10 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
         </Section>
         ) : null}
 
-        <FaqSection items={r.faqs} title={`Lo que se pregunta sobre la ${nombreCorto(r).toLowerCase()}`} />
+        <FaqSection
+          items={r.faqs}
+          title={r.faqTitulo ?? `Lo que se pregunta sobre la ${nombreCorto(r).toLowerCase()}`}
+        />
 
         {/* Un solo formulario por página, con el interés y la línea ya cargados. */}
         <Section id="contacto" tone="dark" pad="feature">

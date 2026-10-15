@@ -162,6 +162,7 @@ export const PAISES = [
   { value: "PY", label: "Paraguay" },
   { value: "CO", label: "Colombia" },
   { value: "PE", label: "Perú" },
+  { value: "MX", label: "México" },
   { value: "OT", label: "Otro" },
 ] as const
 
@@ -1059,6 +1060,8 @@ export interface RotorPage {
    */
   explicacion?: { titulo: string; intro: string; pasos: { titulo: string; texto: string }[] }
   faqs: FaqItem[]
+  /** Título de la sección de preguntas, si "Lo que se pregunta sobre la [rotor]" no se lee bien. */
+  faqTitulo?: string
   interes: InteresValue
   /** Valor de `product_line` que viaja con el lead (mismo campo que `?linea=`). */
   linea: string
@@ -1484,6 +1487,100 @@ export const rotores: RotorPage[] = [
       title: "Retrofit de balanceadoras con ROTORTEST | Modernización CIMAT | JEREN",
       description:
         "Modernización de balanceadoras existentes, CIMAT y de otras marcas: se conserva la mecánica y se reemplaza la electrónica de medición por ROTORTEST de CIMAT. Evaluación sin cargo y soporte desde Argentina.",
+    },
+  },
+  {
+    // Página de país, no de rotor: reusa la plantilla porque el recorrido es el
+    // mismo (argumento, líneas, grado, cómo se trabaja, formulario). JEREN
+    // atiende México por decisión de Ariel del 15/10; el alcance territorial por
+    // escrito de CIMAT sigue pendiente, así que acá no se dice "representante
+    // oficial en México".
+    slug: "mexico",
+    rotor: "balanceadoras para México",
+    eyebrow: "Para talleres y plantas de México",
+    h1: "Balanceadoras industriales CIMAT en México",
+    subtitle:
+      "Máquinas de balanceo dinámico para talleres de turbocargadores, rebobinado de motores, rectificadoras y autopartistas del Bajío, Monterrey y todo México, con ingeniería de aplicación, puesta en marcha y soporte de JEREN.",
+    intro: [
+      "CIMAT fabrica balanceadoras en Bydgoszcz, Polonia, desde 1987 y se dedica solo al balanceo: horizontales para rotores con muñones, verticales para discos e impulsores, líneas específicas para turbocargadores, cigüeñales y flechas cardán, y celdas automáticas para producción en serie. La máquina se elige por el rotor —masa, geometría, velocidad de servicio y grado exigido—, no por un número de modelo.",
+      "JEREN atiende México para CIMAT: define la configuración con usted, le envía la propuesta y se ocupa de la puesta en marcha y la capacitación en su planta. La máquina se exporta desde fábrica y usted la importa con su agente aduanal; el soporte de software y medición es remoto, por el router Wi-Fi integrado en la unidad de medición.",
+    ],
+    bullets: [
+      "Talleres de turbocargadores: conjunto central (CHRA) hasta 300.000 rpm con la serie CMT-VSR y núcleo de hasta 16 kg con la CMT-TR.",
+      "Rebobinado de motores: horizontales compactas sin fundación para inducidos y armaduras desde 15 kg, o sobre bancada hasta 20.000 kg.",
+      "Rectificadoras: cigüeñales de 7 a 700 kg con taladrado en la misma máquina (CMT-700 H2K); flechas cardán de hasta 4.600 mm (serie CMT-DS).",
+      "¿Ya tiene una balanceadora? El retrofit con ROTORTEST moderniza la electrónica de medición sin cambiar la mecánica, también en máquinas de otras marcas.",
+    ],
+    specLines: [
+      "Turbo — core balancer de alta velocidad",
+      "Compactas sin fundación",
+      "Horizontales universales sobre bancada",
+      "Cigüeñales",
+    ],
+    lineasTexto:
+      "Las líneas que más se usan en talleres de turbos, rebobinado y rectificado, con los rangos que publica el fabricante. Verticales, flechas cardán, el balanceador de núcleo de turbo y wheelsets están en la tabla técnica completa; las celdas automáticas se configuran por proyecto.",
+    imagenes: [
+      {
+        src: "/images/cimat/linea-horizontal-universal-bancada.webp",
+        alt: "Balanceadora industrial horizontal CIMAT sobre bancada larga, con un tambor de gran diámetro montado entre soportes",
+        width: 1167,
+        height: 785,
+        caption: "Balanceadora horizontal universal: el rotor gira apoyado sobre sus muñones.",
+      },
+    ],
+    gradosCodigos: ["G2,5", "G6,3"],
+    gradoNota:
+      "G2,5 es el grado de referencia de turbocargadores, turbinas y motores eléctricos de más de 950 rpm; G6,3 el de impulsores, volantes, rodillos y motores estándar, según ISO 21940-11. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación.",
+    explicacion: {
+      titulo: "Cómo se compra una balanceadora CIMAT desde México",
+      intro: "Del rotor a la máquina funcionando en su planta, en cuatro pasos.",
+      pasos: [
+        {
+          titulo: "Aplicación",
+          texto:
+            "Nos cuenta qué rotores balancea —tipo, peso, velocidad y grado— y definimos línea, modelo y utillaje. Asesoramiento sin cargo.",
+        },
+        {
+          titulo: "Propuesta",
+          texto:
+            "Le enviamos la cotización dentro de las 48 horas hábiles, con plazo de entrega, garantía y condiciones de pago.",
+        },
+        {
+          titulo: "Importación",
+          texto:
+            "La máquina se exporta desde fábrica y usted la importa con su agente aduanal. Le pasamos la documentación técnica y comercial que necesita.",
+        },
+        {
+          titulo: "Puesta en marcha",
+          texto:
+            "Técnicos de JEREN instalan, calibran y capacitan a su personal en planta; después, soporte remoto de software y medición.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: "¿Quién atiende en México?",
+        answer:
+          "JEREN, desde Argentina: ingeniería de aplicación, propuesta, puesta en marcha y capacitación en su planta, y soporte remoto de software y medición por el router Wi-Fi de la unidad de medición. Escríbanos por el formulario o por WhatsApp y le respondemos el día hábil siguiente.",
+      },
+      {
+        question: "¿Quién importa la máquina?",
+        answer:
+          "Usted, con su agente aduanal. La máquina se exporta desde la fábrica de CIMAT en Polonia y le entregamos la documentación que pide la importación. El costo de importación depende de la fracción arancelaria y de su régimen: conviene que lo confirme su agente aduanal con la cotización en mano.",
+      },
+      {
+        question: "¿JEREN presta el servicio de balanceo?",
+        answer:
+          "No. JEREN vende, pone en marcha y da soporte a las balanceadoras CIMAT, y capacita a su personal para que el balanceo se haga en su propio taller o planta. No balancea rotores de terceros.",
+      },
+    ],
+    faqTitulo: "Lo que se pregunta desde México",
+    interes: "nueva-balanceadora",
+    linea: "mexico",
+    seo: {
+      title: "Balanceadoras industriales CIMAT en México | Turbos, rebobinado y rectificado | JEREN",
+      description:
+        "Balanceadoras CIMAT para talleres de turbocargadores, rebobinado de motores, rectificadoras y autopartistas en México. Ingeniería de aplicación, cotización en 48 horas, puesta en marcha y capacitación en planta.",
     },
   },
 ]

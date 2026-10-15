@@ -42,6 +42,7 @@ const PREFIJO: Partial<Record<PaisValue, string>> = {
   PY: "595",
   CO: "57",
   PE: "51",
+  MX: "52",
 }
 
 /**
