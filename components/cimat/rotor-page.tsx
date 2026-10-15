@@ -252,6 +252,7 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
         ) : null}
 
         {/* Especificaciones de las líneas que corresponden, tal como las publica el fabricante. */}
+        {filas.length > 0 ? (
         <Section id="especificaciones" tone="paper">
           <Eyebrow>Líneas y rangos</Eyebrow>
           <SectionTitle className="max-w-3xl">Qué máquina balancea cada rotor</SectionTitle>
@@ -301,7 +302,11 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
           </div>
         </Section>
 
-        {/* Grado G de referencia, desde la misma tabla de /cimat/normas-y-grados. */}
+        ) : null}
+
+        {/* Grado G de referencia, desde la misma tabla de /cimat/normas-y-grados.
+            El retrofit no tiene línea ni grado propios: esas dos secciones no van. */}
+        {filasGrado.length > 0 ? (
         <Section id="grado" tone="surface">
           <Eyebrow>{grados.eyebrow}</Eyebrow>
           <SectionTitle className="max-w-3xl">Qué grado de balanceo exige este rotor</SectionTitle>
@@ -335,6 +340,7 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
             .
           </p>
         </Section>
+        ) : null}
 
         <FaqSection items={r.faqs} title={`Lo que se pregunta sobre la ${nombreCorto(r).toLowerCase()}`} />
 

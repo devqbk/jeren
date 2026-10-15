@@ -141,6 +141,7 @@ export const FORM_ANCHOR = "#solicitar"
 /** Opciones del campo "¿Qué información necesita?" del formulario. */
 export const INTERESES = [
   { value: "nueva-balanceadora", label: "Necesito una nueva balanceadora" },
+  { value: "modernizacion", label: "Necesito modernizar la electrónica de una balanceadora existente" },
   { value: "inspeccion-calibracion", label: "Necesito calibrar o inspeccionar una máquina existente" },
   { value: "balanceo-de-campo", label: "Necesito equipamiento para balancear en sitio" },
   { value: "automatizacion", label: "Necesito automatizar el balanceo dentro de una línea" },
@@ -322,6 +323,12 @@ export const selector = {
       title: "Comprar una balanceadora",
       body: "Rotores con muñones, discos e impulsores, cigüeñales, cardanes o wheelsets ferroviarios.",
       href: "#lineas",
+    },
+    {
+      interes: "modernizacion",
+      title: "Modernizar la que tengo",
+      body: "Retrofit con ROTORTEST: se conserva la mecánica y se reemplaza la electrónica de medición, también en máquinas de otras marcas.",
+      href: "/cimat/retrofit-de-balanceadoras",
     },
     {
       interes: "inspeccion-calibracion",
@@ -838,7 +845,7 @@ export const soporte = {
     {
       icon: "calibration",
       title: "Repuestos y condiciones",
-      body: "El kit de repuestos críticos se define antes de la entrega, según el perfil de uso; el resto se pide por canal directo con la planta. Plazo de entrega, garantía y condiciones de pago se detallan en cada cotización. La calibración o modernización de una máquina existente de otra marca es un servicio de fábrica: hoy JEREN deriva esa consulta a CIMAT caso por caso.",
+      body: "El kit de repuestos críticos se define antes de la entrega, según el perfil de uso; el resto se pide por canal directo con la planta. Plazo de entrega, garantía y condiciones de pago se detallan en cada cotización. La modernización de la electrónica de una máquina existente, también de otra marca, la cotiza JEREN; la calibración es un servicio de fábrica que hoy derivamos a CIMAT caso por caso.",
       interes: "inspeccion-calibracion",
     },
   ] as SupportBlock[],
@@ -928,7 +935,7 @@ export const faqs: FaqItem[] = [
   {
     question: "¿Se puede calibrar o modernizar una máquina existente?",
     answer:
-      "La fábrica ofrece la inspección y calibración de balanceadoras según ISO 21940-21:2012, con certificado, y la modernización de la electrónica de medición con ROTORTEST sobre máquinas antiguas. JEREN todavía no comercializa ese servicio en Argentina: por ahora, cada consulta se deriva a CIMAT caso por caso, sin un plazo comprometido. Si tiene una máquina que necesita calibrar o modernizar, indíquelo en el formulario y le decimos qué respuesta hay para su caso.",
+      "Sí. JEREN comercializa el retrofit con ROTORTEST de CIMAT: se conserva la mecánica de la máquina —bancada, soportes y accionamiento— y se reemplaza la electrónica de medición, también en balanceadoras de otras marcas. La compatibilidad se confirma con fábrica para cada modelo. La inspección y calibración según ISO 21940-21:2012, con certificado, es un servicio de fábrica que hoy derivamos a CIMAT caso por caso. En los dos casos, indíquelo en el formulario con la marca y el modelo de su máquina.",
   },
   {
     question: "¿Se puede balancear sin desmontar el rotor?",
@@ -1397,6 +1404,86 @@ export const rotores: RotorPage[] = [
       title: "Balanceadora de turbos CIMAT (equilibradora de turbos) | JEREN",
       description:
         "Balanceadora de turbos CIMAT: conjunto central (CHRA) balanceado a velocidad real hasta 300.000 rpm, residual mínimo 0,05 g·mm. Serie CMT-VSR y CMT-TR. Importación, puesta en marcha y soporte desde Argentina.",
+    },
+  },
+  {
+    slug: "retrofit-de-balanceadoras",
+    rotor: "retrofit de balanceadoras",
+    eyebrow: "Para plantas y talleres con una balanceadora en uso",
+    h1: "Modernización de balanceadoras: retrofit con ROTORTEST de CIMAT",
+    subtitle:
+      "Retrofit de balanceadoras existentes —también llamado modernización o actualización de la electrónica de medición—, para máquinas CIMAT y de otras marcas, con soporte desde Argentina.",
+    intro: [
+      "En una balanceadora, la mecánica —bancada, soportes y accionamiento— dura décadas; la electrónica de medición no. Cuando los sensores fallan, no hay repuestos para la unidad de medición o el software corre en una computadora que ya nadie puede reparar, la máquina queda parada aunque la bancada esté sana. El retrofit reemplaza solo esa parte: sensores, unidad de medición y software, y la máquina vuelve a medir con electrónica actual.",
+      "CIMAT moderniza balanceadoras con ROTORTEST, la misma unidad de medición de sus máquinas nuevas, también sobre equipos de otras marcas. JEREN evalúa su máquina con usted, confirma con fábrica la compatibilidad para ese modelo y le envía la propuesta, con asesoramiento sin cargo.",
+    ],
+    bullets: [
+      "Se conserva la mecánica —bancada, soportes y accionamiento— y se reemplaza la electrónica de medición: sensores, unidad de medición y software ROTORTEST.",
+      "Para balanceadoras CIMAT y de otras marcas, como Schenck, Hofmann, CEMB o de fabricación nacional; la compatibilidad se confirma con fábrica para cada modelo.",
+      "Medición en uno o dos planos con el mismo software de las balanceadoras CIMAT nuevas, con reporte del resultado.",
+    ],
+    specLines: [],
+    lineasTexto: "",
+    imagenes: [
+      {
+        src: "/images/cimat/detalle-medicion-portaherramientas.webp",
+        alt: "Detalle de un portaherramientas sujeto en el husillo de una balanceadora CIMAT, con los sensores de medición",
+        width: 1400,
+        height: 1044,
+        caption: "Los sensores y la unidad de medición son la parte que el retrofit reemplaza.",
+      },
+    ],
+    gradosCodigos: [],
+    gradoNota: "",
+    explicacion: {
+      titulo: "Cómo se hace el retrofit de una balanceadora",
+      intro: "El punto de partida es su máquina, no un kit de catálogo.",
+      pasos: [
+        {
+          titulo: "Evaluación",
+          texto:
+            "Con la marca, el modelo, fotos de la placa y de la unidad de medición actual y los rotores que balancea, revisamos el estado de la mecánica y confirmamos con fábrica la compatibilidad.",
+        },
+        {
+          titulo: "Propuesta",
+          texto:
+            "Le enviamos el alcance —sensores, unidad de medición y software— con plazo y condiciones. Si la mecánica no justifica la inversión, se lo decimos y lo comparamos con una máquina nueva.",
+        },
+        {
+          titulo: "Instalación",
+          texto:
+            "Se reemplaza la electrónica sobre la máquina en su planta, sin cambiar la bancada ni la fundación, y se capacita al personal en el software ROTORTEST.",
+        },
+        {
+          titulo: "Control y reporte",
+          texto:
+            "Una corrida de control con rotor de prueba confirma la medición, y la máquina queda emitiendo el reporte de cada balanceo.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: "¿Conviene modernizar la balanceadora o comprar una nueva?",
+        answer:
+          "Conviene modernizar cuando la mecánica está sana y la máquina sigue cubriendo los rotores que usted balancea: el retrofit le devuelve la medición sin cambiar la bancada ni la fundación. Si cambiaron los rotores, necesita otro rango de peso o quiere automatizar la corrección, conviene una máquina nueva. Lo definimos en la evaluación, con su máquina y sus rotores.",
+      },
+      {
+        question: "¿Qué datos necesito para pedir la evaluación?",
+        answer:
+          "Marca, modelo y año de la máquina, fotos de la placa y de la unidad de medición actual, y qué rotores balancea: tipo, peso y velocidad. Si no tiene todos los datos, escríbanos igual y los completamos juntos.",
+      },
+      {
+        question: "¿JEREN presta el servicio de balanceo?",
+        answer:
+          "No. JEREN moderniza y vende balanceadoras, las pone en marcha y capacita a su personal para que el balanceo se haga en su propia planta o taller. No balancea rotores de terceros.",
+      },
+    ],
+    interes: "modernizacion",
+    linea: "retrofit",
+    seo: {
+      title: "Retrofit de balanceadoras con ROTORTEST | Modernización CIMAT | JEREN",
+      description:
+        "Modernización de balanceadoras existentes, CIMAT y de otras marcas: se conserva la mecánica y se reemplaza la electrónica de medición por ROTORTEST de CIMAT. Evaluación sin cargo y soporte desde Argentina.",
     },
   },
 ]
