@@ -213,8 +213,10 @@ export const hero = {
   ],
   /** CTA del hero en mobile: ancla al formulario, que en mobile queda más abajo. */
   ctaMobile: CTA_LABEL,
+  // Dos líneas, no tres: medido el 28/10/2026 en 896 px de alto, el botón del
+  // formulario quedaba 7 px bajo el pliegue con el texto largo.
   microcopy:
-    "Indíquenos qué necesita balancear. Un especialista lo ayuda a identificar la línea y la configuración adecuadas, con asesoramiento sin cargo.",
+    "Indíquenos qué necesita balancear. Un especialista le indica la línea y la configuración adecuadas, sin cargo.",
   image: {
     src: "/images/cimat/hero-balanceadora-horizontal-rodillo.webp",
     alt: "Balanceadora horizontal CIMAT de gran porte con un rodillo cilíndrico montado entre los soportes de la bancada",
