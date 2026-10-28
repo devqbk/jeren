@@ -563,25 +563,6 @@ export function LeadForm({
         {isPending ? "Enviando la consulta." : ""}
       </p>
 
-      {/* El widget de Turnstile va DEBAJO del botón (28/10/2026). Arriba reservaba
-          70 px desde el SSR para no empujar el botón al montar, y ese hueco vacío
-          dejaba el botón bajo el pliegue en pantallas de 896 px. Abajo no mueve
-          nada que importe: monta recién al primer foco y el envío igual lo espera. */}
-      {siteKey ? (
-        <div className="mt-3 min-h-[70px]">
-          {turnstileListo ? (
-            <Turnstile
-              key={turnstileVersion}
-              siteKey={siteKey}
-              options={{ theme: "light", language: "es" }}
-              onSuccess={onTurnstileOk}
-              onError={onTurnstileFallo}
-              onUnsupported={onTurnstileFallo}
-            />
-          ) : null}
-        </div>
-      ) : null}
-
       <p className="mt-2 text-[13px] leading-relaxed text-[var(--c-muted)]">
         <span className="font-semibold text-[var(--c-ink-2)]">{formulario.asesoramiento}</span>{" "}
         {formulario.respuesta}
