@@ -19,6 +19,7 @@ import { HeroPais } from "./hero-pais"
 import { LeadForm } from "./lead-form"
 import { JEREN_ID, ORIGIN, PRODUCTO_ID, brandSchema, manufacturerSchema, organizationSchema } from "./schema"
 import { TelefonoLink, WhatsappLink } from "./secundarios"
+import { SoloDesktop } from "./solo-desktop"
 import { StickyCta } from "./sticky-cta"
 import { CimatTokens, Eyebrow, Lead, Section, SectionTitle, container } from "./ui"
 import { WhatsappFlotante } from "./whatsapp-flotante"
@@ -378,6 +379,14 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
                 responde con la configuración recomendada y los próximos pasos.
               </p>
 
+              {/* Con hero de país el formulario principal está arriba: en mobile
+                  no se monta un segundo (ni un segundo Turnstile), el botón lleva al del hero. */}
+              {r.heroPais ? (
+                <div className="mt-8 lg:hidden">
+                  <Cta location="rotor-cta-final" interes={r.interes} label={etiquetaCta} className="w-full" />
+                </div>
+              ) : null}
+
               <p className="mt-8 text-sm text-white/55">
                 ¿Prefiere escribirnos?{" "}
                 <WhatsappLink
@@ -390,6 +399,16 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
               </p>
             </div>
 
+            {r.heroPais ? (
+              <SoloDesktop className="hidden rounded-xl bg-white p-6 sm:p-8 lg:block">
+                <LeadForm
+                  ctaLocation={`rotor-${r.linea}-form`}
+                  interesInicial={r.interes}
+                  lineaInicial={r.linea}
+                  ctaLabel={etiquetaCta}
+                />
+              </SoloDesktop>
+            ) : (
             <div id="solicitar" className="scroll-mt-24 rounded-xl bg-white p-6 sm:p-8">
               <LeadForm
                 ctaLocation={`rotor-${r.linea}-form`}
@@ -398,6 +417,7 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
                 ctaLabel={etiquetaCta}
               />
             </div>
+            )}
           </div>
         </Section>
       </main>
