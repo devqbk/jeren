@@ -1583,6 +1583,116 @@ export const rotores: RotorPage[] = [
         "Balanceadoras CIMAT para talleres de turbocargadores, rebobinado de motores, rectificadoras y autopartistas en México. Ingeniería de aplicación, cotización en 48 horas, puesta en marcha y capacitación en planta.",
     },
   },
+  {
+    // Página de país para el Perú. CIMAT incluye el Perú en el alcance de JEREN
+    // (Ariel, 27/10/2026); el contacto sale por el mismo WhatsApp y la misma
+    // casilla que Argentina. En el Perú el balanceo industrial lo hacen sobre
+    // todo empresas de servicio (en sitio con equipo portátil o recibiendo
+    // rotores en taller): son el comprador principal de una balanceadora, no la
+    // competencia, y por eso la página abre con ellas. Vocabulario local: "el
+    // Perú", eje cardán, agente de aduana, SUNAT, DAM, IGV, ad valorem. Sin
+    // "exclusivo", sin stock local prometido y sin casos inventados: lo que
+    // falte lo aporta Fabián.
+    slug: "peru",
+    rotor: "balanceadoras para el Perú",
+    eyebrow: "Para empresas de servicio, talleres y plantas del Perú",
+    h1: "Balanceadoras industriales CIMAT en el Perú",
+    subtitle:
+      "Máquinas de balanceo dinámico para empresas de servicio de balanceo, talleres de turbos y rebobinado, y plantas de minería, pesca, cemento y agroindustria en Lima, Callao, Arequipa, Trujillo y todo el Perú, con ingeniería de aplicación, puesta en marcha y soporte de JEREN.",
+    intro: [
+      "CIMAT fabrica balanceadoras en Bydgoszcz, Polonia, desde 1987 y se dedica solo al balanceo: horizontales para rotores con muñones, verticales para discos e impulsores, líneas específicas para turbocargadores, cigüeñales y ejes cardán, la portátil SmaRT para balancear en sitio y celdas automáticas para producción en serie. La máquina se elige por el rotor —masa, geometría, velocidad de servicio y grado exigido—, no por un número de modelo.",
+      "En el Perú buena parte del balanceo industrial lo hacen empresas de servicio que van a la planta con equipo portátil o reciben rotores en su taller. Una balanceadora propia les permite hacer en taller, con certificado de grado, lo que hoy se terceriza o se resuelve en campo: rotores de ventiladores de mina y de secado, bombas de pulpa, poleas, zarandas, motores rebobinados, turbos. JEREN define la configuración con usted, le envía la propuesta y se ocupa de la puesta en marcha y la capacitación en su taller o planta; el soporte de software y medición es remoto, por el router Wi-Fi integrado en la unidad de medición.",
+    ],
+    bullets: [
+      "Empresas de servicio de balanceo: horizontales universales sobre bancada para recibir en taller rotores de unos pocos kilos a 20.000 kg, y la portátil SmaRT para el balanceo en sitio que ya hacen, con evaluación de vibración según DIN ISO 10816-3 y reporte para el cliente.",
+      "Minería y plantas de proceso: rotores de ventiladores de mina y de secado, bombas de pulpa, poleas, zarandas y motores eléctricos de gran porte; grado G6,3 o G2,5 según ISO 21940-11, con el certificado que exige el área de mantenimiento.",
+      "Pesca, azúcar, cemento y agroindustria: rotores de secadores, centrífugas, separadoras, ventiladores de tiro y rodillos de plantas de harina de pescado, ingenios, cementeras y aceiteras.",
+      "Talleres de turbocargadores: conjunto central (CHRA) hasta 300.000 rpm con la serie CMT-VSR y núcleo de hasta 16 kg con la CMT-TR.",
+      "Rebobinado y rectificado: horizontales compactas sin fundación para inducidos y armaduras desde 15 kg; cigüeñales de 7 a 700 kg con taladrado en la misma máquina (CMT-700 H2K); ejes cardán de hasta 4.600 mm (serie CMT-DS).",
+      "¿Ya tiene una balanceadora? El retrofit con ROTORTEST moderniza la electrónica de medición sin cambiar la mecánica, también en máquinas de otras marcas.",
+    ],
+    specLines: [
+      "Horizontales universales sobre bancada",
+      "Compactas sin fundación",
+      "Turbo — core balancer de alta velocidad",
+      "Cigüeñales",
+    ],
+    lineasTexto:
+      "Las líneas que más se usan en empresas de servicio de balanceo, mantenimiento minero e industrial, talleres de turbos, rebobinado y rectificado, con los rangos que publica el fabricante. Verticales, ejes cardán, la portátil SmaRT, el balanceador de núcleo de turbo y wheelsets están en la tabla técnica completa; las celdas automáticas se configuran por proyecto.",
+    imagenes: [
+      {
+        src: "/images/cimat/linea-horizontal-universal-bancada.webp",
+        alt: "Balanceadora industrial horizontal CIMAT sobre bancada larga, con un tambor de gran diámetro montado entre soportes",
+        width: 1167,
+        height: 785,
+        caption: "Balanceadora horizontal universal: el rotor gira apoyado sobre sus muñones. Es la máquina de un taller de servicio que recibe rotores de distintas plantas.",
+      },
+    ],
+    gradosCodigos: ["G2,5", "G6,3"],
+    gradoNota:
+      "G2,5 es el grado de referencia de turbocargadores, turbinas y motores eléctricos de más de 950 rpm; G6,3 el de ventiladores de mina y de proceso, impulsores de bombas, poleas, volantes, rodillos y motores estándar, según ISO 21940-11. El grado alcanzable depende de la masa, la velocidad de servicio y el radio de corrección: lo confirmamos en la ingeniería de aplicación, y la máquina lo documenta en cada rotor.",
+    explicacion: {
+      titulo: "Cómo se compra una balanceadora CIMAT desde el Perú",
+      intro: "Del rotor a la máquina funcionando en su taller o planta, en cuatro pasos.",
+      pasos: [
+        {
+          titulo: "Aplicación",
+          texto:
+            "Nos cuenta qué rotores balancea —tipo, peso, velocidad, grado y cuántos por mes— y definimos línea, modelo y utillaje. Asesoramiento sin cargo, por WhatsApp o videollamada.",
+        },
+        {
+          titulo: "Propuesta",
+          texto:
+            "Le enviamos la cotización dentro de las 48 horas hábiles, con plazo de entrega desde fábrica, garantía y condiciones de pago.",
+        },
+        {
+          titulo: "Importación",
+          texto:
+            "La máquina se exporta desde la fábrica de CIMAT en Polonia y usted la nacionaliza con su agente de aduana ante la SUNAT. Le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica que pide la DAM; el ad valorem y el IGV dependen de la partida arancelaria.",
+        },
+        {
+          titulo: "Puesta en marcha",
+          texto:
+            "Técnicos de JEREN viajan a su taller o planta, instalan, calibran y capacitan a su personal; después, soporte remoto de software y medición por el router Wi-Fi de la unidad de medición.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: "¿Quién atiende en el Perú?",
+        answer:
+          "JEREN, desde Argentina: ingeniería de aplicación, propuesta, puesta en marcha y capacitación en su taller o planta, y soporte remoto de software y medición. Escríbanos por el formulario o por WhatsApp y le respondemos el día hábil siguiente. Lima está dos horas detrás de Buenos Aires: le contestamos en su horario de oficina.",
+      },
+      {
+        question: "¿Quién importa la máquina y qué impuestos paga?",
+        answer:
+          "La nacionaliza usted con su agente de aduana ante la SUNAT. La máquina sale de la fábrica de CIMAT en Polonia y le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica para la DAM. El ad valorem y el IGV dependen de la partida arancelaria y de su régimen, y la documentación de origen le permite a su agente evaluar el tratamiento del acuerdo comercial entre el Perú y la Unión Europea: conviene confirmarlo con él con la cotización en mano.",
+      },
+      {
+        question: "Somos una empresa de servicio de balanceo. ¿Nos conviene una máquina propia?",
+        answer:
+          "Si hoy tercerizan rotores que no pueden balancear en campo, o rechazan trabajos por falta de máquina, sí: una horizontal universal les permite recibir rotores de distintas plantas en su taller y entregar un certificado de grado según ISO 21940-11. La portátil SmaRT cubre el balanceo en sitio que ya hacen. Cuéntenos qué rotores y cuántos por mes, y le decimos qué máquina y con qué utillaje.",
+      },
+      {
+        question: "¿JEREN presta el servicio de balanceo en el Perú?",
+        answer:
+          "No. JEREN vende, pone en marcha y da soporte a las balanceadoras CIMAT, y capacita a su personal para que el balanceo se haga en su propio taller o planta. No balancea rotores de terceros ni compite con las empresas de servicio: son nuestros clientes.",
+      },
+      {
+        question: "¿Y los repuestos y el soporte después de la puesta en marcha?",
+        answer:
+          "El soporte de software y medición es remoto, por el router Wi-Fi integrado en la unidad de medición, y los repuestos se gestionan desde fábrica a través de JEREN. En la cotización le detallamos la garantía y el kit de repuestos críticos recomendado para su máquina.",
+      },
+    ],
+    faqTitulo: "Lo que se pregunta desde el Perú",
+    interes: "nueva-balanceadora",
+    linea: "peru",
+    seo: {
+      title: "Balanceadoras industriales CIMAT en el Perú | Servicio de balanceo, minería y turbos | JEREN",
+      description:
+        "Balanceadoras CIMAT para empresas de servicio de balanceo, talleres de turbos y rebobinado y plantas de minería, pesca y agroindustria en el Perú. Ingeniería de aplicación, cotización en 48 horas, importación con su agente de aduana, puesta en marcha y capacitación.",
+    },
+  },
 ]
 
 /** Enlaces de la navegación secundaria de la landing, uno por rotor, con la palabra literal. */
