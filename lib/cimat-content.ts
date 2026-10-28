@@ -1062,6 +1062,23 @@ export interface RotorPage {
   faqs: FaqItem[]
   /** Título de la sección de preguntas, si "Lo que se pregunta sobre la [rotor]" no se lee bien. */
   faqTitulo?: string
+  /**
+   * Hero de conversión para páginas de país (Perú, 28/10/2026): titular corto,
+   * una frase, tres pruebas, dos acciones, foto protagonista y una franja de
+   * cifras. Sin esto la página usa el hero de rotor (párrafo + viñetas + foto de
+   * catálogo), que para una landing comercial se leía como la página de un libro.
+   * `bullets` y `subtitle` no se pierden: pasan a la sección de introducción.
+   */
+  heroPais?: {
+    /** Una sola frase debajo del H1, dos líneas en desktop como máximo. */
+    subtitulo: string
+    /** Tres pruebas cortas, una línea cada una. */
+    claims: string[]
+    /** Cifras de la franja de confianza, con la fuente de cada una. */
+    cifras: { fuente: string; valor: string; etiqueta: string }[]
+    /** Foto grande, apaisada, sin fondo blanco de catálogo. */
+    imagen: LandingImage
+  }
   interes: InteresValue
   /** Valor de `product_line` que viaja con el lead (mismo campo que `?linea=`). */
   linea: string
@@ -1685,6 +1702,28 @@ export const rotores: RotorPage[] = [
       },
     ],
     faqTitulo: "Lo que se pregunta desde el Perú",
+    heroPais: {
+      subtitulo:
+        "Máquinas de balanceo dinámico para empresas de servicio de balanceo, talleres de turbos y rebobinado, y plantas de minería, pesca y agroindustria en todo el Perú. Ingeniería de aplicación, puesta en marcha y soporte de JEREN.",
+      claims: [
+        "Rotores de unos pocos kilos a 20.000 kg, balanceados en taller con certificado de grado según ISO 21940-11.",
+        "Turbos hasta 300.000 rpm, cigüeñales, ejes cardán y la portátil SmaRT para seguir balanceando en sitio.",
+        "Cotización en 48 h hábiles, puesta en marcha y capacitación en su planta, soporte remoto desde Argentina.",
+      ],
+      cifras: [
+        { fuente: "Fabricante", valor: "Desde 1987", etiqueta: "CIMAT fabrica solo balanceadoras, en Bydgoszcz, Polonia" },
+        { fuente: "Capacidad", valor: "20.000 kg", etiqueta: "peso máximo de rotor en las horizontales sobre bancada" },
+        { fuente: "Turbos", valor: "300.000 rpm", etiqueta: "conjunto central de turbo en la serie CMT-VSR" },
+        { fuente: "Propuesta", valor: "48 h hábiles", etiqueta: "cotización con plazo de entrega, garantía y condiciones de pago" },
+      ],
+      imagen: {
+        src: "/images/cimat/hero-balanceadora-horizontal-rodillo.webp",
+        alt: "Balanceadora horizontal CIMAT de gran porte con un rodillo cilíndrico montado entre los soportes de la bancada",
+        width: 2000,
+        height: 1150,
+        caption: "Horizontal de gran porte: la máquina de un taller de servicio que recibe rotores de distintas plantas.",
+      },
+    },
     interes: "nueva-balanceadora",
     linea: "peru",
     seo: {

@@ -15,6 +15,7 @@ import { CimatFooter } from "./cimat-footer"
 import { CimatHeader } from "./cimat-header"
 import { Cta } from "./cta"
 import { FaqSection } from "./faq-section"
+import { HeroPais } from "./hero-pais"
 import { LeadForm } from "./lead-form"
 import { JEREN_ID, ORIGIN, PRODUCTO_ID, brandSchema, manufacturerSchema, organizationSchema } from "./schema"
 import { TelefonoLink, WhatsappLink } from "./secundarios"
@@ -128,7 +129,11 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
 
       <main>
         {/* Hero: H1 con la keyword, argumento, CTA y foto. Mobile en orden de
-            lectura; en desktop la foto va a la derecha. */}
+            lectura; en desktop la foto va a la derecha. Las páginas de país con
+            `heroPais` usan el hero de conversión (ver hero-pais.tsx). */}
+        {r.heroPais ? (
+          <HeroPais r={r} crumbs={crumbsRotor(r)} etiquetaCta={etiquetaCta} />
+        ) : (
         <section id="top" className="scroll-mt-24 border-b border-[var(--c-line)] bg-[var(--c-surface)]">
           <div className={container}>
             <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-center lg:gap-16 lg:py-20">
@@ -195,18 +200,30 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
             </div>
           </div>
         </section>
+        )}
 
-        {/* Intro en dos párrafos, en usted. */}
+        {/* Intro en dos párrafos, en usted. Con hero de país, acá van también las
+            viñetas por tipo de cliente y la foto de catálogo que el hero no muestra. */}
         <Section tone="paper">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-16">
             <div className="space-y-5 text-base leading-[1.7] text-[var(--c-ink-2)] sm:text-[1.0625rem]">
               {r.intro.map((parrafo) => (
                 <p key={parrafo.slice(0, 40)}>{parrafo}</p>
               ))}
+              {r.heroPais ? (
+                <ul className="space-y-3 pt-2">
+                  {r.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-2.5 text-[15px] leading-snug text-[var(--c-ink)] sm:text-base">
+                      <Check className="mt-0.5 size-4 shrink-0 text-[var(--c-accent)]" aria-hidden="true" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
-            {otrasImagenes.length > 0 ? (
+            {(r.heroPais ? r.imagenes : otrasImagenes).length > 0 ? (
               <div className="space-y-6">
-                {otrasImagenes.map((img) => (
+                {(r.heroPais ? r.imagenes : otrasImagenes).map((img) => (
                   <figure key={img.src}>
                     <div className="overflow-hidden rounded-xl border border-[var(--c-line)] bg-white">
                       <Image
