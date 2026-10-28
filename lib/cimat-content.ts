@@ -1076,8 +1076,10 @@ export interface RotorPage {
     claims: string[]
     /** Cifras de la franja de confianza, con la fuente de cada una. */
     cifras: { fuente: string; valor: string; etiqueta: string }[]
-    /** Foto grande, apaisada, sin fondo blanco de catálogo. */
+    /** Foto grande, apaisada. */
     imagen: LandingImage
+    /** País preseleccionado en el formulario: quien entra a /cimat/peru no debería tener que elegirlo. */
+    pais: PaisValue
   }
   interes: InteresValue
   /** Valor de `product_line` que viaja con el lead (mismo campo que `?linea=`). */
@@ -1723,6 +1725,7 @@ export const rotores: RotorPage[] = [
         height: 1150,
         caption: "Horizontal de gran porte: la máquina de un taller de servicio que recibe rotores de distintas plantas.",
       },
+      pais: "PE",
     },
     interes: "nueva-balanceadora",
     linea: "peru",

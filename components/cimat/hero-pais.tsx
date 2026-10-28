@@ -43,7 +43,7 @@ export function HeroPais({
           <Breadcrumbs items={crumbs} />
         </div>
 
-        <div className="grid gap-10 pb-12 pt-8 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-stretch lg:gap-16 lg:pb-20 lg:pt-10">
+        <div className="grid gap-10 pb-12 pt-8 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-start lg:gap-16 lg:pb-20 lg:pt-10">
           <div className="lg:col-start-1 lg:row-start-1">
             <Eyebrow>{r.eyebrow}</Eyebrow>
             <h1 className="mt-4 text-pretty text-[1.85rem] font-bold leading-[1.08] tracking-tight sm:text-[2.4rem] lg:text-[2.75rem]">
@@ -114,7 +114,7 @@ export function HeroPais({
           </div>
 
           <div id="solicitar" className="flex scroll-mt-24 flex-col lg:col-start-2 lg:row-span-2 lg:row-start-1">
-            <div className="flex flex-1 flex-col rounded-xl border border-[var(--c-line)] bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-8">
+            <div className="flex flex-col rounded-xl border border-[var(--c-line)] bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-8">
               <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--c-muted)]">
                 Solicitud de información
               </p>
@@ -128,6 +128,7 @@ export function HeroPais({
                   ctaLocation={`pais-${r.linea}-hero-form`}
                   interesInicial={r.interes}
                   lineaInicial={r.linea}
+                  paisInicial={h.pais}
                   ctaLabel={etiquetaCta}
                 />
               </div>

@@ -9,6 +9,7 @@ import {
   CTA_LABEL,
   INTERESES,
   PAISES,
+  type PaisValue,
   TELEFONO,
   TELEFONO_HREF,
   WHATSAPP_URL,
@@ -91,6 +92,7 @@ export function LeadForm({
   ctaLocation = "form-landing",
   interesInicial,
   lineaInicial,
+  paisInicial,
   ctaLabel = CTA_LABEL,
   className,
 }: {
@@ -100,6 +102,8 @@ export function LeadForm({
   interesInicial?: InteresValue
   /** `product_line` del lead si la URL no trae `?linea=`. */
   lineaInicial?: string
+  /** País preseleccionado (páginas de país): quien entra a /cimat/peru no elige "Perú" a mano. */
+  paisInicial?: PaisValue
   /** Texto del botón de envío. En las subpáginas: "Pedir propuesta para [rotor]". */
   ctaLabel?: string
   className?: string
@@ -110,7 +114,7 @@ export function LeadForm({
   const formRef = useRef<HTMLFormElement>(null)
   const interesRef = useRef<HTMLSelectElement>(null)
   const [interes, setInteres] = useState<string>(interesInicial ?? "")
-  const [pais, setPais] = useState("")
+  const [pais, setPais] = useState<string>(paisInicial ?? "")
   const [origen, setOrigen] = useState(ctaLocation)
   const [empezado, setEmpezado] = useState(false)
   const [turnstileListo, setTurnstileListo] = useState(false)

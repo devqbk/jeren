@@ -405,6 +405,7 @@ export function RotorPage({ r }: { r: RotorPageContent }) {
                   ctaLocation={`rotor-${r.linea}-form`}
                   interesInicial={r.interes}
                   lineaInicial={r.linea}
+                  paisInicial={r.heroPais.pais}
                   ctaLabel={etiquetaCta}
                 />
               </SoloDesktop>
