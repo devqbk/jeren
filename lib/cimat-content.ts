@@ -1669,7 +1669,7 @@ export const rotores: RotorPage[] = [
         {
           titulo: "Importación",
           texto:
-            "La máquina se exporta desde la fábrica de CIMAT en Polonia y usted la nacionaliza con su agente de aduana ante la SUNAT. Le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica que pide la DAM; el ad valorem y el IGV dependen de la partida arancelaria.",
+            "La venta es EXW fábrica de CIMAT en Polonia. Su agente de aduana realiza la tramitación ante la SUNAT y el transporte de la máquina; le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica.",
         },
         {
           titulo: "Puesta en marcha",
@@ -1685,19 +1685,14 @@ export const rotores: RotorPage[] = [
           "JEREN, desde Argentina: ingeniería de aplicación, propuesta, puesta en marcha y capacitación en su taller o planta, y soporte remoto de software y medición. Escríbanos por el formulario o por WhatsApp y le respondemos el día hábil siguiente. Lima está dos horas detrás de Buenos Aires: le contestamos en su horario de oficina.",
       },
       {
-        question: "¿Quién importa la máquina y qué impuestos paga?",
+        question: "¿Quién importa la máquina?",
         answer:
-          "La nacionaliza usted con su agente de aduana ante la SUNAT. La máquina sale de la fábrica de CIMAT en Polonia y le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica para la DAM. El ad valorem y el IGV dependen de la partida arancelaria y de su régimen, y la documentación de origen le permite a su agente evaluar el tratamiento del acuerdo comercial entre el Perú y la Unión Europea: conviene confirmarlo con él con la cotización en mano.",
+          "La cotización y la venta son EXW fábrica de CIMAT en Polonia. Su agente de aduana realiza la tramitación ante la SUNAT y el transporte de la máquina; nosotros le entregamos la factura, la lista de empaque, la documentación de origen y la ficha técnica.",
       },
       {
         question: "Somos una empresa de servicio de balanceo. ¿Nos conviene una máquina propia?",
         answer:
           "Si hoy tercerizan rotores que no pueden balancear en campo, o rechazan trabajos por falta de máquina, sí: una horizontal universal les permite recibir rotores de distintas plantas en su taller y entregar un certificado de grado según ISO 21940-11. La portátil SmaRT cubre el balanceo en sitio que ya hacen. Cuéntenos qué rotores y cuántos por mes, y le decimos qué máquina y con qué utillaje.",
-      },
-      {
-        question: "¿JEREN presta el servicio de balanceo en el Perú?",
-        answer:
-          "No. JEREN vende, pone en marcha y da soporte a las balanceadoras CIMAT, y capacita a su personal para que el balanceo se haga en su propio taller o planta. No balancea rotores de terceros ni compite con las empresas de servicio: son nuestros clientes.",
       },
       {
         question: "¿Y los repuestos y el soporte después de la puesta en marcha?",
