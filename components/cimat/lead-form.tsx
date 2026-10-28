@@ -481,22 +481,11 @@ export function LeadForm({
         <input id={`${uid}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {/* Alto reservado desde el SSR: el widget monta recién al primer foco o
-          input y sin esto empujaría el botón de envío unos 70 px. */}
-      {siteKey ? (
-        <div className="min-h-[70px]">
-          {turnstileListo ? (
-            <Turnstile
-              key={turnstileVersion}
-              siteKey={siteKey}
-              options={{ theme: "light", language: "es" }}
-              onSuccess={onTurnstileOk}
-              onError={onTurnstileFallo}
-              onUnsupported={onTurnstileFallo}
-            />
-          ) : null}
-        </div>
-      ) : null}
+      {/* El widget de Turnstile sigue en el formulario, pero DEBAJO del botón de
+          envío (ver más abajo). Arriba reservaba 70 px vacíos desde el SSR para no
+          empujar el botón al montar, y ese hueco dejaba el botón bajo el pliegue en
+          pantallas de 896 px (medido el 28/10/2026). Nada cambia en la verificación:
+          monta al primer foco y el envío sigue esperando el token. */}
 
       {esperandoToken ? (
         <p role="status" className="flex items-center gap-2 text-[13px] text-[var(--c-ink-2)]">
@@ -562,6 +551,23 @@ export function LeadForm({
       <p aria-live="polite" className="sr-only">
         {isPending ? "Enviando la consulta." : ""}
       </p>
+
+      {/* Turnstile, debajo del botón (28/10/2026): el alto reservado desde el SSR
+          evita que el widget empuje nada al montar, y acá no afecta el pliegue. */}
+      {siteKey ? (
+        <div className="mt-3 min-h-[70px]">
+          {turnstileListo ? (
+            <Turnstile
+              key={turnstileVersion}
+              siteKey={siteKey}
+              options={{ theme: "light", language: "es" }}
+              onSuccess={onTurnstileOk}
+              onError={onTurnstileFallo}
+              onUnsupported={onTurnstileFallo}
+            />
+          ) : null}
+        </div>
+      ) : null}
 
       <p className="mt-2 text-[13px] leading-relaxed text-[var(--c-muted)]">
         <span className="font-semibold text-[var(--c-ink-2)]">{formulario.asesoramiento}</span>{" "}
