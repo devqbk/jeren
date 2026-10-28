@@ -39,11 +39,13 @@ export function HeroPais({
   return (
     <section id="top" className="scroll-mt-24 border-b border-[var(--c-line)] bg-[var(--c-surface)]">
       <div className={container}>
-        <div className="pt-6 sm:pt-8">
+        {/* Migas compactas: cada píxel acá empuja el botón del formulario bajo el pliegue
+            (medido el 28/10: 889 px de 896 con las migas holgadas y cuatro líneas de microcopia). */}
+        <div className="pt-4 sm:pt-5">
           <Breadcrumbs items={crumbs} />
         </div>
 
-        <div className="grid gap-10 pb-12 pt-8 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-start lg:gap-16 lg:pb-20 lg:pt-10">
+        <div className="grid gap-10 pb-12 pt-5 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-start lg:gap-16 lg:pb-20 lg:pt-6">
           <div className="lg:col-start-1 lg:row-start-1">
             <Eyebrow>{r.eyebrow}</Eyebrow>
             <h1 className="mt-4 text-pretty text-[1.85rem] font-bold leading-[1.08] tracking-tight sm:text-[2.4rem] lg:text-[2.75rem]">
@@ -119,9 +121,8 @@ export function HeroPais({
                 Solicitud de información
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--c-ink-2)]">
-                Indíquenos qué rotores balancea y cuántos por mes. Un especialista de JEREN le responde
-                el día hábil siguiente con la línea y la configuración recomendadas; la cotización, dentro
-                de las 48 horas hábiles. Asesoramiento sin cargo.
+                Indíquenos qué rotores balancea. Un especialista le responde el día hábil siguiente;
+                la cotización, en 48 horas hábiles. Sin cargo.
               </p>
               <div className="mt-6">
                 <LeadForm
