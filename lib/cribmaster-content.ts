@@ -47,8 +47,26 @@ export const headerNav = [
   { label: "Caso", href: "#caso" },
   { label: "Qué resuelve", href: "#resuelve" },
   { label: "Soluciones", href: "#soluciones" },
+  { label: "Video", href: "#video" },
   { label: "Dónde aplica", href: "#aplica" },
 ]
+
+// ── Videos ───────────────────────────────────────────────────────────────────
+//
+// Los mismos links que mandó Fabián el 30/10/2026, menos el de RoboCrib: ese es
+// de AutoCrib, un competidor, no de CribMaster. Primero el que está en español.
+
+export const videos = {
+  eyebrow: "Vealo funcionando",
+  title: "Cómo se retira, se registra y se repone cada ítem",
+  items: [
+    { id: "F0q1KhfuHz8", title: "CribMaster: vending industrial (en español)", duracion: "" },
+    { id: "cfuyPIw4-i8", title: "ProStock: alta capacidad en poco espacio", duracion: "" },
+    { id: "nVD7h76RWfs", title: "ProLock: lockers escalables para herramientas", duracion: "" },
+    { id: "e6wXKryObzE", title: "CM Web: el software de gestión", duracion: "" },
+  ],
+  aclaracion: "Videos publicados por el fabricante y por terceros en YouTube. Audio en inglés salvo el primero.",
+}
 
 // ── 1. Hero ──────────────────────────────────────────────────────────────────
 

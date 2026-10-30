@@ -11,6 +11,7 @@ import {
   SolucionesSection,
 } from "@/components/cribmaster/secciones"
 import { CribmasterTokens } from "@/components/cribmaster/tokens"
+import { VideoSection } from "@/components/cribmaster/video"
 import { CANONICAL, EMAIL, SITIO_FABRICANTE, TELEFONO, hero, seo } from "@/lib/cribmaster-content"
 
 export const metadata: Metadata = {
@@ -83,6 +84,7 @@ export default function CribmasterPage() {
         <CasoSection />
         <ResuelveSection />
         <SolucionesSection />
+        <VideoSection />
         <AplicaSection />
         <CtaFinalSection />
       </main>
