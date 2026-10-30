@@ -47,7 +47,7 @@ export const headerNav = [
   { label: "Caso", href: "#caso" },
   { label: "Qué resuelve", href: "#resuelve" },
   { label: "Soluciones", href: "#soluciones" },
-  { label: "Video", href: "#video" },
+  // "Video" no va en el menú: con seis ítems la navegación se partía en dos líneas.
   { label: "Dónde aplica", href: "#aplica" },
 ]
 
