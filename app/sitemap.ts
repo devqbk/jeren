@@ -21,9 +21,7 @@ const RUTAS: { path: string; priority: number; changeFrequency: MetadataRoute.Si
     priority: 0.8,
     changeFrequency: "monthly" as const,
   })),
-  // CribMaster no tiene landing propia: la ficha por industria es su URL.
-  { path: "/petroleo-gas/cribmaster", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/mineria/cribmaster", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/cribmaster", priority: 0.9, changeFrequency: "monthly" },
   { path: "/privacidad", priority: 0.3, changeFrequency: "yearly" },
 ]
 

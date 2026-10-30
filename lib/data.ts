@@ -49,6 +49,7 @@ export const marcasNuevas = [
     description: "Expendedoras industriales, lockers y gabinetes inteligentes para insumos, EPP y herramientas, con control por persona y software integrable al ERP. Marca de Stanley Black & Decker.",
     website: "https://www.cribmaster.com",
     industrias: ["petroleo-gas", "mineria"],
+    landing: "/cribmaster",
   },
 ]
 
@@ -246,6 +247,7 @@ export const petroleoGasBrands = [
     logo: "/images/brands/cribmaster.png",
     description: "Gestión automatizada de insumos, EPP y herramientas en el yacimiento",
     website: "https://www.cribmaster.com",
+    landing: "/cribmaster",
   },
 ]
 
@@ -264,6 +266,7 @@ export const mineriaBrands = [
     logo: "/images/brands/cribmaster.png",
     description: "Gestión automatizada de insumos, EPP y herramientas en la mina",
     website: "https://www.cribmaster.com",
+    landing: "/cribmaster",
   },
 ]
 

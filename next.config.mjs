@@ -29,6 +29,9 @@ const nextConfig = {
     return [
       { source: "/mineria/cimat", destination: "/cimat", permanent: true },
       { source: "/petroleo-gas/cimat", destination: "/cimat", permanent: true },
+      // CribMaster: mismo criterio, la ficha por industria vivió un rato (30/10/2026).
+      { source: "/mineria/cribmaster", destination: "/cribmaster", permanent: true },
+      { source: "/petroleo-gas/cribmaster", destination: "/cribmaster", permanent: true },
 
       // ── Sitio viejo (WordPress + WooCommerce) ─────────────────────────────
       // Search Console (10/09/2026) todavía mostraba 83 URLs del sitio anterior
