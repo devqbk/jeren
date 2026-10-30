@@ -360,4 +360,36 @@ export const marcasNuevasContent: BrandContent[] = [
       },
     ],
   },
+  // Fuente: flyer CribMaster_Flyer_A4_JEREN (30/10/2026) y mail de Fabián Naveira del mismo día.
+  // CribMaster es una marca de Stanley Black & Decker; JEREN es distribuidor autorizado en Argentina.
+  {
+    slug: "cribmaster",
+    longDescription: [
+      "CribMaster, marca de Stanley Black & Decker, entrega cada insumo, elemento de protección personal o herramienta a un operario identificado con tarjeta o PIN, registra la transacción en el momento y repone solo lo que se consume. Expendedoras industriales, lockers y gabinetes inteligentes instalados en el punto de uso, con un software que sigue el stock en tiempo real, se integra al ERP y concentra los datos de todos los sitios, incluidos los remotos.",
+      "Aplica en yacimientos onshore y offshore, minas a cielo abierto y subterráneas, talleres de mantenimiento pesado, pañoles satélite y contratistas en obra. JEREN distribuye, instala y da soporte a CribMaster en Argentina.",
+    ],
+    products: [
+      {
+        name: "Expendedoras industriales — ToolBox · ProStock",
+        description: "EPP, insertos y consumibles con dispensado unitario, autorizado con tarjeta o PIN y registrado por persona, área y turno.",
+        imageUrl: "/images/brands/cribmaster/toolbox.png",
+      },
+      {
+        name: "Lockers y gabinetes inteligentes — ProLock · MultiStore · Flip Top",
+        description: "Herramientas y equipos de alto valor con registro de retiro y devolución.",
+      },
+      {
+        name: "Trazabilidad RFID — AccuCab · AccuPort",
+        description: "Gabinetes y portales que registran qué entra y qué sale sin intervención del operario.",
+      },
+      {
+        name: "Software y app — Suite CribMaster · CM Mobile",
+        description: "Stock en tiempo real, reportes de uso, reposición automática, integración con el ERP y retiro desde el celular.",
+      },
+      {
+        name: "Acceso controlado — Access+",
+        description: "Cerradura con credencial para gabinetes LISTA® y Vidmar® ya instalados.",
+      },
+    ],
+  },
 ]

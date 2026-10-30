@@ -42,6 +42,14 @@ export const marcasNuevas = [
     website: "https://www.xplorobot.com",
     industrias: ["petroleo-gas"],
   },
+  {
+    slug: "cribmaster",
+    name: "CribMaster",
+    logo: "/images/brands/cribmaster.png",
+    description: "Expendedoras industriales, lockers y gabinetes inteligentes para insumos, EPP y herramientas, con control por persona y software integrable al ERP. Marca de Stanley Black & Decker.",
+    website: "https://www.cribmaster.com",
+    industrias: ["petroleo-gas", "mineria"],
+  },
 ]
 
 // Marcas de Electrónica
@@ -232,6 +240,13 @@ export const petroleoGasBrands = [
     description: "Detección y reporte de emisiones de metano",
     website: "https://www.xplorobot.com",
   },
+  {
+    slug: "cribmaster",
+    name: "CribMaster",
+    logo: "/images/brands/cribmaster.png",
+    description: "Gestión automatizada de insumos, EPP y herramientas en el yacimiento",
+    website: "https://www.cribmaster.com",
+  },
 ]
 
 export const mineriaBrands = [
@@ -242,6 +257,13 @@ export const mineriaBrands = [
     description: "Máquinas balanceadoras para equipos mineros",
     website: "https://www.cimat-balancing.com",
     landing: "/cimat",
+  },
+  {
+    slug: "cribmaster",
+    name: "CribMaster",
+    logo: "/images/brands/cribmaster.png",
+    description: "Gestión automatizada de insumos, EPP y herramientas en la mina",
+    website: "https://www.cribmaster.com",
   },
 ]
 
