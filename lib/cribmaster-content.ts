@@ -86,7 +86,7 @@ export const caso = {
   title: "Lo que cambió en una mina cuando cada entrega quedó registrada por persona",
   stats: [
     { value: "−78 %", label: "de desperdicio de insumos de seguridad" },
-    { value: "USD 5.000 / mes", label: "de ahorro en anteojos de seguridad" },
+    { value: "USD 5.000", label: "por mes de ahorro en anteojos de seguridad" },
     { value: "USD 30.000", label: "de retorno en 6 meses, contando solo anteojos de seguridad" },
     { value: "59 → 13", label: "entregas por día, con dispensado unitario y registro por persona" },
   ],
