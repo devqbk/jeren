@@ -193,7 +193,9 @@ caiga en el sitio del fabricante, donde JEREN todavía no figura.
 
 ## B1. La campaña
 
-**Estado al 31/10/2026, 09:40: creada EN PAUSA por API**, id `24412077264`, con todo lo de abajo: 6 grupos con sus
+**ENCENDIDA el 31/10/2026 a las 09:50 con el OK de Ariel** (estado ELIGIBLE; anuncios en revisión de políticas al encender).
+Día 0 del contrato de B3: próximos controles a las 48 h y 72 h (conversión de prueba y conversiones mejoradas "Registrando")
+y el corte del día 14. **Creada EN PAUSA por API a las 09:40**, id `24412077264`, con todo lo de abajo: 6 grupos con sus
 pujas, 55 keywords (48 exactas, 7 en frase), 6 anuncios adaptables (en revisión de políticas), lista `NEG — CribMaster AR`
 con 133 negativas aplicada, Argentina con Presencia, español e inglés, solo Búsqueda, sufijo de URL con UTM, 4 sitelinks,
 4 textos destacados, fragmento de modelos y extensión de llamada. Los dos retoques de landing del Paso 0 (frases literales y
