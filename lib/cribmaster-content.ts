@@ -13,7 +13,7 @@
 
 export const CANONICAL = "https://www.jeren.com/cribmaster"
 export const FORM_ANCHOR = "#solicitar"
-export const CTA_LABEL = "Pedir una demostración"
+export const CTA_LABEL = "Solicitar más información"
 
 /** Mismo WhatsApp comercial que la línea CIMAT (Fabián Naveira). */
 export const WHATSAPP_NUMERO = "5491141571427"
