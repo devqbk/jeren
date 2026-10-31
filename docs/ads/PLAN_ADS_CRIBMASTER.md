@@ -193,6 +193,14 @@ caiga en el sitio del fabricante, donde JEREN todavía no figura.
 
 ## B1. La campaña
 
+**Estado al 31/10/2026, 09:40: creada EN PAUSA por API**, id `24412077264`, con todo lo de abajo: 6 grupos con sus
+pujas, 55 keywords (48 exactas, 7 en frase), 6 anuncios adaptables (en revisión de políticas), lista `NEG — CribMaster AR`
+con 133 negativas aplicada, Argentina con Presencia, español e inglés, solo Búsqueda, sufijo de URL con UTM, 4 sitelinks,
+4 textos destacados, fragmento de modelos y extensión de llamada. Los dos retoques de landing del Paso 0 (frases literales y
+privacidad) están en producción (commit `b3b5ffb`). **Para encender falta**: el OK de JEREN sobre los cuatro supuestos
+bloqueantes (A6) y la revisión de políticas de los anuncios (si Google frena "CribMaster" por marca, se pide la autorización a
+Stanley).
+
 **Una sola campaña de búsqueda.** Con 440 búsquedas no hay volumen para separar marca de producto: la campaña "CIMAT — Marca"
 hizo 1 impresión en 90 días y está pausada. Se segmenta por grupo de anuncio y se juzga por grupo.
 
