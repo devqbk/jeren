@@ -1,0 +1,743 @@
+# Base de hechos — Google Ads CribMaster / JEREN (Argentina) — 31/10/2026
+
+Generada por API (Keyword Planner y cuenta 452-457-1142) el 31/10/2026. Todo lo que no está acá es hipótesis.
+Cuenta en ARS; referencia ~1.500 ARS/USD. Developer token nivel Explorador (2.880 ops/día).
+
+## 1. Qué se vende y a quién (fuente: flyer CribMaster_Flyer_A4_JEREN y mail de Fabián Naveira, 30/10/2026)
+
+- CribMaster® es marca de Stanley Black & Decker. JEREN SRL es **distribuidor autorizado en Argentina** (no "representante oficial").
+- Producto: expendedoras industriales (ToolBox, ProStock), lockers y gabinetes inteligentes (ProLock, MultiStore, Flip Top),
+  trazabilidad RFID (AccuCab, AccuPort), software Suite CribMaster + CM Mobile (stock en tiempo real, reposición, integración ERP),
+  Access+ (cerradura con credencial para gabinetes LISTA/Vidmar). Cada retiro con tarjeta o PIN, registrado por persona, área y turno.
+- Caso del fabricante: Rio Tinto, mina Cordero Rojo (EE. UU.): −78 % de desperdicio de insumos de seguridad, USD 5.000/mes de ahorro en
+  anteojos, USD 30.000 en 6 meses, 59 → 13 entregas/día. (Resultados según publicación del fabricante.)
+- Dónde aplica según el flyer: yacimientos onshore/offshore, minas a cielo abierto y subterráneas, talleres de mantenimiento pesado,
+  pañoles satélite y sitios remotos, contratistas en obra. El flyer está armado para **Petróleo & Gas y Minería**; globalmente CribMaster
+  también vende a automotriz, aeroespacial, manufactura y distribuidores MRO.
+- JEREN: 40+ años, oficinas en CABA (Av. Juramento 2089), sucursales en Río Grande y Ushuaia (Tecnomaq). Vende, instala y da soporte.
+- Quien atiende leads: Fabián Naveira (fnaveira@jeren.com, WhatsApp +54 9 11 4157-1427). Capacidad comercial: un vendedor.
+- Primer movimiento comercial: el 30/10 Fabián mandó un mail frío a `proveedores@psjcobremendocino.cpm` (sic, dominio mal escrito) con
+  5 links de YouTube y ~700 palabras de catálogo. No hay campaña previa de CribMaster en ningún canal.
+
+## 2. Landing (en producción desde 30/10/2026)
+
+- URL: https://www.jeren.com/cribmaster (las fichas /mineria/cribmaster y /petroleo-gas/cribmaster redirigen 301 ahí).
+- Estructura: hero con formulario (nombre, empresa, email, teléfono, cargo, operación), barra de confianza, caso Rio Tinto,
+  "qué resuelve" (4), soluciones (5 líneas), 4 videos de YouTube con fachada, dónde aplica, bloque JEREN, CTA final con formulario,
+  barra sticky mobile y WhatsApp flotante. Molde de /cimat (misma maquinaria de Turnstile, honeypot y mailer). CTA: "Solicitar más información".
+- Eventos (dataLayer, prefijo `cm_` para NO disparar la conversión de Ads de CIMAT): cm_cta_click, cm_form_start, cm_form_submit,
+  cm_form_error, cm_lead_conversion (en /cribmaster/gracias, una vez por envío), cm_whatsapp_click, cm_phone_click, cm_video_play.
+- El formulario lleva utm_source/medium/campaign/content/term, page_url, device_type y referrer en el mail del lead. NO lleva gclid
+  todavía (el de CIMAT sí). No hay acción de conversión de Ads creada para CribMaster.
+- Página de gracias /cribmaster/gracias en noindex.
+- Pendiente de dueño: una sola foto de producto (ToolBox); no hay catálogo PDF ni precios; WhatsApp es el personal de Fabián.
+
+## 3. Keyword Planner, Argentina, español — volúmenes mensuales (promedio 12 meses)
+
+"0" = Google no muestra dato (debajo del umbral); vale como cero para sostener una campaña.
+Columnas: volumen | término | competencia | puja top de página baja-alta (ARS).
+
+### 3.a Términos semilla de producto y categoría (métrica exacta)
+
+-  590 | kardex | LOW | ARS 948-8804
+-  110 | gestion de herramientas | MEDIUM | ARS 1858-7458
+-  110 | planilla entrega de epp | LOW | ARS 0-0
+-   90 | entrega de epp | LOW | ARS 0-0
+-   50 | lockers inteligentes | HIGH | ARS 832-1624
+-   40 | registro de entrega de epp | LOW | ARS 0-0
+-   20 | maquina expendedora de epp | MEDIUM | ARS 177-907
+-   10 | vending industrial | MEDIUM | ARS 0-0
+-   10 | dispensador de epp | MEDIUM | ARS 152-1122
+-   10 | control de herramientas | MEDIUM | ARS 1180-3643
+-   10 | gestion de pañol | HIGH | ARS 0-0
+-   10 | control de inventario de herramientas | None | ARS 0-0
+-   10 | cribmaster | LOW | ARS 0-0
+-   10 | autocrib | LOW | ARS 0-0
+-   10 | supplypro | LOW | ARS 0-0
+-   10 | maquina expendedora de guantes | LOW | ARS 0-0
+-   10 | control de epp | LOW | ARS 684-1752
+-   10 | gestion de epp | LOW | ARS 0-0
+-   10 | tool crib | LOW | ARS 0-0
+-   10 | industrial vending machine | MEDIUM | ARS 347-1127
+-   10 | tool vending machine | MEDIUM | ARS 326-1647
+-   10 | mro vending | None | ARS 0-0
+-   10 | software control de herramientas | None | ARS 0-0
+-   10 | maquinas expendedoras para empresas | HIGH | ARS 608-4136
+-    0 | maquina expendedora industrial | None | ARS 0-0
+-    0 | expendedora de epp | None | ARS 0-0
+-    0 | vending de epp | None | ARS 0-0
+-    0 | lockers inteligentes para herramientas | None | ARS 0-0
+-    0 | pañol inteligente | None | ARS 0-0
+-    0 | pañol automatizado | None | ARS 0-0
+-    0 | software de pañol | None | ARS 0-0
+-    0 | trazabilidad de herramientas rfid | None | ARS 0-0
+-    0 | cribmaster argentina | None | ARS 0-0
+-    0 | vending de consumibles | None | ARS 0-0
+-    0 | expendedora de insumos | None | ARS 0-0
+-    0 | gabinete de herramientas con control de acceso | None | ARS 0-0
+-    0 | armario inteligente de herramientas | None | ARS 0-0
+-    0 | dispensador automatico de herramientas | None | ARS 0-0
+-    0 | control de consumibles industriales | None | ARS 0-0
+-    0 | gestion de almacen de herramientas | None | ARS 0-0
+-    0 | control de stock de epp | None | ARS 0-0
+-    0 | maquina expendedora de herramientas | None | ARS 0-0
+-    0 | vending machine industrial argentina | None | ARS 0-0
+-    0 | gestion de inventario industrial | None | ARS 0-0
+-    0 | control de inventario mro | None | ARS 0-0
+-    0 | sistema de gestion de herramientas | None | ARS 0-0
+-    0 | control de herramental | None | ARS 0-0
+-    0 | pañol minero | None | ARS 0-0
+-    0 | gestion de pañol minero | None | ARS 0-0
+
+### 3.b Segunda tanda (métrica exacta): variantes, pañol, EPP, inventario, contexto industrial
+
+- 4400 | epp | LOW | ARS 359-2076
+- 4400 | elementos de proteccion personal | LOW | ARS 359-2076
+- 2900 | maquina expendedora | MEDIUM | ARS 111-836
+- 1900 | pañol | LOW | ARS 0-0
+- 1300 | insumos industriales | LOW | ARS 381-3159
+-  590 | maquina expendedora argentina | HIGH | ARS 177-1068
+-  590 | empresas mineras argentina | MEDIUM | ARS 269-996
+-  390 | equipo de proteccion personal | LOW | ARS 323-1305
+-  260 | que es un pañol | LOW | ARS 0-0
+-  260 | mro | LOW | ARS 579-4813
+-  210 | herramientas industriales | MEDIUM | ARS 360-2082
+-  140 | pañol de herramientas | MEDIUM | ARS 71-323
+-  140 | gestion de inventarios | MEDIUM | ARS 1442-6007
+-  140 | control de inventarios | MEDIUM | ARS 1510-6459
+-  110 | sistema de inventario | HIGH | ARS 1680-7027
+-   30 | software de inventario | HIGH | ARS 2933-10638
+-   30 | pañol de obra | LOW | ARS 0-0
+-   30 | inventario de herramientas | MEDIUM | ARS 591-5229
+-   20 | pañol de mantenimiento | LOW | ARS 0-0
+-   20 | lockers inteligentes argentina | HIGH | ARS 739-1393
+-   20 | insumos para mineria | HIGH | ARS 776-5056
+-   20 | insumos de seguridad industrial | HIGH | ARS 417-1660
+-   10 | yacimientos petroliferos argentina | LOW | ARS 0-0
+-   10 | vending machine industrial | None | ARS 0-0
+-   10 | vaca muerta proveedores | MEDIUM | ARS 277-1491
+-   10 | trazabilidad rfid | HIGH | ARS 0-0
+-   10 | tool tracking | MEDIUM | ARS 513-22905
+-   10 | tool management system | None | ARS 0-0
+-   10 | tool management software | LOW | ARS 0-0
+-   10 | stock de herramientas | LOW | ARS 0-0
+-   10 | sistema de control de herramientas | HIGH | ARS 0-0
+-   10 | seguridad industrial argentina | MEDIUM | ARS 0-0
+-   10 | rfid industrial | None | ARS 0-0
+-   10 | proveedores mineros argentina | HIGH | ARS 533-6178
+-   10 | ppe vending machine | MEDIUM | ARS 0-0
+-   10 | pañol industrial | LOW | ARS 0-0
+-   10 | lockers para herramientas | HIGH | ARS 76-953
+-   10 | lockers industriales | HIGH | ARS 700-2140
+-   10 | kardex de herramientas | None | ARS 0-0
+-   10 | inventario de pañol | MEDIUM | ARS 722-1567
+-   10 | industrial vending | MEDIUM | ARS 347-1127
+-   10 | gestion de elementos de proteccion personal | LOW | ARS 0-0
+-   10 | gestion de consumibles | None | ARS 0-0
+-   10 | gestion de activos industriales | None | ARS 0-0
+-   10 | gabinetes inteligentes | MEDIUM | ARS 0-0
+-   10 | cribmaster toolbox | None | ARS 0-0
+-   10 | cribmaster prostock | HIGH | ARS 0-0
+-   10 | control de pañol | HIGH | ARS 1137-3528
+-   10 | control de herramientas en obra | None | ARS 0-0
+-   10 | control de entrega de epp | None | ARS 0-0
+-   10 | control de activos rfid | None | ARS 0-0
+-   10 | consumibles industriales | None | ARS 0-0
+-   10 | compras mro | LOW | ARS 0-0
+-   10 | administracion de herramientas | None | ARS 0-0
+-    0 | vending machine de epp | None | ARS 0-0
+-    0 | vending de guantes | None | ARS 0-0
+-    0 | stanley cribmaster | None | ARS 0-0
+-    0 | software prestamo de herramientas | None | ARS 0-0
+-    0 | software gestion de pañol | None | ARS 0-0
+-    0 | software gestion de herramientas | None | ARS 0-0
+-    0 | software de epp | None | ARS 0-0
+-    0 | sistema de prestamo de herramientas | None | ARS 0-0
+-    0 | sistema de pañol | None | ARS 0-0
+-    0 | sistema de control de epp | None | ARS 0-0
+-    0 | prestamo de herramientas software | None | ARS 0-0
+-    0 | pañol minero | None | ARS 0-0
+-    0 | pañol 4.0 | None | ARS 0-0
+-    0 | maquinas expendedoras de epp | None | ARS 0-0
+-    0 | maquinas dispensadoras para industria | None | ARS 0-0
+-    0 | lockers inteligentes para empresas | None | ARS 0-0
+-    0 | herramientas rfid | None | ARS 0-0
+-    0 | gestion de insumos mineria | None | ARS 0-0
+-    0 | gestion de herramientas industriales | None | ARS 0-0
+-    0 | gestion de herramientas de mano | None | ARS 0-0
+-    0 | gestion de epp software | None | ARS 0-0
+-    0 | gabinetes inteligentes herramientas | None | ARS 0-0
+-    0 | expendedoras de insumos industriales | None | ARS 0-0
+-    0 | epp vending machine | None | ARS 0-0
+-    0 | entrega de epp software | None | ARS 0-0
+-    0 | dispensadores de guantes industriales | None | ARS 0-0
+-    0 | dispensadoras de epp | None | ARS 0-0
+-    0 | control de stock de herramientas | None | ARS 0-0
+-    0 | control de insumos mineria | None | ARS 0-0
+-    0 | control de herramientas rfid | None | ARS 0-0
+-    0 | control de herramientas empresa constructora | None | ARS 0-0
+-    0 | control de epp app | None | ARS 0-0
+-    0 | cajas de herramientas con control de acceso | None | ARS 0-0
+-    0 | automatizacion de pañol | None | ARS 0-0
+-    0 | app gestion de herramientas | None | ARS 0-0
+-    0 | app entrega de epp | None | ARS 0-0
+-    0 | almacenamiento inteligente de herramientas | None | ARS 0-0
+
+### 3.c Ideas relacionadas que devolvió el Planner (vol >= 10), filtradas a lo potencialmente relevante
+
+-  210 | planilla de entrega de elementos de proteccion personal | LOW | ARS 303-3073 | últimos 12 meses [260, 260, 140, 170, 140, 260, 260, 210, 260, 140, 210, 260]
+-  140 | planilla de epp | LOW | ARS 403-3073 | últimos 12 meses [170, 170, 110, 140, 110, 110, 140, 140, 170, 140, 140, 140]
+-  110 | gestion de herramientas | MEDIUM | ARS 1858-7458 | últimos 12 meses [140, 110, 90, 90, 110, 140, 170, 140, 140, 70, 110, 140]
+-  110 | planilla entrega de epp | LOW | ARS 0-0 | últimos 12 meses [210, 110, 90, 110, 90, 110, 140, 110, 140, 90, 110, 70]
+-   90 | entrega de epp | LOW | ARS 0-0 | últimos 12 meses [110, 110, 70, 70, 70, 90, 70, 90, 70, 90, 110, 90]
+-   90 | entrega de elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [110, 110, 70, 70, 70, 90, 70, 90, 70, 90, 110, 90]
+-   50 | lockers inteligentes | HIGH | ARS 832-1624 | últimos 12 meses [30, 70, 20, 40, 30, 50, 50, 70, 50, 30, 50, 50]
+-   40 | registro de entrega de elementos de protección personal | LOW | ARS 0-0 | últimos 12 meses [40, 40, 30, 50, 30, 30, 40, 40, 30, 40, 30, 30]
+-   40 | registro de entrega de epp | LOW | ARS 0-0 | últimos 12 meses [40, 40, 30, 50, 30, 30, 40, 40, 30, 40, 30, 30]
+-   40 | constancia de entrega de elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [30, 40, 20, 40, 40, 30, 40, 40, 50, 30, 30, 50]
+-   40 | constancia de entrega de epp | LOW | ARS 0-0 | últimos 12 meses [30, 40, 20, 40, 40, 30, 40, 40, 50, 30, 30, 50]
+-   40 | entrega de epp planilla | LOW | ARS 0-0 | últimos 12 meses [30, 50, 40, 20, 30, 50, 40, 40, 40, 30, 50, 30]
+-   40 | planilla de entrega de epp resolucion 299 11 | LOW | ARS 0-0 | últimos 12 meses [70, 50, 30, 30, 30, 40, 50, 50, 50, 30, 20, 30]
+-   30 | inventario de herramientas | MEDIUM | ARS 591-5229 | últimos 12 meses [30, 20, 30, 20, 30, 40, 30, 10, 20, 10, 20, 20]
+-   30 | herramientas administracion | LOW | ARS 633-5307 | últimos 12 meses [40, 40, 20, 20, 20, 30, 30, 30, 20, 10, 30, 20]
+-   30 | expendedoras de agua | HIGH | ARS 184-786 | últimos 12 meses [30, 30, 50, 50, 30, 30, 20, 40, 10, 30, 30, 40]
+-   30 | entrega de ropa de trabajo y elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [20, 20, 10, 30, 20, 40, 50, 50, 50, 50, 40, 30]
+-   30 | entrega elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [30, 30, 20, 20, 20, 20, 40, 10, 20, 20, 30, 40]
+-   30 | registro de entrega de epp res 299 11 | LOW | ARS 0-0 | últimos 12 meses [40, 30, 20, 20, 20, 40, 30, 30, 20, 30, 30, 40]
+-   30 | planilla de entrega de epp según resolución 299 11 | LOW | ARS 235-1798 | últimos 12 meses [10, 10, 10, 10, 20, 10, 20, 20, 20, 20, 50, 110]
+-   30 | planilla entrega elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [50, 30, 20, 30, 30, 30, 30, 30, 30, 10, 40, 20]
+-   20 | maquina expendedora de epp | MEDIUM | ARS 177-907 | últimos 12 meses [10, 20, 10, 10, 20, 20, 30, 10, 10, 10, 20, 20]
+-   20 | herramientas para organizar tareas | MEDIUM | ARS 643-7488 | últimos 12 meses [20, 20, 20, 20, 10, 10, 20, 10, 10, 20, 20, 10]
+-   20 | gestion de calidad herramientas | MEDIUM | ARS 1475-6509 | últimos 12 meses [10, 10, 10, 10, 10, 10, 50, 20, 10, 10, 20, 10]
+-   20 | herramienta de control | MEDIUM | ARS 0-0 | últimos 12 meses [30, 30, 10, 10, 10, 10, 30, 10, 10, 10, 10, 10]
+-   20 | gestion de inventarios software | HIGH | ARS 2555-4575 | últimos 12 meses [40, 30, 10, 30, 10, 20, 30, 10, 20, 10, 10, 10]
+-   20 | resolucion entrega de epp | LOW | ARS 0-0 | últimos 12 meses [30, 20, 10, 10, 10, 10, 20, 10, 10, 10, 10, 10]
+-   20 | epp mina | LOW | ARS 0-0 | últimos 12 meses [20, 20, 10, 10, 10, 20, 30, 30, 20, 10, 20, 20]
+-   20 | insumos para la mineria | HIGH | ARS 776-5056 | últimos 12 meses [10, 20, 10, 10, 20, 20, 20, 20, 10, 20, 10, 20]
+-   20 | epp en mineria | LOW | ARS 0-0 | últimos 12 meses [20, 20, 10, 10, 10, 20, 30, 30, 20, 10, 20, 20]
+-   10 | vending industrial | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 0, 0, 0, 10, 10, 10, 10, 10]
+-   10 | dispensador de epp | MEDIUM | ARS 152-1122 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | control de herramientas | MEDIUM | ARS 1180-3643 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | gestion de pañol | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | control de inventario de herramientas | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 10, 10, 0, 0, 0, 0]
+-   10 | cribmaster | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10]
+-   10 | autocrib | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 20, 30, 20, 10, 10, 10, 10]
+-   10 | supplypro | LOW | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 10, 10, 0, 10, 0, 10, 10, 10]
+-   10 | herramienta para seguimiento de tareas | HIGH | ARS 934-4543 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | jira herramienta de gestion | MEDIUM | ARS 989-17875 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramienta de seguimiento de tareas | HIGH | ARS 937-17707 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas rrhh | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 0, 10]
+-   10 | herramientas para planificar y programar tareas | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 10, 10, 0, 0, 0, 10]
+-   10 | herramientas para seguimiento de tareas | HIGH | ARS 934-4543 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de recursos humanos | MEDIUM | ARS 398-2940 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de seguimiento de tareas | HIGH | ARS 937-17707 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas recursos humanos | None | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 10, 10, 10, 0, 0, 10, 10, 0]
+-   10 | herramientas de gestion de tareas | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 20, 10, 20, 10, 10, 10, 10]
+-   10 | herramientas bpm | MEDIUM | ARS 1976-10112 | últimos 12 meses [20, 20, 10, 10, 10, 10, 20, 10, 10, 10, 10, 10]
+-   10 | herramientas para recursos humanos | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 0, 10, 10, 10, 0, 0]
+-   10 | herramienta gmao | HIGH | ARS 1545-51749 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas para el control de inventarios | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 0, 10, 10, 0, 0, 0, 0]
+-   10 | aplicaciones para hacer inventario | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas para gestionar equipos de trabajo | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas para gestionar tareas | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 10, 10, 10, 10, 10, 10, 0, 0]
+-   10 | herramientas de gestion empresarial | HIGH | ARS 1989-11943 | últimos 12 meses [10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de gestion de recursos humanos | HIGH | ARS 589-1915 | últimos 12 meses [10, 10, 10, 10, 10, 0, 10, 10, 20, 10, 10, 10]
+-   10 | herramientas itil | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 0]
+-   10 | herramienta de tareas | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de gestion de trabajo | MEDIUM | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 10, 10, 10, 10, 0, 0, 10]
+-   10 | pagina web para control de inventarios | None | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 0, 10, 0, 10, 0, 0, 10, 0]
+-   10 | herramientas para hacer seguimiento de tareas | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para gestion de tareas | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 10, 0, 10, 0, 10, 0, 10]
+-   10 | recursos humanos herramientas | None | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 10, 10, 10, 0, 0, 10, 10, 0]
+-   10 | herramientas digitales para organizar tareas | HIGH | ARS 495-2817 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas de gestion de mantenimiento | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 0, 10, 0, 0, 0, 0, 10, 10]
+-   10 | herramientas para gestionar el tiempo | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 10, 0, 10, 10, 10, 10]
+-   10 | herramientas de control de gestion | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de control horario | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de gestion de clientes | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 0, 10, 10, 10, 10, 10]
+-   10 | herramientas para administrar una empresa | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion de personal | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 10, 10, 10, 10]
+-   10 | herramienta wrike | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 0, 0, 10, 10, 0, 0]
+-   10 | herramientas para organizar el tiempo | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 10, 0, 0, 10, 0, 10, 10, 0]
+-   10 | herramientas para hacer inventarios | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la gestión del talento humano | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas de control de inventarios | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 0, 10, 10, 0, 10, 0, 0, 0]
+-   10 | asana herramienta colaborativa | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas pmo | LOW | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 0, 0, 0, 0, 0, 10, 10, 10]
+-   10 | herramienta de control horario | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de control de calidad | MEDIUM | ARS 498-1932 | últimos 12 meses [20, 20, 10, 10, 10, 10, 40, 20, 10, 10, 10, 10]
+-   10 | herramientas para la organización de tareas | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion de seguridad | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 10, 0, 10, 0, 10, 0, 10]
+-   10 | herramientas tecnológicas para el control de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas para inventarios | HIGH | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 10, 10, 0, 10, 10, 10, 0, 10]
+-   10 | consumibles vending | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | sap herramienta de gestion | HIGH | ARS 2429-4526 | últimos 12 meses [10, 10, 10, 10, 10, 0, 10, 0, 10, 10, 10, 10]
+-   10 | inventario informatico open source | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas de gestion de personas | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 10, 10, 10, 10]
+-   10 | herramientas de gestion de inventarios | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 10, 0, 0, 10, 10, 10]
+-   10 | herramientas de gestión del tiempo | LOW | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10, 10]
+-   10 | herramientas de control de stock | HIGH | ARS 1122-2131 | últimos 12 meses [10, 10, 10, 10, 0, 0, 10, 0, 10, 10, 10, 10]
+-   10 | herramientas computacionales para la gestión del mantenimiento | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas para planificar y programar tareas en la administración | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | inventario de equipos y herramientas | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 0, 10, 0, 10, 10]
+-   10 | herramienta tareas | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para control de stock | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 0, 0, 10, 10, 10, 10]
+-   10 | herramienta de gestion jira | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 0, 10, 10, 10, 10]
+-   10 | control de herramientas de trabajo | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 10]
+-   10 | inventario herramientas | MEDIUM | ARS 1077-6406 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas para la gestion de recursos humanos | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 0, 0, 0, 10, 10, 10, 0]
+-   10 | 10 herramientas de control administrativo | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | 7 herramientas de calidad ejemplos | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | 7 herramientas de calidad ishikawa | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | 7 herramientas de calidad total | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | 7 herramientas de control de calidad | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 10, 10, 0, 10, 10, 10, 10, 0, 0, 10]
+-   10 | 7 herramientas de gestion de calidad | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | 7 herramientas de ishikawa | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 20, 10, 10, 10, 10]
+-   10 | 7 herramientas del control de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | 7 herramientas ishikawa | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10]
+-   10 | 7 herramientas para el control de calidad | LOW | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 10, 0, 0, 10, 0, 0, 0, 10]
+-   10 | administracion de pañol | MEDIUM | ARS 675-1528 | últimos 12 meses [10, 10, 10, 10, 10, 0, 0, 10, 0, 0, 10, 10]
+-   10 | control de herramientas en almacén | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | control de herramientas en obra | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | control de herramientas y equipos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | control de inventario de hardware | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | control de inventario open source | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | control de pañol de herramientas | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 0, 10, 10, 10, 10]
+-   10 | control herramientas | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | ejemplos de herramientas de gestion | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 10, 10, 10, 0, 10, 10]
+-   10 | el control interno como herramienta de gestión y evaluación | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | el presupuesto como herramienta de planificación y control | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | equipos para control de inventarios | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10]
+-   10 | gestion de inventario open source | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 0, 10, 0, 10, 10, 10, 0, 10]
+-   10 | gestion del tiempo herramientas | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 10, 0, 10, 0, 10, 10]
+-   10 | gestión del cambio organizacional caminos y herramientas | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0]
+-   10 | herramienta control m | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 10, 10, 10, 0, 0, 10, 10]
+-   10 | herramienta de administracion | LOW | ARS 702-1921 | últimos 12 meses [20, 20, 10, 10, 10, 20, 30, 20, 10, 10, 10, 10]
+-   10 | herramienta de calidad ishikawa | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 0, 10, 0, 10, 10, 10, 10]
+-   10 | herramienta de control administrativo | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 0, 10, 10, 10, 10]
+-   10 | herramienta de control de cambios | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 10, 0, 10, 0, 10, 10]
+-   10 | herramienta de gestion de tiempo | LOW | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10, 10]
+-   10 | herramienta de ishikawa | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramienta digital trello | LOW | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramienta para administrar el tiempo | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 0]
+-   10 | herramienta para el control de calidad | HIGH | ARS 941-2425 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas administrativas de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas administrativas de una empresa | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 10, 10, 10, 10, 10, 10, 0]
+-   10 | herramientas agiles de gestion | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 0, 0]
+-   10 | herramientas basicas de control de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas basicas del control de gestion | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas basicas para el control de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas básicas para la gestión de procesos | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas calidad total | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas control | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de administracion del tiempo | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 10, 10, 10, 10, 0, 0, 0]
+-   10 | herramientas de calidad de ishikawa | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de calidad ejemplos | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 0, 0, 10, 0, 0, 0, 10]
+-   10 | herramientas de calidad en una empresa | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de calidad iso 9001 | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 10, 0]
+-   10 | herramientas de calidad total | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10, 10]
+-   10 | herramientas de cambio organizacional | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de control administracion | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de control de calidad ejemplos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de control de costos | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control de gestion empresarial | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control de la gestión y su aplicación | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control de personal | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas de control de presupuesto | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control de proceso | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 0, 10, 10, 10, 0, 0, 0]
+-   10 | herramientas de control de produccion | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 10]
+-   10 | herramientas de control de producción | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 10]
+-   10 | herramientas de control de tiempo | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de control de una empresa | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 10, 10, 10, 0, 10]
+-   10 | herramientas de control ejemplos | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 10, 0, 0, 10, 0]
+-   10 | herramientas de control en administracion | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 0, 0, 0, 0, 10, 10, 0]
+-   10 | herramientas de control en las organizaciones | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas de control en una empresa ejemplos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas de control estadistico | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de control estadistico de calidad | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0]
+-   10 | herramientas de control estadístico de procesos | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 10]
+-   10 | herramientas de control estrategico | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control gerencial | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de control organizacional | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas de control presupuestario | HIGH | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 10, 0, 0, 0, 10, 0, 10, 10]
+-   10 | herramientas de control y evaluación | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de control y evaluación del cambio organizacional | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas de evaluación y control | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion administrativa | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de gestion colaborativa | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 10, 10, 0, 10, 0]
+-   10 | herramientas de gestion comercial | HIGH | ARS 1130-2460 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de gestion de cambios | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 10, 0, 0, 0, 0, 10, 0, 0, 10]
+-   10 | herramientas de gestion de capital humano | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas de gestion de costos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas de gestion de equipos | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 10, 10, 10, 0, 10, 10, 10, 10]
+-   10 | herramientas de gestion de operaciones | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion de procesos | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 10, 10, 10, 0, 10, 0]
+-   10 | herramientas de gestion de produccion | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 10, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas de gestion de requerimientos | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 10]
+-   10 | herramientas de gestion de requisitos | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas de gestion de talento humano | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 10, 0, 10, 0, 0, 10]
+-   10 | herramientas de gestion de ventas | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 10, 10, 10, 0, 0]
+-   10 | herramientas de gestion del cambio | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 0, 10, 0, 10, 0]
+-   10 | herramientas de gestion del cambio organizacional | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion digital | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 0, 10, 10, 10, 10, 0, 0, 10]
+-   10 | herramientas de gestion ejemplos | MEDIUM | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de gestion gerencial | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion humana | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion industrial | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 0, 10, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas de gestion organizacional | LOW | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 10, 10, 10, 10, 10, 0, 0, 10]
+-   10 | herramientas de gestion para emprendedores | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 20, 0, 10, 0, 10, 0, 10, 0, 0]
+-   10 | herramientas de gestion personal | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion por procesos | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de gestion publica | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 10, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas de gestion ssoma | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas de gestion tecnologica | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestion visual | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas de gestión administrativa | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 0, 0, 10, 0, 10, 10, 10, 10]
+-   10 | herramientas de gestión de archivos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestión de campañas | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestión de costos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de gestión de procesos bpm | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de gestión de requisitos | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas de gestión del tiempo y sus características | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de gestión estratégica | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 0, 10, 10, 10, 10, 0, 0, 10]
+-   10 | herramientas de inspección de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas de la gestion administrativa | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de la gestion de la calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de la gestion empresarial | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas de management | HIGH | ARS 2943-8898 | últimos 12 meses [10, 10, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas de mejora continua kanban | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas de mejora de la calidad | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 10, 10, 0, 10, 10]
+-   10 | herramientas de organizacion en administracion | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas de planeacion en administracion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas de planificación y control | HIGH | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 10, 10, 0, 10]
+-   10 | herramientas de rh | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 10, 10]
+-   10 | herramientas de tiempo | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 0, 0, 10, 0, 0, 10]
+-   10 | herramientas de un administrador de empresas | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas del control administrativo | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas del management | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 10, 0, 10, 10, 0, 0, 10, 0]
+-   10 | herramientas del proceso de control | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 10, 0, 10, 10, 0]
+-   10 | herramientas digitales para la gestion | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 10, 10, 0, 0, 0, 10]
+-   10 | herramientas en administracion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas en recursos humanos | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas estadísticas para el control de calidad | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas estadísticas para la gestión de procesos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas gestion | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas gestion empresarial | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas ishikawa | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas iso 9001 | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas para administracion | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 10, 0, 10, 0, 0, 10]
+-   10 | herramientas para administracion del tiempo | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas para administrar | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas para bpm | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas para control de costos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas para control de gestion | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 0, 10, 10, 10, 0, 10, 10, 0]
+-   10 | herramientas para control de procesos | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para controlar | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas para el cambio organizacional | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | herramientas para el control | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 10, 10, 10, 0, 0, 10, 10]
+-   10 | herramientas para el control de costos | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para el control de la produccion | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para el control de la producción | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para el control de procesos | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | herramientas para el control estadistico de procesos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas para el control y la mejora de calidad | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para finanzas personales | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas para gestion de calidad | None | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 0, 10, 10, 10, 0, 10, 0, 0]
+-   10 | herramientas para gestion de equipos | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas para gestion de procesos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 10, 0, 10, 0, 0]
+-   10 | herramientas para gestion de tiempo | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10, 0]
+-   10 | herramientas para hacer un inventario | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas para la administracion | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 10, 10, 0, 0, 0, 10]
+-   10 | herramientas para la administracion del tiempo | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas para la administración de personal | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la gestion | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | herramientas para la gestion de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | herramientas para la gestion de procesos | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0]
+-   10 | herramientas para la gestion de tareas | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la gestion del cambio | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas para la gestion del tiempo | LOW | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 10, 0, 10, 10, 10, 10, 10]
+-   10 | herramientas para la gestion empresarial | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0]
+-   10 | herramientas para la gestión de equipos de trabajo | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 10, 10, 0, 0]
+-   10 | herramientas para la gestión de requisitos | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la gestión del cambio | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas para la gestión por procesos | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la organizacion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | herramientas para la organizacion de una empresa | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para la organización del tiempo | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 10, 0, 10, 10, 0, 0]
+-   10 | herramientas para optimizar el tiempo | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas para planificar tareas | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas para realizar inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | herramientas para reducir inventarios | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas pmi | None | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 0, 10, 10, 10, 0, 0, 0, 0]
+-   10 | herramientas prince2 | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas tecnologicas en la administracion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas tecnologicas para la administracion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | herramientas utilizadas en el control de calidad | MEDIUM | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | herramientas y gestion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | inventario de herramientas ejemplo | LOW | ARS 0-0 | últimos 12 meses [0, 10, 10, 0, 0, 0, 10, 0, 0, 0, 0, 10]
+-   10 | ishikawa 7 herramientas | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 10, 0, 10, 0, 0, 0, 0]
+-   10 | ishikawa herramientas | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 0, 0, 0, 10, 10]
+-   10 | ishikawa herramientas de calidad | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | la caja de herramientas control de calidad | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | las 7 herramientas de control de calidad | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 0, 10, 0, 0, 0, 10]
+-   10 | las 7 herramientas de ishikawa | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 10, 10, 10, 20, 10, 10, 10, 0]
+-   10 | las 7 herramientas del control de calidad | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | las herramientas de control | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | las herramientas de gestión | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | las siete herramientas básicas para el control de la calidad | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 10, 10, 0, 0, 10]
+-   10 | maquina dispensadora de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | maquinas dispensadoras de epp | MEDIUM | ARS 164-845 | últimos 12 meses [0, 10, 0, 0, 0, 10, 0, 10, 10, 10, 0, 10]
+-   10 | presupuesto como herramienta de control | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | principales herramientas de gestion | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0]
+-   10 | proactivanet inventario | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | siete herramientas de calidad | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | siete herramientas de control de calidad | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0]
+-   10 | siete herramientas de ishikawa | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 0, 0]
+-   10 | sistema de control de herramientas | HIGH | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 10, 0, 0, 0, 10, 0, 10, 10]
+-   10 | tipos de herramientas de gestion | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | maquina expendedora de guantes | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | control de epp | LOW | ARS 684-1752 | últimos 12 meses [10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | gestion de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | tool crib | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 0, 10, 10, 10, 10, 10]
+-   10 | industrial vending machine | MEDIUM | ARS 347-1127 | últimos 12 meses [0, 0, 10, 10, 0, 10, 10, 0, 0, 0, 0, 10]
+-   10 | tool vending machine | MEDIUM | ARS 326-1647 | últimos 12 meses [0, 0, 0, 0, 10, 10, 0, 0, 10, 0, 10, 10]
+-   10 | mro vending | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | software control de herramientas | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | maquinas expendedoras para empresas | HIGH | ARS 608-4136 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | software para control de inventarios | MEDIUM | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 0, 10, 0, 10, 10, 10, 10, 10]
+-   10 | control de inventarios software | HIGH | ARS 2238-7346 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | maquinas expendedoras de productos | MEDIUM | ARS 157-1587 | últimos 12 meses [10, 10, 10, 10, 10, 20, 10, 10, 10, 20, 10, 10]
+-   10 | maquinas de vending para empresas | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 0, 10, 10, 10, 10, 10, 0, 10]
+-   10 | maquinas vending para empresas | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0]
+-   10 | software gratuito para inventarios | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | empresas de maquinas expendedoras | HIGH | ARS 431-1795 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | software para administracion de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | software para administrar inventarios | HIGH | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | empresas maquinas expendedoras | None | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0]
+-   10 | software aplicado en el manejo y control de almacén | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | software para control de herramientas | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | software para toma de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 10, 10, 0, 0, 0, 0, 0, 0]
+-   10 | mejor software para control de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0]
+-   10 | máquinas expendedoras pequeñas | HIGH | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 0, 10, 0, 10, 10, 0, 10, 10]
+-   10 | expendedoras de agua purificada | HIGH | ARS 114-467 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | mejores software para inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | empresas de maquinas vending | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10, 0]
+-   10 | máquinas expendedoras comida casera | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0]
+-   10 | máquinas expendedoras de comida preparada | MEDIUM | ARS 271-967 | últimos 12 meses [0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | software libre para inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 10, 0, 0, 0, 0, 10, 0]
+-   10 | control de entrega de epp | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 0, 0, 10, 10, 0, 10, 0]
+-   10 | documento de entrega de epp | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 10, 10, 10, 0, 0, 0]
+-   10 | documento entrega de epp | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 0, 0, 10, 10, 0, 10, 0]
+-   10 | empresas de maquinas dispensadoras | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | empresas de máquinas expendedoras | HIGH | ARS 431-1795 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | entrega de elementos de proteccion personal ley | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0]
+-   10 | entrega de epp 299 11 | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 20, 10, 20, 20, 30]
+-   10 | entrega de epp a trabajadores | LOW | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | entrega de epp resolucion | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10, 10]
+-   10 | entrega de epp según ley | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10]
+-   10 | entrega de epp srt | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | entrega de equipo de proteccion personal | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | epp iso 45001 | LOW | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+-   10 | epp para manejo de residuos peligrosos | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 10, 10, 10, 10, 0, 10]
+-   10 | ficha de entrega de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 20, 10, 10, 10]
+-   10 | ficha entrega de epp | None | ARS 0-0 | últimos 12 meses [10, 10, 0, 0, 0, 0, 10, 10, 10, 10, 0, 0]
+-   10 | iso 45001 epp | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 0]
+-   10 | ley de entrega de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | maquina expendedora de comida para perros | LOW | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 10, 0, 0, 10, 0, 10, 10]
+-   10 | maquinas expendedoras de productos higienicos | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0, 0]
+-   10 | maquinas expendedoras de todo tipo | MEDIUM | ARS 0-0 | últimos 12 meses [10, 0, 10, 0, 10, 0, 0, 0, 0, 0, 0, 10]
+-   10 | maquinas expendedoras innovadoras | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 10, 10, 0, 10, 0, 0, 0, 10, 10]
+-   10 | maquinas expendedoras mas rentables | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 10, 0, 10, 10, 10, 0, 0, 10, 0]
+-   10 | maquinas expendedoras para oficinas | HIGH | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 0, 10, 0, 10, 10, 10, 10, 10]
+-   10 | maquinas expendedoras pequeñas | HIGH | ARS 0-0 | últimos 12 meses [0, 10, 10, 10, 0, 10, 0, 10, 10, 0, 10, 10]
+-   10 | maquinas vending innovadoras | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 10, 10, 10, 0, 0, 0, 10, 0, 0]
+-   10 | máquinas expendedoras para empresas | HIGH | ARS 608-4136 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | registro de entrega epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | registro entrega de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10]
+-   10 | registro entrega epp | LOW | ARS 0-0 | últimos 12 meses [20, 10, 10, 10, 10, 10, 10, 20, 10, 10, 10, 10]
+-   10 | resolucion 299 entrega de epp | LOW | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | software libre inventario | None | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 0, 10, 0, 0, 0, 0]
+-   10 | software para el manejo de inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 0]
+-   10 | software para manejar inventarios | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0]
+-   10 | tool crib que es | None | ARS 0-0 | últimos 12 meses [0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0]
+-   10 | tool crib que significa | None | ARS 0-0 | últimos 12 meses [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+-   10 | tool crib significado | None | ARS 0-0 | últimos 12 meses [0, 0, 10, 10, 0, 0, 10, 0, 0, 0, 0, 0]
+-   10 | acta de entrega de elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [0, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | formato de registro de entrega de epp | None | ARS 0-0 | últimos 12 meses [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0]
+-   10 | modelo de planilla de entrega de elementos de proteccion personal | LOW | ARS 0-0 | últimos 12 meses [10, 10, 0, 10, 10, 10, 10, 10, 0, 0, 10, 10]
+-   10 | planilla de entrega de epp srt | LOW | ARS 0-0 | últimos 12 meses [10, 0, 10, 10, 10, 10, 10, 10, 0, 10, 10, 10]
+-   10 | insumos mineria | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10]
+-   10 | insumos de mineria | MEDIUM | ARS 0-0 | últimos 12 meses [10, 10, 10, 10, 10, 0, 10, 10, 10, 10, 10, 10]
+
+### 3.d Ruido grande que el Planner mezcla con estas semillas (para negativas)
+- `kardex` 590 y toda su familia (contable, excel, peps): no es el producto.
+- `maquina expendedora de cafe` 720, `expendedora de cafe` 480, snacks, bebidas, "negocio de vending": vending de consumo, no industrial.
+- `planilla de entrega de elementos de proteccion personal` 210, `planilla de epp` 140, `planilla entrega de epp` 110, `registro de entrega de epp` 40,
+  `resolucion 299 entrega de epp` 10: gente de RRHH/seguridad buscando el formulario de la SRT. Es el dolor exacto (registrar la entrega
+  de EPP) pero con intención de plantilla gratis, no de compra.
+- `minera argentina` 1.900, `empresa minera argentina` 590, `rio tinto mina` 320, `minera rio tinto argentina` 70: informativo/empleo.
+- `gestion de herramientas` 110 se mezcla con "herramientas de gestión" (CRM, proyectos).
+- `lockers inteligentes` 50: mayoría paquetería/edificios, no pañol.
+- `pañol` 1.900, `que es un pañol` 260: diccionario/escolar. `pañol de herramientas` 140 mezcla muebles.
+
+## 4. Lo que ya se aprendió con CIMAT en la misma cuenta (jeren/docs/ads/PLAN_ADS_CIMAT.md y ANALISIS_20260910_exhaustivo.md)
+
+- El mercado de bienes de capital industriales **no se busca en Google**: en balanceadoras, 15.030 búsquedas/mes en AR eran 14.300 de
+  ruido y lo pujable con intención real no llegaba a 100. El pipeline salió de prospectar empresas, no de Ads.
+- Concordancia de frase se comporta como amplia; sin negativas por familia el gasto se va a lo que no es.
+- Quality Score "página de destino por debajo del promedio" en 12 de 12 palabras; CPC pegado al tope (ARS 1.050–1.200).
+- Resultado 90 días (02/08–30/10/2026) de la campaña CIMAT Comercial (6 países): 1.649 impr, 188 clics, ARS 198.183, **2 conversiones**,
+  IS 34 %. México: 420 impr, 29 clics, ARS 33.510, 0 conversiones. Costo por conversión real ≈ ARS 100.000 (USD 65).
+- Acciones de conversión existentes: "CIMAT — Solicitud de información" (SUBMIT_LEAD_FORM) y "CIMAT — WhatsApp clic". Lista de
+  negativas compartida "NEG — Universal CIMAT" con 232 términos.
+- Google Ads mide por hora de clic y subregistra; para "hoy" la fuente es el formulario/mail.
+- No hay campañas de Display, YouTube, Demand Gen ni Performance Max en la cuenta. Nunca se hizo remarketing.
+
+## 5. Orgánico (Search Console, 29/09–26/10/2026, jeren.com)
+
+- 98 consultas con impresiones; ninguna relacionada con vending, EPP, pañol o CribMaster. Las de marca: `jeren` 172 impr.
+  Las de producto son todas de balanceadoras (`balanceadora de cardan` 22, `balanceadora de turbos` 18). CribMaster arranca de cero en orgánico.
+
+## 6. Estado crudo de la cuenta (90 días)
+
+```
+## Campañas (últimos 90 días)
+- LATAM | Search | CIMAT — Comercial ENABLED ppto ARS 6500/d MANUAL_CPC impr 1649 clics 188 ARS 198183 conv 2 IS 0.34370771312584575
+- LATAM | Search | CIMAT — Marca PAUSED ppto ARS 1000/d MANUAL_CPC impr 1 clics 0 ARS 0 conv 0 IS 0.0999
+- MX | Search | CIMAT — México ENABLED ppto ARS 2000/d MANUAL_CPC impr 420 clics 29 ARS 33510 conv 0 IS 0.2408
+
+## Keywords activas (90 d)
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | equipo de balanceo dinamico PHRASE | QS 2 | impr 184 clics 22 ARS 24302 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora dinamica PHRASE | QS 3 | impr 165 clics 15 ARS 15522 conv 1
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora industrial PHRASE | QS 5 | impr 136 clics 14 ARS 15825 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina de balanceo dinamico PHRASE | QS 5 | impr 47 clics 9 ARS 10057 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | maquina balanceadora PHRASE | QS 2 | impr 161 clics 8 ARS 9409 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | balanceadora de turbos PHRASE | QS 6 | impr 45 clics 8 ARS 7876 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de ventiladores PHRASE | QS 7 | impr 47 clics 8 ARS 9311 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cardan EXACT | QS 5 | impr 42 clics 8 ARS 7276 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cardanes PHRASE | QS 4 | impr 51 clics 8 ARS 8252 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora de rotores PHRASE | QS 5 | impr 42 clics 7 ARS 8090 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | analizador de vibraciones y balanceo PHRASE | QS - | impr 78 clics 7 ARS 8217 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cardan PHRASE | QS 5 | impr 59 clics 7 ARS 5902 conv 0
+- MX | Search | CIMAT — México | MX — Turbos | balanceadora de turbos PHRASE | QS 4 | impr 46 clics 6 ARS 6593 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina balanceadora de rotores PHRASE | QS 5 | impr 27 clics 6 ARS 6346 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cigueñales EXACT | QS 4 | impr 84 clics 6 ARS 5215 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina equilibradora PHRASE | QS - | impr 41 clics 5 ARS 5421 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora de rotores EXACT | QS 5 | impr 56 clics 5 ARS 5527 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora industrial EXACT | QS 5 | impr 25 clics 4 ARS 4709 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora de embragues PHRASE | QS 1 | impr 26 clics 4 ARS 3593 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de impulsores PHRASE | QS - | impr 26 clics 4 ARS 4393 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cigueñales PHRASE | QS 4 | impr 40 clics 4 ARS 3820 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora dinamica PHRASE | QS 5 | impr 23 clics 3 ARS 3566 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | balanceadora de turbinas PHRASE | QS - | impr 12 clics 3 ARS 3541 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | maquina balanceadora de turbos PHRASE | QS - | impr 9 clics 3 ARS 3440 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | balanceadora portatil PHRASE | QS 5 | impr 18 clics 3 ARS 2936 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | equipo de balanceo dinamico portatil EXACT | QS 3 | impr 13 clics 3 ARS 3546 conv 1
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de cardanes EXACT | QS 4 | impr 11 clics 3 ARS 2717 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de inducidos EXACT | QS 4 | impr 22 clics 3 ARS 2031 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | maquina para balancear cigueñales PHRASE | QS 5 | impr 18 clics 3 ARS 3505 conv 0
+- MX | Search | CIMAT — México | MX — Cigüeñales y cardán | balanceadora de cigueñales PHRASE | QS 2 | impr 17 clics 2 ARS 2329 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora industrial PHRASE | QS 5 | impr 43 clics 2 ARS 2370 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora cemb PHRASE | QS - | impr 5 clics 2 ARS 2359 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | equipo de balanceo dinamico PHRASE | QS 4 | impr 37 clics 2 ARS 2351 conv 0
+- MX | Search | CIMAT — México | MX — Turbos | balanceadora de turbo PHRASE | QS 5 | impr 19 clics 2 ARS 2227 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora dinamica industrial EXACT | QS 3 | impr 10 clics 2 ARS 2397 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora dinamica de rotores EXACT | QS 6 | impr 24 clics 2 ARS 1903 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina para balancear rotores EXACT | QS - | impr 11 clics 2 ARS 1956 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | maquina balanceadora de cigueñales PHRASE | QS 6 | impr 10 clics 2 ARS 2353 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | schenck balanceadora PHRASE | QS - | impr 6 clics 1 ARS 790 conv 0
+- LATAM | Search | CIMAT — Com | Marca propia | cimat balancing PHRASE | QS - | impr 8 clics 1 ARS 789 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora dinamica de rotores PHRASE | QS 4 | impr 5 clics 1 ARS 1160 conv 0
+- MX | Search | CIMAT — México | MX — Turbos | balanceadora para turbos PHRASE | QS 5 | impr 5 clics 1 ARS 1145 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora vertical PHRASE | QS 5 | impr 8 clics 1 ARS 1198 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | balanceadora de turbinas EXACT | QS - | impr 15 clics 1 ARS 1138 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de ejes EXACT | QS 6 | impr 17 clics 1 ARS 791 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | balanceadora portatil EXACT | QS 5 | impr 6 clics 1 ARS 1162 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | maquina balanceadora de cardan PHRASE | QS 3 | impr 7 clics 1 ARS 1193 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | driveshaft balancing machine PHRASE | QS 1 | impr 1 clics 1 ARS 1142 conv 0
+- MX | Search | CIMAT — México | MX — Cigüeñales y cardán | balanceadora de cardanes PHRASE | QS - | impr 12 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Cigüeñales y cardán | balanceadora de flechas cardan PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Cigüeñales y cardán | balanceadora de flechas PHRASE | QS 2 | impr 11 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | jp balancing machine EXACT | QS 3 | impr 7 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | schenck rotec EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | schenck argentina EXACT | QS - | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | balanceadoras tob EXACT | QS 1 | impr 6 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | tob balanceadoras EXACT | QS - | impr 41 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | jp balancing EXACT | QS 3 | impr 2 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | schenck chile EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | omar vetrano EXACT | QS 1 | impr 26 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | vetrano omar EXACT | QS 1 | impr 3 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | omar vetrano sacifi EXACT | QS 1 | impr 2 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | abasteck EXACT | QS 1 | impr 5 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | cemb balanceadora PHRASE | QS - | impr 3 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Competencia | hofmann balanceadora industrial EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Marca propia | cimat balanceadoras PHRASE | QS 9 | impr 10 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Marca propia | maquinas balanceadoras cimat PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Marca propia | cimat argentina EXACT | QS 7 | impr 4 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | maquina de balanceo dinamico PHRASE | QS 5 | impr 5 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora schenck PHRASE | QS - | impr 2 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora dinamica industrial PHRASE | QS 7 | impr 2 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora de rotores PHRASE | QS 3 | impr 25 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora de armaduras PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora de rotores electricos PHRASE | QS 6 | impr 2 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Máquina balanceadora | balanceadora hofmann PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Turbos | balanceadora de turbocargadores PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Retrofit | modernizar balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Retrofit | retrofit balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- MX | Search | CIMAT — México | MX — Retrofit | modernizacion de balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadoras industriales EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | equilibradora dinamica PHRASE | QS 5 | impr 15 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina balanceadora industrial PHRASE | QS - | impr 13 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina balanceadora industrial EXACT | QS - | impr 7 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina para balancear rotores PHRASE | QS - | impr 12 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora horizontal PHRASE | QS - | impr 2 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | comprar maquina balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | balanceadora de rotores industrial PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | precio maquina balanceadora industrial PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | maquina de balanceamiento dinamico PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | modernizar balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Máquina balanceadora | retrofit balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | equilibradora de turbos PHRASE | QS - | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | balanceadora de turbocompresores PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Turbos | equipo para balancear turbos PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de armaduras PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de rotores electricos PHRASE | QS - | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de rotores electricos EXACT | QS - | impr 7 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | maquina para balancear ventiladores PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora para cigueñales PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de impulsores EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de rotores de motores electricos PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Ventiladores y rotores | balanceadora de rodetes PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | equipo de balanceo en campo PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Balanceo en sitio | balanceo dinamico in situ equipo PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | schenck rotec EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | schenck argentina EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | cimat balancing PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | schenck chile EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | omar vetrano EXACT | QS 1 | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | vetrano omar EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | omar vetrano sacifi EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | abasteck EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | hofmann balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | cimat balanceadoras PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | maquinas balanceadoras cimat PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | schenck balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | cemb balanceadora PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Mar | Marca y competencia | cimat argentina EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadoras de cardanes EXACT | QS 7 | impr 4 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de ejes EXACT | QS 3 | impr 2 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora de volantes PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadora para cigueñales PHRASE | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Cigüeñales y cardanes | balanceadoras de cardanes PHRASE | QS 7 | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | rotor balancing EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | balancing machine PHRASE | QS 3 | impr 19 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | dynamic balancing machine PHRASE | QS 4 | impr 7 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | balancing machine EXACT | QS 3 | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | hard bearing balancing machine EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | horizontal balancing machine EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | industrial balancing machine EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | balancing machine price EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | crankshaft balancing machine PHRASE | QS 2 | impr 1 clics 0 ARS 0 conv 0
+- LATAM | Search | CIMAT — Com | Técnico en inglés | core balancer EXACT | QS - | impr 0 clics 0 ARS 0 conv 0
+```
