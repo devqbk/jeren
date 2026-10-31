@@ -18,6 +18,11 @@ const ATRIBUCION = [
   "utm_campaign",
   "utm_content",
   "utm_term",
+  // Ids de clic de Google Ads: con esto en el mail, la conversión se puede
+  // importar offline cuando Fabián califica el lead.
+  "gclid",
+  "gbraid",
+  "wbraid",
   "device_type",
   "referrer",
 ] as const

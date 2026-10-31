@@ -5,9 +5,42 @@ import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { AlertCircle, Loader2 } from "lucide-react"
 import { sendCribmasterLead, type CribmasterLeadState } from "@/app/actions/cribmaster-lead"
+import { datosUsuario } from "@/components/cimat/user-data"
 import { CTA_LABEL, TELEFONO, TELEFONO_HREF, WHATSAPP_URL, formulario } from "@/lib/cribmaster-content"
 import { cn } from "@/lib/utils"
 import { cmTrack, marcarLeadEnviado } from "./track"
+
+/**
+ * Identificadores de clic de Google Ads (gclid; gbraid/wbraid en iOS). Se
+ * guardan 90 días en localStorage: la persona vuelve directo una semana
+ * después y el gclid de la URL ya no está. La cookie de Google sirve para la
+ * etiqueta de conversión; esto sirve para que el id viaje en el mail del lead
+ * y se pueda importar la conversión offline cuando Fabián la califique.
+ */
+const CLICK_IDS = ["gclid", "gbraid", "wbraid"] as const
+const CLICK_ID_KEY = "cm_click_id"
+const CLICK_ID_DIAS = 90
+
+function clickIds(): Record<string, string> {
+  const desdeUrl: Record<string, string> = {}
+  for (const k of CLICK_IDS) {
+    const v = qs(k)
+    if (v) desdeUrl[k] = v
+  }
+  try {
+    if (Object.keys(desdeUrl).length > 0) {
+      window.localStorage.setItem(CLICK_ID_KEY, JSON.stringify({ ...desdeUrl, t: Date.now() }))
+      return desdeUrl
+    }
+    const guardado = window.localStorage.getItem(CLICK_ID_KEY)
+    if (!guardado) return {}
+    const { t, ...ids } = JSON.parse(guardado) as Record<string, string> & { t: number }
+    if (Date.now() - Number(t) > CLICK_ID_DIAS * 86400000) return {}
+    return ids
+  } catch {
+    return desdeUrl
+  }
+}
 
 /**
  * Formulario de la landing CribMaster. Misma mecánica que el de /cimat
@@ -71,7 +104,18 @@ export function LeadForm({ ctaLocation = "hero-form", className }: { ctaLocation
     if (state.status === "success") {
       if (enviadoRef.current) return
       enviadoRef.current = true
-      cmTrack("form_submit", { cta_location: ctaLocation })
+      // Los datos normalizados viajan en el MISMO push que cm_form_submit: la
+      // etiqueta de conversión de Ads dispara con ese evento y GTM los hashea
+      // ahí (ver components/cimat/user-data.ts). País fijo AR: la landing y la
+      // campaña son Argentina y el formulario no pregunta país.
+      const campos = formRef.current?.elements as
+        | (HTMLFormControlsCollection & Record<string, HTMLInputElement | undefined>)
+        | undefined
+      const user_data = datosUsuario(campos?.email?.value ?? "", campos?.telefono?.value ?? "", "AR")
+      cmTrack("form_submit", {
+        cta_location: ctaLocation,
+        ...(Object.keys(user_data).length > 0 ? { user_data } : {}),
+      })
       marcarLeadEnviado()
       router.push("/cribmaster/gracias")
     }
@@ -342,6 +386,7 @@ function AttributionFields({ origen }: { origen: string }) {
   useEffect(() => {
     setDatos({
       page_url: window.location.href,
+      ...clickIds(),
       utm_source: qs("utm_source"),
       utm_medium: qs("utm_medium"),
       utm_campaign: qs("utm_campaign"),

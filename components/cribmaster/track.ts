@@ -13,7 +13,9 @@ import { FORM_ANCHOR } from "@/lib/cribmaster-content"
  */
 export const LEAD_FLAG = "cribmaster_lead_enviado"
 
-export function cmTrack(evento: string, payload: Record<string, string | number | boolean | undefined> = {}) {
+type Valor = string | number | boolean | undefined
+
+export function cmTrack(evento: string, payload: Record<string, Valor | Record<string, Valor>> = {}) {
   track(`cm_${evento}`, { page: typeof window === "undefined" ? "" : window.location.pathname, ...payload })
 }
 
