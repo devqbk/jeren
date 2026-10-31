@@ -119,7 +119,7 @@ export type ResuelveIcon = "persona" | "stock" | "sitio" | "tablero"
 
 export const resuelve = {
   eyebrow: "Qué resuelve en la operación",
-  title: "Menos derroche, menos faltantes y menos viajes al pañol",
+  title: "Menos derroche, menos faltantes y control de pañol sin viajes al pañol central",
   cards: [
     {
       icon: "persona" as ResuelveIcon,
@@ -131,7 +131,7 @@ export const resuelve = {
       icon: "stock" as ResuelveIcon,
       numero: "02",
       title: "Sin faltantes que paren el trabajo",
-      body: "El software sigue el stock en tiempo real y repone solo lo que se consume, con reportes de uso por persona, área y turno.",
+      body: "Control de EPP y de consumibles: el software sigue el stock en tiempo real y repone solo lo que se consume, con reportes de uso por persona, área y turno.",
     },
     {
       icon: "sitio" as ResuelveIcon,
@@ -159,12 +159,12 @@ export const soluciones = {
     {
       categoria: "Expendedoras industriales",
       modelos: "ToolBox · ProStock",
-      body: "EPP, insertos y consumibles, con dispensado unitario autorizado por tarjeta o PIN.",
+      body: "Máquina expendedora de EPP, guantes, insertos y consumibles, con dispensado unitario autorizado por tarjeta o PIN. Funciona como dispensador de EPP en pañoles satélite.",
     },
     {
       categoria: "Lockers y gabinetes inteligentes",
       modelos: "ProLock · MultiStore · Flip Top",
-      body: "Herramientas y equipos de alto valor, con registro de retiro y devolución.",
+      body: "Lockers para herramientas y equipos de alto valor, con control de retiro y devolución.",
     },
     {
       categoria: "Trazabilidad RFID",
@@ -174,7 +174,7 @@ export const soluciones = {
     {
       categoria: "Software y app",
       modelos: "Suite CribMaster · CM Mobile",
-      body: "Stock en tiempo real, reportes, reposición, integración con el ERP y retiro desde el celular.",
+      body: "Control de herramientas e inventario en tiempo real, reportes, reposición, integración con el ERP y retiro desde el celular.",
     },
     {
       categoria: "Acceso controlado",
@@ -220,7 +220,7 @@ export const ctaFinal = {
 export const formulario = {
   ayudaOperacion:
     "Por ejemplo: qué ítems querés controlar, cuántos sitios o pañoles, cuántos operarios y contratistas, y si ya usan un ERP.",
-  privacidad: "Usamos tus datos únicamente para responder esta consulta. No los compartimos con terceros.",
+  privacidad: "Usamos tus datos solo para responder esta consulta.",
   respuesta: "Te respondemos el día hábil siguiente por email o WhatsApp.",
   confirmacion:
     "Gracias. Recibimos tu consulta. Un especialista de JEREN se va a contactar para relevar tu operación y coordinar la demostración.",

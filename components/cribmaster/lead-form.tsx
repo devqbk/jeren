@@ -2,6 +2,7 @@
 
 import { startTransition, useActionState, useEffect, useId, useRef, useState } from "react"
 import dynamic from "next/dynamic"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { AlertCircle, Loader2 } from "lucide-react"
 import { sendCribmasterLead, type CribmasterLeadState } from "@/app/actions/cribmaster-lead"
@@ -326,7 +327,11 @@ export function LeadForm({ ctaLocation = "hero-form", className }: { ctaLocation
       ) : null}
 
       <p className="mt-2 text-[13px] leading-relaxed text-[var(--c-muted)]">
-        <span className="font-semibold text-[var(--c-ink-2)]">{formulario.respuesta}</span> {formulario.privacidad}
+        <span className="font-semibold text-[var(--c-ink-2)]">{formulario.respuesta}</span> {formulario.privacidad}{" "}
+        <Link href="/privacidad" className="underline underline-offset-4 hover:text-[var(--c-ink)]">
+          Cómo tratamos tus datos
+        </Link>
+        .
       </p>
     </form>
   )
