@@ -291,6 +291,16 @@ agregar Chile o Perú (no hay dato de que JEREN tenga CribMaster para la región
 
 ## C1. Paso 0: lo que se hace antes de encender (bloqueante)
 
+**Estado al 31/10/2026, 09:10.** Puntos 1, 2 y 3 hechos y verificados con un envío real desde producción
+(lead "PRUEBA QUBIK (ignorar)", gclid `TESTQUBIK20261031`): la etiqueta principal disparó en `cm_form_submit` con el
+email para conversiones mejoradas, y la de formulario iniciado en `cm_form_start`. Acciones creadas en Ads:
+`CribMaster — Solicitud de información` (id 7884071255, etiqueta `0hSgCNfCta8dELynwM9E`, principal),
+`WhatsApp clic` (7884165816, `VKPpCLilu68dELynwM9E`), `Llamada clic` (7884165819, `ejrMCLulu68dELynwM9E`),
+`Formulario iniciado` (7884165822, `9wbMCL6lu68dELynwM9E`). GTM: activadores 19–22 y etiquetas 23–26, publicadas en
+las versiones 6 y 7 del contenedor. Código: commit `8d1ee40` (gclid/gbraid/wbraid persistidos 90 días y en el mail
+del lead; `user_data` en el push de `cm_form_submit`). Faltan los puntos 4 y 5, que van con la creación de la campaña.
+Pendiente aparte: sumar `cm_form_submit` al conteo de leads de `jer-monitor-ads`.
+
 | # | Qué | Dónde | Detalle |
 |---|---|---|---|
 | 1 | **Acciones de conversión en Ads** | Cuenta 452-457-1142 | `CribMaster — Solicitud de información` (SUBMIT_LEAD_FORM, recuento Una, ventana 90 días, **principal**, **sin valor** hasta que JEREN dé ticket y margen: no copiar los USD 300 de CIMAT). Secundarias: `CribMaster — WhatsApp clic`, `CribMaster — Llamada clic`, `CribMaster — Formulario iniciado`. Activar conversiones mejoradas vía GTM |
