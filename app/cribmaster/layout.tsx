@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { WhatsappPaso } from "@/components/whatsapp-paso"
 
 /**
  * Layout de la landing CribMaster. Igual que /cimat: sin `Providers`
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 }
 
 export default function CribmasterLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return (
+    <>
+      {children}
+      <WhatsappPaso campana="cribmaster" />
+    </>
+  )
 }

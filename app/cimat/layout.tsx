@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { WhatsappPaso } from "@/components/whatsapp-paso"
 
 /**
  * Layout de la landing CIMAT y sus subpáginas.
@@ -13,5 +14,10 @@ export const metadata: Metadata = {
 }
 
 export default function CimatLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return (
+    <>
+      {children}
+      <WhatsappPaso campana="cimat" />
+    </>
+  )
 }

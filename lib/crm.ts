@@ -19,10 +19,14 @@ export type ContactoCrm = {
   campana: Campana
   nombre: string
   empresa: string
-  email: string
+  /** Vacío en los contactos de WhatsApp: el dato que queda es el teléfono del chat. */
+  email?: string
   telefono?: string
   cargo?: string
   pais?: string
+  canal?: "formulario" | "whatsapp"
+  /** Código que viaja en el mensaje de WhatsApp para encontrar el lead desde el chat. */
+  ref?: string
   /** Lo que la persona pidió o contó, en líneas "Etiqueta: valor". */
   detalle: [string, string][]
   atribucion: [string, string][]
@@ -76,6 +80,13 @@ export async function registrarEnCrm(c: ContactoCrm): Promise<ResultadoCrm> {
   const ahora = new Date().toISOString()
   const { first, last } = separarNombre(c.nombre)
   const etiqueta = c.campana === "cimat" ? "CIMAT" : "CribMaster"
+  const canal = c.canal ?? "formulario"
+  const tags = ["jeren", c.campana, canal === "whatsapp" ? "whatsapp" : "formulario-web", `campaign:${camp}`]
+  if (c.ref) tags.push(`ref:${c.ref}`)
+  const proximo =
+    canal === "whatsapp"
+      ? `Ref ${c.ref}: buscar el chat en WhatsApp y pegar el teléfono`
+      : `Responder consulta ${etiqueta} del formulario web`
 
   try {
     const r = await insertar(base, key, "leads", {
@@ -85,15 +96,15 @@ export async function registrarEnCrm(c: ContactoCrm): Promise<ResultadoCrm> {
       created_by: owner,
       first_name: first,
       last_name: last,
-      email: c.email,
+      email: c.email || null,
       phone: c.telefono || null,
       company: c.empresa,
       job_title: c.cargo || null,
       country: c.pais || null,
       status: "new",
       source: "website",
-      tags: ["jeren", c.campana, "formulario-web", `campaign:${camp}`],
-      next_action: `Responder consulta ${etiqueta} del formulario web`,
+      tags,
+      next_action: proximo,
       last_activity_date: ahora,
       created_at: ahora,
       updated_at: ahora,
@@ -109,7 +120,9 @@ export async function registrarEnCrm(c: ContactoCrm): Promise<ResultadoCrm> {
 
   // La nota es complementaria: si falla, el lead ya quedó.
   const texto = [
-    `Consulta ${etiqueta} desde el formulario de jeren.com`,
+    canal === "whatsapp"
+      ? `Consulta ${etiqueta} por WhatsApp desde jeren.com (ref ${c.ref})`
+      : `Consulta ${etiqueta} desde el formulario de jeren.com`,
     "",
     ...c.detalle.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`),
     ...(c.atribucion.length ? ["", "Atribución:", ...c.atribucion.map(([k, v]) => `${k}: ${v}`)] : []),
