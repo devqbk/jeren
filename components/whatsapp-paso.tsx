@@ -119,8 +119,11 @@ export function WhatsappPaso({ campana }: { campana: Campana }) {
     }).catch(() => {})
     track(`${evento}_enviado`, { page: window.location.pathname })
     dialogo.current?.close()
-    const ventana = window.open(url, "_blank", "noopener,noreferrer")
-    if (!ventana) window.location.href = url
+    // Sin "noopener" en las features: con eso window.open devuelve null siempre
+    // y no se puede distinguir un bloqueo de pop-up. El opener se corta a mano.
+    const ventana = window.open(url, "_blank")
+    if (ventana) ventana.opener = null
+    else window.location.href = url
   }
 
   const campo =
