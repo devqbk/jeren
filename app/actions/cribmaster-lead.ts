@@ -1,5 +1,6 @@
 "use server"
 
+import { registrarEnCrm } from "@/lib/crm"
 import { enviarMail } from "@/lib/mailer"
 
 export type CribmasterLeadState = {
@@ -136,15 +137,29 @@ export async function sendCribmasterLead(
     </div>
   `
 
-  const resultado = await enviarMail({
-    origen: "cribmaster-lead",
-    nombre: "Landing CribMaster — JEREN",
-    asunto: `[CribMaster] ${empresa} — ${nombre}`,
-    responderA: email,
-    html,
-  })
+  // Mail y CRM en paralelo: con que uno de los dos registre el contacto, no se pierde.
+  const [resultado, crm] = await Promise.all([
+    enviarMail({
+      origen: "cribmaster-lead",
+      nombre: "Landing CribMaster — JEREN",
+      asunto: `[CribMaster] ${empresa} — ${nombre}`,
+      responderA: email,
+      html,
+    }),
+    registrarEnCrm({
+      campana: "cribmaster",
+      nombre,
+      empresa,
+      email,
+      telefono,
+      cargo,
+      detalle: [["Operación", operacion]],
+      atribucion,
+    }),
+  ])
+  if (!crm.ok) console.error(`[cribmaster-lead] CRM: ${crm.codigo}`)
 
-  if (resultado.ok) return { status: "success", message: "" }
+  if (resultado.ok || crm.ok) return { status: "success", message: "" }
 
   return {
     status: "error",

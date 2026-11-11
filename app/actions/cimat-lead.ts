@@ -1,6 +1,7 @@
 "use server"
 
 import { INTERESES, PAISES } from "@/lib/cimat-content"
+import { registrarEnCrm } from "@/lib/crm"
 import { enviarMail } from "@/lib/mailer"
 
 export type CimatLeadState = {
@@ -177,15 +178,32 @@ export async function sendCimatLead(
     </div>
   `
 
-  const resultado = await enviarMail({
-    origen: "cimat-lead",
-    nombre: "Landing CIMAT — JEREN",
-    asunto: `[CIMAT] ${interesLabel} — ${empresa} (${paisLabel})`,
-    responderA: email,
-    html,
-  })
+  // Mail y CRM en paralelo: con que uno de los dos registre el contacto, no se pierde.
+  const [resultado, crm] = await Promise.all([
+    enviarMail({
+      origen: "cimat-lead",
+      nombre: "Landing CIMAT — JEREN",
+      asunto: `[CIMAT] ${interesLabel} — ${empresa} (${paisLabel})`,
+      responderA: email,
+      html,
+    }),
+    registrarEnCrm({
+      campana: "cimat",
+      nombre,
+      empresa,
+      email,
+      telefono,
+      pais: paisLabel,
+      detalle: [
+        ["Necesidad", interesLabel],
+        ["Aplicación o rotor", aplicacion],
+      ],
+      atribucion,
+    }),
+  ])
+  if (!crm.ok) console.error(`[cimat-lead] CRM: ${crm.codigo}`)
 
-  if (resultado.ok) return { status: "success", message: "" }
+  if (resultado.ok || crm.ok) return { status: "success", message: "" }
 
   return {
     status: "error",
