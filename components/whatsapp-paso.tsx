@@ -18,7 +18,7 @@ import { track } from "@/components/cimat/track"
 type Campana = "cimat" | "cribmaster"
 
 const CLAVE_ATRIB = "jeren_atribucion"
-const PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid"]
+const PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid", "gad_campaignid", "gad_source"]
 
 function guardarAtribucion() {
   try {
