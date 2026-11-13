@@ -1,7 +1,7 @@
 "use client"
 
 import { useActionState } from "react"
-import { useEffect, useRef, useState } from "react"
+import { startTransition, useEffect, useRef, useState } from "react"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,6 +21,13 @@ import { track } from "@/components/cimat/track"
  */
 const FORM_ID = "contacto_general"
 
+/**
+ * Códigos del server con los que el token de Turnstile ya quedó consumido (o
+ * nunca sirvió): hay que pedir uno nuevo antes de reintentar. Mismo criterio
+ * que el formulario de /cimat.
+ */
+const TOKEN_GASTADO = (codigo?: string) => Boolean(codigo) && codigo !== "VALIDACION"
+
 const initialState: ContactFormState = {
   status: "idle",
   message: "",
@@ -32,6 +39,17 @@ export function ContactForm() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""
   const [empezado, setEmpezado] = useState(false)
   const enviadoRef = useRef(false)
+  /** Cambiarla vuelve a montar el widget: es la forma de pedir un token nuevo. */
+  const [turnstileVersion, setTurnstileVersion] = useState(0)
+  const [turnstileFallo, setTurnstileFallo] = useState(false)
+  /**
+   * Envío en espera del token. Quien completa rápido (o con autocompletar)
+   * llegaba al server sin token y rebotaba con CF-SIN-TOKEN: 12/10, 07/11 y
+   * 09/11 en producción. Ahora el envío espera al token y sale solo cuando
+   * llega, como en /cimat desde el 28/09.
+   */
+  const [esperandoToken, setEsperandoToken] = useState(false)
+  const esperandoRef = useRef(false)
 
   // Resetear el formulario cuando el envío es exitoso
   useEffect(() => {
@@ -51,6 +69,8 @@ export function ContactForm() {
       formRef.current?.reset()
       setEmpezado(false)
       enviadoRef.current = false
+      // El token quedó consumido: un segundo mensaje necesita uno nuevo.
+      if (siteKey) setTurnstileVersion((v) => v + 1)
     }
     if (state.status === "error") {
       track("contact_error", {
@@ -58,8 +78,52 @@ export function ContactForm() {
         cta_location: "contacto",
         error_code: state.codigo ?? "SIN-CODIGO",
       })
+      if (siteKey && TOKEN_GASTADO(state.codigo)) setTurnstileVersion((v) => v + 1)
     }
-  }, [state])
+  }, [state, siteKey])
+
+  /**
+   * Envío a mano dentro de `startTransition` en lugar de dejar que el
+   * `<form action>` lo haga solo: así se puede esperar el token, y React no
+   * resetea los campos cuando el server devuelve un error. El `action` queda
+   * en el `<form>` para el envío sin JavaScript.
+   */
+  function enviar(form: HTMLFormElement) {
+    esperandoRef.current = false
+    setEsperandoToken(false)
+    const datos = new FormData(form)
+    startTransition(() => formAction(datos))
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const datos = new FormData(form)
+    if (siteKey && !String(datos.get("cf-turnstile-response") ?? "")) {
+      esperandoRef.current = true
+      setEsperandoToken(true)
+      return
+    }
+    enviar(form)
+  }
+
+  function onTurnstileOk() {
+    setTurnstileFallo(false)
+    // El token recién llega al input oculto en el mismo tick: se envía en el siguiente.
+    if (esperandoRef.current && formRef.current) {
+      const form = formRef.current
+      window.setTimeout(() => enviar(form), 0)
+    }
+  }
+
+  function onTurnstileFallo() {
+    setTurnstileFallo(true)
+    if (esperandoRef.current) {
+      esperandoRef.current = false
+      setEsperandoToken(false)
+      track("contact_error", { form_id: FORM_ID, cta_location: "contacto", error_code: "CF-WIDGET" })
+    }
+  }
 
   function onFirstInput() {
     if (empezado) return
@@ -68,7 +132,13 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} action={formAction} onInput={onFirstInput} className="space-y-6">
+    <form
+      ref={formRef}
+      action={formAction}
+      onSubmit={onSubmit}
+      onInput={onFirstInput}
+      className="space-y-6"
+    >
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="nombre">
@@ -137,9 +207,27 @@ export function ContactForm() {
       {/* Cloudflare Turnstile widget */}
       {siteKey && (
         <Turnstile
+          key={turnstileVersion}
           siteKey={siteKey}
           options={{ theme: "light", language: "es" }}
+          onSuccess={onTurnstileOk}
+          onError={onTurnstileFallo}
+          onUnsupported={onTurnstileFallo}
         />
+      )}
+
+      {esperandoToken && (
+        <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          Verificando que no es un envío automático. El mensaje sale solo en unos segundos.
+        </p>
+      )}
+
+      {turnstileFallo && (
+        <p role="alert" className="text-sm text-muted-foreground">
+          No pudimos completar la verificación de seguridad en este navegador. Probá recargar la
+          página o escribinos directamente por mail.
+        </p>
       )}
 
       {/* Feedback de estado */}
@@ -162,7 +250,7 @@ export function ContactForm() {
         </div>
       )}
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={isPending || esperandoToken}>
         {isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
