@@ -68,7 +68,8 @@ export function WhatsappLink({
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => cmTrack("whatsapp_click", { cta_location: location })}
+      onClick={() => cmTrack("whatsapp_cta", { cta_location: location })}
+      data-cta={location}
       className={className}
     >
       {children}
@@ -184,7 +185,8 @@ export function StickyCta() {
           rel="noopener noreferrer"
           tabIndex={visible ? undefined : -1}
           aria-label={stickyBar.whatsappAria}
-          onClick={() => cmTrack("whatsapp_click", { cta_location: "sticky" })}
+          onClick={() => cmTrack("whatsapp_cta", { cta_location: "sticky" })}
+          data-cta="sticky"
           className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-[var(--c-line)] px-3 text-sm font-semibold text-[var(--c-ink)] transition-colors hover:border-[var(--c-ink)] sm:px-4"
         >
           <MessageCircle className="size-5" aria-hidden="true" />
@@ -217,7 +219,8 @@ export function WhatsappFlotante() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={stickyBar.whatsappAria}
-      onClick={() => cmTrack("whatsapp_click", { cta_location: "flotante" })}
+      onClick={() => cmTrack("whatsapp_cta", { cta_location: "flotante" })}
+      data-cta="flotante"
       className={`${visibilidad} fixed bottom-24 right-4 z-50 min-h-12 items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-5 text-sm font-semibold text-white shadow-lg shadow-black/20 transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 lg:bottom-6`}
     >
       <MessageCircle className="size-5 shrink-0" aria-hidden="true" />

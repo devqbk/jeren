@@ -25,7 +25,8 @@ export function WhatsappLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => track("whatsapp_click", { cta_location: location })}
+      onClick={() => track("whatsapp_cta", { cta_location: location })}
+      data-cta={location}
       className={className}
     >
       {children}

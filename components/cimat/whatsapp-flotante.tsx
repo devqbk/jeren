@@ -43,7 +43,8 @@ export function WhatsappFlotante() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={stickyBar.whatsappAria}
-      onClick={() => track("whatsapp_click", { cta_location: "flotante" })}
+      onClick={() => track("whatsapp_cta", { cta_location: "flotante" })}
+      data-cta="flotante"
       className={`${visibilidad} fixed bottom-24 right-4 z-50 min-h-12 items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-5 text-sm font-semibold text-white shadow-lg shadow-black/20 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 lg:bottom-6`}
     >
       <IconoWhatsapp />

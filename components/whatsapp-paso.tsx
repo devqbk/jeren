@@ -10,8 +10,10 @@ import { track } from "@/components/cimat/track"
  * código en el mensaje. Así el chat que le llega a Fabián se cruza con el lead
  * (y con el anuncio que lo trajo) sin tener la API de WhatsApp.
  *
- * Intercepta cualquier link a wa.me de la página, así que los botones existentes
- * no cambian: siguen disparando su evento de clic y después aparece este paso.
+ * Intercepta cualquier link a wa.me de la página. Los botones disparan `whatsapp_cta` al
+ * tocarse; la conversión `whatsapp_click` (la que cuenta Google Ads) sale recién cuando la
+ * persona completa este paso y se abre WhatsApp (decisión de Ariel, 13/11/2026: antes contaba
+ * la apertura del diálogo).
  * Usa <dialog> nativo para no sumar JS de Radix a la landing.
  */
 
@@ -68,6 +70,7 @@ function armarUrl(href: string, nombre: string, empresa: string, ref: string): {
 export function WhatsappPaso({ campana }: { campana: Campana }) {
   const dialogo = useRef<HTMLDialogElement>(null)
   const destino = useRef("")
+  const ubicacion = useRef("")
   const [errores, setErrores] = useState<{ nombre?: string; empresa?: string }>({})
   const voz = campana === "cimat" ? "usted" : "vos"
   const evento = campana === "cimat" ? "whatsapp_paso" : "cm_whatsapp_paso"
@@ -80,6 +83,7 @@ export function WhatsappPaso({ campana }: { campana: Campana }) {
       if (!a || !dialogo.current) return
       e.preventDefault()
       destino.current = a.href
+      ubicacion.current = a.dataset.cta ?? ""
       setErrores({})
       dialogo.current.showModal()
       track(`${evento}_abierto`, { page: window.location.pathname })
@@ -118,6 +122,9 @@ export function WhatsappPaso({ campana }: { campana: Campana }) {
       website: String(fd.get("website") ?? ""),
     }).catch(() => {})
     track(`${evento}_enviado`, { page: window.location.pathname })
+    // La conversión: llegó a WhatsApp con nombre y empresa.
+    track(campana === "cimat" ? "whatsapp_click" : "cm_whatsapp_click",
+      { cta_location: ubicacion.current, page: window.location.pathname })
     dialogo.current?.close()
     // Sin "noopener" en las features: con eso window.open devuelve null siempre
     // y no se puede distinguir un bloqueo de pop-up. El opener se corta a mano.

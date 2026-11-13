@@ -44,7 +44,8 @@ export function StickyCta() {
           rel="noopener noreferrer"
           tabIndex={visible ? undefined : -1}
           aria-label={stickyBar.whatsappAria}
-          onClick={() => track("whatsapp_click", { cta_location: "sticky" })}
+          onClick={() => track("whatsapp_cta", { cta_location: "sticky" })}
+          data-cta="sticky"
           className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-[var(--c-line)] px-3 text-sm font-semibold text-[var(--c-ink)] transition-colors hover:border-[var(--c-ink)] sm:px-4"
         >
           <MessageCircle className="size-5" aria-hidden="true" />
